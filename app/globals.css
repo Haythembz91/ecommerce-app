@@ -1,0 +1,19 @@
+.collectionBanners>a{
+  top: 50%;
+  transform: translate(0,-50%);
+  font-weight: bold;
+}
+.collectionBanners{
+  border:1px solid white;
+}
+
+body{
+  position: relative;
+  font-family: Diatype, Open sans, Helvetica, Arial, sans-serif;
+}
+
+.sportswearList{
+  font-family: Diatype, Montserrat, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+}
