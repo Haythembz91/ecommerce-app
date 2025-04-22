@@ -1,14 +1,12 @@
 'use client'
 
-import {useState} from "react";
 import OffcanvasSportswear from "@/componants/OffcanvasSportswear";
 import OffcanvasNutrition from "@/componants/OffcanvasNutrition";
 import OffcanvasCollection from "@/componants/OffcanvasCollection";
 import OffcanvasCategory from "@/componants/OffcanvasCategory";
+import {SignedIn, SignedOut, SignInButton, UserButton} from "@clerk/nextjs";
 
 const Offcanvas = ()=>{
-
-    const [showCtg,setShowCtg]=useState(true)
 
     return (
         <div className="sportswearList offcanvas offcanvas-start" tabIndex="-1" id="offcanvasExample"
@@ -27,6 +25,16 @@ const Offcanvas = ()=>{
                 </button>
             </div>
             <div className="offcanvas-body d-md-none">
+                <SignedIn>
+                    <UserButton />
+                </SignedIn>
+                <SignedOut>
+                    <SignInButton>
+                        <button className={"btn"}>
+                            Log In/Sign Up
+                        </button>
+                    </SignInButton>
+                </SignedOut>
                 <div className={'d-flex overflow-x-hidden'}>
                     <OffcanvasSportswear/>
                     <OffcanvasNutrition/>
