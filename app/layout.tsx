@@ -3,7 +3,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import  "bootstrap/dist/css/bootstrap.min.css";
 import {ClerkProvider} from "@clerk/nextjs";
-import {ConvexClientProvider} from "@/componants/ConvexClientProvider";
 
 
 const geistSans = Geist({
@@ -29,11 +28,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-          <ConvexClientProvider>
               <ClerkProvider>
                   {children}
               </ClerkProvider>
-          </ConvexClientProvider>
       </body>
     </html>
   );
