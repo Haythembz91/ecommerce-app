@@ -1,10 +1,10 @@
 'use client'
 import banner_wide1 from "@/public/assets/banners/1.WB_Define2.0_MainBanner_3000x1270_20250221_lh_desktop_ab401c72-4e88-4c4f-8f25-4b33e5837cb9_1600x.jpg"
 import banner_wide2 from "@/public/assets/banners/01.Mixed.WB_EasterFlashSale_MainBanner_20250408_lm_desktop_1600x.webp"
-import banner_wide3 from "@/public/assets/banners/Wear.WB_EasterSale_MainBanner_3000x1270_20250321_iw_desktop_2600x.webp"
+import banner_wide3 from "@/public/assets/banners/Mixed.WB_KingsDaySale_MainBanner_3000x1270_20250417_lh_desktop_1600x.webp"
 import banner_mobile1 from "@/public/assets/banners/1.WB_Define2.0_MainBanner_1600x2070_20250221_lh_mobile_caff70f7-39f5-40bb-8dc8-7ab8680aad1b_1000x.webp"
 import banner_mobile2 from "@/public/assets/banners/01.Mixed.WB_EasterFlashSale_MainBanner_20250408_lm_mobile_680x.webp"
-import banner_mobile3 from "@/public/assets/banners/Wear.WB_EasterSale_MainBanner_1600x2070_20250321_iw_mobile_768x.webp"
+import banner_mobile3 from "@/public/assets/banners/Mixed.WB_KingsDaySale_MainBanner_1600x2070_20250417_lh_mobile_680x.webp"
 
 import {useEffect} from 'react'
 
@@ -32,7 +32,7 @@ const Slider =()=>{
                             src={banner_mobile1.src}
                             className={"d-md-none w-100"} alt={"..."}/>
                         <div className={"carousel-caption"}>
-                            <h5>Define 2.0</h5>
+                            <h2 className={'bannerHeading fs-2 fw-bold'}>DEFINE 2.0</h2>
                             <p>New styles & colors</p>
                             <button className={"btn btn-light"}
                                     style={{
@@ -51,7 +51,7 @@ const Slider =()=>{
                             src={banner_mobile2.src}
                             className={"d-md-none w-100"} alt={"..."}/>
                         <div className={"carousel-caption"}>
-                            <h5>Easter Sale</h5>
+                            <h2 className={'bannerHeading fs-2 fw-bold'}>EASTER SALE</h2>
                             <p>Up to 70% off</p>
                             <button className={"btn btn-light"}
                             style={{fontWeight:"bold",borderRadius:"20px"}}>
@@ -67,8 +67,8 @@ const Slider =()=>{
                             src={banner_mobile3.src}
                             className={"d-md-none w-100"} alt={"..."}/>
                         <div className={"carousel-caption"}>
-                            <h5>New Essential Styles</h5>
-                            <p>Just dropped</p>
+                            <h2 className={'bannerHeading fs-2 fw-bold'}>SPRING EDIT</h2>
+                            <p>New season, new energy</p>
                             <button className={"btn btn-light"}
                                     style={{
                                         fontWeight: "bold",

@@ -17,3 +17,7 @@ body{
   font-size: 14px;
   font-weight: 500;
 }
+
+h2.bannerHeading{
+  font-family: Diatype, Montserrat, Helvetica, Arial, sans-serif;
+}
