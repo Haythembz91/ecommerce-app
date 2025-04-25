@@ -4,12 +4,12 @@ import OffcanvasSportswear from "@/componants/OffcanvasSportswear";
 import OffcanvasNutrition from "@/componants/OffcanvasNutrition";
 import OffcanvasCollection from "@/componants/OffcanvasCollection";
 import OffcanvasCategory from "@/componants/OffcanvasCategory";
-import {SignedIn, SignedOut, SignInButton, UserButton} from "@clerk/nextjs";
+import OffcanvasFooter from "./OffcanvasFooter";
 
 const Offcanvas = ()=>{
 
     return (
-        <div className="sportswearList offcanvas offcanvas-start" tabIndex="-1" id="offcanvasExample"
+        <div className="sportswearList offcanvas offcanvas-start" tabIndex={-1} id="offcanvasExample"
              aria-labelledby="offcanvasExampleLabel">
             <div className="offcanvas-header">
                 <ul className="nav nav-underline">
@@ -25,16 +25,6 @@ const Offcanvas = ()=>{
                 </button>
             </div>
             <div className="offcanvas-body d-md-none">
-                <SignedIn>
-                    <UserButton />
-                </SignedIn>
-                <SignedOut>
-                    <SignInButton>
-                        <button className={"btn"}>
-                            Log In/Sign Up
-                        </button>
-                    </SignInButton>
-                </SignedOut>
                 <div className={'d-flex overflow-x-hidden'}>
                     <OffcanvasSportswear/>
                     <OffcanvasNutrition/>
@@ -42,6 +32,7 @@ const Offcanvas = ()=>{
                     <OffcanvasCategory/>
                 </div>
             </div>
+            <OffcanvasFooter></OffcanvasFooter>
         </div>
     )
 }
