@@ -4,6 +4,8 @@ import Category from '@/componants/Category'
 import Nutrition from '@/componants/Nutrition'
 import Offcanvas from "@/componants/Offcanvas";
 import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import Link from "next/link";
+
 const Header = ()=>{
     return (
             <header className={"navbar navbar-expand-md sticky-top bg-body-tertiary"}>
@@ -28,31 +30,31 @@ const Header = ()=>{
                         <div>
                             <div className="d-none d-md-flex">
                                 <div className={'categoryMenu'}>
-                                    <a href="#" role={'button'} className={'fw-bold btn btn-light btn-sm'}>
+                                    <Link href="/sportswear" role={'button'} className={'fw-bold btn btn-light btn-sm'}>
                                         SPORTSWEAR
-                                    </a>
+                                    </Link>
                                     <Category></Category>
                                 </div>
                                 <div className={'collectionsMenu'}>
-                                    <a href="#" role={'button'} className={'fw-bold btn btn-light btn-sm'}>
+                                    <Link href="#" role={'button'} className={'fw-bold btn btn-light btn-sm'}>
                                         COLLECTIONS
-                                    </a>
+                                    </Link>
                                     <Collections></Collections>
                                 </div>
                                 <div className={'nutritionMenu'}>
-                                    <a href="#" role={'button'} className={'fw-bold btn btn-light btn-sm'}>
+                                    <Link href="/fitness" role={'button'} className={'fw-bold btn btn-light btn-sm'}>
                                         NUTRITION
-                                    </a>
+                                    </Link>
                                     <Nutrition></Nutrition>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div className={"col-2 d-flex justify-content-center"}>
-                        <a href={'/'} className={'navbar-brand'}>
+                        <Link href={'/'} className={'navbar-brand'}>
                             <Image src={"https://cdn.shopify.com/s/files/1/0744/0203/files/logo_icon_19.svg?603310"}
                                    alt={"Logo"} width={"48"} height={"38"}></Image>
-                        </a>
+                        </Link>
                     </div>
                     <div className={"d-flex justify-content-end col-5"}>
                         <div className={"d-flex"}>
