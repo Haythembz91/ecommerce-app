@@ -26,7 +26,7 @@ const Slider =({banner_mobile1,banner_mobile2,banner_mobile3,banner_wide1,banner
                             className={"d-md-none w-100"} alt={"..."}/>
                         <div className={"carousel-caption"}>
                             <h2 className={'bannerHeading fs-2 fw-bold'}>DEFINE 2.0</h2>
-                            <p>New styles & colors</p>
+                            <h4 className={'fw-medium'}>New styles & colors</h4>
                             <button className={"btn btn-light"}
                                     style={{
                                         fontWeight: "bold",
@@ -44,8 +44,8 @@ const Slider =({banner_mobile1,banner_mobile2,banner_mobile3,banner_wide1,banner
                             src={banner_mobile2.src}
                             className={"d-md-none w-100"} alt={"..."}/>
                         <div className={"carousel-caption"}>
-                            <h2 className={'bannerHeading fs-2 fw-bold'}>EASTER SALE</h2>
-                            <p>Up to 70% off</p>
+                            <h2 className={'bannerHeading fs-2 fw-bold'}>DISCOVER OUR BEST SELLERS</h2>
+                            <h4 className={'fw-medium'}>Up to 70% off</h4>
                             <button className={"btn btn-light"}
                             style={{fontWeight:"bold",borderRadius:"20px"}}>
                                 Shop now
@@ -61,7 +61,7 @@ const Slider =({banner_mobile1,banner_mobile2,banner_mobile3,banner_wide1,banner
                             className={"d-md-none w-100"} alt={"..."}/>
                         <div className={"carousel-caption"}>
                             <h2 className={'bannerHeading fs-2 fw-bold'}>SPRING EDIT</h2>
-                            <p>New season, new energy</p>
+                            <h4 className={'fw-medium'}>New season, new energy</h4>
                             <button className={"btn btn-light"}
                                     style={{
                                         fontWeight: "bold",

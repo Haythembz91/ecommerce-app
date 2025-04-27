@@ -30,7 +30,7 @@ const Header = ()=>{
                         <div>
                             <div className="d-none d-md-flex">
                                 <div className={'categoryMenu'}>
-                                    <Link href="/sportswear" role={'button'} className={'fw-bold btn btn-light btn-sm'}>
+                                    <Link href="/" role={'button'} className={'fw-bold btn btn-light btn-sm'}>
                                         SPORTSWEAR
                                     </Link>
                                     <Category></Category>
