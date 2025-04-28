@@ -1,6 +1,7 @@
-import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
+import {SignedIn, SignedOut, SignInButton, UserButton} from "@clerk/nextjs";
 
 const OffcanvasFooter = () => {
+
     return (
         <ul className="offcanvasFooter d-md-none list-unstyled p-3 text-decoration-underline">
             <li className="py-1">

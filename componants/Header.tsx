@@ -12,7 +12,7 @@ import {useState} from "react";
 const Header = ()=>{
 
     const [slug,setSlug] = useState('')
-    
+
     return (
             <header className={"navbar navbar-expand-md sticky-top bg-body-tertiary"}>
                 <nav className={"container-fluid"}>
@@ -36,7 +36,8 @@ const Header = ()=>{
                         <div>
                             <div className="d-none d-md-flex">
                                 <div className={'categoryMenu'}>
-                                    <Link onClick={()=>setSlug('/')} href={"/"} role={'button'} className={'fw-bold btn btn-light btn-sm'}>
+                                    <Link onClick={() => setSlug('/')} href={"/"} role={'button'}
+                                          className={'fw-bold btn btn-light btn-sm'}>
                                         SPORTSWEAR
                                     </Link>
                                     <Category></Category>
@@ -48,7 +49,8 @@ const Header = ()=>{
                                     <Collections></Collections>
                                 </div>
                                 <div className={'nutritionMenu'}>
-                                    <Link onClick={()=>setSlug("/fitness")} href={"/fitness"} role={'button'} className={'fw-bold btn btn-light btn-sm'}>
+                                    <Link onClick={() => setSlug("/fitness")} href={"/fitness"} role={'button'}
+                                          className={'fw-bold btn btn-light btn-sm'}>
                                         NUTRITION
                                     </Link>
                                     <Nutrition></Nutrition>
