@@ -1,3 +1,5 @@
+'use client'
+
 import Image from "next/image";
 import Collections from '@/componants/Collections'
 import Category from '@/componants/Category'
@@ -5,8 +7,12 @@ import Nutrition from '@/componants/Nutrition'
 import Offcanvas from "@/componants/Offcanvas";
 import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
+import {useState} from "react";
 
 const Header = ()=>{
+
+    const [slug,setSlug] = useState('')
+    
     return (
             <header className={"navbar navbar-expand-md sticky-top bg-body-tertiary"}>
                 <nav className={"container-fluid"}>
@@ -26,11 +32,11 @@ const Header = ()=>{
                                     d="M15.853 16.56c-1.683 1.517-3.911 2.44-6.353 2.44-5.243 0-9.5-4.257-9.5-9.5s4.257-9.5 9.5-9.5 9.5 4.257 9.5 9.5c0 2.442-.923 4.67-2.44 6.353l7.44 7.44-.707.707-7.44-7.44zm-6.353-15.56c4.691 0 8.5 3.809 8.5 8.5s-3.809 8.5-8.5 8.5-8.5-3.809-8.5-8.5 3.809-8.5 8.5-8.5z"/>
                             </svg>
                         </button>
-                        <Offcanvas></Offcanvas>
+                        <Offcanvas setSlug={setSlug}></Offcanvas>
                         <div>
                             <div className="d-none d-md-flex">
                                 <div className={'categoryMenu'}>
-                                    <Link href="/" role={'button'} className={'fw-bold btn btn-light btn-sm'}>
+                                    <Link onClick={()=>setSlug('/')} href={"/"} role={'button'} className={'fw-bold btn btn-light btn-sm'}>
                                         SPORTSWEAR
                                     </Link>
                                     <Category></Category>
@@ -42,7 +48,7 @@ const Header = ()=>{
                                     <Collections></Collections>
                                 </div>
                                 <div className={'nutritionMenu'}>
-                                    <Link href="/fitness" role={'button'} className={'fw-bold btn btn-light btn-sm'}>
+                                    <Link onClick={()=>setSlug("/fitness")} href={"/fitness"} role={'button'} className={'fw-bold btn btn-light btn-sm'}>
                                         NUTRITION
                                     </Link>
                                     <Nutrition></Nutrition>
@@ -51,7 +57,7 @@ const Header = ()=>{
                         </div>
                     </div>
                     <div className={"col-2 d-flex justify-content-center"}>
-                        <Link href={'/'} className={'navbar-brand'}>
+                        <Link href={slug} className={'navbar-brand'}>
                             <Image src={"https://cdn.shopify.com/s/files/1/0744/0203/files/logo_icon_19.svg?603310"}
                                    alt={"Logo"} width={"48"} height={"38"}></Image>
                         </Link>

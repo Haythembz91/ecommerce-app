@@ -6,7 +6,7 @@ import OffcanvasCollection from "@/componants/OffcanvasCollection";
 import OffcanvasCategory from "@/componants/OffcanvasCategory";
 import OffcanvasFooter from "./OffcanvasFooter";
 
-const Offcanvas = ()=>{
+const Offcanvas = ({setSlug})=>{
 
     return (
         <div className="sportswearList offcanvas offcanvas-start" tabIndex={-1} id="offcanvasExample"
@@ -14,10 +14,10 @@ const Offcanvas = ()=>{
             <div className="offcanvas-header">
                 <ul className="nav nav-underline">
                     <li className="nav-item">
-                        <a className="nav-link link-dark" aria-current="true" href="#offcanvas-sportswear">Sportswear</a>
+                        <a onClick={()=>setSlug('/')} className="nav-link link-dark" aria-current="true" href="#offcanvas-sportswear">Sportswear</a>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link link-dark" href="#offcanvas-nutrition">Nutrition</a>
+                        <a onClick={()=>setSlug('/fitness')} className="nav-link link-dark" href="#offcanvas-nutrition">Nutrition</a>
                     </li>
                 </ul>
                 <button type="button" className="btn-close" data-bs-dismiss="offcanvas"
