@@ -1,7 +1,14 @@
 'use client'
+import banner_wide1 from "@/public/assets/banners/1.WB_Define2.0_MainBanner_3000x1270_20250221_lh_desktop_ab401c72-4e88-4c4f-8f25-4b33e5837cb9_1600x.jpg"
+import banner_wide2 from "@/public/assets/banners/01.Mixed.WB_EasterFlashSale_MainBanner_20250408_lm_desktop_1600x.webp"
+import banner_wide3 from "@/public/assets/banners/Mixed.WB_KingsDaySale_MainBanner_3000x1270_20250417_lh_desktop_1600x.webp"
+import banner_mobile1 from "@/public/assets/banners/1.WB_Define2.0_MainBanner_1600x2070_20250221_lh_mobile_caff70f7-39f5-40bb-8dc8-7ab8680aad1b_1000x.webp"
+import banner_mobile2 from "@/public/assets/banners/01.Mixed.WB_EasterFlashSale_MainBanner_20250408_lm_mobile_680x.webp"
+import banner_mobile3 from "@/public/assets/banners/Mixed.WB_KingsDaySale_MainBanner_1600x2070_20250417_lh_mobile_680x.webp"
+
 import {useEffect} from 'react'
 
-const Slider =({banner_mobile1,banner_mobile2,banner_mobile3,banner_wide1,banner_wide2,banner_wide3})=>{
+const SliderSportswear =()=>{
     useEffect(() => {
         require("bootstrap/dist/js/bootstrap.bundle.min.js");
     }, []);
@@ -25,12 +32,12 @@ const Slider =({banner_mobile1,banner_mobile2,banner_mobile3,banner_wide1,banner
                             src={banner_mobile1.src}
                             className={"d-md-none w-100"} alt={"..."}/>
                         <div className={"carousel-caption"}>
-                            <h2 className={'bannerHeading fs-2 fw-bold'}>DEFINE 2.0</h2>
-                            <h4 className={'fw-medium'}>New styles & colors</h4>
+                            <h3 className={'bannerHeading fs-2 fw-bold'}>DEFINE 2.0</h3>
+                            <h5 className={'fw-medium'}>New styles & colors</h5>
                             <button className={"btn btn-light"}
                                     style={{
-                                        fontWeight: "bold",
-                                        borderRadius: "20px"
+                                        fontWeight: "600",
+                                        borderRadius: "20px",
                                     }}>
                                 Shop now
                             </button>
@@ -44,10 +51,10 @@ const Slider =({banner_mobile1,banner_mobile2,banner_mobile3,banner_wide1,banner
                             src={banner_mobile2.src}
                             className={"d-md-none w-100"} alt={"..."}/>
                         <div className={"carousel-caption"}>
-                            <h2 className={'bannerHeading fs-2 fw-bold'}>DISCOVER OUR BEST SELLERS</h2>
-                            <h4 className={'fw-medium'}>Up to 70% off</h4>
+                            <h3 className={'bannerHeading fs-2 fw-bold'}>DISCOVER OUR BEST SELLERS</h3>
+                            <h5 className={'fw-medium'}>Up to 70% off</h5>
                             <button className={"btn btn-light"}
-                            style={{fontWeight:"bold",borderRadius:"20px"}}>
+                            style={{fontWeight:"600",borderRadius:"20px"}}>
                                 Shop now
                             </button>
                         </div>
@@ -60,11 +67,11 @@ const Slider =({banner_mobile1,banner_mobile2,banner_mobile3,banner_wide1,banner
                             src={banner_mobile3.src}
                             className={"d-md-none w-100"} alt={"..."}/>
                         <div className={"carousel-caption"}>
-                            <h2 className={'bannerHeading fs-2 fw-bold'}>SPRING EDIT</h2>
-                            <h4 className={'fw-medium'}>New season, new energy</h4>
+                            <h3 className={'bannerHeading fs-2 fw-bold'}>SPRING EDIT</h3>
+                            <h5 className={'fw-medium'}>New season, new energy</h5>
                             <button className={"btn btn-light"}
                                     style={{
-                                        fontWeight: "bold",
+                                        fontWeight: "600",
                                         borderRadius: "20px"
                                     }}>
                                 Shop now
@@ -86,4 +93,4 @@ const Slider =({banner_mobile1,banner_mobile2,banner_mobile3,banner_wide1,banner
         </div>
     )
 }
-export default Slider
+export default SliderSportswear
