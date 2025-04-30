@@ -8,7 +8,6 @@ import Offcanvas from "@/componants/Offcanvas";
 import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import {useState} from "react";
-
 const Header = ()=>{
 
     const [slug,setSlug] = useState('')
