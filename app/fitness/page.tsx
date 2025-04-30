@@ -4,9 +4,9 @@ import SliderFitness from "@/componants/SliderFitness";
 const Home = ()=>{
     
   return(
-      <div>
+      <section>
         <SliderFitness></SliderFitness>
-      </div>
+      </section>
   )
 }
 

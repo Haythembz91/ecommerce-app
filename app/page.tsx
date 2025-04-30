@@ -4,9 +4,9 @@ const Home = ()=>{
 
 
     return(
-        <div>
+        <section>
             <SliderSportswear/>
-        </div>
+        </section>
     )
 }
 
