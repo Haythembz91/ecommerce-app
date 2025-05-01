@@ -1,4 +1,3 @@
-'use client'
 import banner_wide1 from "@/public/assets/banners/01.WB_CollagenPeptidesPlusCapsules_LaunchBanner_3000x1270_20250113_dp_desktop_1600x.webp"
 import banner_wide2 from "@/public/assets/banners/Nutrition.WB_KingsDaySale_MainBanner_3000x1270_20250325_lh_desktop_1600x.webp"
 import banner_wide3 from "@/public/assets/banners/01.WB_BestSellers_Nutrition_Update_MainBanner_20250130_lh_desktop_1600x.webp"
