@@ -62,8 +62,8 @@ const SliderSportswear =()=>{
                             src={banner_mobile3.src}
                             className={"d-md-none w-100"} alt={"..."}/>
                         <div className={"carousel-caption"}>
-                            <h2 className={'bannerHeading fs-2 fw-bold text-dark'}>SPRING SALE</h2>
-                            <h4 className={'fw-medium text-dark'}>Up to 70% off</h4>
+                            <h2 className={'bannerHeading fs-2 fw-bold text-light'}>SPRING SALE</h2>
+                            <h4 className={'fw-medium text-light'}>Up to 70% off</h4>
                             <button className={"btn btn-light"}
                                     style={{
                                         fontWeight: "600",
