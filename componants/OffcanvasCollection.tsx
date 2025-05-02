@@ -1,4 +1,3 @@
-
 import defineBanner from '@/public/assets/banners/offcanvas/collections/1.Navigation.WB_CollectionBanner_500x478px_20241024_iw_500x.webp'
 import motionBanner from '@/public/assets/banners/offcanvas/collections/2.Navigation.WB_CollectionBanner_500x478px_20241024_iw_500x.jpg'
 import powerBanner from '@/public/assets/banners/offcanvas/collections/3.Navigation.WB_CollectionBanner_500x478px_20241024_iw_500x.webp'

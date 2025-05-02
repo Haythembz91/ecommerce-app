@@ -1,23 +1,9 @@
-'use client'
-
 import newReleasesBanner from '@/public/assets/banners/nutrition_banner/1.WB_CollagenPeptidesPlusCapsules_NavigationBanner_640x319px_20250114_dp_desktop.webp'
 import bundleBanner from '@/public/assets/banners/nutrition_banner/Nutrition_Bundles_10e4f1d9-fd16-4abd-aaa7-fb64a7c421c7.webp'
-import {useEffect} from "react";
 import Image from 'next/image';
+import NutritionBanner from "@/scripts/NutritionBanner";
+
 const Category = ()=>{
-
-
-    useEffect(()=>{
-        const nutBtn = document.querySelector('.nutritionMenu')
-        const nutMenu = document.querySelector('.nutMenu')
-        nutBtn.addEventListener('mouseover',()=>{
-            nutMenu.classList.remove('visually-hidden')
-            nutBtn.addEventListener('mouseleave',()=>{
-                nutMenu.classList.add('visually-hidden')
-            })
-        })
-    })
-
     return(
         <div className={'nutMenu pt-1 container-fluid visually-hidden position-absolute start-0 d-none d-md-flex justify-content-between bg-body-tertiary'}>
             <div className={'row col-5'}>
@@ -32,7 +18,6 @@ const Category = ()=>{
                 <a href='#' className={'col-6 link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover link-dark'}>Capsule Supplements</a>
                 <a href='#' className={'col-6 link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover link-dark'}>Accessories & Shakers</a>
             </div>
-
             <div className={'row col-5'}>
                 <p className='col-12 fw-bold'>BEST SELLERS</p>
                 <a href='#' className={'col-6 link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover link-dark'}>Shop All Best Sellers</a>
@@ -56,6 +41,7 @@ const Category = ()=>{
                     <Image width={640} height={319} className='h-50 w-100 object-fit-cover border-top' src={bundleBanner.src} alt={'new release banner'}/>
                 </div>
             </div>
+            <NutritionBanner></NutritionBanner>
         </div>
     )
 }

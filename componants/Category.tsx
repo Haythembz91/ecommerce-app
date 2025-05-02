@@ -1,22 +1,8 @@
-'use client'
-
 import newReleasesBanner from '@/public/assets/banners/category_banner/1.WB_Define2.0_NavigationBanner_20250218_lh_36e0850f-545c-4188-96fe-1ccce1aeef6d.webp'
 import bestSellerBanner from '@/public/assets/banners/category_banner/1.WB_BestSellers_desktop_20250131_lm.webp'
-import {useEffect} from "react";
 import Image from 'next/image';
+import CategoryBanner from "@/scripts/CategoryBanner";
 const Category = ()=>{
-
-
-    useEffect(()=>{
-        const ctgBtn = document.querySelector('.categoryMenu')
-        const ctgMenu = document.querySelector('.ctgMenu')
-        ctgBtn.addEventListener('mouseover',()=>{
-            ctgMenu.classList.remove('visually-hidden')
-            ctgBtn.addEventListener('mouseleave',()=>{
-                ctgMenu.classList.add('visually-hidden')
-            })
-        })
-    })
 
     return(
         <div className={'ctgMenu container-fluid visually-hidden position-absolute start-0 d-none d-md-flex justify-content-between bg-body-tertiary'}>
@@ -46,6 +32,7 @@ const Category = ()=>{
                 <a className='w-100 h-100 align-content-center fw-bold link-light link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover position-absolute w-100 text-center' href='#'>Best Sellers</a>
                 <Image height={640} width={1000} className='h-100 w-100 object-fit-cover border-start'  src={bestSellerBanner.src} alt={'best seller banner'}/>
             </div>
+            <CategoryBanner/>
         </div>
     )
 }

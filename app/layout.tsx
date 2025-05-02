@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./globals.css";
 import {ClerkProvider} from "@clerk/nextjs";
 import Header from "@/componants/Header";
-import BootstrapClient from "@/componants/BootstrapClient";
+import BootstrapClient from "@/scripts/BootstrapClient";
 import { Geist, Geist_Mono } from "next/font/google";
 
 const geistSans = Geist({
