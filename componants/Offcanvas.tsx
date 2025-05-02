@@ -1,11 +1,9 @@
-'use client'
-
 import OffcanvasSportswear from "@/componants/OffcanvasSportswear";
 import OffcanvasNutrition from "@/componants/OffcanvasNutrition";
 import OffcanvasCollection from "@/componants/OffcanvasCollection";
 import OffcanvasCategory from "@/componants/OffcanvasCategory";
 import OffcanvasFooter from "./OffcanvasFooter";
-
+import {routes} from '@/componants/enums';
 const Offcanvas = ({setSlug})=>{
 
     return (
@@ -14,10 +12,10 @@ const Offcanvas = ({setSlug})=>{
             <div className="offcanvas-header">
                 <ul className="nav nav-underline">
                     <li className="nav-item">
-                        <a onClick={()=>setSlug('/')} className="nav-link link-dark" aria-current="true" href="#offcanvas-sportswear">Sportswear</a>
+                        <a onClick={()=>setSlug(routes.HOME)} className="nav-link link-dark" aria-current="true" href="#offcanvas-sportswear">Sportswear</a>
                     </li>
                     <li className="nav-item">
-                        <a onClick={()=>setSlug('/fitness')} className="nav-link link-dark" href="#offcanvas-nutrition">Nutrition</a>
+                        <a onClick={()=>setSlug(routes.FITNESS)} className="nav-link link-dark" href="#offcanvas-nutrition">Nutrition</a>
                     </li>
                 </ul>
                 <button type="button" className="btn-close" data-bs-dismiss="offcanvas"

@@ -8,9 +8,10 @@ import Offcanvas from "@/componants/Offcanvas";
 import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import {useState} from "react";
+import {routes} from '@/componants/enums'
 const Header = ()=>{
 
-    const [slug,setSlug] = useState('')
+    const [slug,setSlug] = useState<routes>(routes.HOME)
 
     return (
             <header className={"navbar navbar-expand-md sticky-top bg-body-tertiary"}>
@@ -35,7 +36,7 @@ const Header = ()=>{
                         <div>
                             <div className="d-none d-md-flex">
                                 <div className={'categoryMenu'}>
-                                    <Link onClick={() => setSlug('/')} href={"/"} role={'button'}
+                                    <Link onClick={() => setSlug(routes.HOME)} href={"/"} role={'button'}
                                           className={'fw-bold btn btn-light btn-sm'}>
                                         SPORTSWEAR
                                     </Link>
@@ -48,7 +49,7 @@ const Header = ()=>{
                                     <Collections></Collections>
                                 </div>
                                 <div className={'nutritionMenu'}>
-                                    <Link onClick={() => setSlug("/fitness")} href={"/fitness"} role={'button'}
+                                    <Link onClick={() => setSlug(routes.FITNESS)} href={"/fitness"} role={'button'}
                                           className={'fw-bold btn btn-light btn-sm'}>
                                         NUTRITION
                                     </Link>
