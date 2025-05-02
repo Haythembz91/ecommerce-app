@@ -5,6 +5,7 @@ import {ClerkProvider} from "@clerk/nextjs";
 import Header from "@/componants/Header";
 import BootstrapClient from "@/scripts/BootstrapClient";
 import { Geist, Geist_Mono } from "next/font/google";
+import React from "react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
