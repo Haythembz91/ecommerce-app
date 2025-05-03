@@ -70,8 +70,7 @@ const Header = ()=>{
                     <div className={"d-flex justify-content-end col-5"}>
                         <div className={"d-flex"}>
                             <div className={'d-none d-md-flex col-md-3 justify-content-center'}>
-                                <button className={"btn d-none d-md-inline"} type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop"
-                                        aria-controls="offcanvasTop">
+                                <button className={"btn d-none d-md-inline"}>
                                     <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fillRule="evenodd"
                                          clipRule="evenodd">
                                         <path
