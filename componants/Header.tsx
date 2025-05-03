@@ -9,6 +9,7 @@ import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import {useState} from "react";
 import {routes} from '@/componants/enums'
+import SearchBar from "@/componants/SearchBar";
 const Header = ()=>{
 
     const [slug,setSlug] = useState<routes>(routes.HOME)
@@ -25,13 +26,15 @@ const Header = ()=>{
                                 <path d="M24 19h-24v-1h24v1zm0-6h-24v-1h24v1zm0-6h-24v-1h24v1z"/>
                             </svg>
                         </button>
-                        <button className={"btn d-md-none"}>
+                        <button className={"btn d-md-none"} type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop"
+                                aria-controls="offcanvasTop">
                             <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fillRule="evenodd"
                                  clipRule="evenodd">
                                 <path
                                     d="M15.853 16.56c-1.683 1.517-3.911 2.44-6.353 2.44-5.243 0-9.5-4.257-9.5-9.5s4.257-9.5 9.5-9.5 9.5 4.257 9.5 9.5c0 2.442-.923 4.67-2.44 6.353l7.44 7.44-.707.707-7.44-7.44zm-6.353-15.56c4.691 0 8.5 3.809 8.5 8.5s-3.809 8.5-8.5 8.5-8.5-3.809-8.5-8.5 3.809-8.5 8.5-8.5z"/>
                             </svg>
                         </button>
+                        <SearchBar></SearchBar>
                         <Offcanvas setSlug={setSlug}></Offcanvas>
                         <div>
                             <div className="d-none d-md-flex">
@@ -67,7 +70,8 @@ const Header = ()=>{
                     <div className={"d-flex justify-content-end col-5"}>
                         <div className={"d-flex"}>
                             <div className={'d-none d-md-flex col-md-3 justify-content-center'}>
-                                <button className={"btn d-none d-md-inline"}>
+                                <button className={"btn d-none d-md-inline"} type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop"
+                                        aria-controls="offcanvasTop">
                                     <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fillRule="evenodd"
                                          clipRule="evenodd">
                                         <path
