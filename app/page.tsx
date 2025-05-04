@@ -1,12 +1,18 @@
 import SliderSportswear from "@/componants/SliderSportswear"
+import ProductSlider from "@/componants/ProductSlider";
 
 const Home = ()=>{
 
 
     return(
-        <section>
-            <SliderSportswear/>
-        </section>
+        <div>
+            <section>
+                <SliderSportswear/>
+            </section>
+            <section>
+                <ProductSlider></ProductSlider>
+            </section>
+        </div>
     )
 }
 
