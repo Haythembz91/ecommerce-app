@@ -28,8 +28,8 @@ const SliderSportswear =()=>{
                             src={banner_mobile1.src}
                             className={"d-md-none w-100"} alt={"..."}/>
                         <div className={"carousel-caption"}>
-                            <h3 className={'bannerHeading fs-2 fw-bold'}>DEFINE 2.0</h3>
-                            <h5 className={'fw-medium'}>New styles & colors</h5>
+                            <h3 className={'bannerHeading fw-bold'}>DEFINE 2.0</h3>
+                            <h6 className={'fw-medium'}>New styles & colors</h6>
                             <button className={"btn btn-light"}
                                     style={{
                                         fontWeight: "600",
@@ -47,8 +47,8 @@ const SliderSportswear =()=>{
                             src={banner_mobile2.src}
                             className={"d-md-none w-100"} alt={"..."}/>
                         <div className={"carousel-caption"}>
-                            <h3 className={'bannerHeading fs-2 fw-bold'}>DISCOVER OUR BEST SELLERS</h3>
-                            <h5 className={'fw-medium'}>Up to 70% off</h5>
+                            <h3 className={'bannerHeading fw-bold'}>DISCOVER OUR BEST SELLERS</h3>
+                            <h6 className={'fw-medium'}>Up to 70% off</h6>
                             <button className={"btn btn-light"}
                             style={{fontWeight:"600",borderRadius:"20px"}}>
                                 Shop now
@@ -63,8 +63,8 @@ const SliderSportswear =()=>{
                             src={banner_mobile3.src}
                             className={"d-md-none w-100"} alt={"..."}/>
                         <div className={"carousel-caption"}>
-                            <h3 className={'bannerHeading fs-2 fw-bold'}>SPRING EDIT</h3>
-                            <h5 className={'fw-medium'}>New season, new energy</h5>
+                            <h3 className={'bannerHeading fw-bold'}>SPRING EDIT</h3>
+                            <h6 className={'fw-medium'}>New season, new energy</h6>
                             <button className={"btn btn-light"}
                                     style={{
                                         fontWeight: "600",
