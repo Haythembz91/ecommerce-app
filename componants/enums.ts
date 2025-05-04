@@ -1,5 +1,6 @@
 
 export enum routes {
     HOME= '/',
-    FITNESS ='/fitness'
+    FITNESS ='/fitness',
+    SPORTSWEAR='/sportswear'
 }
