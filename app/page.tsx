@@ -9,7 +9,7 @@ const Home = ()=>{
             <section>
                 <SliderSportswear/>
             </section>
-            <section>
+            <section className={'my-2 mx-md-2'}>
                 <ProductSlider></ProductSlider>
             </section>
         </div>
