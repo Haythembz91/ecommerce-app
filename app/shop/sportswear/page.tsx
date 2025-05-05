@@ -21,7 +21,7 @@ const Home = ()=>{
                                    aria-expanded="false">
                                     SIZE
                                 </a>
-                                <ul className="dropdown-menu px-2 d-md-flex">
+                                <ul className="dropdown-menu">
                                     <li className="form-check">
                                         <input className={'me-2'} type="radio" name="size"
                                                id="sizeXs"/>
@@ -72,9 +72,55 @@ const Home = ()=>{
                                     COLOR
                                 </a>
                                 <ul className="dropdown-menu">
-                                    <li><a className="dropdown-item" href="#">Action</a></li>
-                                    <li><a className="dropdown-item" href="#">Another action</a></li>
-                                    <li><a className="dropdown-item" href="#">Something else here</a></li>
+                                    <li className="form-check">
+                                        <input className={'me-2'} type="radio" name="color"
+                                               id="colorBlack"/>
+                                        <label className={'text-bg-dark text-white px-1'} htmlFor="colorBlack">
+                                            Black
+                                        </label>
+                                    </li>
+                                    <li className="form-check">
+                                        <input className={'me-2'} type="radio" name="color"
+                                               id="colorRed"/>
+                                        <label className={'text-bg-danger text-black px-1'} htmlFor="colorRed">
+                                            Red
+                                        </label>
+                                    </li>
+                                    <li className="form-check">
+                                        <input className={'me-2'} type="radio" name="color"
+                                               id="colorGreen"/>
+                                        <label className={'text-bg-success text-black px-1'} htmlFor="colorGreen">
+                                            Green
+                                        </label>
+                                    </li>
+                                    <li className="form-check">
+                                        <input className={'me-2'} type="radio" name="color"
+                                               id="colorBlue"/>
+                                        <label className={'text-bg-primary text-black px-1'} htmlFor="colorBlue">
+                                            Blue
+                                        </label>
+                                    </li>
+                                    <li className="form-check">
+                                        <input className={'me-2'} type="radio" name="color"
+                                               id="colorYellow"/>
+                                        <label className={'text-bg-warning text-black px-1'} htmlFor="colorYellow">
+                                            Yellow
+                                        </label>
+                                    </li>
+                                    <li className="form-check">
+                                        <input className={'me-2'} type="radio" name="color"
+                                               id="colorGrey"/>
+                                        <label className={'text-bg-secondary text-black px-1'} htmlFor="colorGrey">
+                                            Grey
+                                        </label>
+                                    </li>
+                                    <li className="form-check">
+                                        <input className={'me-2'} type="radio" name="color"
+                                               id="colorWhite"/>
+                                        <label className={'text-bg-light px-1'} htmlFor="colorWhite">
+                                            White
+                                        </label>
+                                    </li>
                                 </ul>
                             </li>
                             <li className="nav-item dropdown">
@@ -83,7 +129,7 @@ const Home = ()=>{
                                     COLLECTION
                                 </a>
                                 <ul className="dropdown-menu">
-                                    <li><a className="dropdown-item" href="#">Action</a></li>
+                                <li><a className="dropdown-item" href="#">Action</a></li>
                                     <li><a className="dropdown-item" href="#">Another action</a></li>
                                     <li><a className="dropdown-item" href="#">Something else here</a></li>
                                 </ul>
