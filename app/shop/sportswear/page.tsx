@@ -129,9 +129,48 @@ const Home = ()=>{
                                     COLLECTION
                                 </a>
                                 <ul className="dropdown-menu">
-                                <li><a className="dropdown-item" href="#">Action</a></li>
-                                    <li><a className="dropdown-item" href="#">Another action</a></li>
-                                    <li><a className="dropdown-item" href="#">Something else here</a></li>
+                                    <li className="form-check">
+                                        <input className={'me-2'} type="radio" name="collection"
+                                               id="motion"/>
+                                        <label className={'px-1'} htmlFor="motion">
+                                            Motion
+                                        </label>
+                                    </li>
+                                    <li className="form-check">
+                                        <input className={'me-2'} type="radio" name="collection"
+                                               id="define"/>
+                                        <label className={'px-1'} htmlFor="define">
+                                            Define
+                                        </label>
+                                    </li>
+                                    <li className="form-check">
+                                        <input className={'me-2'} type="radio" name="collection"
+                                               id="power"/>
+                                        <label className={'px-1'} htmlFor="power">
+                                            Power
+                                        </label>
+                                    </li>
+                                    <li className="form-check">
+                                        <input className={'me-2'} type="radio" name="collection"
+                                               id="essential"/>
+                                        <label className={'px-1'} htmlFor="essential">
+                                            Essential
+                                        </label>
+                                    </li>
+                                    <li className="form-check">
+                                        <input className={'me-2'} type="radio" name="collection"
+                                               id="comfort"/>
+                                        <label className={'px-1'} htmlFor="comfort">
+                                            Comfort
+                                        </label>
+                                    </li>
+                                    <li className="form-check">
+                                        <input className={'me-2'} type="radio" name="collection"
+                                               id="accessories"/>
+                                        <label className={'px-1'} htmlFor="accessories">
+                                            Accessories
+                                        </label>
+                                    </li>
                                 </ul>
                             </li>
                             <li className="nav-item dropdown">
@@ -140,7 +179,7 @@ const Home = ()=>{
                                     LEG LENGTH
                                 </a>
                                 <ul className="dropdown-menu">
-                                    <li><a className="dropdown-item" href="#">Action</a></li>
+                                <li><a className="dropdown-item" href="#">Action</a></li>
                                     <li><a className="dropdown-item" href="#">Another action</a></li>
                                     <li><a className="dropdown-item" href="#">Something else here</a></li>
                                 </ul>
