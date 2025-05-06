@@ -230,9 +230,27 @@ const Home = ()=>{
                                     OTHER
                                 </a>
                                 <ul className="dropdown-menu">
-                                    <li><a className="dropdown-item" href="#">Action</a></li>
-                                    <li><a className="dropdown-item" href="#">Another action</a></li>
-                                    <li><a className="dropdown-item" href="#">Something else here</a></li>
+                                    <li className="form-check">
+                                        <input className={'me-2'} type="radio" name="other"
+                                               id="bestSellers"/>
+                                        <label className={'px-1'} htmlFor="bestSellers">
+                                            Best Sellers
+                                        </label>
+                                    </li>
+                                    <li className="form-check">
+                                        <input className={'me-2'} type="radio" name="other"
+                                               id="newReleases"/>
+                                        <label className={'px-1'} htmlFor="newReleases">
+                                            New Releases
+                                        </label>
+                                    </li>
+                                    <li className="form-check">
+                                        <input className={'me-2'} type="radio" name="other"
+                                               id="springEdit"/>
+                                        <label className={'px-1'} htmlFor="springEdit">
+                                            Spring Edit
+                                        </label>
+                                    </li>
                                 </ul>
                             </li>
                             <li className="nav-item dropdown">
@@ -252,9 +270,27 @@ const Home = ()=>{
                                     SORT BY
                                 </a>
                                 <ul className="dropdown-menu">
-                                    <li><a className="dropdown-item" href="#">Action</a></li>
-                                    <li><a className="dropdown-item" href="#">Another action</a></li>
-                                    <li><a className="dropdown-item" href="#">Something else here</a></li>
+                                    <li className="form-check">
+                                        <input className={'me-2'} type="radio" name="sort"
+                                               id="newest"/>
+                                        <label className={'px-1'} htmlFor="newest">
+                                            Newest
+                                        </label>
+                                    </li>
+                                    <li className="form-check">
+                                        <input className={'me-2'} type="radio" name="sort"
+                                               id="priceDsc"/>
+                                        <label className={'px-1'} htmlFor="priceDsc">
+                                            Price: High to Low
+                                        </label>
+                                    </li>
+                                    <li className="form-check">
+                                        <input className={'me-2'} type="radio" name="sort"
+                                               id="priceAsc"/>
+                                        <label className={'px-1'} htmlFor="priceAsc">
+                                            Price: Low to High
+                                        </label>
+                                    </li>
                                 </ul>
                             </li>
                         </ul>
