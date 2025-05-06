@@ -1,0 +1,334 @@
+import Link from "next/link";
+
+const SportswearHeader = () => {
+    return (
+        <nav className="navbar navbar-expand-lg bg-body-tertiary">
+            <div className="container-fluid">
+                <a className="navbar-brand" href="#">SHOP</a>
+                <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fillRule="evenodd"
+                         clipRule="evenodd">
+                        <path
+                            d="M23 0l-9 14.146v7.73l-3.996 2.124v-9.853l-9.004-14.147h22zm-20.249 1l8.253 12.853v8.491l1.996-1.071v-7.419l8.229-12.854h-18.478z"/>
+                    </svg>
+                    Filters
+                </button>
+                <div className="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul className="navbar-nav">
+                        <li className="nav-item dropdown">
+                            <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                               aria-expanded="false">
+                                SIZE
+                            </a>
+                            <ul className="dropdown-menu">
+                                <li className="form-check">
+                                    <input className={'me-2'} type="radio" name="size"
+                                           id="sizeXs" value={'XS'}/>
+                                    <label htmlFor="sizeXs">
+                                        XS
+                                    </label>
+                                </li>
+                                <li className="form-check">
+                                    <input className={'me-2'} type="radio" name="size"
+                                           id="sizeS" value="S"/>
+                                    <label htmlFor="sizeS">
+                                        S
+                                    </label>
+                                </li>
+                                <li className="form-check">
+                                    <input className={'me-2'} type="radio" name="size"
+                                           id="sizeM" value="M"/>
+                                    <label htmlFor="sizeM">
+                                        M
+                                    </label>
+                                </li>
+                                <li className="form-check">
+                                    <input className={'me-2'} type="radio" name="size"
+                                           id="sizeL" value={'L'}/>
+                                    <label htmlFor="sizeL">
+                                        L
+                                    </label>
+                                </li>
+                                <li className="form-check">
+                                    <input className={'me-2'} type="radio" name="size"
+                                           id="sizeXl" value={'XL'}/>
+                                    <label htmlFor="sizeXl">
+                                        XL
+                                    </label>
+                                </li>
+                                <li className="form-check">
+                                    <input className={'me-2'} type="radio" name="size"
+                                           id="sizeXxl" value={'XXL'}/>
+                                    <label htmlFor="sizeXxl">
+                                        XXL
+                                    </label>
+                                </li>
+                            </ul>
+                        </li>
+                        <li className="nav-item dropdown">
+                            <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                               aria-expanded="false">
+                                COLOR
+                            </a>
+                            <ul className="dropdown-menu">
+                                <li className="form-check">
+                                    <input className={'me-2'} type="radio" name="color"
+                                           id="colorBlack" value={'Black'}/>
+                                    <label className={'text-bg-dark text-white px-1'} htmlFor="colorBlack">
+                                        Black
+                                    </label>
+                                </li>
+                                <li className="form-check">
+                                    <input className={'me-2'} type="radio" name="color"
+                                           id="colorRed" value="Red"/>
+                                    <label className={'text-bg-danger text-black px-1'} htmlFor="colorRed">
+                                        Red
+                                    </label>
+                                </li>
+                                <li className="form-check">
+                                    <input className={'me-2'} type="radio" name="color"
+                                           id="colorGreen" value="Green"/>
+                                    <label className={'text-bg-success text-black px-1'} htmlFor="colorGreen">
+                                        Green
+                                    </label>
+                                </li>
+                                <li className="form-check">
+                                    <input className={'me-2'} type="radio" name="color"
+                                           id="colorBlue" value={'Blue'}/>
+                                    <label className={'text-bg-primary text-black px-1'} htmlFor="colorBlue">
+                                        Blue
+                                    </label>
+                                </li>
+                                <li className="form-check">
+                                    <input className={'me-2'} type="radio" name="color"
+                                           id="colorYellow" value="Yellow"/>
+                                    <label className={'text-bg-warning text-black px-1'} htmlFor="colorYellow">
+                                        Yellow
+                                    </label>
+                                </li>
+                                <li className="form-check">
+                                    <input className={'me-2'} type="radio" name="color"
+                                           id="colorGrey" value={'Grey'}/>
+                                    <label className={'text-bg-secondary text-black px-1'} htmlFor="colorGrey">
+                                        Grey
+                                    </label>
+                                </li>
+                                <li className="form-check">
+                                    <input className={'me-2'} type="radio" name="color"
+                                           id="colorWhite" value="White"/>
+                                    <label className={'text-bg-light px-1'} htmlFor="colorWhite">
+                                        White
+                                    </label>
+                                </li>
+                            </ul>
+                        </li>
+                        <li className="nav-item dropdown">
+                            <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                               aria-expanded="false">
+                                COLLECTION
+                            </a>
+                            <ul className="dropdown-menu">
+                                <li className="form-check">
+                                    <input className={'me-2'} type="radio" name="collection"
+                                           id="motion" value={'Motion'}/>
+                                    <label className={'px-1'} htmlFor="motion">
+                                        Motion
+                                    </label>
+                                </li>
+                                <li className="form-check">
+                                    <input className={'me-2'} type="radio" name="collection"
+                                           id="define" value={'Define'}/>
+                                    <label className={'px-1'} htmlFor="define">
+                                        Define
+                                    </label>
+                                </li>
+                                <li className="form-check">
+                                    <input className={'me-2'} type="radio" name="collection"
+                                           id="power" value="Power"/>
+                                    <label className={'px-1'} htmlFor="power">
+                                        Power
+                                    </label>
+                                </li>
+                                <li className="form-check">
+                                    <input className={'me-2'} type="radio" name="collection"
+                                           id="essential" value={'Essential'}/>
+                                    <label className={'px-1'} htmlFor="essential">
+                                        Essential
+                                    </label>
+                                </li>
+                                <li className="form-check">
+                                    <input className={'me-2'} type="radio" name="collection"
+                                           id="comfort" value={'Comfort'}/>
+                                    <label className={'px-1'} htmlFor="comfort">
+                                        Comfort
+                                    </label>
+                                </li>
+                                <li className="form-check">
+                                    <input className={'me-2'} type="radio" name="collection"
+                                           id="accessories" value={'Accessories'}/>
+                                    <label className={'px-1'} htmlFor="accessories">
+                                        Accessories
+                                    </label>
+                                </li>
+                            </ul>
+                        </li>
+                        <li className="nav-item dropdown">
+                            <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                               aria-expanded="false">
+                                LEG LENGTH
+                            </a>
+                            <ul className="dropdown-menu">
+                                <li className="form-check">
+                                    <input className={'me-2'} type="radio" name="legLength"
+                                           id="7/8Length" value={'7/8 Length'}/>
+                                    <label className={'px-1'} htmlFor="7/8Length">
+                                        7/8 Length
+                                    </label>
+                                </li>
+                                <li className="form-check">
+                                    <input className={'me-2'} type="radio" name="legLength"
+                                           id="regularLength" value={'Regular Length'}/>
+                                    <label className={'px-1'} htmlFor="regularLength">
+                                        Regular Length
+                                    </label>
+                                </li>
+                                <li className="form-check">
+                                    <input className={'me-2'} type="radio" name="legLength"
+                                           id="longLength" value={'Long Length'}/>
+                                    <label className={'px-1'} htmlFor="longLength">
+                                        Long Length
+                                    </label>
+                                </li>
+                            </ul>
+                        </li>
+                        <li className="nav-item dropdown">
+                            <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                               aria-expanded="false">
+                                SLEEVE LENGTH
+                            </a>
+                            <ul className="dropdown-menu">
+                                <li className="form-check">
+                                    <input className={'me-2'} type="radio" name="sleeveLength"
+                                           id="shortSleeve" value={'Short Sleeve'}/>
+                                    <label className={'px-1'} htmlFor="shortSleeve">
+                                        Short Sleeve
+                                    </label>
+                                </li>
+                                <li className="form-check">
+                                    <input className={'me-2'} type="radio" name="sleeveLength"
+                                           id="longSleeve" value={'Long Sleeve'}/>
+                                    <label className={'px-1'} htmlFor="longSleeve">
+                                        Long Sleeve
+                                    </label>
+                                </li>
+                            </ul>
+                        </li>
+                        <li className="nav-item dropdown">
+                            <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                               aria-expanded="false">
+                                OTHER
+                            </a>
+                            <ul className="dropdown-menu">
+                                <li className="form-check">
+                                    <input className={'me-2'} type="radio" name="other"
+                                           id="bestSellers" value={'Best Sellers'}/>
+                                    <label className={'px-1'} htmlFor="bestSellers">
+                                        Best Sellers
+                                    </label>
+                                </li>
+                                <li className="form-check">
+                                    <input className={'me-2'} type="radio" name="other"
+                                           id="newReleases" value={'New Releases'}/>
+                                    <label className={'px-1'} htmlFor="newReleases">
+                                        New Releases
+                                    </label>
+                                </li>
+                                <li className="form-check">
+                                    <input className={'me-2'} type="radio" name="other"
+                                           id="springEdit" value={'Spring Edit'}/>
+                                    <label className={'px-1'} htmlFor="springEdit">
+                                        Spring Edit
+                                    </label>
+                                </li>
+                            </ul>
+                        </li>
+                        <li className="nav-item dropdown">
+                            <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                               aria-expanded="false">
+                                PRICE
+                            </a>
+                            <ul className="dropdown-menu">
+                                <li><a className="dropdown-item" href="#">Action</a></li>
+                                <li><a className="dropdown-item" href="#">Another action</a></li>
+                                <li><a className="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </li>
+                        <li className="nav-item dropdown">
+                            <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                               aria-expanded="false">
+                                SORT BY
+                            </a>
+                            <ul className="dropdown-menu">
+                                <li className="form-check">
+                                    <input className={'me-2'} type="radio" name="sort"
+                                           id="newest" value={'Newest'}/>
+                                    <label className={'px-1'} htmlFor="newest">
+                                        Newest
+                                    </label>
+                                </li>
+                                <li className="form-check">
+                                    <input className={'me-2'} type="radio" name="sort"
+                                           id="priceDsc" value={'Price: High to Low'}/>
+                                    <label className={'px-1'} htmlFor="priceDsc">
+                                        Price: High to Low
+                                    </label>
+                                </li>
+                                <li className="form-check">
+                                    <input className={'me-2'} type="radio" name="sort"
+                                           id="priceAsc" value={'Price: Low to High'}/>
+                                    <label className={'px-1'} htmlFor="priceAsc">
+                                        Price: Low to High
+                                    </label>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <ul>
+                    <li>
+                        <Link href={''}>ALL (0)</Link>
+                    </li>
+                    <li>
+                        <Link href={''}>Leggings (0)</Link>
+                    </li>
+                    <li>
+                        <Link href={''}>Joggers (0)</Link>
+                    </li>
+                    <li>
+                        <Link href={''}>Sports Bras (0)</Link>
+                    </li>
+                    <li>
+                        <Link href={''}>Shorts (0)</Link>
+                    </li>
+                    <li>
+                        <Link href={''}>T-Shirts & Tops (0)</Link>
+                    </li>
+                    <li>
+                        <Link href={''}>Hoodies, Sweatshirts & Jackets (0)</Link>
+                    </li>
+                    <li>
+                        <Link href={''}>Unitards (0)</Link>
+                    </li>
+                    <li>
+                        <Link href={''}>Accessories (0)</Link>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    )
+}
+export default SportswearHeader
