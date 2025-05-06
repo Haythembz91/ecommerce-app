@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const SportswearHeader = () => {
     return (
-        <nav className="navbar navbar-expand-lg bg-body-tertiary sticky-top">
+        <nav className="navbar navbar-expand-lg bg-body-tertiary flex-md-column sticky-top">
             <div className="container-fluid">
                 <a className="navbar-brand" href="#">SHOP</a>
                 <button className="navbar-toggler mb-2" type="button" data-bs-toggle="collapse"
