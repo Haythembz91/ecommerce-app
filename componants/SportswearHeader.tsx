@@ -297,34 +297,43 @@ const SportswearHeader = () => {
                     </ul>
                 </div>
             </div>
-            <div>
-                <ul>
-                    <li>
-                        <Link href={''}>ALL (0)</Link>
+            <div className={'w-100 overflow-scroll'}>
+                <ul className={'list-group list-group-horizontal text-nowrap'}>
+                    <li className={'list-group-item d-flex jusitfy-content-between align-items-center'}>
+                        <Link href={''}>ALL</Link>
+                        <span className="badge text-bg-primary rounded-pill">14</span>
                     </li>
-                    <li>
-                        <Link href={''}>Leggings (0)</Link>
+                    <li className={'list-group-item d-flex jusitfy-content-between align-items-center '} >
+                        <Link href={''}>Leggings</Link>
+                        <span className="badge text-bg-primary rounded-pill">14</span>
                     </li>
-                    <li>
-                        <Link href={''}>Joggers (0)</Link>
+                    <li className={'list-group-item d-flex jusitfy-content-between align-items-center '} >
+                        <Link href={''}>Joggers</Link>
+                        <span className="badge text-bg-primary rounded-pill">14</span>
                     </li>
-                    <li>
-                        <Link href={''}>Sports Bras (0)</Link>
+                    <li className={'list-group-item d-flex jusitfy-content-between align-items-center '} >
+                        <Link href={''}>Sports Bras</Link>
+                        <span className="badge text-bg-primary rounded-pill">14</span>
                     </li>
-                    <li>
-                        <Link href={''}>Shorts (0)</Link>
+                    <li className={'list-group-item d-flex jusitfy-content-between align-items-center '} >
+                        <Link href={''}>Shorts</Link>
+                        <span className="badge text-bg-primary rounded-pill">14</span>
                     </li>
-                    <li>
-                        <Link href={''}>T-Shirts & Tops (0)</Link>
+                    <li className={'list-group-item d-flex jusitfy-content-between align-items-center '} >
+                        <Link href={''}>T-Shirts & Tops</Link>
+                        <span className="badge text-bg-primary rounded-pill">14</span>
                     </li>
-                    <li>
-                        <Link href={''}>Hoodies, Sweatshirts & Jackets (0)</Link>
+                    <li className={'list-group-item d-flex jusitfy-content-between align-items-center'} >
+                        <Link href={''}>Hoodies, Sweatshirts & Jackets</Link>
+                        <span className="badge text-bg-primary rounded-pill">14</span>
                     </li>
-                    <li>
-                        <Link href={''}>Unitards (0)</Link>
+                    <li className={'list-group-item d-flex jusitfy-content-between align-items-center'} >
+                        <Link href={''}>Unitards</Link>
+                        <span className="badge text-bg-primary rounded-pill">14</span>
                     </li>
-                    <li>
-                        <Link href={''}>Accessories (0)</Link>
+                    <li className={'list-group-item d-flex jusitfy-content-between align-items-center '} >
+                        <Link href={''}>Accessories</Link>
+                        <span className="badge text-bg-primary rounded-pill">14</span>
                     </li>
                 </ul>
             </div>
