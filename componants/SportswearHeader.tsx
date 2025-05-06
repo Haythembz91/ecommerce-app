@@ -16,49 +16,49 @@ const SportswearHeader = () => {
                     Filters
                 </button>
                 <div className="collapse navbar-collapse" id="navbarNavDropdown">
-                    <ul className="navbar-nav">
+                    <ul className="navbar-nav text-nowrap">
                         <li className="nav-item dropdown">
                             <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                                aria-expanded="false">
                                 SIZE
                             </a>
                             <ul className="dropdown-menu">
-                                <li className="form-check">
+                                <li className="form-check px-2">
                                     <input className={'me-2'} type="radio" name="size"
                                            id="sizeXs" value={'XS'}/>
                                     <label htmlFor="sizeXs">
                                         XS
                                     </label>
                                 </li>
-                                <li className="form-check">
+                                <li className="form-check px-2">
                                     <input className={'me-2'} type="radio" name="size"
                                            id="sizeS" value="S"/>
                                     <label htmlFor="sizeS">
                                         S
                                     </label>
                                 </li>
-                                <li className="form-check">
+                                <li className="form-check px-2">
                                     <input className={'me-2'} type="radio" name="size"
                                            id="sizeM" value="M"/>
                                     <label htmlFor="sizeM">
                                         M
                                     </label>
                                 </li>
-                                <li className="form-check">
+                                <li className="form-check px-2">
                                     <input className={'me-2'} type="radio" name="size"
                                            id="sizeL" value={'L'}/>
                                     <label htmlFor="sizeL">
                                         L
                                     </label>
                                 </li>
-                                <li className="form-check">
+                                <li className="form-check px-2">
                                     <input className={'me-2'} type="radio" name="size"
                                            id="sizeXl" value={'XL'}/>
                                     <label htmlFor="sizeXl">
                                         XL
                                     </label>
                                 </li>
-                                <li className="form-check">
+                                <li className="form-check px-2">
                                     <input className={'me-2'} type="radio" name="size"
                                            id="sizeXxl" value={'XXL'}/>
                                     <label htmlFor="sizeXxl">
@@ -73,49 +73,49 @@ const SportswearHeader = () => {
                                 COLOR
                             </a>
                             <ul className="dropdown-menu">
-                                <li className="form-check">
+                                <li className="form-check px-2">
                                     <input className={'me-2'} type="radio" name="color"
                                            id="colorBlack" value={'Black'}/>
                                     <label className={'text-bg-dark text-white px-1'} htmlFor="colorBlack">
                                         Black
                                     </label>
                                 </li>
-                                <li className="form-check">
+                                <li className="form-check px-2">
                                     <input className={'me-2'} type="radio" name="color"
                                            id="colorRed" value="Red"/>
                                     <label className={'text-bg-danger text-black px-1'} htmlFor="colorRed">
                                         Red
                                     </label>
                                 </li>
-                                <li className="form-check">
+                                <li className="form-check px-2">
                                     <input className={'me-2'} type="radio" name="color"
                                            id="colorGreen" value="Green"/>
                                     <label className={'text-bg-success text-black px-1'} htmlFor="colorGreen">
                                         Green
                                     </label>
                                 </li>
-                                <li className="form-check">
+                                <li className="form-check px-2">
                                     <input className={'me-2'} type="radio" name="color"
                                            id="colorBlue" value={'Blue'}/>
                                     <label className={'text-bg-primary text-black px-1'} htmlFor="colorBlue">
                                         Blue
                                     </label>
                                 </li>
-                                <li className="form-check">
+                                <li className="form-check px-2">
                                     <input className={'me-2'} type="radio" name="color"
                                            id="colorYellow" value="Yellow"/>
                                     <label className={'text-bg-warning text-black px-1'} htmlFor="colorYellow">
                                         Yellow
                                     </label>
                                 </li>
-                                <li className="form-check">
+                                <li className="form-check px-2">
                                     <input className={'me-2'} type="radio" name="color"
                                            id="colorGrey" value={'Grey'}/>
                                     <label className={'text-bg-secondary text-black px-1'} htmlFor="colorGrey">
                                         Grey
                                     </label>
                                 </li>
-                                <li className="form-check">
+                                <li className="form-check px-2">
                                     <input className={'me-2'} type="radio" name="color"
                                            id="colorWhite" value="White"/>
                                     <label className={'text-bg-light px-1'} htmlFor="colorWhite">
@@ -130,42 +130,42 @@ const SportswearHeader = () => {
                                 COLLECTION
                             </a>
                             <ul className="dropdown-menu">
-                                <li className="form-check">
+                                <li className="form-check px-2">
                                     <input className={'me-2'} type="radio" name="collection"
                                            id="motion" value={'Motion'}/>
                                     <label className={'px-1'} htmlFor="motion">
                                         Motion
                                     </label>
                                 </li>
-                                <li className="form-check">
+                                <li className="form-check px-2">
                                     <input className={'me-2'} type="radio" name="collection"
                                            id="define" value={'Define'}/>
                                     <label className={'px-1'} htmlFor="define">
                                         Define
                                     </label>
                                 </li>
-                                <li className="form-check">
+                                <li className="form-check px-2">
                                     <input className={'me-2'} type="radio" name="collection"
                                            id="power" value="Power"/>
                                     <label className={'px-1'} htmlFor="power">
                                         Power
                                     </label>
                                 </li>
-                                <li className="form-check">
+                                <li className="form-check px-2">
                                     <input className={'me-2'} type="radio" name="collection"
                                            id="essential" value={'Essential'}/>
                                     <label className={'px-1'} htmlFor="essential">
                                         Essential
                                     </label>
                                 </li>
-                                <li className="form-check">
+                                <li className="form-check px-2">
                                     <input className={'me-2'} type="radio" name="collection"
                                            id="comfort" value={'Comfort'}/>
                                     <label className={'px-1'} htmlFor="comfort">
                                         Comfort
                                     </label>
                                 </li>
-                                <li className="form-check">
+                                <li className="form-check px-2">
                                     <input className={'me-2'} type="radio" name="collection"
                                            id="accessories" value={'Accessories'}/>
                                     <label className={'px-1'} htmlFor="accessories">
@@ -180,21 +180,21 @@ const SportswearHeader = () => {
                                 LEG LENGTH
                             </a>
                             <ul className="dropdown-menu">
-                                <li className="form-check">
+                                <li className="form-check px-2">
                                     <input className={'me-2'} type="radio" name="legLength"
                                            id="7/8Length" value={'7/8 Length'}/>
                                     <label className={'px-1'} htmlFor="7/8Length">
                                         7/8 Length
                                     </label>
                                 </li>
-                                <li className="form-check">
+                                <li className="form-check px-2">
                                     <input className={'me-2'} type="radio" name="legLength"
                                            id="regularLength" value={'Regular Length'}/>
                                     <label className={'px-1'} htmlFor="regularLength">
                                         Regular Length
                                     </label>
                                 </li>
-                                <li className="form-check">
+                                <li className="form-check px-2">
                                     <input className={'me-2'} type="radio" name="legLength"
                                            id="longLength" value={'Long Length'}/>
                                     <label className={'px-1'} htmlFor="longLength">
@@ -209,14 +209,14 @@ const SportswearHeader = () => {
                                 SLEEVE LENGTH
                             </a>
                             <ul className="dropdown-menu">
-                                <li className="form-check">
+                                <li className="form-check px-2">
                                     <input className={'me-2'} type="radio" name="sleeveLength"
                                            id="shortSleeve" value={'Short Sleeve'}/>
                                     <label className={'px-1'} htmlFor="shortSleeve">
                                         Short Sleeve
                                     </label>
                                 </li>
-                                <li className="form-check">
+                                <li className="form-check px-2">
                                     <input className={'me-2'} type="radio" name="sleeveLength"
                                            id="longSleeve" value={'Long Sleeve'}/>
                                     <label className={'px-1'} htmlFor="longSleeve">
@@ -231,21 +231,21 @@ const SportswearHeader = () => {
                                 OTHER
                             </a>
                             <ul className="dropdown-menu">
-                                <li className="form-check">
+                                <li className="form-check px-2">
                                     <input className={'me-2'} type="radio" name="other"
                                            id="bestSellers" value={'Best Sellers'}/>
                                     <label className={'px-1'} htmlFor="bestSellers">
                                         Best Sellers
                                     </label>
                                 </li>
-                                <li className="form-check">
+                                <li className="form-check px-2">
                                     <input className={'me-2'} type="radio" name="other"
                                            id="newReleases" value={'New Releases'}/>
                                     <label className={'px-1'} htmlFor="newReleases">
                                         New Releases
                                     </label>
                                 </li>
-                                <li className="form-check">
+                                <li className="form-check px-2">
                                     <input className={'me-2'} type="radio" name="other"
                                            id="springEdit" value={'Spring Edit'}/>
                                     <label className={'px-1'} htmlFor="springEdit">
@@ -271,21 +271,21 @@ const SportswearHeader = () => {
                                 SORT BY
                             </a>
                             <ul className="dropdown-menu">
-                                <li className="form-check">
+                                <li className="form-check px-2">
                                     <input className={'me-2'} type="radio" name="sort"
                                            id="newest" value={'Newest'}/>
                                     <label className={'px-1'} htmlFor="newest">
                                         Newest
                                     </label>
                                 </li>
-                                <li className="form-check">
+                                <li className="form-check px-2">
                                     <input className={'me-2'} type="radio" name="sort"
                                            id="priceDsc" value={'Price: High to Low'}/>
                                     <label className={'px-1'} htmlFor="priceDsc">
                                         Price: High to Low
                                     </label>
                                 </li>
-                                <li className="form-check">
+                                <li className="form-check px-2">
                                     <input className={'me-2'} type="radio" name="sort"
                                            id="priceAsc" value={'Price: Low to High'}/>
                                     <label className={'px-1'} htmlFor="priceAsc">
@@ -299,41 +299,41 @@ const SportswearHeader = () => {
             </div>
             <div className={'w-100 overflow-scroll sportswearList'}>
                 <ul className={'list-group list-group-horizontal text-nowrap'}>
-                    <li className={'list-group-item d-flex jusitfy-content-between align-items-center'}>
-                        <Link href={''}>ALL</Link>
-                        <span className="badge text-bg-primary rounded-pill">14</span>
+                    <li className={'px-1 list-group-item d-flex justify-content-between align-items-center'}>
+                        <Link href={''} className={'px-2 text-secondary'}>ALL</Link>
+                        <span className="badge text-bg-secondary rounded-pill">14</span>
                     </li>
-                    <li className={'list-group-item d-flex jusitfy-content-between align-items-center '} >
-                        <Link href={''}>Leggings</Link>
-                        <span className="badge text-bg-primary rounded-pill">14</span>
+                    <li className={'px-1 list-group-item d-flex justify-content-between align-items-center '} >
+                        <Link href={''} className={'px-2 text-secondary'}>Leggings</Link>
+                        <span className="badge text-bg-secondary rounded-pill">14</span>
                     </li>
-                    <li className={'list-group-item d-flex jusitfy-content-between align-items-center '} >
-                        <Link href={''}>Joggers</Link>
-                        <span className="badge text-bg-primary rounded-pill">14</span>
+                    <li className={'px-1 list-group-item d-flex justify-content-between align-items-center '} >
+                        <Link href={''} className={'px-2 text-secondary'}>Joggers</Link>
+                        <span className="badge text-bg-secondary rounded-pill">14</span>
                     </li>
-                    <li className={'list-group-item d-flex jusitfy-content-between align-items-center '} >
-                        <Link href={''}>Sports Bras</Link>
-                        <span className="badge text-bg-primary rounded-pill">14</span>
+                    <li className={'px-1 list-group-item d-flex justify-content-between align-items-center '} >
+                        <Link href={''} className={'px-2 text-secondary'}>Sports Bras</Link>
+                        <span className="badge text-bg-secondary rounded-pill">14</span>
                     </li>
-                    <li className={'list-group-item d-flex jusitfy-content-between align-items-center '} >
-                        <Link href={''}>Shorts</Link>
-                        <span className="badge text-bg-primary rounded-pill">14</span>
+                    <li className={'px-1 list-group-item d-flex justify-content-between align-items-center '} >
+                        <Link href={''} className={'px-2 text-secondary'}>Shorts</Link>
+                        <span className="badge text-bg-secondary rounded-pill">14</span>
                     </li>
-                    <li className={'list-group-item d-flex jusitfy-content-between align-items-center '} >
-                        <Link href={''}>T-Shirts & Tops</Link>
-                        <span className="badge text-bg-primary rounded-pill">14</span>
+                    <li className={'px-1 list-group-item d-flex justify-content-between align-items-center '} >
+                        <Link href={''} className={'px-2 text-secondary'}>T-Shirts & Tops</Link>
+                        <span className="badge text-bg-secondary rounded-pill">14</span>
                     </li>
-                    <li className={'list-group-item d-flex jusitfy-content-between align-items-center'} >
-                        <Link href={''}>Hoodies, Sweatshirts & Jackets</Link>
-                        <span className="badge text-bg-primary rounded-pill">14</span>
+                    <li className={'px-1 list-group-item d-flex justify-content-between align-items-center'} >
+                        <Link href={''} className={'px-2 text-secondary'}>Hoodies, Sweatshirts & Jackets</Link>
+                        <span className="badge text-bg-secondary rounded-pill">14</span>
                     </li>
-                    <li className={'list-group-item d-flex jusitfy-content-between align-items-center'} >
-                        <Link href={''}>Unitards</Link>
-                        <span className="badge text-bg-primary rounded-pill">14</span>
+                    <li className={'px-1 list-group-item d-flex justify-content-between align-items-center'} >
+                        <Link href={''} className={'px-2 text-secondary'}>Unitards</Link>
+                        <span className="badge text-bg-secondary rounded-pill">14</span>
                     </li>
-                    <li className={'list-group-item d-flex jusitfy-content-between align-items-center '} >
-                        <Link href={''}>Accessories</Link>
-                        <span className="badge text-bg-primary rounded-pill">14</span>
+                    <li className={'px-1 list-group-item d-flex justify-content-between align-items-center '} >
+                        <Link href={''} className={'px-2 text-secondary'}>Accessories</Link>
+                        <span className="badge text-bg-secondary rounded-pill">14</span>
                     </li>
                 </ul>
             </div>
