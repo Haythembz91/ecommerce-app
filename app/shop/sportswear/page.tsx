@@ -179,9 +179,27 @@ const Home = ()=>{
                                     LEG LENGTH
                                 </a>
                                 <ul className="dropdown-menu">
-                                <li><a className="dropdown-item" href="#">Action</a></li>
-                                    <li><a className="dropdown-item" href="#">Another action</a></li>
-                                    <li><a className="dropdown-item" href="#">Something else here</a></li>
+                                    <li className="form-check">
+                                        <input className={'me-2'} type="radio" name="legLength"
+                                               id="7/8Length"/>
+                                        <label className={'px-1'} htmlFor="7/8Length">
+                                            7/8 Length
+                                        </label>
+                                    </li>
+                                    <li className="form-check">
+                                        <input className={'me-2'} type="radio" name="legLength"
+                                               id="regularLength"/>
+                                        <label className={'px-1'} htmlFor="regularLength">
+                                            Regular Length
+                                        </label>
+                                    </li>
+                                    <li className="form-check">
+                                        <input className={'me-2'} type="radio" name="legLength"
+                                               id="longLength"/>
+                                        <label className={'px-1'} htmlFor="longLength">
+                                            Long Length
+                                        </label>
+                                    </li>
                                 </ul>
                             </li>
                             <li className="nav-item dropdown">
@@ -190,9 +208,20 @@ const Home = ()=>{
                                     SLEEVE LENGTH
                                 </a>
                                 <ul className="dropdown-menu">
-                                    <li><a className="dropdown-item" href="#">Action</a></li>
-                                    <li><a className="dropdown-item" href="#">Another action</a></li>
-                                    <li><a className="dropdown-item" href="#">Something else here</a></li>
+                                    <li className="form-check">
+                                        <input className={'me-2'} type="radio" name="sleeveLength"
+                                               id="shortSleeve"/>
+                                        <label className={'px-1'} htmlFor="shortSleeve">
+                                            Short Sleeve
+                                        </label>
+                                    </li>
+                                    <li className="form-check">
+                                        <input className={'me-2'} type="radio" name="sleeveLength"
+                                               id="longSleeve"/>
+                                        <label className={'px-1'} htmlFor="longSleeve">
+                                            Long Sleeve
+                                        </label>
+                                    </li>
                                 </ul>
                             </li>
                             <li className="nav-item dropdown">
