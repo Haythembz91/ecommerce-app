@@ -1,9 +1,10 @@
 import SportswearHeader from "@/componants/SportswearHeader";
-
+import ProductSlider from "@/componants/ProductSlider";
 const Home = ()=>{
     return(
-        <div className={""}>
+        <div className={''}>
             <SportswearHeader></SportswearHeader>
+            <ProductSlider/>
         </div>
     )
 }

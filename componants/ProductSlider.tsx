@@ -4,7 +4,7 @@
 const ProductSlider = () => {
     
     return(
-        <div className="row gx-2 flex-nowrap overflow-x-scroll">
+        <div className="row gx-2 flex-nowrap overflow-x-scroll productSlide">
             <div className="col-5 col-md-3">
                 <div className="card">
                     <img src="https://eu.womensbest.com/cdn/shop/files/03_NewComfort_Linda_sage_1968_315x.jpg?v=1733851879" className="card-img-top" alt="..."/>

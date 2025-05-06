@@ -2,10 +2,10 @@ import Link from "next/link";
 
 const SportswearHeader = () => {
     return (
-        <nav className="navbar navbar-expand-lg bg-body-tertiary">
+        <nav className="navbar navbar-expand-lg bg-body-tertiary sticky-top">
             <div className="container-fluid">
                 <a className="navbar-brand" href="#">SHOP</a>
-                <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
+                <button className="navbar-toggler mb-2" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
                         aria-label="Toggle navigation">
                     <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fillRule="evenodd"
@@ -297,7 +297,7 @@ const SportswearHeader = () => {
                     </ul>
                 </div>
             </div>
-            <div className={'w-100 overflow-scroll'}>
+            <div className={'w-100 overflow-scroll sportswearList'}>
                 <ul className={'list-group list-group-horizontal text-nowrap'}>
                     <li className={'list-group-item d-flex jusitfy-content-between align-items-center'}>
                         <Link href={''}>ALL</Link>

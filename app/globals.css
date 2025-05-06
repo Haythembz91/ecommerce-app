@@ -25,3 +25,19 @@ h2.bannerHeading{
 .offcanvasFooter{
   background-color: #f5f5f5;
 }
+
+div.sportswearList{
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
+div.sportswearList::-webkit-scrollbar { 
+  display: none;  /* Safari and Chrome */
+}
+
+.productSlide {
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
+.productSlide::-webkit-scrollbar { 
+  display: none;  /* Safari and Chrome */
+}
