@@ -2,8 +2,8 @@ import Link from "next/link";
 
 const SportswearHeader = () => {
     return (
-        <nav className="navbar navbar-expand-lg bg-body-tertiary flex-md-column sticky-top">
-            <div className="container-fluid">
+        <nav className="navbar navbar-expand-lg bg-body-tertiary flex-md-column">
+            <div className="container-fluid ">
                 <a className="navbar-brand" href="#">SHOP</a>
                 <button className="navbar-toggler mb-2" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
@@ -297,42 +297,42 @@ const SportswearHeader = () => {
                     </ul>
                 </div>
             </div>
-            <div className={'w-100 overflow-scroll sportswearList'}>
-                <ul className={'list-group list-group-horizontal text-nowrap'}>
-                    <li className={'px-1 list-group-item d-flex justify-content-between align-items-center'}>
-                        <Link href={''} className={'px-2 text-secondary'}>ALL</Link>
+            <div className={'w-100 overflow-x-scroll sportswearList'}>
+                <ul className={'nav flex-nowrap list-group list-group-horizontal text-nowrap'}>
+                    <li className={'nav-item p-1 list-group-item d-flex justify-content-between align-items-center'}>
+                        <Link href={''} className={'active nav-link p-1 link-secondary link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover'}>ALL</Link>
                         <span className="badge text-bg-secondary rounded-pill">14</span>
                     </li>
-                    <li className={'px-1 list-group-item d-flex justify-content-between align-items-center '} >
-                        <Link href={''} className={'px-2 text-secondary'}>Leggings</Link>
+                    <li className={'nav-item p-1 list-group-item d-flex justify-content-between align-items-center '} >
+                        <Link href={''} className={'nav-link p-1 link-secondary link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover'}>Leggings</Link>
                         <span className="badge text-bg-secondary rounded-pill">14</span>
                     </li>
-                    <li className={'px-1 list-group-item d-flex justify-content-between align-items-center '} >
-                        <Link href={''} className={'px-2 text-secondary'}>Joggers</Link>
+                    <li className={'nav-item p-1 list-group-item d-flex justify-content-between align-items-center '} >
+                        <Link href={''} className={'nav-link p-1 link-secondary link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover'}>Joggers</Link>
                         <span className="badge text-bg-secondary rounded-pill">14</span>
                     </li>
-                    <li className={'px-1 list-group-item d-flex justify-content-between align-items-center '} >
-                        <Link href={''} className={'px-2 text-secondary'}>Sports Bras</Link>
+                    <li className={'nav-item p-1 list-group-item d-flex justify-content-between align-items-center '} >
+                        <Link href={''} className={'nav-link p-1 link-secondary link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover'}>Sports Bras</Link>
                         <span className="badge text-bg-secondary rounded-pill">14</span>
                     </li>
-                    <li className={'px-1 list-group-item d-flex justify-content-between align-items-center '} >
-                        <Link href={''} className={'px-2 text-secondary'}>Shorts</Link>
+                    <li className={'nav-item p-1 list-group-item d-flex justify-content-between align-items-center '} >
+                        <Link href={''} className={'nav-link p-1 link-secondary link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover'}>Shorts</Link>
                         <span className="badge text-bg-secondary rounded-pill">14</span>
                     </li>
-                    <li className={'px-1 list-group-item d-flex justify-content-between align-items-center '} >
-                        <Link href={''} className={'px-2 text-secondary'}>T-Shirts & Tops</Link>
+                    <li className={'nav-item p-1 list-group-item d-flex justify-content-between align-items-center '} >
+                        <Link href={''} className={'nav-link p-1 link-secondary link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover'}>T-Shirts & Tops</Link>
                         <span className="badge text-bg-secondary rounded-pill">14</span>
                     </li>
-                    <li className={'px-1 list-group-item d-flex justify-content-between align-items-center'} >
-                        <Link href={''} className={'px-2 text-secondary'}>Hoodies, Sweatshirts & Jackets</Link>
+                    <li className={'nav-item p-1 list-group-item d-flex justify-content-between align-items-center'} >
+                        <Link href={''} className={'nav-link p-1 link-secondary link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover'}>Hoodies, Sweatshirts & Jackets</Link>
                         <span className="badge text-bg-secondary rounded-pill">14</span>
                     </li>
-                    <li className={'px-1 list-group-item d-flex justify-content-between align-items-center'} >
-                        <Link href={''} className={'px-2 text-secondary'}>Unitards</Link>
+                    <li className={'nav-item p-1 list-group-item d-flex justify-content-between align-items-center'} >
+                        <Link href={''} className={'nav-link p-1 link-secondary link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover'}>Unitards</Link>
                         <span className="badge text-bg-secondary rounded-pill">14</span>
                     </li>
-                    <li className={'px-1 list-group-item d-flex justify-content-between align-items-center '} >
-                        <Link href={''} className={'px-2 text-secondary'}>Accessories</Link>
+                    <li className={'nav-item p-1 list-group-item d-flex justify-content-between align-items-center '} >
+                        <Link href={''} className={'nav-link p-1 link-secondary link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover'}>Accessories</Link>
                         <span className="badge text-bg-secondary rounded-pill">14</span>
                     </li>
                 </ul>
