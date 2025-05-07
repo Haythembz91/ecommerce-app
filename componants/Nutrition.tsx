@@ -5,7 +5,7 @@ import NutritionBanner from "@/scripts/NutritionBanner";
 
 const Category = ()=>{
     return(
-        <div className={'nutMenu pt-1 container-fluid visually-hidden position-absolute start-0 d-none d-md-flex justify-content-between bg-body-tertiary'}>
+        <div className={'nutMenu pt-1 pe-0 container-fluid visually-hidden position-absolute start-0 d-none d-md-flex justify-content-between bg-body-tertiary'}>
             <div className={'row col-5'}>
                 <p className='fw-bold'>SHOP BY CATEGORY</p>
                 <a href='#' className={'col-6 link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover link-dark'}>Shop All Products</a>

@@ -5,7 +5,7 @@ import CategoryBanner from "@/scripts/CategoryBanner";
 const Category = ()=>{
 
     return(
-        <div className={'ctgMenu container-fluid visually-hidden position-absolute start-0 d-none d-md-flex justify-content-between bg-body-tertiary'}>
+        <div className={'ctgMenu pe-0 container-fluid visually-hidden position-absolute start-0 d-none d-md-flex justify-content-between bg-body-tertiary'}>
             <div className={'row col-6'}>
                 <p className={"pt-2 fw-bold"}>SHOP BY CATEGORY</p>
                 <a href='#' className='col-3 link-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover'>All products</a>

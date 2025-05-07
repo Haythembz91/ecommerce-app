@@ -3,9 +3,9 @@ import Link from "next/link";
 const SportswearHeader = () => {
     return (
         <nav className="navbar navbar-expand-lg bg-body-tertiary flex-md-column">
-            <div className="container-fluid ">
-                <a className="navbar-brand" href="#">SHOP</a>
-                <button className="navbar-toggler mb-2" type="button" data-bs-toggle="collapse"
+            <div className="container-fluid align-content-center">
+                <a className="navbar-brand" href="#">Filter</a>
+                <button className="navbar-toggler mb-2 fs-6" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
                         aria-label="Toggle navigation">
                     <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fillRule="evenodd"
@@ -298,41 +298,41 @@ const SportswearHeader = () => {
                 </div>
             </div>
             <div className={'w-100 overflow-x-scroll sportswearList'}>
-                <ul className={'nav flex-nowrap list-group list-group-horizontal text-nowrap'}>
+                <ul className={'nav nav-underline gap-0 flex-nowrap list-group list-group-horizontal text-nowrap'}>
                     <li className={'nav-item p-1 list-group-item d-flex justify-content-between align-items-center'}>
-                        <Link href={''} className={'active nav-link p-1 link-secondary link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover'}>ALL</Link>
+                        <Link href={''} className={'nav-link p-1 link-secondary'}>ALL</Link>
                         <span className="badge text-bg-secondary rounded-pill">14</span>
                     </li>
                     <li className={'nav-item p-1 list-group-item d-flex justify-content-between align-items-center '} >
-                        <Link href={''} className={'nav-link p-1 link-secondary link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover'}>Leggings</Link>
+                        <Link href={''} className={'nav-link p-1 link-secondary'}>Leggings</Link>
                         <span className="badge text-bg-secondary rounded-pill">14</span>
                     </li>
                     <li className={'nav-item p-1 list-group-item d-flex justify-content-between align-items-center '} >
-                        <Link href={''} className={'nav-link p-1 link-secondary link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover'}>Joggers</Link>
+                        <Link href={''} className={'nav-link p-1 link-secondary'}>Joggers</Link>
                         <span className="badge text-bg-secondary rounded-pill">14</span>
                     </li>
                     <li className={'nav-item p-1 list-group-item d-flex justify-content-between align-items-center '} >
-                        <Link href={''} className={'nav-link p-1 link-secondary link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover'}>Sports Bras</Link>
+                        <Link href={''} className={'nav-link p-1 link-secondary'}>Sports Bras</Link>
                         <span className="badge text-bg-secondary rounded-pill">14</span>
                     </li>
                     <li className={'nav-item p-1 list-group-item d-flex justify-content-between align-items-center '} >
-                        <Link href={''} className={'nav-link p-1 link-secondary link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover'}>Shorts</Link>
+                        <Link href={''} className={'nav-link p-1 link-secondary'}>Shorts</Link>
                         <span className="badge text-bg-secondary rounded-pill">14</span>
                     </li>
                     <li className={'nav-item p-1 list-group-item d-flex justify-content-between align-items-center '} >
-                        <Link href={''} className={'nav-link p-1 link-secondary link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover'}>T-Shirts & Tops</Link>
+                        <Link href={''} className={'nav-link p-1 link-secondary'}>T-Shirts & Tops</Link>
                         <span className="badge text-bg-secondary rounded-pill">14</span>
                     </li>
                     <li className={'nav-item p-1 list-group-item d-flex justify-content-between align-items-center'} >
-                        <Link href={''} className={'nav-link p-1 link-secondary link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover'}>Hoodies, Sweatshirts & Jackets</Link>
+                        <Link href={''} className={'nav-link p-1 link-secondary'}>Hoodies, Sweatshirts & Jackets</Link>
                         <span className="badge text-bg-secondary rounded-pill">14</span>
                     </li>
                     <li className={'nav-item p-1 list-group-item d-flex justify-content-between align-items-center'} >
-                        <Link href={''} className={'nav-link p-1 link-secondary link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover'}>Unitards</Link>
+                        <Link href={''} className={'nav-link p-1 link-secondary'}>Unitards</Link>
                         <span className="badge text-bg-secondary rounded-pill">14</span>
                     </li>
                     <li className={'nav-item p-1 list-group-item d-flex justify-content-between align-items-center '} >
-                        <Link href={''} className={'nav-link p-1 link-secondary link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover'}>Accessories</Link>
+                        <Link href={''} className={'nav-link p-1 link-secondary'}>Accessories</Link>
                         <span className="badge text-bg-secondary rounded-pill">14</span>
                     </li>
                 </ul>
