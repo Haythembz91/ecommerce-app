@@ -10,10 +10,10 @@ import Link from "next/link";
 import {useState} from "react";
 import {routes} from '@/componants/enums'
 import SearchBar from "@/componants/SearchBar";
+
 const Header = ()=>{
 
     const [slug,setSlug] = useState<routes>(routes.HOME)
-
     return (
             <header className={"navbar navbar-expand-md sticky-top bg-body-tertiary"}>
                 <nav className={"container-fluid"}>

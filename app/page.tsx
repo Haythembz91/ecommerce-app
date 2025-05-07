@@ -2,9 +2,12 @@ import SliderSportswear from "@/componants/SliderSportswear"
 import ProductSlider from "@/componants/ProductSlider";
 import Link from "next/link";
 import {routes} from "@/componants/enums";
+import {currentUser} from "@clerk/nextjs/server";
 
-const Home = ()=>{
+const Home = async ()=>{
 
+    const user = await currentUser()
+    console.log(user)
 
     return(
         <div>
