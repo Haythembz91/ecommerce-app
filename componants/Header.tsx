@@ -88,7 +88,9 @@ const Header = ()=>{
                                     </svg>
                                 </button>
                             </div>
-                            <SignIn></SignIn>
+                            <div className="d-none d-md-block col-md-3 justify-content-md-center align-content-center">
+                                <SignIn></SignIn>
+                            </div>
                             <div className={'col-md-3'}>
                                 <button className={"btn"}>
                                     <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fillRule="evenodd"

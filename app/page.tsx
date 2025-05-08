@@ -2,10 +2,9 @@ import SliderSportswear from "@/componants/SliderSportswear"
 import ProductSlider from "@/componants/ProductSlider";
 import Link from "next/link";
 import {routes} from "@/componants/enums";
-
 const Home = async ()=>{
 
-
+    
     return(
         <div>
             <section>
