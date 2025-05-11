@@ -9,6 +9,6 @@ if (!uri) {
 }
 
     const client = new MongoClient(uri, options);
-    const clientPromise = client.connect();
+    const connectDatabase = client.connect();
 
-export default clientPromise;
+export default connectDatabase;
