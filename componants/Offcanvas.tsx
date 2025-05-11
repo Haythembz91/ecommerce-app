@@ -3,7 +3,7 @@ import OffcanvasNutrition from "@/componants/OffcanvasNutrition";
 import OffcanvasCollection from "@/componants/OffcanvasCollection";
 import OffcanvasCategory from "@/componants/OffcanvasCategory";
 import OffcanvasFooter from "./OffcanvasFooter";
-import {routes} from '@/componants/enums';
+import {routes} from '@/utils/enums';
 const Offcanvas = ({setSlug})=>{
 
     return (

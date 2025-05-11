@@ -1,17 +1,28 @@
 'use client'
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 
 const DashboardForm =()=>{
     const [name,setName]=useState<string>('')
-    const handleSubmit =async (e:React.FormEvent)=>{
-        e.preventDefault()
-        try{
+    const [movies,setMovies]=useState()
 
-        }
-        catch(e){
+    const getMovies = async ()=>{
+        try{
+            const response = await fetch('/api/product')
+            if (response.status===200){
+                const data = await response.json()
+                setMovies(data)
+            }
+        }catch(e){
             console.error(e)
         }
     }
+
+    useEffect(()=>{
+        getMovies()
+    },[])
+
+    console.log(movies)
+
     return (
         <form onSubmit={(e)=>handleSubmit(e)} className="needs-validation m-2 p-2 w-50">
             <div className="mb-3">

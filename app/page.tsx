@@ -1,7 +1,7 @@
 import SliderSportswear from "@/componants/SliderSportswear"
 import ProductSlider from "@/componants/ProductSlider";
 import Link from "next/link";
-import {routes} from "@/componants/enums";
+import {routes} from "@/utils/enums";
 const Home = async ()=>{
 
     

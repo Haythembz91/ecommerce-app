@@ -6,7 +6,7 @@ import Nutrition from '@/componants/Nutrition'
 import Offcanvas from "@/componants/Offcanvas";
 import Link from "next/link";
 import {useState} from "react";
-import {routes} from '@/componants/enums'
+import {routes} from '@/utils/enums'
 import SearchBar from "@/componants/SearchBar";
 import SignIn from "@/componants/SignIn";
 
