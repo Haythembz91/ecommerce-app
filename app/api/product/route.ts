@@ -1,30 +1,14 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { getDb, closeDB } from '@/utils/mongodb';
+import {NextResponse,NextRequest} from "next/server";
 
-export async function GET(request: NextRequest) {
-  try {
-    const db = await getDb();
-    const productsCollection = db.collection('users');
-    const products = await productsCollection.find({}).toArray();
-    console.log(products)
-    return new NextResponse(JSON.stringify(products), {
-      status: 200,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-  } catch (error) {
-    console.error('Error fetching products:', error);
-    return new NextResponse(
-      JSON.stringify({ error: 'Failed to fetch products' }),
-      {
-        status: 500,
-        headers: {
-          'Content-Type': 'application/json',
-        },
+export const GET = async (req: NextRequest, res:NextResponse) =>{
+   try{
+     const response = await fetch ('https://restcountries.com/v3.1/all')
+      if (response.status===200){
+        const data = await response.json()
+        return NextResponse.json(data)
       }
-    );
-  } finally {
-    await closeDB();
-  }
+   }catch(e){
+     console.error(e)
+      return NextResponse.json({message:'Error'}, {status:500})
+   }
 }

@@ -20,11 +20,13 @@ const DashboardForm =()=>{
     useEffect(()=>{
         getMovies()
     },[])
-
+    if(!movies){
+        return <div>Loading...</div>
+    }
     console.log(movies)
 
     return (
-        <form onSubmit={(e)=>handleSubmit(e)} className="needs-validation m-2 p-2 w-50">
+        <div className="needs-validation m-2 p-2 w-50">
             <div className="mb-3">
                 <label htmlFor="basic-url" className="form-label">Product Name: </label>
                 <div className="input-group">
@@ -35,7 +37,10 @@ const DashboardForm =()=>{
             <div className="mb-3">
                 <button className="btn btn-primary" type="submit">Submit form</button>
             </div>
-        </form>
+            {
+     movies?.map((movie,index)=><div key={index}>{movie.name.common}</div>
+            )}
+        </div>
     )
 }
 

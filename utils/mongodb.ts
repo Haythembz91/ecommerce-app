@@ -28,12 +28,3 @@ export async function getDb(): Promise<Db> {
   }
   return db!;
 }
-
-export async function closeDB(): Promise<void> {
-  if (client) {
-    await client.close();
-    client = null;
-    db = null;
-    console.log('Disconnected from MongoDB');
-  }
-}
