@@ -1,32 +1,11 @@
 'use client'
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 
 const DashboardForm =()=>{
     const [name,setName]=useState<string>('')
-    const [movies,setMovies]=useState()
-
-    const getMovies = async ()=>{
-        try{
-            const response = await fetch('/api/product')
-            if (response.status===200){
-                const data = await response.json()
-                setMovies(data)
-            }
-        }catch(e){
-            console.error(e)
-        }
-    }
-
-    useEffect(()=>{
-        getMovies()
-    },[])
-    if(!movies){
-        return <p>Loading...</p>
-    }
-    console.log(movies)
 
     return (
-        <form onSubmit={(e)=>handleSubmit(e)} className="needs-validation m-2 p-2 w-50">
+        <form className="needs-validation m-2 p-2 w-50">
             <div className="mb-3">
                 <label htmlFor="basic-url" className="form-label">Product Name: </label>
                 <div className="input-group">
@@ -36,11 +15,6 @@ const DashboardForm =()=>{
             </div>
             <div className="mb-3">
                 <button className="btn btn-primary" type="submit">Submit form</button>
-            </div>
-            <div>
-      {movies?.map((movie:any,index)=>{
-                    return <p key={index}>{movie.name}</p>
-                })}
             </div>
         </form>
     )

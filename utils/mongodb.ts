@@ -11,7 +11,7 @@ async function connectDB(): Promise<{ client: MongoClient; db: Db }> {
     try {
       client = new MongoClient(uri);
       await client.connect();
-      db = client.db('sample_mflix');
+      db = client.db('ecommerce');
       console.log('Connected to MongoDB');
     } catch (error) {
       console.error('Error connecting to MongoDB:', error);
