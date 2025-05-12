@@ -1,11 +1,11 @@
 import { auth } from '@clerk/nextjs/server'
-import DashboardForm from "@/componants/DashboardForm";
-
+import ProductForm from
+'@/components/ProductForm'
 
 export default async function Home() {
   const { userId } = await auth.protect({ permission: 'org:dashboard:admin' })
 
   return (
-      <DashboardForm/>
+      <ProductForm/>
   )
 }
