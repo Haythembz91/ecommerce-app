@@ -6,6 +6,7 @@ const DashboardForm =()=>{
     const [description,setDescription]=useState<string>('')
     const [category,setCategory]=useState<string>('')
     const[size,setSize]=useState<string[]>([])
+    const [price,setPrice]=useState<number>(0)
     
 
     return (
@@ -81,6 +82,12 @@ const DashboardForm =()=>{
                         <option value='sizeXxl'>
                             XXL
                             </option>           </select>       
+                </div>
+            </div>
+            <div className="mb-3">
+                <div className="input-group mb-3">
+                  <span className="input-group-text" id="basic-addon1">$</span>
+                  <input required type="number" value={price} onChange={(e)=>setPrice(parseInt(e.target.value))} className="form-control" placeholder="Price" aria-label="productPrice" aria-describedby="basic-addon1"/>
                 </div>
             </div>
             <div className="mb-3">
