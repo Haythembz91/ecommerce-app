@@ -35,6 +35,11 @@ const DashboardForm =()=>{
             <div className="mb-3">
                 <button className="btn btn-primary" type="submit">Submit form</button>
             </div>
+            <div>
+      {movies?.map((movie:any,index)=>{
+                    return <p key={index}>{movie.name}</p>
+                })}
+            </div>
         </form>
     )
 }
