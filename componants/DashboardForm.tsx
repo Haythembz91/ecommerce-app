@@ -1,7 +1,7 @@
 'use client'
 import React, {useState} from "react";
 
-const ProductForm =()=>{
+const DashboardForm =()=>{
     const [name,setName]=useState<string>('')
     const [description,setDescription]=useState<string>('')
     const [category,setCategory]=useState<string>('')
@@ -97,4 +97,4 @@ const ProductForm =()=>{
     )
 }
 
-export default ProductForm
+export default DashboardForm
