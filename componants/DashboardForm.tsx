@@ -20,7 +20,9 @@ const DashboardForm =()=>{
     useEffect(()=>{
         getMovies()
     },[])
-
+    if(!movies){
+        return <p>Loading...</p>
+    }
     console.log(movies)
 
     return (
