@@ -7,7 +7,14 @@ const DashboardForm =()=>{
     const [category,setCategory]=useState<string>('')
     const[size,setSize]=useState<string[]>([])
     const [price,setPrice]=useState<number>(0)
-    
+    const handleChangeSize= (event:React.FormEvent)=>
+        {
+            const { name, value, selectedOptions } = event.target;
+            if (name === 'productCategory') {
+              const values = Array.from(selectedOptions).map((option) => option.value);
+              setSize(values);
+            }
+        }
 
     return (
         <form className="needs-validation m-2 p-2 w-50">
@@ -61,7 +68,7 @@ const DashboardForm =()=>{
             <div className="mb-3">
                 <label htmlFor="productCategory" className="form-label">Product Category: </label>
                 <div className="input-group">
-                    <select required multiple value={size} className="form-control" id="productCategory" name={'productCategory'}
+                    <select required onChange={handleChangeSize} multiple value={size} className="form-control" id="productCategory" name={'productCategory'}
                            aria-describedby="basic-addon3 basic-addon4">
                         <option value='' disabled selected>Select Available Sizes</option>
                         <option value='sizeXs'>
