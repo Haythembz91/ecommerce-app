@@ -5,8 +5,11 @@ const DashboardForm =()=>{
     const [name,setName]=useState<string>('')
     const [description,setDescription]=useState<string>('')
     const [category,setCategory]=useState<string>('')
-    const[size,setSize]=useState<string[]>([])
+       const[size,setSize]=useState<string[]>([])
+    const[color,setColor]=useState<string[]>([])
+    
     const [price,setPrice]=useState<number>(0)
+const [sleeve,setSleeve]=useState<string>('')
     const handleChangeSize= (event:React.FormEvent)=>
         {
             const { name, value, selectedOptions } = event.target as HTMLSelectElement;
@@ -15,6 +18,13 @@ const DashboardForm =()=>{
               setSize(values);
             }
         }
+    const handleColorChange=(e:React.FormEvent)=>{
+        const { name, value, selectedOptions } = e.target as HTMLSelectElement;
+        if (name === 'productColor') {
+          const values = Array.from(selectedOptions).map((option) => option.value);
+          setColor(values);
+        }
+    }
 
     return (
         <form className="needs-validation m-2 p-2 w-50">
@@ -65,8 +75,24 @@ const DashboardForm =()=>{
                     </select>
                 </div>
             </div>
+            {category==='unitards'&&<div className="mb-3">
+                <label htmlFor="sleeveLength" className="form-label">Sleeve Length: </label>
+                <div className="input-group">
+                    <select required value={sleeve} onChange={(e)=>setSleeve(e.target.value)} className="form-control" id="sleeveLength"
+                           aria-describedby="basic-addon3 basic-addon4">
+                        <option value='' disabled selected>Select Sleeve Length...</option>
+                        <option value='shortSleeve'>
+                        Short Sleeve
+                        </option>
+                        <option value='longSleeve'>
+                            Long Sleeve
+                            
+                        </option>
+                    </select>
+                </div>
+            </div>}
             <div className="mb-3">
-                <label htmlFor="productCategory" className="form-label">Product Category: </label>
+                <label htmlFor="productCategory" className="form-label">Available Sizes: </label>
                 <div className="input-group">
                     <select required onChange={handleChangeSize} multiple value={size} className="form-control" id="productCategory" name={'productCategory'}
                            aria-describedby="basic-addon3 basic-addon4">
@@ -92,6 +118,39 @@ const DashboardForm =()=>{
                 </div>
             </div>
             <div className="mb-3">
+                <label htmlFor="productColor" className="form-label">Available Colors: </label>
+                <div className="input-group">
+                    <select required onChange={handleColorChange} multiple value={color} className="form-control" id="productColor" name={'productColor'}
+                           aria-describedby="basic-addon3 basic-addon4">
+                        <option value='' disabled selected>Select Available Colors</option>
+                        <option value='black'>
+                        Black
+                        </option>
+                        <option value='red'>
+                            Red
+                            </option>
+                        <option value='yellow'>
+                            Yellow
+                            </option>
+                        <option value={'green'}>
+                            Green
+                            </option>
+                        <option value='pink'>
+                            Pink
+                            </option>
+                        <option value='white'>
+                            White
+                            </option>
+                        <option value='grey'>
+                            Grey
+                            </option>
+                        <option value='blue'>
+                            Blue
+                            </option>
+                    </select>       
+                </div>
+            </div>
+            <div className="mb-3">
                 <div className="input-group mb-3">
                   <span className="input-group-text" id="basic-addon1">$</span>
                   <input required type="number" value={price} onChange={(e)=>setPrice(parseInt(e.target.value))} className="form-control" placeholder="Price" aria-label="productPrice" aria-describedby="basic-addon1"/>
@@ -99,7 +158,8 @@ const DashboardForm =()=>{
             </div>
             <div className="mb-3">
                 <button className="btn btn-primary" type="submit">Submit form</button>
-            </div>   
+            </div>
+            <div>{sleeve}</div>
         </form>
     )
 }
