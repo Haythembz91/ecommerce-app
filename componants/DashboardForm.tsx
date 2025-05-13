@@ -9,7 +9,7 @@ const DashboardForm =()=>{
     const [price,setPrice]=useState<number>(0)
     const handleChangeSize= (event:React.FormEvent)=>
         {
-            const { name, value, selectedOptions } = event.target;
+            const { name, value, selectedOptions } = event.target as HTMLSelectElement;
             if (name === 'productCategory') {
               const values = Array.from(selectedOptions).map((option) => option.value);
               setSize(values);
@@ -99,7 +99,7 @@ const DashboardForm =()=>{
             </div>
             <div className="mb-3">
                 <button className="btn btn-primary" type="submit">Submit form</button>
-            </div>
+            </div>   
         </form>
     )
 }
