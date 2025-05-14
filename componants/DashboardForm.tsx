@@ -1,5 +1,6 @@
 'use client'
 import React, {useState} from "react";
+import {categories, colors, legLengths, sizes, sleeveLengths} from "@/utils/enums";
 
 const DashboardForm =()=>{
     const [name,setName]=useState<string>('')
@@ -10,7 +11,7 @@ const DashboardForm =()=>{
     
     const [price,setPrice]=useState<number>(0)
 const [sleeve,setSleeve]=useState<string>('')
-    const handleChangeSize= (event:React.FormEvent)=>
+    const handleChangeSize = (event:React.FormEvent)=>
         {
             const { name, value, selectedOptions } = event.target as HTMLSelectElement;
             if (name === 'productCategory') {
@@ -25,9 +26,8 @@ const [sleeve,setSleeve]=useState<string>('')
           setColor(values);
         }
     }
-
     return (
-        <form className="needs-validation m-2 p-2 w-50">
+        <form className="m-2 p-2 w-50">
             <div className="mb-3">
                 <label htmlFor="productName" className="form-label">Product Name: </label>
                 <div className="input-group">
@@ -45,28 +45,32 @@ const [sleeve,setSleeve]=useState<string>('')
             <div className="mb-3">
                 <label htmlFor="productCategory" className="form-label">Product Category: </label>
                 <div className="input-group">
-                    <select required value={category} onChange={(e)=>setCategory(e.target.value)} className="form-control" id="productCategory"
+                    <select required value={category} onChange={(e)=>{            setCategory(e.target.value);
+            if(![categories.UNITARDS,categories.T_SHIRTS_AND_TOPS].includes(category)){
+              setSleeve('')  
+            }
+                    }} className="form-control" id="productCategory"
                            aria-describedby="basic-addon3 basic-addon4">
                         <option value='' disabled selected>Select a Category...</option>
-                        <option value='leggings'>
+                        <option value={categories.LEGGINGS}>
                         Leggings
                         </option>
-                        <option value='joggers'>
+                        <option value={categories.JOGGERS}>
                             Joggers
                             </option>
-                        <option value='sportsBras'>
+                        <option value={categories.SPORTS_BRAS}>
                             Sports Bras
                             </option>
-                        <option value='shorts'>
+                        <option value={categories.SHORTS}>
                             Shorts
                             </option>
-                        <option value='tshirts_tops'>
+                        <option value={categories.T_SHIRTS_AND_TOPS}>
                             T-Shirts & Tops
                             </option>
                         <option value='hoodies'>
                             Hoodies, Sweatshirts & Jackets
                             </option>
-                        <option value='unitards'>
+                        <option value={categories.UNITARDS}>
                             Unitards
                             </option>
                         <option value='accessories'>
@@ -75,7 +79,7 @@ const [sleeve,setSleeve]=useState<string>('')
                     </select>
                 </div>
             </div>
-            {category==='unitards'&&<div className="mb-3">
+            {[categories.UNITARDS,categories.T_SHIRTS_AND_TOPS].includes(category)&& <div className="mb-3">
                 <label htmlFor="sleeveLength" className="form-label">Sleeve Length: </label>
                 <div className="input-group">
                     <select required value={sleeve} onChange={(e)=>setSleeve(e.target.value)} className="form-control" id="sleeveLength"
@@ -159,7 +163,7 @@ const [sleeve,setSleeve]=useState<string>('')
             <div className="mb-3">
                 <button className="btn btn-primary" type="submit">Submit form</button>
             </div>
-            <div>{sleeve}</div>
+            <div>{sleeve}+{category}</div>
         </form>
     )
 }

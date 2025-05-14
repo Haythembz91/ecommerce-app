@@ -1,5 +1,6 @@
 import Link from "next/link";
-
+import {sizes, colors, collections, legLengths, sleeveLengths} from "@/utils/enums"
+import {sizesList, colorsList, collectionsList, legLengthsList, sleeveLengthsList} from "@/utils/const"
 const SportswearHeader = () => {
     return (
         <nav className="navbar navbar-expand-lg bg-body-tertiary flex-md-column">
@@ -22,49 +23,15 @@ const SportswearHeader = () => {
                                aria-expanded="false">
                                 SIZE
                             </a>
-                            <ul className="dropdown-menu">
-                                <li className="form-check px-2">
-                                    <input className={'me-2'} type="radio" name="size"
-                                           id="sizeXs" value={'XS'}/>
-                                    <label htmlFor="sizeXs">
-                                        XS
-                                    </label>
-                                </li>
-                                <li className="form-check px-2">
-                                    <input className={'me-2'} type="radio" name="size"
-                                           id="sizeS" value="S"/>
-                                    <label htmlFor="sizeS">
-                                        S
-                                    </label>
-                                </li>
-                                <li className="form-check px-2">
-                                    <input className={'me-2'} type="radio" name="size"
-                                           id="sizeM" value="M"/>
-                                    <label htmlFor="sizeM">
-                                        M
-                                    </label>
-                                </li>
-                                <li className="form-check px-2">
-                                    <input className={'me-2'} type="radio" name="size"
-                                           id="sizeL" value={'L'}/>
-                                    <label htmlFor="sizeL">
-                                        L
-                                    </label>
-                                </li>
-                                <li className="form-check px-2">
-                                    <input className={'me-2'} type="radio" name="size"
-                                           id="sizeXl" value={'XL'}/>
-                                    <label htmlFor="sizeXl">
-                                        XL
-                                    </label>
-                                </li>
-                                <li className="form-check px-2">
-                                    <input className={'me-2'} type="radio" name="size"
-                                           id="sizeXxl" value={'XXL'}/>
-                                    <label htmlFor="sizeXxl">
-                                        XXL
-                                    </label>
-                                </li>
+                            <ul className="dropdown-menu">                                {sizesList.map((size,index)=>
+            <li key={index} className="form-check px-2">
+                <input className={'me-2'} type="radio" name="size"
+                       id={size} value={size}/>
+                <label htmlFor="sizeXs">
+                    {size}
+                </label>
+            </li> 
+            )}            
                             </ul>
                         </li>
                         <li className="nav-item dropdown">
@@ -73,55 +40,16 @@ const SportswearHeader = () => {
                                 COLOR
                             </a>
                             <ul className="dropdown-menu">
-                                <li className="form-check px-2">
-                                    <input className={'me-2'} type="radio" name="color"
-                                           id="colorBlack" value={'Black'}/>
-                                    <label className={'text-bg-dark text-white px-1'} htmlFor="colorBlack">
-                                        Black
-                                    </label>
-                                </li>
-                                <li className="form-check px-2">
-                                    <input className={'me-2'} type="radio" name="color"
-                                           id="colorRed" value="Red"/>
-                                    <label className={'text-bg-danger text-black px-1'} htmlFor="colorRed">
-                                        Red
-                                    </label>
-                                </li>
-                                <li className="form-check px-2">
-                                    <input className={'me-2'} type="radio" name="color"
-                                           id="colorGreen" value="Green"/>
-                                    <label className={'text-bg-success text-black px-1'} htmlFor="colorGreen">
-                                        Green
-                                    </label>
-                                </li>
-                                <li className="form-check px-2">
-                                    <input className={'me-2'} type="radio" name="color"
-                                           id="colorBlue" value={'Blue'}/>
-                                    <label className={'text-bg-primary text-black px-1'} htmlFor="colorBlue">
-                                        Blue
-                                    </label>
-                                </li>
-                                <li className="form-check px-2">
-                                    <input className={'me-2'} type="radio" name="color"
-                                           id="colorYellow" value="Yellow"/>
-                                    <label className={'text-bg-warning text-black px-1'} htmlFor="colorYellow">
-                                        Yellow
-                                    </label>
-                                </li>
-                                <li className="form-check px-2">
-                                    <input className={'me-2'} type="radio" name="color"
-                                           id="colorGrey" value={'Grey'}/>
-                                    <label className={'text-bg-secondary text-black px-1'} htmlFor="colorGrey">
-                                        Grey
-                                    </label>
-                                </li>
-                                <li className="form-check px-2">
-                                    <input className={'me-2'} type="radio" name="color"
-                                           id="colorWhite" value="White"/>
-                                    <label className={'text-bg-light px-1'} htmlFor="colorWhite">
-                                        White
-                                    </label>
-                                </li>
+                                {colorsList.map((color,index)=>
+            
+            <li key={index} className="form-check px-2">
+                <input className={'me-2'} type="radio" name="color"
+                       id={color} value={color}/>
+                <label className={''} htmlFor={color}>
+                    {color}
+                </label>
+            </li>
+            )}
                             </ul>
                         </li>
                         <li className="nav-item dropdown">
@@ -132,9 +60,9 @@ const SportswearHeader = () => {
                             <ul className="dropdown-menu">
                                 <li className="form-check px-2">
                                     <input className={'me-2'} type="radio" name="collection"
-                                           id="motion" value={'Motion'}/>
-                                    <label className={'px-1'} htmlFor="motion">
-                                        Motion
+                                           id={collections.MOTION} value={collections.MOTION}/>
+                                    <label className={'px-1'} htmlFor={collections.MOTION}>
+                                        {collections.MOTION}
                                     </label>
                                 </li>
                                 <li className="form-check px-2">
