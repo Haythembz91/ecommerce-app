@@ -14,7 +14,7 @@ const DashboardForm =()=>{
     const [price,setPrice]=useState<number>(0)
 const [sleeve,setSleeve]=useState<sleeveLengths>()
     const [legLength,setLegLength]=useState<legLengths>()
-
+const [msg,setMsg]=useState<string>('')
     
     const handleChangeSize = (event:React.FormEvent)=>
         {
@@ -55,7 +55,7 @@ const [sleeve,setSleeve]=useState<sleeveLengths>()
         })
             if(response.ok){
                 const data = await response.json();
-                console.log(data)
+                setMsg(data.message)
             }
         }catch(e){
             console.error(e)
@@ -151,6 +151,7 @@ const [sleeve,setSleeve]=useState<sleeveLengths>()
             <div className="mb-3">
                 <button className="btn btn-primary" type="submit">Submit form</button>
             </div>
+            <p>{msg}</p>
         </form>
     )
 }
