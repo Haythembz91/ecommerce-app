@@ -4,6 +4,7 @@ import Link from "next/link";
 import {routes} from "@/utils/enums";
 const Home = async ()=>{
 
+    console.log("Ania the best")
     
     return(
         <div>

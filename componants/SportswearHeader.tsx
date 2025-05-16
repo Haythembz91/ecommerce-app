@@ -143,7 +143,7 @@ const SportswearHeader = () => {
                             <ul className="dropdown-menu">
                                 {sortList.map((sort,index)=>
             
-            <li className="form-check px-2">
+            <li key={index} className="form-check px-2">
                 <input className={'me-2'} type="radio" name="sort"
                        id={sort} value={sort}/>
                 <label className={'px-1'} htmlFor={sort}>

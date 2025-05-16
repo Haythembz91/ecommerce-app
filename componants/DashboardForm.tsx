@@ -32,8 +32,14 @@ const [sleeve,setSleeve]=useState<sleeveLengths>()
           setColor(values);
         }
     }
+
+    const handleSubmit=(e:React.FormEvent)=>{
+     e.preventDefault();
+console.log("hello")
+    }
+    console.log('Ania the best')
     return (
-        <form className="m-2 p-2 w-50">
+        <form onSubmit={handleSubmit} className="m-2 p-2 w-50">
             <div className="mb-3">
                 <label htmlFor="productName" className="form-label">Product Name: </label>
                 <div className="input-group">
