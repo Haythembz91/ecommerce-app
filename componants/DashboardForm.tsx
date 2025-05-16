@@ -13,6 +13,8 @@ const DashboardForm =()=>{
     const [price,setPrice]=useState<number>(0)
 const [sleeve,setSleeve]=useState<sleeveLengths>()
     const [legLength,setLegLength]=useState<legLengths>()
+
+    
     const handleChangeSize = (event:React.FormEvent)=>
         {
             const { name, value, selectedOptions } = event.target as HTMLSelectElement;
@@ -21,6 +23,8 @@ const [sleeve,setSleeve]=useState<sleeveLengths>()
               setSize(values);
             }
         }
+
+    
     const handleColorChange=(e:React.FormEvent)=>{
         const { name, value, selectedOptions } = e.target as HTMLSelectElement;
         if (name === 'productColor') {
@@ -49,7 +53,7 @@ const [sleeve,setSleeve]=useState<sleeveLengths>()
                 <div className="input-group">
                     <select required value={category} onChange={(e)=>{            setCategory(e.target.value);
             if(![categories.UNITARDS,categories.T_SHIRTS_AND_TOPS].includes(category)){
-              setSleeve('')  
+              setSleeve(undefined)  
             }
                     }} className="form-control" id="productCategory"
                            aria-describedby="basic-addon3 basic-addon4">
@@ -98,7 +102,7 @@ const [sleeve,setSleeve]=useState<sleeveLengths>()
                                     {size}</option>)}                                </select>       
                 </div>
             </div>
-            <div className="mb-3">
+            {category===categories.LEGGINGS && <div className="mb-3">
                 <label htmlFor="productColor" className="form-label">Leg Length: </label>
                 <div className="input-group">
                     <select required onChange={e=>setLegLength(e.target.value)} value={legLength} className="form-control" id="legLength" name={'legLength'}
@@ -109,7 +113,7 @@ const [sleeve,setSleeve]=useState<sleeveLengths>()
                                     {legLength}</option>)}
                     </select>       
                 </div>
-            </div>
+            </div>}
             <div className="mb-3">
                 <div className="input-group mb-3">
                   <span className="input-group-text" id="basic-addon1">$</span>
@@ -119,7 +123,6 @@ const [sleeve,setSleeve]=useState<sleeveLengths>()
             <div className="mb-3">
                 <button className="btn btn-primary" type="submit">Submit form</button>
             </div>
-            <div>{sleeve}+{category}</div>
         </form>
     )
 }
