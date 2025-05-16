@@ -1,16 +1,18 @@
 'use client'
 import React, {useState} from "react";
 import {categories, colors, legLengths, sizes, sleeveLengths} from "@/utils/enums";
+import {categoriesList, colorsList, legLengthsList, sizesList, sleeveLengthsList} from "@/utils/const";
 
 const DashboardForm =()=>{
     const [name,setName]=useState<string>('')
     const [description,setDescription]=useState<string>('')
-    const [category,setCategory]=useState<string>('')
-       const[size,setSize]=useState<string[]>([])
-    const[color,setColor]=useState<string[]>([])
+    const [category,setCategory]=useState<categories>()
+       const[size,setSize]=useState<sizes[]>([])
+    const[color,setColor]=useState<colors[]>([])
     
     const [price,setPrice]=useState<number>(0)
-const [sleeve,setSleeve]=useState<string>('')
+const [sleeve,setSleeve]=useState<sleeveLengths>()
+    const [legLength,setLegLength]=useState<legLengths>()
     const handleChangeSize = (event:React.FormEvent)=>
         {
             const { name, value, selectedOptions } = event.target as HTMLSelectElement;
@@ -51,31 +53,11 @@ const [sleeve,setSleeve]=useState<string>('')
             }
                     }} className="form-control" id="productCategory"
                            aria-describedby="basic-addon3 basic-addon4">
-                        <option value='' disabled selected>Select a Category...</option>
-                        <option value={categories.LEGGINGS}>
-                        Leggings
-                        </option>
-                        <option value={categories.JOGGERS}>
-                            Joggers
-                            </option>
-                        <option value={categories.SPORTS_BRAS}>
-                            Sports Bras
-                            </option>
-                        <option value={categories.SHORTS}>
-                            Shorts
-                            </option>
-                        <option value={categories.T_SHIRTS_AND_TOPS}>
-                            T-Shirts & Tops
-                            </option>
-                        <option value='hoodies'>
-                            Hoodies, Sweatshirts & Jackets
-                            </option>
-                        <option value={categories.UNITARDS}>
-                            Unitards
-                            </option>
-                        <option value='accessories'>
-                            Accessories
-                            </option>
+                        <option value='' disabled selected>Select a Category...</option>                        {categoriesList.map((category,index)=>
+            <option key={index} value={category}>
+                {category}
+            </option>
+            )}
                     </select>
                 </div>
             </div>
@@ -85,72 +67,46 @@ const [sleeve,setSleeve]=useState<string>('')
                     <select required value={sleeve} onChange={(e)=>setSleeve(e.target.value)} className="form-control" id="sleeveLength"
                            aria-describedby="basic-addon3 basic-addon4">
                         <option value='' disabled selected>Select Sleeve Length...</option>
-                        <option value='shortSleeve'>
-                        Short Sleeve
-                        </option>
-                        <option value='longSleeve'>
-                            Long Sleeve
-                            
-                        </option>
+                        {sleeveLengthsList.map((sleeveLength,index)=>
+            <option key={index} value={sleeveLength}>
+                {sleeveLength}
+            </option>
+            )}
                     </select>
                 </div>
             </div>}
+             <div className="mb-3">
+                 <label htmlFor="productColor" className="form-label">Available Colors: </label>
+                 <div className="input-group">
+                     <select required onChange={handleColorChange} multiple value={color} className="form-control" id="productColor" name={'productColor'}
+                            aria-describedby="basic-addon3 basic-addon4">
+                         <option value='' disabled selected>Select Available Colors</option>
+                         {colorsList.map((color,index)=>
+                                 <option key={index} value={color}>
+                                     {color}</option>)}
+                     </select>       
+                 </div>
+             </div>
             <div className="mb-3">
                 <label htmlFor="productCategory" className="form-label">Available Sizes: </label>
                 <div className="input-group">
                     <select required onChange={handleChangeSize} multiple value={size} className="form-control" id="productCategory" name={'productCategory'}
                            aria-describedby="basic-addon3 basic-addon4">
                         <option value='' disabled selected>Select Available Sizes</option>
-                        <option value='sizeXs'>
-                        XS
-                        </option>
-                        <option value='sizeS'>
-                            S
-                            </option>
-                        <option value='sizeM'>
-                            M
-                            </option>
-                        <option value={'sizeL'}>
-                            L
-                            </option>
-                        <option value='sizeXl'>
-                            XL
-                            </option>
-                        <option value='sizeXxl'>
-                            XXL
-                            </option>           </select>       
+                        {sizesList.map((size,index)=>
+                                <option key={index} value={size}>
+                                    {size}</option>)}                                </select>       
                 </div>
             </div>
             <div className="mb-3">
-                <label htmlFor="productColor" className="form-label">Available Colors: </label>
+                <label htmlFor="productColor" className="form-label">Leg Length: </label>
                 <div className="input-group">
-                    <select required onChange={handleColorChange} multiple value={color} className="form-control" id="productColor" name={'productColor'}
+                    <select required onChange={e=>setLegLength(e.target.value)} value={legLength} className="form-control" id="legLength" name={'legLength'}
                            aria-describedby="basic-addon3 basic-addon4">
-                        <option value='' disabled selected>Select Available Colors</option>
-                        <option value='black'>
-                        Black
-                        </option>
-                        <option value='red'>
-                            Red
-                            </option>
-                        <option value='yellow'>
-                            Yellow
-                            </option>
-                        <option value={'green'}>
-                            Green
-                            </option>
-                        <option value='pink'>
-                            Pink
-                            </option>
-                        <option value='white'>
-                            White
-                            </option>
-                        <option value='grey'>
-                            Grey
-                            </option>
-                        <option value='blue'>
-                            Blue
-                            </option>
+                        <option value='' disabled selected>Select Leg Length</option>
+                        {legLengthsList.map((legLength,index)=>
+                                <option key={index} value={legLength}>
+                                    {legLength}</option>)}
                     </select>       
                 </div>
             </div>

@@ -52,3 +52,15 @@ export enum sleeveLengths{
     SHORT='Short Sleeve',
     LONG='Long Sleeve'
 }
+
+export enum other{
+    BEST_SELLERS='Best Sellers',
+    NEW_RELEASES='New Releases',
+    SPRING_EDIT='Spring Edit'   
+}
+
+export enum sort{
+    NEWEST='Newest',
+    PRICE_DSC='Price: High to Low',
+    PRICE_ASC='Price: Low to High'
+}

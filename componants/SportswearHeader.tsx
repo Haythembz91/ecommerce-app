@@ -1,6 +1,9 @@
 import Link from "next/link";
+
 import {sizes, colors, collections, legLengths, sleeveLengths} from "@/utils/enums"
-import {sizesList, colorsList, collectionsList, legLengthsList, sleeveLengthsList} from "@/utils/const"
+
+import {sizesList, colorsList, collectionsList, legLengthsList, sleeveLengthsList,otherList,sortList, categoriesList} from "@/utils/const"
+
 const SportswearHeader = () => {
     return (
         <nav className="navbar navbar-expand-lg bg-body-tertiary flex-md-column">
@@ -58,77 +61,32 @@ const SportswearHeader = () => {
                                 COLLECTION
                             </a>
                             <ul className="dropdown-menu">
-                                <li className="form-check px-2">
-                                    <input className={'me-2'} type="radio" name="collection"
-                                           id={collections.MOTION} value={collections.MOTION}/>
-                                    <label className={'px-1'} htmlFor={collections.MOTION}>
-                                        {collections.MOTION}
-                                    </label>
-                                </li>
-                                <li className="form-check px-2">
-                                    <input className={'me-2'} type="radio" name="collection"
-                                           id="define" value={'Define'}/>
-                                    <label className={'px-1'} htmlFor="define">
-                                        Define
-                                    </label>
-                                </li>
-                                <li className="form-check px-2">
-                                    <input className={'me-2'} type="radio" name="collection"
-                                           id="power" value="Power"/>
-                                    <label className={'px-1'} htmlFor="power">
-                                        Power
-                                    </label>
-                                </li>
-                                <li className="form-check px-2">
-                                    <input className={'me-2'} type="radio" name="collection"
-                                           id="essential" value={'Essential'}/>
-                                    <label className={'px-1'} htmlFor="essential">
-                                        Essential
-                                    </label>
-                                </li>
-                                <li className="form-check px-2">
-                                    <input className={'me-2'} type="radio" name="collection"
-                                           id="comfort" value={'Comfort'}/>
-                                    <label className={'px-1'} htmlFor="comfort">
-                                        Comfort
-                                    </label>
-                                </li>
-                                <li className="form-check px-2">
-                                    <input className={'me-2'} type="radio" name="collection"
-                                           id="accessories" value={'Accessories'}/>
-                                    <label className={'px-1'} htmlFor="accessories">
-                                        Accessories
-                                    </label>
-                                </li>
+                                {collectionsList.map((collection,index)=>
+            <li key={index} className="form-check px-2">
+                <input className={'me-2'} type="radio" name="collection"
+                       id={collection} value={collection}/>
+                <label className={'px-1'} htmlFor={collection}>
+                    {collection}
+                </label>
+            </li> 
+            )}
                             </ul>
-                        </li>
+                        </li>      
                         <li className="nav-item dropdown">
                             <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                                aria-expanded="false">
                                 LEG LENGTH
                             </a>
                             <ul className="dropdown-menu">
-                                <li className="form-check px-2">
-                                    <input className={'me-2'} type="radio" name="legLength"
-                                           id="7/8Length" value={'7/8 Length'}/>
-                                    <label className={'px-1'} htmlFor="7/8Length">
-                                        7/8 Length
-                                    </label>
-                                </li>
-                                <li className="form-check px-2">
-                                    <input className={'me-2'} type="radio" name="legLength"
-                                           id="regularLength" value={'Regular Length'}/>
-                                    <label className={'px-1'} htmlFor="regularLength">
-                                        Regular Length
-                                    </label>
-                                </li>
-                                <li className="form-check px-2">
-                                    <input className={'me-2'} type="radio" name="legLength"
-                                           id="longLength" value={'Long Length'}/>
-                                    <label className={'px-1'} htmlFor="longLength">
-                                        Long Length
-                                    </label>
-                                </li>
+                                {legLengthsList.map((legLength,index)=>
+            <li key={index} className="form-check px-2">
+                <input className={'me-2'} type="radio" name="legLength"
+                       id={legLength} value={legLength}/>
+                <label className={'px-1'} htmlFor={legLength}>
+                    {legLength}
+                </label>
+            </li> 
+            )}
                             </ul>
                         </li>
                         <li className="nav-item dropdown">
@@ -137,20 +95,15 @@ const SportswearHeader = () => {
                                 SLEEVE LENGTH
                             </a>
                             <ul className="dropdown-menu">
-                                <li className="form-check px-2">
-                                    <input className={'me-2'} type="radio" name="sleeveLength"
-                                           id="shortSleeve" value={'Short Sleeve'}/>
-                                    <label className={'px-1'} htmlFor="shortSleeve">
-                                        Short Sleeve
-                                    </label>
-                                </li>
-                                <li className="form-check px-2">
-                                    <input className={'me-2'} type="radio" name="sleeveLength"
-                                           id="longSleeve" value={'Long Sleeve'}/>
-                                    <label className={'px-1'} htmlFor="longSleeve">
-                                        Long Sleeve
-                                    </label>
-                                </li>
+                                {sleeveLengthsList.map((sleeveLength,index)=>
+            <li key={index} className="form-check px-2">
+                <input className={'me-2'} type="radio" name="sleeveLength"
+                       id={sleeveLength} value={sleeveLength}/>
+                <label className={'px-1'} htmlFor={sleeveLength}>
+                    {sleeveLength}
+                </label>
+            </li>
+            )}
                             </ul>
                         </li>
                         <li className="nav-item dropdown">
@@ -159,27 +112,16 @@ const SportswearHeader = () => {
                                 OTHER
                             </a>
                             <ul className="dropdown-menu">
-                                <li className="form-check px-2">
-                                    <input className={'me-2'} type="radio" name="other"
-                                           id="bestSellers" value={'Best Sellers'}/>
-                                    <label className={'px-1'} htmlFor="bestSellers">
-                                        Best Sellers
-                                    </label>
-                                </li>
-                                <li className="form-check px-2">
-                                    <input className={'me-2'} type="radio" name="other"
-                                           id="newReleases" value={'New Releases'}/>
-                                    <label className={'px-1'} htmlFor="newReleases">
-                                        New Releases
-                                    </label>
-                                </li>
-                                <li className="form-check px-2">
-                                    <input className={'me-2'} type="radio" name="other"
-                                           id="springEdit" value={'Spring Edit'}/>
-                                    <label className={'px-1'} htmlFor="springEdit">
-                                        Spring Edit
-                                    </label>
-                                </li>
+                                {otherList.map((other,index)=>
+            <li key={index} className="form-check px-2">
+                <input className={'me-2'} type="radio" name="other"
+                       id={other} value={other}/>
+                <label className={'px-1'} htmlFor={other}>
+                    {other}
+                </label>
+            </li>
+            
+            )}
                             </ul>
                         </li>
                         <li className="nav-item dropdown">
@@ -199,27 +141,16 @@ const SportswearHeader = () => {
                                 SORT BY
                             </a>
                             <ul className="dropdown-menu">
-                                <li className="form-check px-2">
-                                    <input className={'me-2'} type="radio" name="sort"
-                                           id="newest" value={'Newest'}/>
-                                    <label className={'px-1'} htmlFor="newest">
-                                        Newest
-                                    </label>
-                                </li>
-                                <li className="form-check px-2">
-                                    <input className={'me-2'} type="radio" name="sort"
-                                           id="priceDsc" value={'Price: High to Low'}/>
-                                    <label className={'px-1'} htmlFor="priceDsc">
-                                        Price: High to Low
-                                    </label>
-                                </li>
-                                <li className="form-check px-2">
-                                    <input className={'me-2'} type="radio" name="sort"
-                                           id="priceAsc" value={'Price: Low to High'}/>
-                                    <label className={'px-1'} htmlFor="priceAsc">
-                                        Price: Low to High
-                                    </label>
-                                </li>
+                                {sortList.map((sort,index)=>
+            
+            <li className="form-check px-2">
+                <input className={'me-2'} type="radio" name="sort"
+                       id={sort} value={sort}/>
+                <label className={'px-1'} htmlFor={sort}>
+                    {sort}
+                </label>
+            </li>
+            )}
                             </ul>
                         </li>
                     </ul>
@@ -231,38 +162,12 @@ const SportswearHeader = () => {
                         <Link href={''} className={'nav-link p-1 link-secondary'}>ALL</Link>
                         <span className="badge text-bg-secondary rounded-pill">14</span>
                     </li>
-                    <li className={'nav-item p-1 list-group-item d-flex justify-content-between align-items-center '} >
-                        <Link href={''} className={'nav-link p-1 link-secondary'}>Leggings</Link>
-                        <span className="badge text-bg-secondary rounded-pill">14</span>
-                    </li>
-                    <li className={'nav-item p-1 list-group-item d-flex justify-content-between align-items-center '} >
-                        <Link href={''} className={'nav-link p-1 link-secondary'}>Joggers</Link>
-                        <span className="badge text-bg-secondary rounded-pill">14</span>
-                    </li>
-                    <li className={'nav-item p-1 list-group-item d-flex justify-content-between align-items-center '} >
-                        <Link href={''} className={'nav-link p-1 link-secondary'}>Sports Bras</Link>
-                        <span className="badge text-bg-secondary rounded-pill">14</span>
-                    </li>
-                    <li className={'nav-item p-1 list-group-item d-flex justify-content-between align-items-center '} >
-                        <Link href={''} className={'nav-link p-1 link-secondary'}>Shorts</Link>
-                        <span className="badge text-bg-secondary rounded-pill">14</span>
-                    </li>
-                    <li className={'nav-item p-1 list-group-item d-flex justify-content-between align-items-center '} >
-                        <Link href={''} className={'nav-link p-1 link-secondary'}>T-Shirts & Tops</Link>
-                        <span className="badge text-bg-secondary rounded-pill">14</span>
-                    </li>
-                    <li className={'nav-item p-1 list-group-item d-flex justify-content-between align-items-center'} >
-                        <Link href={''} className={'nav-link p-1 link-secondary'}>Hoodies, Sweatshirts & Jackets</Link>
-                        <span className="badge text-bg-secondary rounded-pill">14</span>
-                    </li>
-                    <li className={'nav-item p-1 list-group-item d-flex justify-content-between align-items-center'} >
-                        <Link href={''} className={'nav-link p-1 link-secondary'}>Unitards</Link>
-                        <span className="badge text-bg-secondary rounded-pill">14</span>
-                    </li>
-                    <li className={'nav-item p-1 list-group-item d-flex justify-content-between align-items-center '} >
-                        <Link href={''} className={'nav-link p-1 link-secondary'}>Accessories</Link>
-                        <span className="badge text-bg-secondary rounded-pill">14</span>
-                    </li>
+                    {categoriesList.map((category,index)=>
+            <li key={index} className={'nav-item p-1 list-group-item d-flex justify-content-between align-items-center '} >
+                <Link href={''} className={'nav-link p-1 link-secondary'}>{category}</Link>
+                <span className="badge text-bg-secondary rounded-pill">14</span>
+            </li>
+            )}
                 </ul>
             </div>
         </nav>
