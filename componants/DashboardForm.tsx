@@ -2,6 +2,7 @@
 import React, {useState} from "react";
 import {categories, colors, legLengths, sizes, sleeveLengths} from "@/utils/enums";
 import {categoriesList, colorsList, legLengthsList, sizesList, sleeveLengthsList} from "@/utils/const";
+import {Product} from "@/utils/interfaces"
 
 const DashboardForm =()=>{
     const [name,setName]=useState<string>('')
@@ -20,7 +21,7 @@ const [sleeve,setSleeve]=useState<sleeveLengths>()
             const { name, value, selectedOptions } = event.target as HTMLSelectElement;
             if (name === 'productCategory') {
               const values = Array.from(selectedOptions).map((option) => option.value);
-              setSize(values);
+              setSize(values as sizes[]);
             }
         }
 
@@ -29,15 +30,39 @@ const [sleeve,setSleeve]=useState<sleeveLengths>()
         const { name, value, selectedOptions } = e.target as HTMLSelectElement;
         if (name === 'productColor') {
           const values = Array.from(selectedOptions).map((option) => option.value);
-          setColor(values);
+          setColor(values as colors[]);
         }
     }
 
-    const handleSubmit=(e:React.FormEvent)=>{
-     e.preventDefault();
-console.log("hello")
+    const handleSubmit= async (e:React.FormEvent)=>{
+        e.preventDefault()
+        const product:Product={
+            name,
+            description,
+            category,
+            size,
+            color,
+            price,
+            sleeve:[categories.UNITARDS,categories.T_SHIRTS_AND_TOPS].includes(category as categories)?sleeve:undefined,               legLength:category===categories.LEGGINGS?legLength:undefined
+        }
+        try{
+            const response = await fetch('/api/product', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(product),
+        })
+            if(response.ok){
+                const data = await response.json();
+                console.log(data)
+            }
+        }catch(e){
+            console.error(e)
+        }
+    
     }
-    console.log('Ania the best')
+    
     return (
         <form onSubmit={handleSubmit} className="m-2 p-2 w-50">
             <div className="mb-3">
@@ -57,10 +82,7 @@ console.log("hello")
             <div className="mb-3">
                 <label htmlFor="productCategory" className="form-label">Product Category: </label>
                 <div className="input-group">
-                    <select required value={category} onChange={(e)=>{            setCategory(e.target.value);
-            if(![categories.UNITARDS,categories.T_SHIRTS_AND_TOPS].includes(category)){
-              setSleeve(undefined)  
-            }
+                    <select required value={category} onChange={(e)=>{            setCategory(e.target.value as categories)
                     }} className="form-control" id="productCategory"
                            aria-describedby="basic-addon3 basic-addon4">
                         <option value='' disabled selected>Select a Category...</option>                        {categoriesList.map((category,index)=>
@@ -71,10 +93,10 @@ console.log("hello")
                     </select>
                 </div>
             </div>
-            {[categories.UNITARDS,categories.T_SHIRTS_AND_TOPS].includes(category)&& <div className="mb-3">
+            {[categories.UNITARDS,categories.T_SHIRTS_AND_TOPS].includes(category as categories)&& <div className="mb-3">
                 <label htmlFor="sleeveLength" className="form-label">Sleeve Length: </label>
                 <div className="input-group">
-                    <select required value={sleeve} onChange={(e)=>setSleeve(e.target.value)} className="form-control" id="sleeveLength"
+                    <select required value={sleeve} onChange={(e)=>setSleeve(e.target.value as sleeveLengths)} className="form-control" id="sleeveLength"
                            aria-describedby="basic-addon3 basic-addon4">
                         <option value='' disabled selected>Select Sleeve Length...</option>
                         {sleeveLengthsList.map((sleeveLength,index)=>
@@ -111,7 +133,7 @@ console.log("hello")
             {category===categories.LEGGINGS && <div className="mb-3">
                 <label htmlFor="productColor" className="form-label">Leg Length: </label>
                 <div className="input-group">
-                    <select required onChange={e=>setLegLength(e.target.value)} value={legLength} className="form-control" id="legLength" name={'legLength'}
+                    <select required onChange={e=>setLegLength(e.target.value as legLengths)} value={legLength} className="form-control" id="legLength" name={'legLength'}
                            aria-describedby="basic-addon3 basic-addon4">
                         <option value='' disabled selected>Select Leg Length</option>
                         {legLengthsList.map((legLength,index)=>

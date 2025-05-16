@@ -10,8 +10,7 @@ export enum categories{
     JOGGERS='Joggers',
     SPORTS_BRAS='Sports Bras',
     SHORTS='Shorts',
-    T_SHIRTS_AND_TOPS='T-Shirts & Tops',
-    HOODIES_SWEATSHIRTS_JACKETS='Hoodies, Sweatshirts & Jackets',
+    T_SHIRTS_AND_TOPS='T-Shirts & Tops',   HOODIES_SWEATSHIRTS_JACKETS='Hoodies, Sweatshirts & Jackets',
     UNITARDS='Unitards',
     ACCESSORIES='Accessories'
 }

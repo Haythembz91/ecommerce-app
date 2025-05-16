@@ -1,4 +1,4 @@
-import {categories,sizes,colors,collections} from "@/utils/enums"
+import {categories,sizes,colors,collections, sleeveLengths, legLengths} from "@/utils/enums"
 
 export interface Product {
     id: string;
@@ -8,7 +8,7 @@ export interface Product {
     sizes: sizes[];
     colors: colors[];
     price: number;
-    sleeveLength?: string;
-    legLength?: string;
+    sleeveLength?:sleeveLengths ;
+    legLength?: legLengths;
     collection?: collections;
 }
