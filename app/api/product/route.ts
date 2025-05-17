@@ -15,3 +15,14 @@ export async function POST(req:NextRequest){
         console.error(error)
     }
 }
+
+export async function GET(req:NextRequest){
+    try{
+        const db=await getDb()
+        const productsCollection = db.collection('products')
+        const products = await productsCollection.find().toArray()
+        return NextResponse.json(products, {status: 200})
+    }catch(e){
+        console.error(e)
+    }
+}

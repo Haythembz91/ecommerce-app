@@ -11,10 +11,11 @@ const DashboardForm =()=>{
        const[size,setSize]=useState<sizes[]>([])
     const[color,setColor]=useState<colors[]>([])
     
-    const [price,setPrice]=useState<number>(0)
+    const [price,setPrice]=useState<number>()
 const [sleeve,setSleeve]=useState<sleeveLengths>()
     const [legLength,setLegLength]=useState<legLengths>()
 const [msg,setMsg]=useState<string>('')
+    const [loading,setLoading]=useState<boolean>(false)
     const [collection,setCollection]=useState<collections>()
     
     const handleChangeSize = (event:React.FormEvent)=>
@@ -37,6 +38,7 @@ const [msg,setMsg]=useState<string>('')
 
     const handleSubmit= async (e:React.FormEvent)=>{
         e.preventDefault()
+        setLoading(true)
         const product:Product={
             name,
             description,
@@ -61,6 +63,8 @@ const [msg,setMsg]=useState<string>('')
             }
         }catch(e){
             console.error(e)
+        }finally{
+            setLoading(false)
         }
     
     }
@@ -173,10 +177,14 @@ const [msg,setMsg]=useState<string>('')
                               <input required type="number" value={price} onChange={(e)=>setPrice(parseInt(e.target.value))} className="form-control" placeholder="Price" aria-label="productPrice" aria-describedby="basic-addon1"/>
                             </div>
                         </div>
+                         {msg&&<div className={'alert alert-success'}>{msg}</div>}
                         <div className="modal-footer">
                           <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>    
-                            <button className="btn btn-primary" type="submit">Add Product</button> 
-                             <p>{msg}</p>
+                            {loading?<button className="btn btn-primary" type="button" disabled>
+                              <span className="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                              <span role="status">Adding...</span>
+                            </button>:<button className="btn btn-primary" type="submit">Add Product</button>}
+                            
                         </div>
                     </form>
                 </div>
