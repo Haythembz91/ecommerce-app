@@ -1,7 +1,7 @@
 'use client'
 import React, {useState} from "react";
-import {categories, colors, legLengths, sizes, sleeveLengths} from "@/utils/enums";
-import {categoriesList, colorsList, legLengthsList, sizesList, sleeveLengthsList} from "@/utils/const";
+import {categories, colors, legLengths, sizes, sleeveLengths,collections} from "@/utils/enums";
+import {categoriesList, colorsList, legLengthsList, sizesList, sleeveLengthsList,collectionsList} from "@/utils/const";
 import {Product} from "@/utils/interfaces"
 
 const DashboardForm =()=>{
@@ -15,6 +15,7 @@ const DashboardForm =()=>{
 const [sleeve,setSleeve]=useState<sleeveLengths>()
     const [legLength,setLegLength]=useState<legLengths>()
 const [msg,setMsg]=useState<string>('')
+    const [collection,setCollection]=useState<collections>()
     
     const handleChangeSize = (event:React.FormEvent)=>
         {
@@ -40,6 +41,7 @@ const [msg,setMsg]=useState<string>('')
             name,
             description,
             category,
+            collection,
             size,
             color,
             price,
@@ -64,95 +66,126 @@ const [msg,setMsg]=useState<string>('')
     }
     
     return (
-        <form onSubmit={handleSubmit} className="m-2 p-2 w-50">
-            <div className="mb-3">
-                <label htmlFor="productName" className="form-label">Product Name: </label>
-                <div className="input-group">
-                    <input required value={name} onChange={(e)=>setName(e.target.value)} type="text" className="form-control" id="productName"
-                           aria-describedby="basic-addon3 basic-addon4"/>
+        <div>
+          <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            Add Product
+          </button>
+          <div className="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex={-1} aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div className="modal-dialog">
+              <div className="modal-content">
+                <div className="modal-header">
+                  <h1 className="modal-title fs-5" id="staticBackdropLabel">Add Product</h1>
+                  <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+                <div className="modal-body">
+                    <form className="m-2 p-2 w-50">
+                        <div className="mb-3">
+                            <label htmlFor="productName" className="form-label">Product Name: </label>
+                            <div className="input-group">
+                                <input required value={name} onChange={(e)=>setName(e.target.value)} type="text" className="form-control" id="productName"
+                                       aria-describedby="basic-addon3 basic-addon4"/>
+                            </div>
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="productDescription" className="form-label">Product Description: </label>
+                            <div className="input-group">
+                                <textarea required value={description} onChange={(e)=>setDescription(e.target.value)} className="form-control" id="productDescription"
+                                       aria-describedby="basic-addon3 basic-addon4"/>
+                            </div>
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="productCategory" className="form-label">Product Category: </label>
+                            <div className="input-group">
+                                <select required value={category} onChange={(e)=>{            setCategory(e.target.value as categories)
+                                }} className="form-control" id="productCategory"
+                                       aria-describedby="basic-addon3 basic-addon4">
+                                    <option value='' disabled selected>Select a Category...</option>                        {categoriesList.map((category,index)=>
+                        <option key={index} value={category}>
+                            {category}
+                        </option>
+                        )}
+                                </select>
+                            </div>
+                        </div>
+                        {[categories.UNITARDS,categories.T_SHIRTS_AND_TOPS].includes(category as categories)&& <div className="mb-3">
+                            <label htmlFor="sleeveLength" className="form-label">Sleeve Length: </label>
+                            <div className="input-group">
+                                <select required value={sleeve} onChange={(e)=>setSleeve(e.target.value as sleeveLengths)} className="form-control" id="sleeveLength"
+                                       aria-describedby="basic-addon3 basic-addon4">
+                                    <option value='' disabled selected>Select Sleeve Length...</option>
+                                    {sleeveLengthsList.map((sleeveLength,index)=>
+                        <option key={index} value={sleeveLength}>
+                            {sleeveLength}
+                        </option>
+                        )}
+                                </select>
+                            </div>
+                        </div>}
+                         <div className="mb-3">
+                             <label htmlFor="productColor" className="form-label">Available Colors: </label>
+                             <div className="input-group">
+                                 <select required onChange={handleColorChange} multiple value={color} className="form-control" id="productColor" name={'productColor'}
+                                        aria-describedby="basic-addon3 basic-addon4">
+                                     <option value='' disabled selected>Select Available Colors</option>
+                                     {colorsList.map((color,index)=>
+                                             <option key={index} value={color}>
+                                                 {color}</option>)}
+                                 </select>       
+                             </div>
+                         </div>
+                        <div className="mb-3">
+                            <label htmlFor="productCategory" className="form-label">Available Sizes: </label>
+                            <div className="input-group">
+                                <select required onChange={handleChangeSize} multiple value={size} className="form-control" id="productCategory" name={'productCategory'}
+                                       aria-describedby="basic-addon3 basic-addon4">
+                                    <option value='' disabled selected>Select Available Sizes</option>
+                                    {sizesList.map((size,index)=>
+                                            <option key={index} value={size}>
+                                                {size}</option>)}                                </select>       
+                            </div>
+                        </div>
+                        {category===categories.LEGGINGS && <div className="mb-3">
+                            <label htmlFor="productColor" className="form-label">Leg Length: </label>
+                            <div className="input-group">
+                                <select required onChange={e=>setLegLength(e.target.value as legLengths)} value={legLength} className="form-control" id="legLength" name={'legLength'}
+                                       aria-describedby="basic-addon3 basic-addon4">
+                                    <option value='' disabled selected>Select Leg Length</option>
+                                    {legLengthsList.map((legLength,index)=>
+                                            <option key={index} value={legLength}>
+                                                {legLength}</option>)}
+                                </select>       
+                            </div>
+                        </div>}
+                        <div className="mb-3">
+                            <label htmlFor="productCategory" className="form-label">Product Collection: </label>
+                            <div className="input-group">
+                                <select required onChange={(e)=>setCollection(e.target.value as collections)} value={collection} className="form-control" id="productCategory" name={'productCollection'}
+                                       aria-describedby="basic-addon3 basic-addon4">
+                                    <option value='' disabled selected>Select Product Collection</option>
+                                    {collectionsList.map((collection,index)=>
+                                            <option key={index} value={collection}>
+                                                {collection}</option>)}                                </select>       
+                            </div>
+                        </div>
+                        <div className="mb-3">
+                            <div className="input-group mb-3">
+                              <span className="input-group-text" id="basic-addon1">$</span>
+                              <input required type="number" value={price} onChange={(e)=>setPrice(parseInt(e.target.value))} className="form-control" placeholder="Price" aria-label="productPrice" aria-describedby="basic-addon1"/>
+                            </div>
+                        </div>
+                        <div className="modal-footer">
+                          <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                             <div className="mb-3">
+                                 <button className="btn btn-primary" type="submit">Add Product</button>
+                             </div>
+                             <p>{msg}</p>
+                        </div>
+                    </form>
+                </div>
+              </div>
             </div>
-            <div className="mb-3">
-                <label htmlFor="productDescription" className="form-label">Product Description: </label>
-                <div className="input-group">
-                    <textarea required value={description} onChange={(e)=>setDescription(e.target.value)} className="form-control" id="productDescription"
-                           aria-describedby="basic-addon3 basic-addon4"/>
-                </div>
-            </div>
-            <div className="mb-3">
-                <label htmlFor="productCategory" className="form-label">Product Category: </label>
-                <div className="input-group">
-                    <select required value={category} onChange={(e)=>{            setCategory(e.target.value as categories)
-                    }} className="form-control" id="productCategory"
-                           aria-describedby="basic-addon3 basic-addon4">
-                        <option value='' disabled selected>Select a Category...</option>                        {categoriesList.map((category,index)=>
-            <option key={index} value={category}>
-                {category}
-            </option>
-            )}
-                    </select>
-                </div>
-            </div>
-            {[categories.UNITARDS,categories.T_SHIRTS_AND_TOPS].includes(category as categories)&& <div className="mb-3">
-                <label htmlFor="sleeveLength" className="form-label">Sleeve Length: </label>
-                <div className="input-group">
-                    <select required value={sleeve} onChange={(e)=>setSleeve(e.target.value as sleeveLengths)} className="form-control" id="sleeveLength"
-                           aria-describedby="basic-addon3 basic-addon4">
-                        <option value='' disabled selected>Select Sleeve Length...</option>
-                        {sleeveLengthsList.map((sleeveLength,index)=>
-            <option key={index} value={sleeveLength}>
-                {sleeveLength}
-            </option>
-            )}
-                    </select>
-                </div>
-            </div>}
-             <div className="mb-3">
-                 <label htmlFor="productColor" className="form-label">Available Colors: </label>
-                 <div className="input-group">
-                     <select required onChange={handleColorChange} multiple value={color} className="form-control" id="productColor" name={'productColor'}
-                            aria-describedby="basic-addon3 basic-addon4">
-                         <option value='' disabled selected>Select Available Colors</option>
-                         {colorsList.map((color,index)=>
-                                 <option key={index} value={color}>
-                                     {color}</option>)}
-                     </select>       
-                 </div>
-             </div>
-            <div className="mb-3">
-                <label htmlFor="productCategory" className="form-label">Available Sizes: </label>
-                <div className="input-group">
-                    <select required onChange={handleChangeSize} multiple value={size} className="form-control" id="productCategory" name={'productCategory'}
-                           aria-describedby="basic-addon3 basic-addon4">
-                        <option value='' disabled selected>Select Available Sizes</option>
-                        {sizesList.map((size,index)=>
-                                <option key={index} value={size}>
-                                    {size}</option>)}                                </select>       
-                </div>
-            </div>
-            {category===categories.LEGGINGS && <div className="mb-3">
-                <label htmlFor="productColor" className="form-label">Leg Length: </label>
-                <div className="input-group">
-                    <select required onChange={e=>setLegLength(e.target.value as legLengths)} value={legLength} className="form-control" id="legLength" name={'legLength'}
-                           aria-describedby="basic-addon3 basic-addon4">
-                        <option value='' disabled selected>Select Leg Length</option>
-                        {legLengthsList.map((legLength,index)=>
-                                <option key={index} value={legLength}>
-                                    {legLength}</option>)}
-                    </select>       
-                </div>
-            </div>}
-            <div className="mb-3">
-                <div className="input-group mb-3">
-                  <span className="input-group-text" id="basic-addon1">$</span>
-                  <input required type="number" value={price} onChange={(e)=>setPrice(parseInt(e.target.value))} className="form-control" placeholder="Price" aria-label="productPrice" aria-describedby="basic-addon1"/>
-                </div>
-            </div>
-            <div className="mb-3">
-                <button className="btn btn-primary" type="submit">Submit form</button>
-            </div>
-            <p>{msg}</p>
-        </form>
+          </div>
+        </div>
     )
 }
 
