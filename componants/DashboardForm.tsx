@@ -78,7 +78,7 @@ const [msg,setMsg]=useState<string>('')
                   <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div className="modal-body">
-                    <form className="m-2 p-2 w-50">
+                    <form onSubmit={handleSubmit} className="m-2 p-2">
                         <div className="mb-3">
                             <label htmlFor="productName" className="form-label">Product Name: </label>
                             <div className="input-group">
@@ -174,10 +174,8 @@ const [msg,setMsg]=useState<string>('')
                             </div>
                         </div>
                         <div className="modal-footer">
-                          <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                             <div className="mb-3">
-                                 <button className="btn btn-primary" type="submit">Add Product</button>
-                             </div>
+                          <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>    
+                            <button className="btn btn-primary" type="submit">Add Product</button> 
                              <p>{msg}</p>
                         </div>
                     </form>
