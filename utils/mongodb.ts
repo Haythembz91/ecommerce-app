@@ -1,7 +1,7 @@
 
 import { MongoClient, Db } from 'mongodb';
 
-const uri = process.env.MONGODB_URI 
+const uri:string|undefined= process.env.MONGODB_URI 
 
 let client: MongoClient | null = null;
 let db: Db | null = null;
