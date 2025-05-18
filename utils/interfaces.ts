@@ -12,3 +12,18 @@ export interface Product {
     legLength?: legLengths;
     collection?: collections;
 }
+
+export interface Variant{
+    id: string;
+    productId: string;
+    size: sizes;
+    color: colors;
+    price: number;
+    quantity: number;
+}
+
+export interface ImageVariant{
+    id: string;
+    color:colors;
+    imageUrl:string[];
+}
