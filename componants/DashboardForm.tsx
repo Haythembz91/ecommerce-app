@@ -17,6 +17,14 @@ const [sleeve,setSleeve]=useState<sleeveLengths>()
 const [msg,setMsg]=useState<string>('')
     const [loading,setLoading]=useState<boolean>(false)
     const [collection,setCollection]=useState<collections>()
+    const [quantities,setQuantities]=useState<{[key:string]:number}>({})
+
+    const handleQuantityChange = (color: colors, size: sizes, e:React.ChangeEvent<HTMLInputElement>) => {
+        setQuantities((prevQuantities) => ({
+          ...prevQuantities,
+          [`${color}-${size}`]: parseInt(e.target.value),
+        }));
+      }
     
     const handleChangeSize = (event:React.FormEvent)=>
         {
@@ -47,7 +55,8 @@ const [msg,setMsg]=useState<string>('')
             size,
             color,
             price,
-            sleeve:[categories.UNITARDS,categories.T_SHIRTS_AND_TOPS].includes(category as categories)?sleeve:undefined,               legLength:category===categories.LEGGINGS?legLength:undefined
+            sleeve:[categories.UNITARDS,categories.T_SHIRTS_AND_TOPS].includes(category as categories)?sleeve:undefined,               legLength:category===categories.LEGGINGS?legLength:undefined,
+            quantities
         }
         try{
             const response = await fetch('/api/product', {
@@ -177,6 +186,25 @@ const [msg,setMsg]=useState<string>('')
                               <input required type="number" value={price} onChange={(e)=>setPrice(parseInt(e.target.value))} className="form-control" placeholder="Price" aria-label="productPrice" aria-describedby="basic-addon1"/>
                             </div>
                         </div>
+                        {color.length>0&&size.length>0&&<div className="mb-3">
+                            <div className="input-group mb-3">
+                            <table className={'table table-bordered table-striped'}>
+                                <thead>
+<tr>                               <th>Color</th>
+<th>Size</th>
+<th>Quantity</th>
+</tr>                                    </thead>
+                            <tbody>
+                                {color.map((color)=>
+    size.map((size)=>
+        <tr key={`${color}-${size}`}>
+            <td>{color}</td>
+            <td>{size}</td>
+            <td><input type="number" min={1} required value={quantities[`${color}-${size}`]}  className="form-control" onChange={(e)=>handleQuantityChange(color,size,e)} placeholder="Quantity" aria-label="productQuantity" aria-describedby="basic-addon1"/></td></tr>
+        )
+    )}                               </tbody>                                </table>
+                            </div>
+                        </div>}
                          {msg&&<div className={'alert alert-success'}>{msg}</div>}
                         <div className="modal-footer">
                           <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>    

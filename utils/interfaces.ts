@@ -18,7 +18,6 @@ export interface Variant{
     productId: string;
     size: sizes;
     color: colors;
-    price: number;
     quantity: number;
 }
 
