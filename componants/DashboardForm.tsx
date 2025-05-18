@@ -18,6 +18,7 @@ const [msg,setMsg]=useState<string>('')
     const [loading,setLoading]=useState<boolean>(false)
     const [collection,setCollection]=useState<collections>()
     const [quantities,setQuantities]=useState<{[key:string]:number}>({})
+    const [imagesUrl,setImagesUrl]=useState<{[key:string]:string}>({})
 
     const handleQuantityChange = (color: colors, size: sizes, e:React.ChangeEvent<HTMLInputElement>) => {
         setQuantities((prevQuantities) => ({
@@ -56,7 +57,8 @@ const [msg,setMsg]=useState<string>('')
             color,
             price,
             sleeve:[categories.UNITARDS,categories.T_SHIRTS_AND_TOPS].includes(category as categories)?sleeve:undefined,               legLength:category===categories.LEGGINGS?legLength:undefined,
-            quantities
+            quantities,
+            imagesUrl
         }
         try{
             const response = await fetch('/api/product', {
@@ -203,6 +205,24 @@ const [msg,setMsg]=useState<string>('')
             <td><input type="number" min={1} required value={quantities[`${color}-${size}`]}  className="form-control" onChange={(e)=>handleQuantityChange(color,size,e)} placeholder="Quantity" aria-label="productQuantity" aria-describedby="basic-addon1"/></td></tr>
         )
     )}                               </tbody>                                </table>
+                            </div>
+                        </div>}
+                        {color.length>0&&<div className="mb-3">
+                            <div className="input-group mb-3">
+                            <table className={'table table-bordered table-striped'}>
+                                <thead>
+                        <tr>                               <th>Color</th>
+                        <th>Images</th>
+                        </tr>                                    </thead>
+                            <tbody>
+                                {color.map((color)=>
+                        <tr key={`${color}`}>
+                        <td>{color}</td>
+                        <td>
+                        <input type="file" required value={imagesUrl[`${color}`]}  className="form-control" onChange={(e)=>setImagesUrl((prev)=>({...prev,[color]:e.target.value}))}/>
+                        </td></tr>
+                        )
+                        }                               </tbody>                                </table>
                             </div>
                         </div>}
                          {msg&&<div className={'alert alert-success'}>{msg}</div>}
