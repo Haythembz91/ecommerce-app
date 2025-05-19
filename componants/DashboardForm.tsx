@@ -2,7 +2,7 @@
 import React, {useState} from "react";
 import {categories, colors, legLengths, sizes, sleeveLengths,collections} from "@/utils/enums";
 import {categoriesList, colorsList, legLengthsList, sizesList, sleeveLengthsList,collectionsList} from "@/utils/const";
-import {Product} from "@/utils/interfaces"
+import {Product, ImageFile, Quantities} from "@/utils/interfaces"
 
 const DashboardForm =()=>{
     const [name,setName]=useState<string>('')
@@ -17,8 +17,8 @@ const [sleeve,setSleeve]=useState<sleeveLengths>()
 const [msg,setMsg]=useState<string>('')
     const [loading,setLoading]=useState<boolean>(false)
     const [collection,setCollection]=useState<collections>()
-    const [quantities,setQuantities]=useState<{[key:string]:number}>({})
-    const [imageFiles,setImageFiles]=useState<{[key:string]:File[]}>({})
+    const [quantities,setQuantities]=useState<Quantities>({})
+    const [imageFiles,setImageFiles]=useState<ImageFile>({})
 
     const handleImageChange = (color: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
         const files = event.target.files;
@@ -230,7 +230,7 @@ const [msg,setMsg]=useState<string>('')
                         <tr key={`${color}`}>
                         <td>{color}</td>
                         <td>
-                        <input type="file" name={'imagesUrl'} required multiple accept={'image/*'} className="form-control" onChange={handleImageChange(color)}/>
+                        <input type="file" name={'imageFiles'} required multiple accept={'image/*'} className="form-control" onChange={handleImageChange(color)}/>
                         </td></tr>
                         )
                         }                               </tbody>                                </table>

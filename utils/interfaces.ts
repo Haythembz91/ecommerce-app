@@ -21,8 +21,10 @@ export interface Variant{
     quantity: number;
 }
 
-export interface ImageVariant{
-    id: string;
-    color:colors;
-    imageUrl:string[];
+export interface ImageFile{
+    [key:string]:File[]
+}
+
+export interface Quantities{
+    [key:string]:number
 }
