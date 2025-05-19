@@ -18,7 +18,18 @@ const [msg,setMsg]=useState<string>('')
     const [loading,setLoading]=useState<boolean>(false)
     const [collection,setCollection]=useState<collections>()
     const [quantities,setQuantities]=useState<{[key:string]:number}>({})
-    const [imagesUrl,setImagesUrl]=useState<{[key:string]:string}>({})
+    const [imageFiles,setImageFiles]=useState<{[key:string]:File[]}>({})
+
+    const handleImageChange = (color: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
+        const files = event.target.files;
+
+        if (files && files.length > 0) {
+          setImageFiles((prevFiles) => ({
+             ...prevFiles,
+             [color]: Array.from(files),
+           }));
+        }
+      };
 
     const handleQuantityChange = (color: colors, size: sizes, e:React.ChangeEvent<HTMLInputElement>) => {
         setQuantities((prevQuantities) => ({
@@ -58,7 +69,7 @@ const [msg,setMsg]=useState<string>('')
             price,
             sleeve:[categories.UNITARDS,categories.T_SHIRTS_AND_TOPS].includes(category as categories)?sleeve:undefined,               legLength:category===categories.LEGGINGS?legLength:undefined,
             quantities,
-            imagesUrl
+            imageFiles
         }
         try{
             const response = await fetch('/api/product', {
@@ -219,7 +230,7 @@ const [msg,setMsg]=useState<string>('')
                         <tr key={`${color}`}>
                         <td>{color}</td>
                         <td>
-                        <input type="file" name={'imagesUrl'} required multiple value={imagesUrl[`${color}`]}  className="form-control" onChange={(e)=>setImagesUrl((prev)=>({...prev,[color]:e.target.value}))}/>
+                        <input type="file" name={'imagesUrl'} required multiple accept={'image/*'} className="form-control" onChange={handleImageChange(color)}/>
                         </td></tr>
                         )
                         }                               </tbody>                                </table>
