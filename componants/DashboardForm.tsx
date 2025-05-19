@@ -219,7 +219,7 @@ const [msg,setMsg]=useState<string>('')
                         <tr key={`${color}`}>
                         <td>{color}</td>
                         <td>
-                        <input type="file" required value={imagesUrl[`${color}`]}  className="form-control" onChange={(e)=>setImagesUrl((prev)=>({...prev,[color]:e.target.value}))}/>
+                        <input type="file" name={'imagesUrl'} required multiple value={imagesUrl[`${color}`]}  className="form-control" onChange={(e)=>setImagesUrl((prev)=>({...prev,[color]:e.target.value}))}/>
                         </td></tr>
                         )
                         }                               </tbody>                                </table>
