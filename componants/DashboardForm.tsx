@@ -12,18 +12,6 @@ const [msg,setMsg]=useState<string>('')
     const [loading,setLoading]=useState<boolean>(false)
     const [imageFiles,setImageFiles]=useState<ImageFile>({})
 
-    const handleImageChange = (color: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
-        const files = event.target.files;
-
-        if (files && files.length > 0) {
-          setImageFiles((prevFiles) => ({
-             ...prevFiles,
-             [color]: Array.from(files),
-           }));
-        }
-      };
-    
-
     
     const handleColorChange=(e:React.FormEvent)=>{
         const { name, value, selectedOptions } = e.target as HTMLSelectElement;
@@ -33,22 +21,33 @@ const [msg,setMsg]=useState<string>('')
         }
     }
 
+    const handleFileChange = (color: colors, files: FileList | null) => {
+        if (files) {
+          setImageFiles(prev => ({
+            ...prev,
+            [color]: Array.from(files)
+          }));
+        }
+      };
+
+    
+
     const handleSubmit= async (e:React.FormEvent)=>{
         e.preventDefault()
         setLoading(true)
-        const product:Product={
-            name,
-            color,
-            imageFiles,
-        }
+        setMsg('')
+const formData = new FormData();
+        formData.append('name', name);
+        formData.append('color',color);
+formData.append('imageFiles',JSON.stringify(imageFiles))        
+        
+
+        
         try{
             const response = await fetch('/api/product', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(product),
-        })
+            body: formData
+                })
             if(response.ok){
                 const data = await response.json();
                 setMsg(data.message)
@@ -106,7 +105,7 @@ const [msg,setMsg]=useState<string>('')
                         <tr key={`${color}`}>
                         <td>{color}</td>
                         <td>
-                        <input type="file" name={'imageFiles'} required multiple accept={'image/*'} className="form-control" onChange={handleImageChange(color)}/>
+                        <input type="file" name={'imageFiles'} required multiple accept={'image/*'} className="form-control" onChange={(e)=>handleFileChange(color,e.target.files)}/>
                         </td></tr>
                         )
                         }                               </tbody>                                </table>
