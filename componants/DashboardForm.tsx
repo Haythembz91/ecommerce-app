@@ -95,24 +95,24 @@ const [msg,setMsg]=useState<string>('')
                         <div className="mb-3">
                             <label htmlFor="productName" className="form-label">Product Name: </label>
                             <div className="input-group">
-                                <input name={'productName'} required value={name} onChange={(e)=>setName(e.target.value)} type="text" className="form-control" id="productName"
+                                <input name={'productName'} required type="text" className="form-control" id="productName"
                                        aria-describedby="basic-addon3 basic-addon4"/>
                             </div>
                         </div>
                         <div className="mb-3">
                             <label htmlFor="productDescription" className="form-label">Product Description: </label>
                             <div className="input-group">
-                                <textarea name={'productDescription'} required value={description} onChange={(e)=>setDescription(e.target.value)} className="form-control" id="productDescription"
+                                <textarea name={'productDescription'} required className="form-control" id="productDescription"
                                        aria-describedby="basic-addon3 basic-addon4"/>
                             </div>
                         </div>
                         <div className="mb-3">
                             <label htmlFor="productCategory" className="form-label">Product Category: </label>
                             <div className="input-group">
-                                <select name={'productCategory'} required value={category} onChange={(e)=>{            setCategory(e.target.value as categories)
+                                <select name={'productCategory'} required defaultValue={''} onChange={(e)=>{            setCategory(e.target.value as categories)
                                 }} className="form-control" id="productCategory"
                                        aria-describedby="basic-addon3 basic-addon4">
-                                    <option value='' disabled selected>Select a Category...</option>                        {categoriesList.map((category,index)=>
+                                    <option value={''} disabled>Select a Category...</option>                        {categoriesList.map((category,index)=>
                         <option key={index} value={category}>
                             {category}
                         </option>
@@ -123,9 +123,9 @@ const [msg,setMsg]=useState<string>('')
                         {[categories.UNITARDS,categories.T_SHIRTS_AND_TOPS].includes(category as categories)&& <div className="mb-3">
                             <label htmlFor="sleeveLength" className="form-label">Sleeve Length: </label>
                             <div className="input-group">
-                                <select name={'sleeveLength'} required value={sleeve} onChange={(e)=>setSleeve(e.target.value as sleeveLengths)} className="form-control" id="sleeveLength"
+                                <select name={'sleeveLength'} required className="form-control" id="sleeveLength"
                                        aria-describedby="basic-addon3 basic-addon4">
-                                    <option value='' disabled selected>Select Sleeve Length...</option>
+                                    <option defaultValue='' disabled>Select Sleeve Length...</option>
                                     {sleeveLengthsList.map((sleeveLength,index)=>
                         <option key={index} value={sleeveLength}>
                             {sleeveLength}
@@ -137,9 +137,9 @@ const [msg,setMsg]=useState<string>('')
                          <div className="mb-3">
                              <label htmlFor="productColor" className="form-label">Available Colors: </label>
                              <div className="input-group">
-                                 <select required onChange={handleColorChange} multiple value={color} className="form-control" id="productColor" name={'productColor'}
+                                 <select required onChange={handleColorChange} multiple className="form-control" id="productColor" name={'productColor'}
                                         aria-describedby="basic-addon3 basic-addon4">
-                                     <option value='' disabled selected>Select Available Colors</option>
+                                     <option defaultValue='' disabled>Select Available Colors</option>
                                      {colorsList.map((color,index)=>
                                              <option key={index} value={color}>
                                                  {color}</option>)}
@@ -149,9 +149,9 @@ const [msg,setMsg]=useState<string>('')
                         <div className="mb-3">
                             <label htmlFor="productSizes" className="form-label">Available Sizes: </label>
                             <div className="input-group">
-                                <select required onChange={handleChangeSize} multiple value={size} className="form-control" id={'productSizes'} name="productSizes"
+                                <select required onChange={handleChangeSize} multiple className="form-control" id={'productSizes'} name="productSizes"
                                        aria-describedby="basic-addon3 basic-addon4">
-                                    <option defaultValue='' disabled selected>Select Available Sizes</option>
+                                    <option defaultValue='' disabled>Select Available Sizes</option>
                                     {sizesList.map((size,index)=>
                                             <option key={index} value={size}>
                                                 {size}</option>)}                                </select>       
@@ -160,9 +160,9 @@ const [msg,setMsg]=useState<string>('')
                         {category===categories.LEGGINGS && <div className="mb-3">
                             <label htmlFor="legLength" className="form-label">Leg Length: </label>
                             <div className="input-group">
-                                <select required onChange={e=>setLegLength(e.target.value as legLengths)} value={legLength} className="form-control" id="legLength" name={'legLength'}
+                                <select required className="form-control" id="legLength" name={'legLength'}
                                        aria-describedby="basic-addon3 basic-addon4">
-                                    <option value='' disabled selected>Select Leg Length</option>
+                                    <option defaultValue='' disabled>Select Leg Length</option>
                                     {legLengthsList.map((legLength,index)=>
                                             <option key={index} value={legLength}>
                                                 {legLength}</option>)}
@@ -172,18 +172,19 @@ const [msg,setMsg]=useState<string>('')
                         <div className="mb-3">
                             <label htmlFor="productCollection" className="form-label">Product Collection: </label>
                             <div className="input-group">
-                                <select required onChange={(e)=>setCollection(e.target.value as collections)} value={collection} className="form-control" id="productCollection" name={'productCollection'}
+                                <select defaultValue={''} required className="form-control" id="productCollection" name={'productCollection'}
                                        aria-describedby="basic-addon3 basic-addon4">
-                                    <option value='' disabled selected>Select Product Collection</option>
+                                    <option value='' disabled>Select Product Collection...</option>
                                     {collectionsList.map((collection,index)=>
                                             <option key={index} value={collection}>
                                                 {collection}</option>)}                                </select>       
                             </div>
                         </div>
                         <div className="mb-3">
+                            <label htmlFor="productPrice" className="form-label">Product Price:</label>
                             <div className="input-group mb-3">
                               <span className="input-group-text" id="basic-addon1">$</span>
-                              <input name={'productPrice'} required type="number" value={price} onChange={(e)=>setPrice(parseInt(e.target.value))} className="form-control" placeholder="Price" aria-label="productPrice" aria-describedby="basic-addon1"/>
+                              <input id={'productPrice'} name={'productPrice'} required type="number" className="form-control" placeholder="Price" aria-label="productPrice" aria-describedby="basic-addon1"/>
                             </div>
                         </div>
                         {color.length>0&&size.length>0&&<div className="mb-3">
@@ -200,7 +201,7 @@ const [msg,setMsg]=useState<string>('')
         <tr key={`${color}-${size}`}>
             <td>{color}</td>
             <td>{size}</td>
-            <td><input type="number" name={`${color}-${size}`} min={1} required value={quantities[`${color}-${size}`]}  className="form-control" onChange={(e)=>handleQuantityChange(color,size,e)} placeholder="Quantity" aria-label="productQuantity" aria-describedby="basic-addon1"/></td></tr>
+            <td><input type="number" name={`${color}-${size}`} min={1} required className="form-control" placeholder="Quantity" aria-label="productQuantity" aria-describedby="basic-addon1"/></td></tr>
         )
     )}                               </tbody>                                </table>
                             </div>
