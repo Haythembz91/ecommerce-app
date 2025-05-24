@@ -123,9 +123,9 @@ const [msg,setMsg]=useState<string>('')
                         {[categories.UNITARDS,categories.T_SHIRTS_AND_TOPS].includes(category as categories)&& <div className="mb-3">
                             <label htmlFor="sleeveLength" className="form-label">Sleeve Length: </label>
                             <div className="input-group">
-                                <select name={'sleeveLength'} required className="form-control" id="sleeveLength"
+                                <select defaultValue={''} name={'sleeveLength'} required className="form-control" id="sleeveLength"
                                        aria-describedby="basic-addon3 basic-addon4">
-                                    <option defaultValue='' disabled>Select Sleeve Length...</option>
+                                    <option value='' disabled>Select Sleeve Length...</option>
                                     {sleeveLengthsList.map((sleeveLength,index)=>
                         <option key={index} value={sleeveLength}>
                             {sleeveLength}
@@ -160,9 +160,9 @@ const [msg,setMsg]=useState<string>('')
                         {category===categories.LEGGINGS && <div className="mb-3">
                             <label htmlFor="legLength" className="form-label">Leg Length: </label>
                             <div className="input-group">
-                                <select required className="form-control" id="legLength" name={'legLength'}
+                                <select defaultValue={''} required className="form-control" id="legLength" name={'legLength'}
                                        aria-describedby="basic-addon3 basic-addon4">
-                                    <option defaultValue='' disabled>Select Leg Length</option>
+                                    <option value='' disabled>Select Leg Length...</option>
                                     {legLengthsList.map((legLength,index)=>
                                             <option key={index} value={legLength}>
                                                 {legLength}</option>)}
