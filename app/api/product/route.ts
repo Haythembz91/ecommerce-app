@@ -22,9 +22,21 @@ export async function POST(req:NextRequest){
                 return UploadToCloudinary(file, `products/${formData.get('productName')}/${color}`)
                 
             }                                       ))
-            console.log(urls)
+            imagesByColor[color] = urls.map(url => url.url)
         }
-        
+        const product = {
+            productName: formData.get('productName'),
+            productDescription: formData.get('productDescription'),
+            productCategory: formData.get('productCategory'),
+            sleeveLength: formData.get('sleeveLength'),
+            legLength: formData.get('legLength'),
+            productCollection: formData.get('productCollection'),
+            productColor:formData.get('productColor'),
+            productSizes:formData.get('productSizes'),
+            productPrice: formData.get('productPrice'),
+            ...imagesByColor,
+        }
+        console.log(product)
         return NextResponse.json({message:'Product Added Successfully'}, {status: 200})    
     } catch (error) {
         console.error(error)
