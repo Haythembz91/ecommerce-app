@@ -1,11 +1,30 @@
 import {NextResponse, NextRequest} from "next/server";
 import { getDb } from "@/utils/mongodb";
+import {colorsList} from "@/utils/const";
+import {UploadToCloudinary} from "@/utils/UploadToCloudinary";
+import {v4 as uuidv4} from "uuid";
+
 
 export async function POST(req:NextRequest){
+    const map = new Map<string,File[]>()
+    const imagesByColor :Record<string,string[]>={}
     try {
         const formData = await req.formData()
-        console.log(formData)
-
+        for (const [key, value] of formData.entries()){
+            if (!(value instanceof File)) continue
+            if (!map.has(key))
+                map.set(key, [])
+            map.get(key)!.push(value)
+        }
+        for (const color of map.keys()){
+            const files = map.get(color)!
+            const urls = await Promise.all(files.map(file =>{
+                return UploadToCloudinary(file, `products/${formData.get('productName')}/${color}`)
+                
+            }                                       ))
+            console.log(urls)
+        }
+        
         return NextResponse.json({message:'Product Added Successfully'}, {status: 200})    
     } catch (error) {
         console.error(error)

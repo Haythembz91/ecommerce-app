@@ -164,10 +164,11 @@ const [msg,setMsg]=useState<string>('')
                         </div>
                         {color.length>0&&size.length>0&&<div className="mb-3">
                             <div className="input-group mb-3"><table className={'table table-bordered table-striped'}><thead>
-<tr>                               <th>Color</th>
-<th>Size</th>
-<th>Quantity</th>
-</tr>                                    </thead><tbody>
+<tr>
+    <th>Color</th>
+    <th>Size</th>
+    <th>Quantity</th>
+</tr></thead><tbody>
                                 {color.map((color)=>
     size.map((size)=>
         <tr key={`${color}-${size}`}>
