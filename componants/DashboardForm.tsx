@@ -1,42 +1,17 @@
 'use client'
 import React, {useState} from "react";
-import {categories, colors, legLengths, sizes, sleeveLengths,collections} from "@/utils/enums";
+import {categories, colors, sizes} from "@/utils/enums";
 import {categoriesList, colorsList, legLengthsList, sizesList, sleeveLengthsList,collectionsList} from "@/utils/const";
-import {Product, ImageFile, Quantities} from "@/utils/interfaces"
+
 
 const DashboardForm =()=>{
-    const [name,setName]=useState<string>('')
-    const [description,setDescription]=useState<string>('')
+    
     const [category,setCategory]=useState<categories>()
        const[size,setSize]=useState<sizes[]>([])
     const[color,setColor]=useState<colors[]>([])
     
-    const [price,setPrice]=useState<number>()
-const [sleeve,setSleeve]=useState<sleeveLengths>()
-    const [legLength,setLegLength]=useState<legLengths>()
 const [msg,setMsg]=useState<string>('')
     const [loading,setLoading]=useState<boolean>(false)
-    const [collection,setCollection]=useState<collections>()
-    const [quantities,setQuantities]=useState<Quantities>({})
-    const [imageFiles,setImageFiles]=useState<ImageFile>({})
-
-    const handleImageChange = (color: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
-        const files = event.target.files;
-
-        if (files && files.length > 0) {
-          setImageFiles((prevFiles) => ({
-             ...prevFiles,
-             [color]: Array.from(files),
-           }));
-        }
-      };
-
-    const handleQuantityChange = (color: colors, size: sizes, e:React.ChangeEvent<HTMLInputElement>) => {
-        setQuantities((prevQuantities) => ({
-          ...prevQuantities,
-          [`${color}-${size}`]: parseInt(e.target.value),
-        }));
-      }
     
     const handleChangeSize = (event:React.FormEvent)=>
         {
@@ -184,18 +159,15 @@ const [msg,setMsg]=useState<string>('')
                             <label htmlFor="productPrice" className="form-label">Product Price:</label>
                             <div className="input-group mb-3">
                               <span className="input-group-text" id="basic-addon1">$</span>
-                              <input id={'productPrice'} name={'productPrice'} required type="number" className="form-control" placeholder="Price" aria-label="productPrice" aria-describedby="basic-addon1"/>
+                              <input min={0} id={'productPrice'} name={'productPrice'} required type="number" className="form-control" placeholder="Price" aria-label="productPrice" aria-describedby="basic-addon1"/>
                             </div>
                         </div>
                         {color.length>0&&size.length>0&&<div className="mb-3">
-                            <div className="input-group mb-3">
-                            <table className={'table table-bordered table-striped'}>
-                                <thead>
+                            <div className="input-group mb-3"><table className={'table table-bordered table-striped'}><thead>
 <tr>                               <th>Color</th>
 <th>Size</th>
 <th>Quantity</th>
-</tr>                                    </thead>
-                            <tbody>
+</tr>                                    </thead><tbody>
                                 {color.map((color)=>
     size.map((size)=>
         <tr key={`${color}-${size}`}>
@@ -203,25 +175,23 @@ const [msg,setMsg]=useState<string>('')
             <td>{size}</td>
             <td><input type="number" name={`${color}-${size}`} min={1} required className="form-control" placeholder="Quantity" aria-label="productQuantity" aria-describedby="basic-addon1"/></td></tr>
         )
-    )}                               </tbody>                                </table>
+    )}</tbody></table>
                             </div>
                         </div>}
                         {color.length>0&&<div className="mb-3">
-                            <div className="input-group mb-3">
-                            <table className={'table table-bordered table-striped'}>
-                                <thead>
-                        <tr>                               <th>Color</th>
-                        <th>Images</th>
-                        </tr>                                    </thead>
-                            <tbody>
+                            <div className="input-group mb-3"><table className={'table table-bordered table-striped'}><thead>
+<tr>
+    <th>Color</th>
+    <th>Images</th>
+</tr></thead><tbody>
                                 {color.map((color,index)=>
                         <tr key={`${color}-${index}`}>
                         <td>{color}</td>
                         <td>
-                        <input type="file" name={`${color}`} required multiple accept={'image/*'} className="form-control" onChange={handleImageChange(color)}/>
+                        <input type="file" name={`${color}`} required multiple accept={'image/*'} className="form-control"/>
                         </td></tr>
                         )
-                        }                               </tbody>                                </table>
+                        }</tbody></table>
                             </div>
                         </div>}
                          {msg&&<div className={'alert alert-success'}>{msg}</div>}
