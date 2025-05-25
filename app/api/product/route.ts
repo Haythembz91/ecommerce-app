@@ -3,6 +3,7 @@ import { getDb } from "@/utils/mongodb";
 import {colorsList} from "@/utils/const";
 import {UploadToCloudinary} from "@/utils/UploadToCloudinary";
 import {v4 as uuidv4} from "uuid";
+import {categories} from "@/utils/enums";
 
 
 export async function POST(req:NextRequest){
@@ -24,12 +25,13 @@ export async function POST(req:NextRequest){
             }                                       ))
             imagesByColor[color] = urls.map(url => url.url)
         }
+        const productCategory = formData.get('productCategory') as categories
         const product = {
             productName: formData.get('productName'),
             productDescription: formData.get('productDescription'),
             productCategory: formData.get('productCategory'),
-            sleeveLength: formData.get('sleeveLength'),
-            legLength: formData.get('legLength'),
+            sleeveLenght:productCategory===categories.UNITARDS||productCategory===categories.T_SHIRTS_AND_TOPS?formData.get('sleeveLength'):null,
+            legLength:productCategory===categories.LEGGINGS?formData.get('legLength'):null,
             productCollection: formData.get('productCollection'),
             productColor:formData.get('productColor'),
             productSizes:formData.get('productSizes'),
@@ -37,7 +39,13 @@ export async function POST(req:NextRequest){
             ...imagesByColor,
         }
         console.log(product)
-        return NextResponse.json({message:'Product Added Successfully'}, {status: 200})    
+        const db = await getDb()
+        const productsCollection = db.collection('products')
+        const addProduct = await productsCollection.insertOne(product)
+        if(addProduct.acknowledged)
+        {
+        return NextResponse.json({message:'Product Added Successfully'}, {status: 200})
+        }
     } catch (error) {
         console.error(error)
     }
