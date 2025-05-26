@@ -2,14 +2,14 @@ import defineBanner from '@/public/assets/banners/offcanvas/collections/1.Naviga
 import motionBanner from '@/public/assets/banners/offcanvas/collections/2.Navigation.WB_CollectionBanner_500x478px_20241024_iw_500x.jpg'
 import powerBanner from '@/public/assets/banners/offcanvas/collections/3.Navigation.WB_CollectionBanner_500x478px_20241024_iw_500x.webp'
 import essentialBanner from '@/public/assets/banners/offcanvas/collections/4.Navigation.WB_CollectionBanner_500x478px_20241024_iw_500x.webp'
-import accessoriesBanner from '@/public/assets/banners/offcanvas/collections/6.Navigation.WB_CollectionBanner_500x478px_20241024_iw_500x.webp'
+import smoothBanner from '@/1.Navigation.WB_CollectionBanner_SmoothContour500x478px_20241024_iw_300x.jpg'
 import comfortBanner from "@/public/assets/banners/offcanvas/collections/5.Navigation.WB_CollectionBanner_500x478px_20241024_iw_500x.jpg"
 const OffcanvasCollection = ()=>{
 
     const collections = [
         {
             banner:defineBanner.src,
-            name:'DEFINE SCRUNCH'
+            name:'DEFINE 2.0'
         },
         {
             banner:motionBanner.src,
@@ -28,8 +28,8 @@ const OffcanvasCollection = ()=>{
             name:'COMFORT'
         },
         {
-            banner:accessoriesBanner.src,
-            name:'ACCESSORIES'
+            banner:smoothBanner.src,
+            name:'SMOOTH CONTOUR'
         }
 
     ]

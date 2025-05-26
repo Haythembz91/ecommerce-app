@@ -7,7 +7,7 @@ export const categoriesList:categories[]=[categories.LEGGINGS,categories.JOGGERS
 export const colorsList:colors[]=[colors.BLACK,colors.RED,colors.GREEN,colors.BLUE,colors.YELLOW,colors.GREY,colors.WHITE,colors.PINK,colors.BROWN]
 
 export const 
-collectionsList:collections[]=[collections.MOTION,collections.DEFINE,collections.POWER,collections.ESSENTIAL,collections.COMFORT,collections.ACCESSORIES]
+collectionsList:collections[]=[collections.MOTION,collections.DEFINE,collections.POWER,collections.ESSENTIAL,collections.COMFORT,collections.ACCESSORIES,collections.SMOOTHCONTOUR]
 
 export const legLengthsList:legLengths[]=[legLengths.SEVEN_EIGHT,legLengths.REGULAR,legLengths.LONG]
 

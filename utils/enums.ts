@@ -42,7 +42,8 @@ export enum collections{
     POWER='Power',
     ESSENTIAL='Essential',
     COMFORT='Comfort',
-    ACCESSORIES='Accessories'
+    ACCESSORIES='Accessories',
+    SMOOTHCONTOUR='Smooth Contour',
 }
 export enum legLengths{
     SEVEN_EIGHT='7/8 Length',
