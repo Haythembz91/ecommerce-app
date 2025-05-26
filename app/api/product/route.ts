@@ -9,6 +9,7 @@ export async function POST(req:NextRequest){
     const map = new Map<string,File[]>()
     const imagesByColor :Record<string,string[]>={}
     const quantitiesMap= new Map<string,number>()
+    const productVariants:Product[]=[]
     try {
         const formData = await req.formData()
         for (const [key, value] of formData.entries()){
@@ -40,14 +41,16 @@ export async function POST(req:NextRequest){
             productColor:formData.getAll('productColor') as colors[],
             productSizes:formData.getAll('productSizes') as sizes[],
             productPrice: parseInt(formData.get('productPrice')),
-            ...imagesByColor,
             productQuantities:Object.fromEntries(quantitiesMap),
             dateAdded: new Date().toISOString()
         }
-        console.log(product)
+        for(const color of Object.keys(imagesByColor)){
+           const productVariant:Product = {...product,'urlByColor':imagesByColor[color],'primaryColor':[color]}
+            productVariants.push(productVariant)
+        }
         const db = await getDb()
         const productsCollection = db.collection('products')
-        const addProduct = await productsCollection.insertOne(product)
+        const addProduct = await productsCollection.insertMany(productVariants)
         if(addProduct.acknowledged)
         {
         return NextResponse.json({message:'Product Added Successfully'}, {status: 200})

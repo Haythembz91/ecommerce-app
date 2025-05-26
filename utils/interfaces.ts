@@ -13,4 +13,6 @@ export interface Product {
     productCollection: collections;
     productQuantities: Record<string, number>;
     dateAdded: string;
+    primaryColor:colors;
+    urlByColor:string[];
 }
