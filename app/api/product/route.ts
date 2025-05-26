@@ -41,7 +41,8 @@ export async function POST(req:NextRequest){
             productSizes:formData.getAll('productSizes') as sizes[],
             productPrice: parseInt(formData.get('productPrice')),
             ...imagesByColor,
-            productQuantities:Object.fromEntries(quantitiesMap)
+            productQuantities:Object.fromEntries(quantitiesMap),
+            dateAdded: new Date().toISOString()
         }
         console.log(product)
         const db = await getDb()

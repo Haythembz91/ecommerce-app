@@ -1,15 +1,16 @@
 import {categories,sizes,colors,collections, sleeveLengths, legLengths} from "@/utils/enums"
 
 export interface Product {
-    id: string;
+    _id: string;
     productName: string;
     productDescription: string;
     productCategory: categories;
     productSizes: sizes[];
-    productColors: colors[];
+    productColor: colors[];
     productPrice: number;
     sleeveLength?:sleeveLengths ;
     legLength?: legLengths;
     productCollection: collections;
     productQuantities: Record<string, number>;
+    dateAdded: string;
 }

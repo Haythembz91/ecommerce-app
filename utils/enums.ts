@@ -33,6 +33,8 @@ export enum colors{
     GREY='Grey',
     WHITE='White',
     PINK='Pink',
+    BROWN='Brown',
+    
 }
 export enum collections{
     MOTION='Motion',
