@@ -4,7 +4,7 @@ export const sizesList:sizes[]=[sizes.XS,sizes.S,sizes.M,sizes.L,sizes.XL,sizes.
 
 export const categoriesList:categories[]=[categories.LEGGINGS,categories.JOGGERS,categories.SPORTS_BRAS,categories.SHORTS,categories.T_SHIRTS_AND_TOPS,categories.HOODIES_SWEATSHIRTS_JACKETS,categories.UNITARDS,categories.ACCESSORIES]
 
-export const colorsList:colors[]=[colors.BLACK,colors.RED,colors.GREEN,colors.BLUE,colors.YELLOW,colors.GREY,colors.WHITE,colors.PINK]
+export const colorsList:colors[]=[colors.BLACK,colors.RED,colors.GREEN,colors.BLUE,colors.YELLOW,colors.GREY,colors.WHITE,colors.PINK,colors.BROWN]
 
 export const 
 collectionsList:collections[]=[collections.MOTION,collections.DEFINE,collections.POWER,collections.ESSENTIAL,collections.COMFORT,collections.ACCESSORIES]
