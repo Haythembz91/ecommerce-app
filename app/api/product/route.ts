@@ -1,14 +1,14 @@
 import {NextResponse, NextRequest} from "next/server";
 import { getDb } from "@/utils/mongodb";
-import {colorsList} from "@/utils/const";
 import {UploadToCloudinary} from "@/utils/UploadToCloudinary";
-import {v4 as uuidv4} from "uuid";
-import {categories} from "@/utils/enums";
+import {categories, sleeveLengths, legLengths, collections, colors, sizes} from "@/utils/enums";
+import {Product} from "@/utils/interfaces";
 
 
 export async function POST(req:NextRequest){
     const map = new Map<string,File[]>()
     const imagesByColor :Record<string,string[]>={}
+    const quantitiesMap= new Map<string,number>()
     try {
         const formData = await req.formData()
         for (const [key, value] of formData.entries()){
@@ -25,18 +25,23 @@ export async function POST(req:NextRequest){
             }                                       ))
             imagesByColor[color] = urls.map(url => url.url)
         }
+        for (const [key, value] of formData.entries()){
+            if(!key.includes('-')) continue
+            quantitiesMap.set(key, parseInt(value) as number)
+        }
         const productCategory = formData.get('productCategory') as categories
-        const product = {
-            productName: formData.get('productName'),
-            productDescription: formData.get('productDescription'),
-            productCategory: formData.get('productCategory'),
-            sleeveLenght:productCategory===categories.UNITARDS||productCategory===categories.T_SHIRTS_AND_TOPS?formData.get('sleeveLength'):null,
-            legLength:productCategory===categories.LEGGINGS?formData.get('legLength'):null,
-            productCollection: formData.get('productCollection'),
-            productColor:formData.get('productColor'),
-            productSizes:formData.get('productSizes'),
-            productPrice: formData.get('productPrice'),
+        const product:Product = {
+            productName: formData.get('productName') as string,
+            productDescription: formData.get('productDescription') as string,
+            productCategory: formData.get('productCategory') as categories,
+            sleeveLength:productCategory===categories.UNITARDS||productCategory===categories.T_SHIRTS_AND_TOPS?formData.get('sleeveLength') as sleeveLengths:undefined,
+            legLength:productCategory===categories.LEGGINGS?formData.get('legLength') as legLengths:undefined,
+            productCollection: formData.get('productCollection') as collections,
+            productColor:formData.getAll('productColor') as colors[],
+            productSizes:formData.getAll('productSizes') as sizes[],
+            productPrice: parseInt(formData.get('productPrice')),
             ...imagesByColor,
+            productQuantities:Object.fromEntries(quantitiesMap)
         }
         console.log(product)
         const db = await getDb()

@@ -11,4 +11,5 @@ export interface Product {
     sleeveLength?:sleeveLengths ;
     legLength?: legLengths;
     productCollection: collections;
+    productQuantities: Record<string, number>;
 }
