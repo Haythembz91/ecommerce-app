@@ -5,7 +5,7 @@ const ProductCard = ({product}:{product:Product})=>{
     const mainImg:string[] = product[product.productColor[0]] as string[]
       
   return(
-      <div className={'col-6 col-md-3'}>
+      <div className={'col'}>
           <div className="card border-0">
               <img src={mainImg[1]} className="card-img-top" alt="..."/>
               <div className="card-body px-2">

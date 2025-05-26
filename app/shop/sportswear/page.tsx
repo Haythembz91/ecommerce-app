@@ -6,7 +6,7 @@ const Home = async ()=>{
     const products:Product[] = await GetProducts()
     
     return(
-        <div className={'d-flex flex-wrap'}>
+        <div className={'row m-0 gx-2 row-cols-2 row-cols-md-4'}>
             {products.map((product:Product)=>{
                 return(
                     <ProductCard key={product._id} product={product}></ProductCard>
