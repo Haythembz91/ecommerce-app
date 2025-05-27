@@ -159,7 +159,7 @@ const [msg,setMsg]=useState<string>('')
                             <label htmlFor="productPrice" className="form-label">Product Price:</label>
                             <div className="input-group mb-3">
                               <span className="input-group-text" id="basic-addon1">$</span>
-                              <input min={0} id={'productPrice'} name={'productPrice'} required type="number" className="form-control" placeholder="Price" aria-label="productPrice" aria-describedby="basic-addon1"/>
+                              <input min={0} step={'any'} id={'productPrice'} name={'productPrice'} required type="number" className="form-control" placeholder="Price" aria-label="productPrice" aria-describedby="basic-addon1"/>
                             </div>
                         </div>
                         {color.length>0&&size.length>0&&<div className="mb-3">

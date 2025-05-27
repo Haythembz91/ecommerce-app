@@ -40,7 +40,7 @@ export async function POST(req:NextRequest){
             productCollection: formData.get('productCollection') as collections,
             productColor:formData.getAll('productColor') as colors[],
             productSizes:formData.getAll('productSizes') as sizes[],
-            productPrice: parseInt(formData.get('productPrice')),
+            productPrice: Number(formData.get('productPrice')),
             productQuantities:Object.fromEntries(quantitiesMap),
             dateAdded: new Date().toISOString()
         }
