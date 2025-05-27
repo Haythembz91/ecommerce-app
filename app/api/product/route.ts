@@ -40,12 +40,12 @@ export async function POST(req:NextRequest){
             productCollection: formData.get('productCollection') as collections,
             productColor:formData.getAll('productColor') as colors[],
             productSizes:formData.getAll('productSizes') as sizes[],
-            productPrice: Number(formData.get('productPrice')),
+            productPrice: Number(formData.get('productPrice')).toFixed(2),
             productQuantities:Object.fromEntries(quantitiesMap),
             dateAdded: new Date().toISOString()
         }
         for(const color of Object.keys(imagesByColor)){
-           const productVariant:Product = {...product,'urlByColor':imagesByColor[color],'primaryColor':[color]}
+           const productVariant:Product = {...product,'urlByColor':imagesByColor[color],'primaryColor':color as colors}
             productVariants.push(productVariant)
         }
         const db = await getDb()
