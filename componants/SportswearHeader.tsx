@@ -1,10 +1,20 @@
+'use client'
 import Link from "next/link";
-
-import {sizes, colors, collections, legLengths, sleeveLengths} from "@/utils/enums"
-
+import {useState} from "react"
 import {sizesList, colorsList, collectionsList, legLengthsList, sleeveLengthsList,otherList,sortList, categoriesList} from "@/utils/const"
 
+import {Filters} from '@/utils/types'
+
 const SportswearHeader = () => {
+
+    const [filters,setFilters] =useState<Filters>({})
+    const onChangeHandler=(event:React.ChangeEvent<HTMLInputElement>)=>{
+        
+        setFilters({...filters, [event.target.name]: event.target.value}) 
+    }
+console.log(filters)    
+    
+    
     return (
         <nav className="navbar navbar-expand-lg bg-body-tertiary flex-md-column">
             <div className="container-fluid align-content-center">
@@ -28,7 +38,7 @@ const SportswearHeader = () => {
                             </a>
                             <ul className="dropdown-menu">                                {sizesList.map((size,index)=>
             <li key={index} className="form-check px-2">
-                <input className={'me-2'} type="radio" name="size"
+                <input className={'me-2'} type="radio" name="productSizes" onChange={onChangeHandler}
                        id={size} value={size}/>
                 <label htmlFor="sizeXs">
                     {size}
@@ -46,7 +56,7 @@ const SportswearHeader = () => {
                                 {colorsList.map((color,index)=>
             
             <li key={index} className="form-check px-2">
-                <input className={'me-2'} type="radio" name="color"
+                <input className={'me-2'} type="radio" onChange={(e)=>onChangeHandler(e)} name="primaryColor"
                        id={color} value={color}/>
                 <label className={''} htmlFor={color}>
                     {color}
@@ -63,8 +73,8 @@ const SportswearHeader = () => {
                             <ul className="dropdown-menu">
                                 {collectionsList.map((collection,index)=>
             <li key={index} className="form-check px-2">
-                <input className={'me-2'} type="radio" name="collection"
-                       id={collection} value={collection}/>
+                <input className={'me-2'} type="radio" name="productCollection"
+                       id={collection} onChange={(e)=>onChangeHandler(e)} value={collection}/>
                 <label className={'px-1'} htmlFor={collection}>
                     {collection}
                 </label>
@@ -80,7 +90,7 @@ const SportswearHeader = () => {
                             <ul className="dropdown-menu">
                                 {legLengthsList.map((legLength,index)=>
             <li key={index} className="form-check px-2">
-                <input className={'me-2'} type="radio" name="legLength"
+                <input className={'me-2'} type="radio" name="legLength" onChange={(e)=>onChangeHandler(e)}
                        id={legLength} value={legLength}/>
                 <label className={'px-1'} htmlFor={legLength}>
                     {legLength}
@@ -97,7 +107,7 @@ const SportswearHeader = () => {
                             <ul className="dropdown-menu">
                                 {sleeveLengthsList.map((sleeveLength,index)=>
             <li key={index} className="form-check px-2">
-                <input className={'me-2'} type="radio" name="sleeveLength"
+                <input className={'me-2'} type="radio" name="sleeveLength" onChange={(e)=>onChangeHandler(e)}
                        id={sleeveLength} value={sleeveLength}/>
                 <label className={'px-1'} htmlFor={sleeveLength}>
                     {sleeveLength}
@@ -114,7 +124,7 @@ const SportswearHeader = () => {
                             <ul className="dropdown-menu">
                                 {otherList.map((other,index)=>
             <li key={index} className="form-check px-2">
-                <input className={'me-2'} type="radio" name="other"
+                <input className={'me-2'} type="radio" name="other" onChange={(e)=>onChangeHandler(e)}
                        id={other} value={other}/>
                 <label className={'px-1'} htmlFor={other}>
                     {other}
@@ -144,7 +154,7 @@ const SportswearHeader = () => {
                                 {sortList.map((sort,index)=>
             
             <li key={index} className="form-check px-2">
-                <input className={'me-2'} type="radio" name="sort"
+                <input className={'me-2'} type="radio" name="sort" onChange={(e)=>onChangeHandler(e)}
                        id={sort} value={sort}/>
                 <label className={'px-1'} htmlFor={sort}>
                     {sort}

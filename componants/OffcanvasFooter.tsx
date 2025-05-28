@@ -1,9 +1,8 @@
 import SignIn from "@/componants/SignIn";
 import { useUser } from "@clerk/nextjs";
 const OffcanvasFooter = () => {
-
-    const user = useUser()
-    console.log(user.user)
+    const user = useUser();
+    
     return (
         <ul className="offcanvasFooter d-md-none list-unstyled p-3 text-decoration-underline">
             <li className="py-1 d-flex align-content-center">

@@ -61,11 +61,32 @@ export async function POST(req:NextRequest){
 }
 
 export async function GET(req:NextRequest){
+    const requestedWith = req.headers.get('x-requested-with')
+    if(requestedWith !== 'XMLHttpRequest') return NextResponse.json({message:'Invalid Request'}, {status: 400})
+    const {searchParams} = new URL(req.url)
+    const query = searchParams.get('query')
+    console.log(query)
+    const regex = new RegExp(query as string, 'i')
     try{
         const db=await getDb()
         const productsCollection = db.collection('products')
-        const products = await productsCollection.find().toArray()
+        if(query){
+        const products = await productsCollection.find({
+            $or:[
+{productName:regex},
+                {productCategory:regex},
+                {productCollection:regex},
+                {primaryColor:regex},
+                
+{legLength:regex},
+                {sleeveLength:regex},
+             ]
+        }).toArray()
         return NextResponse.json(products, {status: 200})
+        }
+        const products = await productsCollection.find({}).toArray()
+        return NextResponse.json(products, {status: 200})
+    
     }catch(e){
         console.error(e)
     }

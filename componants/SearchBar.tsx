@@ -1,6 +1,6 @@
-import Form from "next/form";
+import Form from 'next/form'
 
-const SearchBar = ()=>{
+const SearchBar = ()=>{  
     return (
         <div>
             <div className="offcanvas offcanvas-top" tabIndex={-1} id="offcanvasTop"
@@ -10,7 +10,7 @@ const SearchBar = ()=>{
                     <Form action="/search" className={"d-flex"}>
                         <label htmlFor="searchInput" className="form-label"></label>
                         <input name={'query'} className="form-control" id="searchInput"
-                               placeholder="What are you looking for today?"/>
+                               placeholder="Search..."/>
                         <button type="submit" className="btn btn-dark ms-2">Search</button>
                     </Form>
                 </div>

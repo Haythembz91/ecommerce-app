@@ -16,3 +16,7 @@ export interface Product {
     primaryColor:colors;
     urlByColor:string[];
 }
+
+export interface SearchPageProps {
+  searchParams: Record<string, string|undefined>;
+}
