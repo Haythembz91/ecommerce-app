@@ -19,7 +19,7 @@ const Home = async ()=>{
                 
             </section>
             <section className={'my-2 mx-md-2'}>
-                <div className="card text-bg-dark">
+                <div className=" text-bg-dark">
                   <img src={mobileBanner.src} className="card-img" alt="..."/>
                   <div className="carousel-caption">
                     <h3 className="card-title fw-bold ">LOW BACK EDIT</h3>
