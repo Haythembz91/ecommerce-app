@@ -1,20 +1,20 @@
 'use client'
 import Link from "next/link";
-import {useState} from "react"
 import {sizesList, colorsList, collectionsList, legLengthsList, sleeveLengthsList,otherList,sortList, categoriesList} from "@/utils/const"
-
-import {Filters} from '@/utils/types'
+import {useRouter, useSearchParams} from "next/navigation"
 
 const SportswearHeader = () => {
 
-    const [filters,setFilters] =useState<Filters>({})
+    const router = useRouter()
+    const searchParams = useSearchParams()
+    
     const onChangeHandler=(event:React.ChangeEvent<HTMLInputElement>)=>{
+        const params = new URLSearchParams(searchParams)
+        params.set(event.target.name,event.target.value)
+router.push(`?${params.toString()}`)
         
-        setFilters({...filters, [event.target.name]: event.target.value}) 
     }
-console.log(filters)    
-    
-    
+       
     return (
         <nav className="navbar navbar-expand-lg bg-body-tertiary flex-md-column">
             <div className="container-fluid align-content-center">

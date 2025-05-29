@@ -1,6 +1,6 @@
 
-export const GetProducts = async(query:Record<string,string|undefined>)=>{
-   const searchParams = new URLSearchParams(query).toString()
+export const GetProducts = async(filters:Record<string,string|undefined>)=>{
+   const searchParams = new URLSearchParams(filters).toString()
    try{
       const response = await fetch(`${process.env.BASE_URL}/api/product?${searchParams}`,{
          headers:{
