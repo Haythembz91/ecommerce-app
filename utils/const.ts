@@ -11,7 +11,7 @@ collectionsList:collections[]=[collections.MOTION,collections.DEFINE,collections
 
 export const legLengthsList:legLengths[]=[legLengths.SEVEN_EIGHT,legLengths.REGULAR,legLengths.LONG]
 
-export const sleeveLengthsList:sleeveLengths[]=[sleeveLengths.SHORT,sleeveLengths.LONG]
+export const sleeveLengthsList:sleeveLengths[]=[sleeveLengths.SHORT,sleeveLengths.LONG, sleeveLengths.SLEEVELESS]
 
 export const otherList:other[]=[other.BEST_SELLERS,other.NEW_RELEASES,other.SPRING_EDIT]
 

@@ -52,7 +52,8 @@ export enum legLengths{
 }
 export enum sleeveLengths{
     SHORT='Short Sleeve',
-    LONG='Long Sleeve'
+    LONG='Long Sleeve',
+    SLEEVELESS='Sleeveless'
 }
 
 export enum other{

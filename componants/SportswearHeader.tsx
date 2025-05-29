@@ -1,6 +1,5 @@
 'use client'
-import Link from "next/link";
-import {sizesList, colorsList, collectionsList, legLengthsList, sleeveLengthsList,otherList,sortList, categoriesList} from "@/utils/const"
+import {sizesList, colorsList, collectionsList, legLengthsList, sleeveLengthsList,otherList,sortList,} from "@/utils/const"
 import {useRouter, useSearchParams} from "next/navigation"
 
 const SportswearHeader = () => {
@@ -165,21 +164,7 @@ router.push(`?${params.toString()}`)
                         </li>
                     </ul>
                 </div>
-            </div>
-            <div className={'w-100 overflow-x-scroll sportswearList'}>
-                <ul className={'nav nav-underline gap-0 flex-nowrap list-group list-group-horizontal text-nowrap'}>
-                    <li className={'nav-item p-1 list-group-item d-flex justify-content-between align-items-center'}>
-                        <Link href={''} className={'nav-link p-1 link-secondary'}>ALL</Link>
-                        <span className="badge text-bg-secondary rounded-pill">14</span>
-                    </li>
-                    {categoriesList.map((category,index)=>
-            <li key={index} className={'nav-item p-1 list-group-item d-flex justify-content-between align-items-center '} >
-                <Link href={''} className={'nav-link p-1 link-secondary'}>{category}</Link>
-                <span className="badge text-bg-secondary rounded-pill">14</span>
-            </li>
-            )}
-                </ul>
-            </div>
+            </div>    
         </nav>
     )
 }
