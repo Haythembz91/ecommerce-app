@@ -1,23 +1,28 @@
 'use client'
 import {sizesList, colorsList, collectionsList, legLengthsList, sleeveLengthsList,otherList,sortList,} from "@/utils/const"
 import {useRouter, useSearchParams} from "next/navigation"
+import {useState} from "react";
 
 const SportswearHeader = () => {
 
     const router = useRouter()
     const searchParams = useSearchParams()
+    const params = new URLSearchParams(searchParams);
+    const [selectedFilters, setSelectedFilters]=useState(Object.fromEntries(params.entries()))
     
     const onChangeHandler=(event:React.ChangeEvent<HTMLInputElement>)=>{
-        const params = new URLSearchParams(searchParams)
-        params.set(event.target.name,event.target.value)
+                params.set(event.target.name,event.target.value)
+        setSelectedFilters(Object.fromEntries(params.entries()))
 router.push(`?${params.toString()}`)
-        
+     
     }
+
+    
        
     return (
         <nav className="navbar navbar-expand-lg bg-body-tertiary flex-md-column">
             <div className="container-fluid align-content-center">
-                <a className="navbar-brand" href="#">Filter</a>
+                <h4 className="navbar-brand">Sportswear</h4>
                 <button className="navbar-toggler mb-2 fs-6" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
                         aria-label="Toggle navigation">
@@ -29,6 +34,25 @@ router.push(`?${params.toString()}`)
                     Filters
                 </button>
                 <div className="collapse navbar-collapse" id="navbarNavDropdown">
+                    <div>
+                        {Object.keys(selectedFilters).length>0? (<div><ul className={'list-unstyled d-flex flex-wrap'}>{
+                            Object.values(selectedFilters).map((value:any,index)=><li className={'list-item'} key={index}>
+                            <button onClick={()=>{
+                                params.delete(Object.keys(selectedFilters)[index])
+                                setSelectedFilters(Object.fromEntries(params.entries()))
+                                router.push(`?${params.toString()}`)
+                            }} className={'btn btn-outline-secondary me-2'}>
+                                {value}
+                            </button>
+                            </li>
+                        )}</ul>
+                                                                 <button onClick={()=>{router.push('/shop/sportswear')
+                                                                                        setSelectedFilters({})
+                                                                                      }} className={'btn btn-outline-secondary'}>Clear All</button>
+                        </div>
+                                                                ):null}
+                    
+                    </div>
                     <ul className="navbar-nav text-nowrap">
                         <li className="nav-item dropdown">
                             <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
