@@ -1,10 +1,11 @@
 'use client'
 import {sizesList, colorsList, collectionsList, legLengthsList, sleeveLengthsList,otherList,sortList,} from "@/utils/const"
 import {useRouter, useSearchParams} from "next/navigation"
-import {useState} from "react";
+import {useState, useTransition} from "react";
 
 const SportswearHeader = () => {
 
+    const [isPending, startTransition] = useTransition()
     const router = useRouter()
     const searchParams = useSearchParams()
     const params = new URLSearchParams(searchParams);
@@ -13,7 +14,10 @@ const SportswearHeader = () => {
     const onChangeHandler=(event:React.ChangeEvent<HTMLInputElement>)=>{
                 params.set(event.target.name,event.target.value)
         setSelectedFilters(Object.fromEntries(params.entries()))
+        startTransition(()=>{
 router.push(`?${params.toString()}`)
+        }
+                       )
      
     }
 
@@ -40,14 +44,18 @@ router.push(`?${params.toString()}`)
                             <button onClick={()=>{
                                 params.delete(Object.keys(selectedFilters)[index])
                                 setSelectedFilters(Object.fromEntries(params.entries()))
-                                router.push(`?${params.toString()}`)
+                                startTransition(()=>
+                                router.push(`?${params.toString()}`))
                             }} className={'btn btn-outline-secondary me-2'}>
                                 {value}
                             </button>
                             </li>
                         )}</ul>
-                                                                 <button onClick={()=>{router.push('/shop/sportswear')
-                                                                                        setSelectedFilters({})
+                                                                 <button onClick={()=>{
+                            setSelectedFilters({})
+            startTransition(()=>
+                router.push('/shop/sportswear')
+                )
                                                                                       }} className={'btn btn-outline-secondary'}>Clear All</button>
                         </div>
                                                                 ):null}
