@@ -10,7 +10,14 @@ const ProductsContainer =({products}:{products:Product[]})=>{
   
   const [filteredProducts, setFilteredProducts]=useState<Product[]>(products)
   const [selectedCategory, setSelectedCategory]=useState<categories|''>('')
-  const handleChange=(event:React.ChangeEvent<HTMLInputElement>)=>{
+
+
+    const categories:categories[] = []
+    categoriesList.forEach((category)=>{
+        if(products.filter((product)=>product.productCategory===category).length>0)
+        categories.push(category as categories)
+    })
+    const handleChange=(event:React.ChangeEvent<HTMLInputElement>)=>{
       setSelectedCategory(event.target.value as categories) 
   }
     useEffect(()=>{
@@ -18,18 +25,17 @@ const ProductsContainer =({products}:{products:Product[]})=>{
         setFilteredProducts(products.filter((product)=>product.productCategory===selectedCategory))
         
     },[selectedCategory, products])
-    console.log(selectedCategory)
   
   return(
     <div>
-      <div className={'w-100 overflow-x-scroll sportswearList'}>
+      <div className={'w-100 overflow-x-scroll sportswearList mb-2'}>
           <ul className={'nav nav-underline gap-0 flex-nowrap list-group list-group-horizontal text-nowrap'}>
               <li className={'nav-item p-1 list-group-item d-flex justify-content-between align-items-center'}>
                   <label htmlFor={'all'} className={'nav-link p-1 link-secondary'}>ALL</label>
                   <input type={'radio'} name={'productCategory'}  id={'all'} value={''} onChange={e=>handleChange(e)} className={'d-none'} />
                   <span className="badge text-bg-secondary rounded-pill">{products.length}</span>
               </li>
-              {categoriesList.map((category,index)=>
+              {categories.map((category,index)=>
      
         <li key={index} className={'nav-item p-1 list-group-item d-flex justify-content-between align-items-center '} >
           <label htmlFor={category} className={'nav-link p-1 link-secondary  '}>{category}</label>
