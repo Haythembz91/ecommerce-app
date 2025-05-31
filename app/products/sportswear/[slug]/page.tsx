@@ -1,9 +1,8 @@
 
 const Home =()=>{
     return(
-        <div>
-            Ania Kubow
-        </div>
+        <div>Ania Kubow</div>
     )
 }
+
 export default Home
