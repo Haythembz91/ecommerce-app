@@ -9,7 +9,7 @@ import {categories} from "@/utils/enums";
 const ProductsContainer =({products}:{products:Product[]})=>{
 
   if(products.length===0)
-    return <div className={'text-secondary px-5'}>Sorry - we can't find any product with this search filter.</div>
+    return <div className={'text-secondary px-5 text-center'}>Sorry - we can't find any product with this search filter.</div>
   
   
   const [filteredProducts, setFilteredProducts]=useState<Product[]>(products)
