@@ -13,6 +13,6 @@ export const legLengthsList:legLengths[]=[legLengths.SEVEN_EIGHT,legLengths.REGU
 
 export const sleeveLengthsList:sleeveLengths[]=[sleeveLengths.SHORT,sleeveLengths.LONG, sleeveLengths.SLEEVELESS]
 
-export const otherList:other[]=[other.BEST_SELLERS,other.NEW_RELEASES,other.SPRING_EDIT]
+export const otherList:other[]=[other.BEST_SELLERS,other.NEW_RELEASES,other.SPRING_EDIT, other.LOWBACK_EDIT]
 
 export const sortList:sort[]=[sort.NEWEST,sort.PRICE_DSC,sort.PRICE_ASC]
