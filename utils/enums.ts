@@ -11,8 +11,7 @@ export enum categories{
     SPORTS_BRAS='Sports Bras',
     SHORTS='Shorts',
     T_SHIRTS_AND_TOPS='T-Shirts & Tops',   HOODIES_SWEATSHIRTS_JACKETS='Hoodies, Sweatshirts & Jackets',
-    UNITARDS='Unitards',
-    ACCESSORIES='Accessories'
+    UNITARDS='Unitards'
 }
 
 export enum sizes{
@@ -42,7 +41,6 @@ export enum collections{
     POWER='Power',
     ESSENTIAL='Essential',
     COMFORT='Comfort',
-    ACCESSORIES='Accessories',
     SMOOTHCONTOUR='Smooth Contour',
 }
 export enum legLengths{

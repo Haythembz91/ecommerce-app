@@ -2,12 +2,12 @@ import {sizes,categories,colors,legLengths,sleeveLengths,collections,other,sort}
 
 export const sizesList:sizes[]=[sizes.XS,sizes.S,sizes.M,sizes.L,sizes.XL,sizes.XXL]
 
-export const categoriesList:categories[]=[categories.LEGGINGS,categories.JOGGERS,categories.SPORTS_BRAS,categories.SHORTS,categories.T_SHIRTS_AND_TOPS,categories.HOODIES_SWEATSHIRTS_JACKETS,categories.UNITARDS,categories.ACCESSORIES]
+export const categoriesList:categories[]=[categories.LEGGINGS,categories.JOGGERS,categories.SPORTS_BRAS,categories.SHORTS,categories.T_SHIRTS_AND_TOPS,categories.HOODIES_SWEATSHIRTS_JACKETS,categories.UNITARDS]
 
 export const colorsList:colors[]=[colors.BLACK,colors.RED,colors.GREEN,colors.BLUE,colors.YELLOW,colors.GREY,colors.WHITE,colors.PINK,colors.BROWN]
 
 export const 
-collectionsList:collections[]=[collections.MOTION,collections.DEFINE,collections.POWER,collections.ESSENTIAL,collections.COMFORT,collections.ACCESSORIES,collections.SMOOTHCONTOUR]
+collectionsList:collections[]=[collections.MOTION,collections.DEFINE,collections.POWER,collections.ESSENTIAL,collections.COMFORT,collections.SMOOTHCONTOUR]
 
 export const legLengthsList:legLengths[]=[legLengths.SEVEN_EIGHT,legLengths.REGULAR,legLengths.LONG]
 
