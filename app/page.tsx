@@ -2,7 +2,8 @@ import SliderSportswear from "@/componants/SliderSportswear"
 import Link from "next/link";
 import {routes} from "@/utils/enums";
 import mobileBanner from "@/1.WB_LowBackEdit_LaunchBanner_1600x2100_20250520_dp_mobile_400x@2x.jpg"
-const Home = async ()=>{
+import ProductSlider from "@/componants/ProductSlider";
+const Home = ()=>{
 
     console.log("Ania Kubow")
     
@@ -16,7 +17,7 @@ const Home = async ()=>{
                     <h2>Sportswear favorites</h2>
                     <Link className={'fw-medium link-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover'} href={`/shop${routes.SPORTSWEAR}`}>Shop</Link>
                 </div>
-                
+                <ProductSlider></ProductSlider>    
             </section>
             <section className={'my-2 mx-md-2'}>
                 <div className=" text-bg-dark">

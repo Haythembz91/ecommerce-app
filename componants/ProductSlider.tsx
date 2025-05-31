@@ -1,11 +1,17 @@
-import ProductCard from "@/componants/ProductCard"
+import { GetProducts } from "@/utils/GetProducts"
+import { Product } from "@/utils/interfaces"
+import ProductsContainer from "./ProductsContainer"
+import { collections } from "@/utils/enums"
+import ProductCard from "./ProductCard"
 
 
-const ProductSlider = () => {
-    
+
+const ProductSlider = async () => {
+    const favoriteProducts :Product[]= await GetProducts({productCollection:collections.DEFINE})
     return(
-        <div className="row gx-2 flex-nowrap overflow-x-scroll productSlide">
-            <ProductCard/>
+        <div className="row row-cols-2 gx-2 flex-nowrap overflow-x-scroll productSlide">
+            {favoriteProducts.map((product,index)=>
+            <ProductCard key={index} product={product}/>)}    
         </div>
     )
 }
