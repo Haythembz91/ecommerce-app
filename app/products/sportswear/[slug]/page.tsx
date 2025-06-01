@@ -1,7 +1,15 @@
 
-const Home =()=>{
+const Home =async({params}:{params:{slug:String}})=>{
+    const {slug} = params
+    const arr = slug.split('-')
+    const color = arr.pop()
+    const name= arr.join(' ')
+
+
+    
+    
     return(
-        <div>Ania Kubow</div>
+        <div>{name + ' '+ color}</div>
     )
 }
 
