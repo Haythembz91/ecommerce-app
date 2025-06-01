@@ -2,7 +2,7 @@ import { GetProducts } from "@/utils/GetProducts"
 
 const Home =async({params}:{params:{slug:String}})=>{
     const {slug} = params
-    const arr = slug.split('-')
+    const arr = slug.split('_')
     const color = arr.pop()
     const name= arr.join(' ')
 
