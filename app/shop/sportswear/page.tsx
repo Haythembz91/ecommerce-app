@@ -5,6 +5,9 @@ import ProductsContainer from "@/componants/ProductsContainer"
 const Home = async ({searchParams})=>{
     
     const filters = await searchParams
+    const sortOrder = filters.sort
+    delete filters.sort
+    console.log(filters)
     const products:Product[] = await GetProducts(filters)
      
     return(

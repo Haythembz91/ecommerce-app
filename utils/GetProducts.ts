@@ -7,8 +7,7 @@ export const GetProducts = async(filters:Record<string,string|undefined>)=>{
             'x-requested-with':'XMLHttpRequest'
          }
       })
-   const products = await response.json()
-   return products.sort(()=>Math.random()-0.5)
+   return response.json()
    }catch(e){
       console.error(e)
    }
