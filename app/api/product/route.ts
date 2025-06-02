@@ -3,6 +3,7 @@ import { getDb } from "@/utils/mongodb";
 import {UploadToCloudinary} from "@/utils/UploadToCloudinary";
 import {categories, sleeveLengths, legLengths, collections, colors, sizes} from "@/utils/enums";
 import {Product} from "@/utils/interfaces";
+import { ObjectId } from "mongodb";
 
 
 export async function POST(req:NextRequest){
@@ -65,6 +66,9 @@ export async function GET(req:NextRequest){
     if(requestedWith !== 'XMLHttpRequest') return NextResponse.json({message:'Invalid Request'}, {status: 400})
     const searchParams = req.nextUrl.searchParams
     const filters = Object.fromEntries(searchParams.entries())
+    if (filters._id&& ObjectId.isValid(filters._id)){
+        filters._id= new ObjectId(filters._id)
+    }
     const query = searchParams.get('query')
     const regex = new RegExp(query as string, 'i')
     try{

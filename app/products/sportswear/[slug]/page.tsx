@@ -1,12 +1,11 @@
 import { GetProducts } from "@/utils/GetProducts"
+import { ObjectId } from "mongodb"
 
 const Home =async({params}:{params:{slug:String}})=>{
     const {slug} = params
-    const arr = slug.split('_')
-    const color = arr.pop()
-    const name= arr.join(' ')
+    const id = slug.split('_').pop()
 
-    const product = await GetProducts({primaryColor:color, productName:name})
+    const product = await GetProducts({_id: id})
     
 
 
