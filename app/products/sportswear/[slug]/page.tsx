@@ -1,8 +1,7 @@
 import { GetProducts } from "@/utils/GetProducts"
-import { ObjectId } from "mongodb"
 
-const Home =async({params}:{params:{slug:String}})=>{
-    const {slug} = params
+const Home = async ({params}:{params:{slug:string}})=>{
+    const {slug} = await params
     const id = slug.split('_').pop()
 
     const product = await GetProducts({_id: id})
