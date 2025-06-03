@@ -5,6 +5,7 @@ const Home = async ({params}:{params:{slug:string}})=>{
     const id = slug.split('_').pop()
 
     const product = await GetProducts({_id: id})
+    console.log(product[0])
     
 
 
