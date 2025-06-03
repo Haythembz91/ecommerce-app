@@ -1,7 +1,7 @@
 import {NextResponse, NextRequest} from "next/server";
 import { getDb } from "@/utils/mongodb";
 import {UploadToCloudinary} from "@/utils/UploadToCloudinary";
-import {categories, sleeveLengths, legLengths, collections, colors, sizes} from "@/utils/enums";
+import {categories, sleeveLengths, legLengths, collections, colors, sizes, other} from "@/utils/enums";
 import {Product} from "@/utils/interfaces";
 import { ObjectId } from "mongodb";
 
@@ -43,7 +43,8 @@ export async function POST(req:NextRequest){
             productSizes:formData.getAll('productSizes') as sizes[],
             productPrice: Number(formData.get('productPrice')).toFixed(2),
             productQuantities:Object.fromEntries(quantitiesMap),
-            dateAdded: new Date().toISOString()
+            dateAdded: new Date().toISOString(),
+            other:formData.get('other') as other
         }
         for(const color of Object.keys(imagesByColor)){
            const productVariant:Product = {...product,'urlByColor':imagesByColor[color],'primaryColor':color as colors}

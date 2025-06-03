@@ -1,7 +1,7 @@
 'use client'
 import React, {useState} from "react";
 import {categories, colors, sizes} from "@/utils/enums";
-import {categoriesList, colorsList, legLengthsList, sizesList, sleeveLengthsList,collectionsList} from "@/utils/const";
+import {categoriesList, colorsList, legLengthsList, sizesList, sleeveLengthsList,collectionsList, otherList} from "@/utils/const";
 
 
 const DashboardForm =()=>{
@@ -31,7 +31,7 @@ const [msg,setMsg]=useState<string>('')
         }
     }
 
-    const handleSubmit= async (e:React.FormEvent)=>{
+    const handleSubmit= async (e:React.FormEvent<HTMLFormElement>)=>{
         e.preventDefault()
         setLoading(true)
         setMsg('')
@@ -153,6 +153,18 @@ const [msg,setMsg]=useState<string>('')
                                     {collectionsList.map((collection,index)=>
                                             <option key={index} value={collection}>
                                                 {collection}</option>)}                                </select>       
+                            </div>
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor={'other'} className={'form-label'}>Other: </label>
+                            <div className={'input-group'}>
+                                <select defaultValue={''} className="form-control" id={'other'} name={'other'}>
+                                    <option value='' disabled>Select Event...</option>
+                                    {otherList.map((item,index)=>
+                                    <option key={index} value={item}>{item}</option>
+                                    )}
+
+                                </select>
                             </div>
                         </div>
                         <div className="mb-3">
