@@ -8,7 +8,7 @@ import ProductCard from "./ProductCard"
 const ProductSlider = async () => {
     const favoriteProducts :Product[]= await GetProducts({productCollection:collections.SMOOTHCONTOUR})
     return(
-        <div className="row row-cols-2 gx-2 flex-nowrap overflow-x-scroll productSlide">
+        <div className="row row-cols-2 row-cols-md-4 mx-md-2 gx-2 flex-nowrap overflow-x-scroll productSlide">
             {favoriteProducts.map((product,index)=>
             <ProductCard key={index} product={product}/>)}    
         </div>
