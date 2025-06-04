@@ -1,7 +1,6 @@
 import SliderSportswear from "@/componants/SliderSportswear"
 import Link from "next/link";
 import {routes} from "@/utils/enums";
-import mobileBanner from "@/1.WB_LowBackEdit_LaunchBanner_1600x2100_20250520_dp_mobile_400x@2x.jpg"
 import ProductSlider from "@/componants/ProductSlider";
 const Home = ()=>{
 
@@ -21,7 +20,8 @@ const Home = ()=>{
             </section>
             <section className={'my-2 mx-md-2'}>
                 <div className=" text-bg-dark">
-                  <img src={mobileBanner.src} className="card-img" alt="..."/>
+                    <img src={'https://res.cloudinary.com/dmgfsayir/image/upload/v1749072500/1.WB_LowBackEdit_LaunchBanner_20250520_dp_desktop_2000x_ywdurm.webp'} className="d-none card-img d-md-block" alt="..."/>
+                    <img src={'https://res.cloudinary.com/dmgfsayir/image/upload/v1749072501/1.WB_LowBackEdit_LaunchBanner_1600x2100_20250520_dp_mobile_400x_2x_kmjz1l.jpg'} className="d-md-none card-img" alt="..."/>
                   <div className="carousel-caption">
                     <h3 className="card-title fw-bold ">LOW BACK EDIT</h3>
                     <h6 className="card-text">Bringing the heat.</h6>

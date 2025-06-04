@@ -1,35 +1,31 @@
-import defineBanner from '@/public/assets/banners/offcanvas/collections/1.Navigation.WB_CollectionBanner_500x478px_20241024_iw_500x.webp'
-import motionBanner from '@/public/assets/banners/offcanvas/collections/2.Navigation.WB_CollectionBanner_500x478px_20241024_iw_500x.jpg'
-import powerBanner from '@/public/assets/banners/offcanvas/collections/3.Navigation.WB_CollectionBanner_500x478px_20241024_iw_500x.webp'
-import essentialBanner from '@/public/assets/banners/offcanvas/collections/4.Navigation.WB_CollectionBanner_500x478px_20241024_iw_500x.webp'
-import smoothBanner from '@/1.Navigation.WB_CollectionBanner_SmoothContour500x478px_20241024_iw_300x.jpg'
-import comfortBanner from "@/public/assets/banners/offcanvas/collections/5.Navigation.WB_CollectionBanner_500x478px_20241024_iw_500x.jpg"
+import {collections} from "@/utils/enums";
+
 const OffcanvasCollection = ()=>{
 
-    const collections = [
+    const arrCollections = [
         {
-            banner:defineBanner.src,
-            name:'DEFINE 2.0'
+            banner:'https://res.cloudinary.com/dmgfsayir/image/upload/v1749073537/1.Navigation.WB_CollectionBanner_500x478px_20241024_iw_500x_ee7pcq.webp',
+            name:collections.DEFINE
         },
         {
-            banner:motionBanner.src,
-            name:'MOTION'
+            banner:'https://res.cloudinary.com/dmgfsayir/image/upload/v1749073538/2.Navigation.WB_CollectionBanner_500x478px_20241024_iw_500x_pqy5o3.jpg',
+            name:collections.MOTION
         },
         {
-            banner:powerBanner.src,
-            name:'POWER'
+            banner:'https://res.cloudinary.com/dmgfsayir/image/upload/v1749073539/3.Navigation.WB_CollectionBanner_500x478px_20241024_iw_500x_f8kagx.webp',
+            name:collections.POWER
         },
         {
-            banner:essentialBanner.src,
-            name:'ESSENTIAL'
+            banner:'https://res.cloudinary.com/dmgfsayir/image/upload/v1749073539/4.Navigation.WB_CollectionBanner_500x478px_20241024_iw_500x_sagtxq.webp',
+            name:collections.ESSENTIAL
         },
         {
-            banner:comfortBanner.src,
-            name:'COMFORT'
+            banner:'https://res.cloudinary.com/dmgfsayir/image/upload/v1749073557/5.Navigation.WB_CollectionBanner_500x478px_20241024_iw_500x_ajqchf.jpg',
+            name:collections.COMFORT
         },
         {
-            banner:smoothBanner.src,
-            name:'SMOOTH CONTOUR'
+            banner:'https://res.cloudinary.com/dmgfsayir/image/upload/v1749073558/1.Navigation.WB_CollectionBanner_SmoothContour500x478px_20241024_iw_300x_bxulgp.jpg',
+            name:collections.SMOOTHCONTOUR
         }
 
     ]
@@ -46,10 +42,10 @@ const OffcanvasCollection = ()=>{
                 <p className={'text-center w-100'}>Shop by Collection</p>
             </a>
             <div className={'d-flex flex-wrap'}>
-                {collections.map((col, index) => <div
+                {arrCollections.map((col, index) => <div
                     className={'p-1 col-6 position-relative d-flex align-items-center'} key={index}>
-                    <a className={'h-100 align-content-center link-light link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover position-absolute w-100 text-center'}
-                       href={'#'}>{col.name}</a>
+                    <a className={'fw-bold h-100 align-content-center link-light link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover position-absolute w-100 text-center'}
+                       href={'#'}>{col.name.toUpperCase()}</a>
                     <img className={'img-fluid'} src={col.banner} alt={col.name}/>
                 </div>)
                 }

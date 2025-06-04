@@ -1,39 +1,35 @@
-
-import collection_banner1 from "@/public/assets/banners/collection_banner/1.Navigation.WB_CollectionBanner_900x266px_20241018_iw.webp"
-import collection_banner2 from "@/public/assets/banners/collection_banner/2.Navigation.WB_CollectionBanner_900x266px_20241018_iw.jpg"
-import collection_banner3 from "@/public/assets/banners/collection_banner/3.Navigation.WB_CollectionBanner_900x266px_20241018_iw.webp"
-import collection_banner4 from "@/public/assets/banners/collection_banner/4.Navigation.WB_CollectionBanner_900x266px_20241018_iw.webp"
-import collection_banner5 from "@/public/assets/banners/collection_banner/5.Navigation.WB_CollectionBanner_900x266px_20241018_iw.jpg"
-import collection_banner6 from "@/public/assets/banners/collection_banner/6.Navigation.WB_CollectionBanner_900x266px_20241018_iw.webp"
+import {collections} from "@/utils/enums";
 import CollectionBanner from "@/scripts/CollectionBanner";
-
-
 const Collections = ()=>{
 
-    const collections = [
-        {banner:collection_banner1,
-        name:'Define Scrunch Collection'},
-        {banner:collection_banner2,
-        name:'Motion Collection'},
-        {
-            banner:collection_banner3,
-            name:'Power Collection'
+    const arrCollections = [
+        {banner:'https://res.cloudinary.com/dmgfsayir/image/upload/v1749074872/1.Navigation.WB_CollectionBanner_900x266px_20241018_iw_iwnnzc.webp',
+        name:collections.DEFINE
         },
-        {banner:collection_banner4,
-        name:'Essential Collection'},
-        {banner:collection_banner5,
-        name:'Comfort Collection'},
-        {banner:collection_banner6,
-            name:'Accessories'
+        {banner:'https://res.cloudinary.com/dmgfsayir/image/upload/v1749074886/2.Navigation.WB_CollectionBanner_900x266px_20241018_iw_gijxlc.jpg',
+        name:collections.MOTION
+        },
+        {
+            banner:'https://res.cloudinary.com/dmgfsayir/image/upload/v1749074901/3.Navigation.WB_CollectionBanner_900x266px_20241018_iw_jq7f26.webp',
+            name:collections.POWER
+        },
+        {banner:'https://res.cloudinary.com/dmgfsayir/image/upload/v1749074902/4.Navigation.WB_CollectionBanner_900x266px_20241018_iw_nhnew2.webp',
+        name:collections.ESSENTIAL
+        },
+        {banner:'https://res.cloudinary.com/dmgfsayir/image/upload/v1749074903/5.Navigation.WB_CollectionBanner_900x266px_20241018_iw_vpmnvc.jpg',
+        name:collections.COMFORT
+        },
+        {banner:'https://res.cloudinary.com/dmgfsayir/image/upload/v1749074873/1.Navigation.WB_CollectionBanner_SmoothContour_900x266px_20250429_iw_oeii5y.webp',
+            name:collections.SMOOTHCONTOUR
         }
     ]
 
     return(
         <div className={`visually-hidden collectionsContainer position-absolute start-0 d-flex flex-wrap`}>
-            {collections.map((col,index)=>
+            {arrCollections.map((col,index)=>
                 <div key={index} className={'collectionBanners d-none d-md-block col-4 position-relative'}>
                     <a className={'w-100 h-100 align-content-center link-light link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover position-absolute w-100 text-center'} href={'#'}>{col.name}</a>
-                    <img className={'img-fluid'} src={col.banner.src} alt={col.name}/>
+                    <img className={'img-fluid'} src={col.banner} alt={col.name}/>
                 </div>)}
             <CollectionBanner></CollectionBanner>
         </div>

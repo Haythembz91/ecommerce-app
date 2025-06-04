@@ -1,10 +1,3 @@
-import banner_wide1 from "@/public/assets/banners/1.WB_Define2.0_MainBanner_3000x1270_20250221_lh_desktop_ab401c72-4e88-4c4f-8f25-4b33e5837cb9_1600x.jpg"
-import banner_wide2 from "@/public/assets/banners/01.Mixed.WB_EasterFlashSale_MainBanner_20250408_lm_desktop_1600x.webp"
-import banner_wide3 from "@/public/assets/banners/Mixed.WB_KingsDaySale_MainBanner_3000x1270_20250417_lh_desktop_1600x.webp"
-import banner_mobile1 from "@/public/assets/banners/1.WB_Define2.0_MainBanner_1600x2070_20250221_lh_mobile_caff70f7-39f5-40bb-8dc8-7ab8680aad1b_1000x.webp"
-import banner_mobile2 from "@/public/assets/banners/01.Mixed.WB_EasterFlashSale_MainBanner_20250408_lm_mobile_680x.webp"
-import banner_mobile3 from "@/public/assets/banners/Mixed.WB_KingsDaySale_MainBanner_1600x2070_20250417_lh_mobile_680x.webp"
-
 
 const SliderSportswear =()=>{
 
@@ -22,11 +15,11 @@ const SliderSportswear =()=>{
                 <div className={"carousel-inner"}>
                     <div className={"carousel-item active"}>
                         <img
-                            src={banner_wide1.src}
-                            className={"d-none d-md-block w-100"} alt={"..."}/>
+                            src={'https://res.cloudinary.com/dmgfsayir/image/upload/v1749072499/1.WB_Define2.0_MainBanner_3000x1270_20250221_lh_desktop_ab401c72-4e88-4c4f-8f25-4b33e5837cb9_1600x_jsfucj.webp'}
+                            className={"d-none d-md-block w-100"} alt={"Home banner"}/>
                         <img
-                            src={banner_mobile1.src}
-                            className={"d-md-none w-100"} alt={"..."}/>
+                            src={'https://res.cloudinary.com/dmgfsayir/image/upload/v1749072499/1.WB_Define2.0_MainBanner_1600x2070_20250221_lh_mobile_caff70f7-39f5-40bb-8dc8-7ab8680aad1b_1000x_qqjboq.webp'}
+                            className={"d-md-none w-100"} alt={"Home banner"}/>
                         <div className={"carousel-caption"}>
                             <h3 className={'bannerHeading fw-bold'}>DEFINE 2.0</h3>
                             <h6 className={'fw-medium'}>New styles & colors</h6>
@@ -41,11 +34,11 @@ const SliderSportswear =()=>{
                     </div>
                     <div className="carousel-item">
                         <img
-                            src={banner_wide2.src}
-                            className={"d-none d-md-block w-100"} alt={"..."}/>
+                            src={'https://res.cloudinary.com/dmgfsayir/image/upload/v1749072499/01.Mixed.WB_EasterFlashSale_MainBanner_20250408_lm_desktop_1600x_ldtl0s.webp'}
+                            className={"d-none d-md-block w-100"} alt={"Home banner"}/>
                         <img
-                            src={banner_mobile2.src}
-                            className={"d-md-none w-100"} alt={"..."}/>
+                            src={'https://res.cloudinary.com/dmgfsayir/image/upload/v1749072499/01.Mixed.WB_EasterFlashSale_MainBanner_20250408_lm_mobile_680x_bpxfqt.webp'}
+                            className={"d-md-none w-100"} alt={"Home banner"}/>
                         <div className={"carousel-caption"}>
                             <h3 className={'bannerHeading fw-bold'}>DISCOVER OUR BEST SELLERS</h3>
                             <h6 className={'fw-medium'}>Up to 70% off</h6>
@@ -57,11 +50,11 @@ const SliderSportswear =()=>{
                     </div>
                     <div className={"carousel-item"}>
                         <img
-                            src={banner_wide3.src}
-                            className={"d-none d-md-block w-100"} alt={"..."}/>
+                            src={'https://res.cloudinary.com/dmgfsayir/image/upload/v1749072500/Mixed.WB_KingsDaySale_MainBanner_3000x1270_20250417_lh_desktop_1600x_zkujsv.webp'}
+                            className={"d-none d-md-block w-100"} alt={"Home banner"}/>
                         <img
-                            src={banner_mobile3.src}
-                            className={"d-md-none w-100"} alt={"..."}/>
+                            src={'https://res.cloudinary.com/dmgfsayir/image/upload/v1749072500/Mixed.WB_KingsDaySale_MainBanner_1600x2070_20250417_lh_mobile_680x_w2gbm3.webp'}
+                            className={"d-md-none w-100"} alt={"Home banner"}/>
                         <div className={"carousel-caption"}>
                             <h3 className={'bannerHeading fw-bold'}>SPRING EDIT</h3>
                             <h6 className={'fw-medium'}>New season, new energy</h6>
