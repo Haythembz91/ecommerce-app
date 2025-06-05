@@ -64,7 +64,10 @@ export async function POST(req:NextRequest){
 
 export async function GET(req:NextRequest){
     const requestedWith = req.headers.get('x-requested-with')
-    if(requestedWith !== 'XMLHttpRequest') return NextResponse.json({message:'Invalid Request'}, {status: 400})
+    if(requestedWith !== 'XMLHttpRequest')
+
+        return NextResponse.json({message:'Invalid Request'}, {status: 400})
+
     const searchParams = req.nextUrl.searchParams
     const filters = Object.fromEntries(searchParams.entries())
     if (filters._id&& ObjectId.isValid(filters._id)){
@@ -74,6 +77,9 @@ export async function GET(req:NextRequest){
     const regex = new RegExp(query as string, 'i')
     try{
         const db=await getDb()
+        if (!db) {
+            return NextResponse.json({ message: 'Database connection failed' }, { status: 500 });
+        }
         const productsCollection = db.collection('products')
         if(query){
         const products = await productsCollection.find({
@@ -94,5 +100,6 @@ export async function GET(req:NextRequest){
     
     }catch(e){
         console.error(e)
+        return NextResponse.json({ message: 'Internal Server Error' }, { status: 500 });
     }
 }
