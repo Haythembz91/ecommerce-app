@@ -1,14 +1,14 @@
 import { GetProducts } from "@/utils/GetProducts"
 import { Product } from "@/utils/interfaces"
-import { collections } from "@/utils/enums"
+import {categories, collections, other,} from "@/utils/enums"
 import ProductCard from "./ProductCard"
 
 
 
-const ProductSlider = async () => {
-    const favoriteProducts :Product[]= await GetProducts({productCollection:collections.SMOOTHCONTOUR})
+const ProductSlider = async ({filter}:{filter:Record<string,categories|collections|other>}) => {
+    const favoriteProducts :Product[]= await GetProducts(filter)
     return(
-        <div className="row row-cols-2 row-cols-md-4 mx-md-2 gx-2 flex-nowrap overflow-x-scroll productSlide">
+        <div className="ps-2 row row-cols-1 row-cols-lg-2 mx-md-2 mt-5 mt-lg-0 gx-2 flex-nowrap overflow-x-scroll productSlide">
             {favoriteProducts.map((product,index)=>
             <ProductCard key={index} product={product}/>)}    
         </div>
