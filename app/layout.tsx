@@ -30,13 +30,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
+          <BootstrapClient></BootstrapClient>
               <ClerkProvider>
                   <Header></Header>
                   <main>
                     {children}
                   </main>
               </ClerkProvider>
-              <BootstrapClient></BootstrapClient>
       </body>
     </html>
   );
