@@ -1,6 +1,6 @@
 import SliderSportswear from "@/componants/SliderSportswear"
 import Link from "next/link";
-import {categories, routes} from "@/utils/enums";
+import {categories, collections, routes} from "@/utils/enums";
 import ProductSlider from "@/componants/ProductSlider";
 
 const Home = ()=>{
@@ -14,12 +14,19 @@ const Home = ()=>{
             </section>
             <section className={'my-2 mx-md-2'}>
                 <div className={'mx-2 mx-md-0 d-flex justify-content-between align-items-center'}>
+                    <h2>Trending Activewear</h2>
+                    <Link className={'fw-medium link-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover'} href={`/shop${routes.SPORTSWEAR}`}>Shop All</Link>
+                </div>
+                <ProductSlider filter={{productCollection:collections.DEFINE}}></ProductSlider>
+            </section>
+            <section className={'my-2 mx-md-2'}>
+                <div className={'mx-2 mx-md-0 d-flex justify-content-between align-items-center'}>
                     <h2>THE UNITARDS ARE BACK</h2>
                     <Link className={'fw-medium link-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover'} href={`/shop${routes.SPORTSWEAR}`}>Shop</Link>
                 </div>
-                <div className={'row row-cols-2'}>
-                    <img className={'img-fluid row d-none d-lg-block'} src={'https://res.cloudinary.com/dmgfsayir/image/upload/v1749130167/1.WB_DefineUnitard_RestockBanner_2ss240430_iw_desktop_2000x_rlfc3r.webp'}/>
-                    <img className={'img-fluid row d-lg-none'} src={'https://res.cloudinary.com/dmgfsayir/image/upload/v1749130167/1.WB_DefineUnitard_RestockBanner_2ss240430_iw_mobile_768x_d4addc.webp'}/>
+                <div className={'row row-cols-2 mx-0'}>
+                    <img className={'me-1 img-fluid row d-none d-lg-block'} src={'https://res.cloudinary.com/dmgfsayir/image/upload/v1749130167/1.WB_DefineUnitard_RestockBanner_2ss240430_iw_desktop_2000x_rlfc3r.webp'}/>
+                    <img className={'me-1 img-fluid row d-lg-none'} src={'https://res.cloudinary.com/dmgfsayir/image/upload/v1749130167/1.WB_DefineUnitard_RestockBanner_2ss240430_iw_mobile_768x_d4addc.webp'}/>
                     <ProductSlider filter={{productCategory:categories.UNITARDS}}></ProductSlider>
                 </div>
             </section>
