@@ -39,3 +39,6 @@ div.sportswearList::-webkit-scrollbar {
     display: none;  /* Safari and Chrome */
   }
 }
+.filteredCategories{
+  cursor:pointer;
+}

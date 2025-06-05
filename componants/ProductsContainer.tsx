@@ -36,14 +36,14 @@ const ProductsContainer =({products}:{products:Product[]})=>{
       <div className={'w-100 overflow-x-scroll sportswearList mb-2'}>
           <ul className={'nav nav-underline gap-0 flex-nowrap list-group list-group-horizontal text-nowrap'}>
               <li className={'nav-item p-1 list-group-item d-flex justify-content-between align-items-center'}>
-                  <label htmlFor={'all'} className={'nav-link p-1 link-secondary'}>ALL</label>
+                  <label htmlFor={'all'} className={'nav-link filteredCategories p-1 link-secondary'}>ALL</label>
                   <input type={'radio'} name={'productCategory'}  id={'all'} value={''} onChange={e=>handleChange(e)} className={'d-none'} />
                   <span className="badge text-bg-secondary rounded-pill">{products.length}</span>
               </li>
               {categories.map((category,index)=>
      
         <li key={index} className={'nav-item p-1 list-group-item d-flex justify-content-between align-items-center '} >
-          <label htmlFor={category} className={'nav-link p-1 link-secondary  '}>{category}</label>
+          <label htmlFor={category} className={'filteredCategories nav-link p-1 link-secondary'}>{category}</label>
           <input type={'radio'} name={'productCategory'}  id={category} value={category} onChange={e=>handleChange(e)} className={'d-none'} />
           <span className="badge text-bg-secondary rounded-pill">{products.filter((product)=>product.productCategory===category).length}</span>
       </li>

@@ -56,12 +56,10 @@ router.push(`?${params.toString()}`)
                                     setSelectedFilters({})
                                 startTransition(()=>
                                 router.push('/shop/sportswear')
-                                )
-                                                                                              }} className={'badge text-bg-secondary btn btn-outline-secondary rounded-pill position-absolute end-0 me-3'}>Clear All</button>
+                                )}} className={'badge text-bg-secondary btn btn-outline-secondary rounded-pill position-absolute end-0 me-3'}>Clear All</button>
                             </ul>
                             </div>
-                                                                    ):null}
-
+                            ):null}
                         </div>
                         <ul className="navbar-nav text-nowrap">
                             <li className="nav-item dropdown">
