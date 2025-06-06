@@ -26,7 +26,7 @@ const Home = ()=>{
                 </div>
                 <div className={'row row-cols-2 mx-0'}>
                     <img className={'me-1 img-fluid row d-none d-lg-block'} src={'https://res.cloudinary.com/dmgfsayir/image/upload/v1749130167/1.WB_DefineUnitard_RestockBanner_2ss240430_iw_desktop_2000x_rlfc3r.webp'}/>
-                    <img className={'me-1 img-fluid row d-lg-none'} src={'https://res.cloudinary.com/dmgfsayir/image/upload/v1749130167/1.WB_DefineUnitard_RestockBanner_2ss240430_iw_mobile_768x_d4addc.webp'}/>
+                    <img className={'me-1 object-fit-cover img-fluid row d-lg-none'} src={'https://res.cloudinary.com/dmgfsayir/image/upload/v1749130167/1.WB_DefineUnitard_RestockBanner_2ss240430_iw_mobile_768x_d4addc.webp'}/>
                     <ProductSlider filter={{productCategory:categories.UNITARDS}}></ProductSlider>
                 </div>
             </section>
