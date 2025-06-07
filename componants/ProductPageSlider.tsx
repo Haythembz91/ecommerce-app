@@ -2,7 +2,7 @@ import {Product} from "@/utils/interfaces";
 
 const ProductPageSlider = ({product}: { product:Product })=>{
     return(
-        <div>
+        <div className={''}>
             <div id="carouselExampleIndicators" className="carousel slide" data-bs-ride="carousel">
                 <div className="carousel-inner">
                     {product.urlByColor.map((url, index) => (
@@ -22,12 +22,12 @@ const ProductPageSlider = ({product}: { product:Product })=>{
                     <span className="visually-hidden">Next</span>
                 </button>
             </div>
-            <div className="carousel-indicators position-absolute top-100">
+            <div className="d-flex gap-1 p-1">
                 {product.urlByColor.map((url,index)=>(
-                    <button key={index} type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to={index}
-                            className={index === 0 ? 'active' : ''} style={{width:'200px'}} aria-current={index === 0 ? 'true' : 'false'} aria-label={`Slide ${index+1}`}>
-                        <img src={url} className="d-block w-100" alt="product image"/>
-                    </button>
+                    <a key={index} role="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to={index}
+                            className={`${index === 0 ? 'active' : ''}`} style={{width:'200px',}} aria-current={index === 0 ? 'true' : undefined} aria-label={`Slide ${index+1}`}>
+                        <img src={url} className="d-block w-100 opacity-50" alt="product image"/>
+                    </a>
                 ))}
             </div>
         </div>

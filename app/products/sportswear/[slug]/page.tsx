@@ -15,6 +15,7 @@ const Home = async ({params}:{params:{slug:string}})=>{
     return(
         <div>{product[0].productName + product[0].primaryColor + product[0]._id}
             <ProductPageSlider product={product[0]}></ProductPageSlider>
+            <h1>{product[0].productName}</h1>
         </div>
     )
 }
