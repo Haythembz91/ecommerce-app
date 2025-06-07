@@ -22,11 +22,11 @@ const ProductPageSlider = ({product}: { product:Product })=>{
                     <span className="visually-hidden">Next</span>
                 </button>
             </div>
-            <div className="d-flex gap-1 p-1">
+            <div className="d-flex gap-1 py-1">
                 {product.urlByColor.map((url,index)=>(
                     <a key={index} role="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to={index}
                             className={`${index === 0 ? 'active' : ''}`} style={{width:'200px',}} aria-current={index === 0 ? 'true' : undefined} aria-label={`Slide ${index+1}`}>
-                        <img src={url} className="d-block w-100 opacity-50" alt="product image"/>
+                        <img src={url} className="d-block w-100 opacity-75" alt="product image"/>
                     </a>
                 ))}
             </div>
