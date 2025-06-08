@@ -42,3 +42,7 @@ div.sportswearList::-webkit-scrollbar {
 .filteredCategories{
   cursor:pointer;
 }
+
+.product-breadcrumbs{
+  font-size: 12px;
+}
