@@ -53,8 +53,7 @@ const ProductsContainer =({products}:{products:Product[]})=>{
     <div className={'row m-0 gx-2 row-cols-2 row-cols-md-4'}>
       {filteredProducts?.map((product:Product,index)=>{
           return(
-            <Link className="text-decoration-none" href={`/products/sportswear/${product.productName.replace(/\s+/g,'_').replace(/[^\w\-]+/g,'')}_${product.primaryColor}_${product._id}`} key={index}>
-
+            <Link className="text-decoration-none" href={`/products/sportswear/${product.productName}_${product.primaryColor}`} key={index}>
               <ProductCard key={product._id} product={product}></ProductCard>
               </Link>
           )

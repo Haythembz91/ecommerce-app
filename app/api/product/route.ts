@@ -73,6 +73,7 @@ export async function GET(req:NextRequest){
     if (filters._id&& ObjectId.isValid(filters._id)){
         filters._id= new ObjectId(filters._id)
     }
+    console.log(filters)
     const query = searchParams.get('query')
     const regex = new RegExp(query as string, 'i')
     try{
