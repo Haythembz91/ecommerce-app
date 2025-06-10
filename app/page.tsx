@@ -17,7 +17,7 @@ const Home = ()=>{
                     <h2>Trending Activewear</h2>
                     <Link className={'fw-medium link-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover'} href={`/shop${routes.SPORTSWEAR}`}>Shop All</Link>
                 </div>
-                <ProductSlider filter={{productCollection:collections.DEFINE}}></ProductSlider>
+                <ProductSlider filter={{limit:8}}></ProductSlider>
             </section>
             <section className={'my-2 mx-md-2'}>
                 <div className={'mx-2 mx-md-0 d-flex justify-content-between align-items-center'}>
@@ -27,13 +27,13 @@ const Home = ()=>{
                 <div className={'row row-cols-2 mx-0'}>
                     <img className={'me-1 img-fluid row d-none d-lg-block'} src={'https://res.cloudinary.com/dmgfsayir/image/upload/v1749130167/1.WB_DefineUnitard_RestockBanner_2ss240430_iw_desktop_2000x_rlfc3r.webp'}/>
                     <img className={'me-1 object-fit-cover img-fluid row d-lg-none'} src={'https://res.cloudinary.com/dmgfsayir/image/upload/v1749130167/1.WB_DefineUnitard_RestockBanner_2ss240430_iw_mobile_768x_d4addc.webp'}/>
-                    <ProductSlider filter={{productCategory:categories.UNITARDS}}></ProductSlider>
+                    <ProductSlider filter={{productCategory:categories.UNITARDS,limit:6}}></ProductSlider>
                 </div>
             </section>
             <section className={'my-2 mx-md-2'}>
-                <div className=" text-bg-dark">
-                    <img src={'https://res.cloudinary.com/dmgfsayir/image/upload/v1749072500/1.WB_LowBackEdit_LaunchBanner_20250520_dp_desktop_2000x_ywdurm.webp'} className="d-none card-img d-md-block" alt="..."/>
-                    <img src={'https://res.cloudinary.com/dmgfsayir/image/upload/v1749072501/1.WB_LowBackEdit_LaunchBanner_1600x2100_20250520_dp_mobile_400x_2x_kmjz1l.jpg'} className="d-md-none card-img" alt="..."/>
+                <div className="card border-0 text-bg-dark">
+                    <img src={'https://res.cloudinary.com/dmgfsayir/image/upload/v1749072500/1.WB_LowBackEdit_LaunchBanner_20250520_dp_desktop_2000x_ywdurm.webp'} className="d-none card-img rounded-0 d-md-block" alt="..."/>
+                    <img src={'https://res.cloudinary.com/dmgfsayir/image/upload/v1749072501/1.WB_LowBackEdit_LaunchBanner_1600x2100_20250520_dp_mobile_400x_2x_kmjz1l.jpg'} className="d-md-none rounded-0 card-img" alt="..."/>
                   <div className="carousel-caption">
                     <h3 className="card-title fw-bold ">LOW BACK EDIT</h3>
                     <h6 className="card-text">Bringing the heat.</h6>
@@ -46,6 +46,11 @@ const Home = ()=>{
                       </button>
                   </div>
                 </div>
+                <div className={'mx-2 mx-md-0 d-flex justify-content-between align-items-center'}>
+                    <h2>Sportswear favorites</h2>
+                    <Link className={'fw-medium link-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover'} href={`/shop${routes.SPORTSWEAR}?productCollection=${collections.DEFINE}`}>Shop</Link>
+                </div>
+                <ProductSlider filter={{productCollection:collections.DEFINE,limit:8}}></ProductSlider>
             </section>
         </div>
     )

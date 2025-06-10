@@ -1,5 +1,6 @@
+import {Filters} from "@/utils/interfaces";
 
-export const GetProducts = async(filters:Record<string,string|undefined>)=>{
+export const GetProducts = async(filters:Filters)=>{
    const searchParams = new URLSearchParams(filters).toString()
    try{
       const response = await fetch(`${process.env.BASE_URL}/api/product?${searchParams}`,{

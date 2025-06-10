@@ -11,4 +11,5 @@ export type Filters={
     productCategory?:categories
     productName?:string
     productPrice?:number
+    limit?:number
 }

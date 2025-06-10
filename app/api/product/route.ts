@@ -70,8 +70,12 @@ export async function GET(req:NextRequest){
 
     const searchParams = req.nextUrl.searchParams
     const filters = Object.fromEntries(searchParams.entries())
+    const limit = parseInt(filters.limit)
     if (filters._id&& ObjectId.isValid(filters._id)){
         filters._id= new ObjectId(filters._id)
+    }
+    if (filters.limit){
+        delete filters.limit
     }
     console.log(filters)
     const query = searchParams.get('query')
@@ -96,7 +100,7 @@ export async function GET(req:NextRequest){
         }).toArray()
         return NextResponse.json(products, {status: 200})
         }
-        const products = await productsCollection.find(filters).toArray()
+        const products = await productsCollection.find(filters).sort({_id:-1}).limit(!isNaN(limit)?limit:0).toArray()
         return NextResponse.json(products, {status: 200})
     
     }catch(e){

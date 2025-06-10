@@ -1,17 +1,24 @@
 import { GetProducts } from "@/utils/GetProducts"
-import { Product } from "@/utils/interfaces"
+import {Product} from "@/utils/interfaces"
 import {categories, collections, other,} from "@/utils/enums"
 import ProductCard from "./ProductCard"
+import {Filters} from "@/utils/types";
+import Link from "next/link";
 
 
 
-const ProductSlider = async ({filter}:{filter:Record<string,categories|collections|other>}) => {
+const ProductSlider = async ({filter}:{filter:Filters}) => {
     const favoriteProducts :Product[]= await GetProducts(filter);
     if (favoriteProducts)
     return(
-        <div className="row row-cols-1 row-cols-lg-4 gx-2 flex-nowrap overflow-x-scroll productSlide">
+        <div className="d-flex flex-nowrap gap-2 overflow-x-scroll productSlide">
             {favoriteProducts.map((product,index)=>
-            <ProductCard key={index} product={product}/>)}    
+                <div key={product._id} className={'col-5 col-md-3 pe-0'}>
+                    <Link className="text-decoration-none" href={`/products/sportswear/${product.productName}_${product.primaryColor}`}>
+                        <ProductCard product={product}/>
+                    </Link>
+                </div>
+            )}
         </div>
     )
 }
