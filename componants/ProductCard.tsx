@@ -6,7 +6,7 @@ const ProductCard = ({product}:{product:Product})=>{
   return(
       <div className={'col'}>
           <div className="card border-0">
-              <img src={product.urlByColor[0]} className="card-img-top" alt="..."/>
+              <img src={product.urlByColor![0]} className="card-img-top" alt="..."/>
               <div className="card-body px-2 py-2">
                   <h5 className="card-title mb-1 fs-6">{product.productName}</h5>
                   <p className="card-text mb-1">{product.primaryColor}</p>
