@@ -1,4 +1,4 @@
-import {sizes,categories,colors,legLengths,sleeveLengths,collections,other,sort} from "@/utils/enums"
+import {categories, collections, colors, legLengths, other, sizes, sleeveLengths, sort} from "@/utils/enums"
 
 export const sizesList:sizes[]=[sizes.XS,sizes.S,sizes.M,sizes.L,sizes.XL,sizes.XXL]
 
@@ -16,3 +16,24 @@ export const sleeveLengthsList:sleeveLengths[]=[sleeveLengths.SHORT,sleeveLength
 export const otherList:other[]=[other.BEST_SELLERS,other.NEW_RELEASES,other.SPRING_EDIT, other.LOWBACK_EDIT]
 
 export const sortList:sort[]=[sort.NEWEST,sort.PRICE_DSC,sort.PRICE_ASC]
+
+export const collectionBanners = [{
+    src:'https://res.cloudinary.com/dmgfsayir/image/upload/v1749569313/1.WB_Website_MainPage_Collections_20250429_lg_600x_xozqpw.webp',
+    title:collections.DEFINE,
+    text:'Made to help you lift heavy and without restrictions.'
+},
+    {
+        src:'https://res.cloudinary.com/dmgfsayir/image/upload/v1749569313/2.WB_Website_MainPage_Collections_20250429_lg_600x_uki3mx.webp',
+        title:collections.POWER,
+        text:'Made to help you reach new PBs.'
+    },
+    {
+        src:'https://res.cloudinary.com/dmgfsayir/image/upload/v1749569313/3.WB_Website_MainPage_Collections_20250429_lg_600x_hicaoa.webp',
+        title:collections.SMOOTHCONTOUR,
+        text:'Made for soft and stretchy layering.'
+    },
+    {
+        src:'https://res.cloudinary.com/dmgfsayir/image/upload/v1749569313/4.WB_Website_MainPage_Collections_20250429_lg_600x_homy3h.webp',
+        title:collections.ESSENTIAL,
+        text:'Made with comfort and all-day versatility in mind.'
+    }]

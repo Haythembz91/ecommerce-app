@@ -2,6 +2,8 @@ import SliderSportswear from "@/componants/SliderSportswear"
 import Link from "next/link";
 import {categories, collections, routes} from "@/utils/enums";
 import ProductSlider from "@/componants/ProductSlider";
+import ProductMiniSlider from "@/componants/ProductMiniSlider";
+import {collectionBanners} from "@/utils/const";
 
 const Home = ()=>{
 
@@ -22,12 +24,11 @@ const Home = ()=>{
             <section className={'my-2 mx-md-2'}>
                 <div className={'mx-2 mx-md-0 d-flex justify-content-between align-items-center'}>
                     <h2>THE UNITARDS ARE BACK</h2>
-                    <Link className={'fw-medium link-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover'} href={`/shop${routes.SPORTSWEAR}`}>Shop</Link>
                 </div>
                 <div className={'row row-cols-2 mx-0'}>
-                    <img className={'me-1 img-fluid row d-none d-lg-block'} src={'https://res.cloudinary.com/dmgfsayir/image/upload/v1749130167/1.WB_DefineUnitard_RestockBanner_2ss240430_iw_desktop_2000x_rlfc3r.webp'}/>
-                    <img className={'me-1 object-fit-cover img-fluid row d-lg-none'} src={'https://res.cloudinary.com/dmgfsayir/image/upload/v1749130167/1.WB_DefineUnitard_RestockBanner_2ss240430_iw_mobile_768x_d4addc.webp'}/>
-                    <ProductSlider filter={{productCategory:categories.UNITARDS,limit:6}}></ProductSlider>
+                    <img className={'img-fluid row d-none d-lg-block'} src={'https://res.cloudinary.com/dmgfsayir/image/upload/v1749130167/1.WB_DefineUnitard_RestockBanner_2ss240430_iw_desktop_2000x_rlfc3r.webp'}/>
+                    <img className={'object-fit-cover img-fluid row d-lg-none'} src={'https://res.cloudinary.com/dmgfsayir/image/upload/v1749130167/1.WB_DefineUnitard_RestockBanner_2ss240430_iw_mobile_768x_d4addc.webp'}/>
+                    <ProductMiniSlider filter={{productCategory:categories.UNITARDS,limit:6}}></ProductMiniSlider>
                 </div>
             </section>
             <section className={'my-2 mx-md-2'}>
@@ -51,6 +52,19 @@ const Home = ()=>{
                     <Link className={'fw-medium link-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover'} href={`/shop${routes.SPORTSWEAR}?productCollection=${collections.DEFINE}`}>Shop</Link>
                 </div>
                 <ProductSlider filter={{productCollection:collections.DEFINE,limit:8}}></ProductSlider>
+            </section>
+            <section className={'d-flex gap-2 overflow-scroll'}>
+                {collectionBanners.map((banner,index)=>(
+                    <Link key={index} className={'col-10 col-md-3 text-decoration-none'} href={`/shop${routes.SPORTSWEAR}?productCollection=${banner.title}`}>
+                        <div className="card rounded-0 border-0">
+                            <img src={banner.src} className="card-img-top rounded-0" alt="..."/>
+                            <div className="card-body">
+                                <h5 className="card-title">{banner.title}</h5>
+                                <p className="card-text">{banner.text}</p>
+                            </div>
+                        </div>
+                    </Link>
+                ))}
             </section>
         </div>
     )

@@ -37,6 +37,9 @@ const AddToCartForm = ({product}:{product:Product}) => {
                     ))}
                 </div>
             </div>
+            <div>
+                <h5><b>€{product.productPrice}</b></h5>
+            </div>
             <div className={'d-flex justify-content-center'}>
                 <button type={'submit'} className={'btn btn-dark rounded-5 my-2 w-75'}>Add to Cart</button>
             </div>
