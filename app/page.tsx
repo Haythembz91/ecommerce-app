@@ -53,9 +53,9 @@ const Home = ()=>{
                 </div>
                 <ProductSlider filter={{productCollection:collections.DEFINE,limit:8}}></ProductSlider>
             </section>
-            <section className={'d-flex gap-2 overflow-scroll'}>
+            <section className={'d-flex overflow-scroll'}>
                 {collectionBanners.map((banner,index)=>(
-                    <Link key={index} className={'col-10 col-md-3 text-decoration-none'} href={`/shop${routes.SPORTSWEAR}?productCollection=${banner.title}`}>
+                    <Link key={index} className={'col-10 ps-3 col-md-3 text-decoration-none'} href={`/shop${routes.SPORTSWEAR}?productCollection=${banner.title}`}>
                         <div className="card rounded-0 border-0">
                             <img src={banner.src} className="card-img-top rounded-0" alt="..."/>
                             <div className="card-body">
