@@ -1,8 +1,13 @@
+'use client'
+import {CartItem} from "@/utils/types";
 
 
-const CartItem = ()=>{
+const CartItem = ({item}:{item:CartItem})=>{
+
     return (
-        <div></div>
+        <div>
+            {item.productName}
+        </div>
     )
 }
 

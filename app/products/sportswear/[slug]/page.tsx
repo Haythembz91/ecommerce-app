@@ -2,6 +2,7 @@ import { GetProducts } from "@/utils/GetProducts"
 import ProductPageSlider from "@/componants/ProductPageSlider";
 import Link from "next/link";
 import AddToCartForm from "@/componants/AddToCartForm";
+import {CartProvider} from "@/context/CartContext";
 
 const Home = async ({params}:{params:{slug:string}})=>{
     const {slug} = await params
@@ -22,7 +23,7 @@ const Home = async ({params}:{params:{slug:string}})=>{
             </nav>
             <main className={'d-md-flex'}>
                 <ProductPageSlider product={product[0]}></ProductPageSlider>
-                <AddToCartForm product={product[0]}></AddToCartForm>
+                    <AddToCartForm product={product[0]}></AddToCartForm>
             </main>
         </div>
     )

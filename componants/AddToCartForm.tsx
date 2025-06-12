@@ -1,20 +1,28 @@
 'use client'
 
-import {colors, sizes} from "@/utils/enums";
+import {colors, legLengths, sizes, sleeveLengths} from "@/utils/enums";
 import {Product} from "@/utils/interfaces";
 import Link from "next/link";
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
+import {v4 as uuidv4} from "uuid";
+import {useCart} from "@/context/CartContext";
+import {CartItem} from "@/utils/types";
 
 const AddToCartForm = ({product}:{product:Product}) => {
+
+    const {items,addItem,removeItem,clearCart} = useCart()
     const handleAddToCart = (e:React.FormEvent<HTMLFormElement>)=>{
         e.preventDefault()
         const formData = new FormData(e.currentTarget as HTMLFormElement)
+        formData.append('id',uuidv4() as string)
         formData.append('productColor',product.primaryColor as colors)
         formData.append('productName',product.productName as string)
         formData.append('productImage',product.urlByColor![0] as string)
-        for(const [key,value] of formData.entries()){
-            console.log(key,value)
-        }
+        product.legLength&&formData.append('LegLength',product.legLength as legLengths)
+        product.sleeveLength&&formData.append('SleeveLength',product.sleeveLength as sleeveLengths)
+
+        const item:CartItem = Object.fromEntries(formData.entries())
+        addItem(item)
     }
     const [selectedSize,setSelectedSize]=useState<sizes>()
     const [selectedQuantity,setSelectedQuantity]=useState<number>(1)
@@ -29,6 +37,14 @@ const AddToCartForm = ({product}:{product:Product}) => {
                     </Link>
                 ))}
             </div>
+            {product.legLength&&<h5 className={'mb-3'}>
+                <b>Leg Length: </b>
+                {product.legLength}
+            </h5>}
+            {product.sleeveLength&&<h5 className={'mb-3'}>
+                <b>Sleeve Length: </b>
+                {product.sleeveLength}
+            </h5>}
             <div className={'mb-3'}>
                 <h5><b>Size:</b></h5>
                 <div className={'d-flex justify-content-center'}>

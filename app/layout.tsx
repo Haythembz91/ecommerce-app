@@ -6,6 +6,7 @@ import Header from "@/componants/Header";
 import BootstrapClient from "@/scripts/BootstrapClient";
 import { Geist, Geist_Mono } from "next/font/google";
 import React from "react";
+import {CartProvider} from "@/context/CartContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,10 +33,12 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
       <BootstrapClient></BootstrapClient>
               <ClerkProvider>
-                  <Header></Header>
-                  <main>
-                    {children}
-                  </main>
+                  <CartProvider>
+                      <Header></Header>
+                      <main>
+                          {children}
+                      </main>
+                  </CartProvider>
               </ClerkProvider>
       </body>
     </html>

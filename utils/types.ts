@@ -13,3 +13,21 @@ export type Filters={
     productPrice?:number
     limit?:number
 }
+
+export type CartItem={
+    id:string,
+    productName:string,
+    productImage:string,
+    productColor:colors,
+    productSize:sizes,
+    productQuantity:number,
+    productPrice:number
+}
+
+export type CartContextType={
+    items:CartItem[],
+    addItem:(item:CartItem)=>void,
+    removeItem:(id:string)=>void,
+    clearCart:()=>void
+}
+
