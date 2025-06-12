@@ -11,7 +11,7 @@ const AddToCartForm = ({product}:{product:Product}) => {
         const formData = new FormData(e.currentTarget as HTMLFormElement)
         formData.append('productColor',product.primaryColor as colors)
         formData.append('productName',product.productName as string)
-        formData.append('productImage',product.urlByColor![0] as string)
+        formData
         for(const [key,value] of formData.entries()){
             console.log(key,value)
         }

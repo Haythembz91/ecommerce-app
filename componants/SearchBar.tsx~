@@ -5,7 +5,7 @@ type SearchBarProps = {
 };
 const SearchBar: React.FC<SearchBarProps> = ({setShowSearchBar})=>{
     return (
-                    <Form action="/search" className={"d-flex"}>
+                    <Form action="/search" className={"d-flex mb-2"}>
                         <label htmlFor="searchInput" className="form-label"></label>
                         <input name={'query'} className="form-control" id="searchInput"
                                placeholder="Search..."/>

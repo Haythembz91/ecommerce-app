@@ -1,0 +1,11 @@
+
+
+const CartItemsContainer = ()=>{
+    return (
+        <div>
+            <CartItem></CartItem>
+        </div>
+    )
+}
+
+export default CartItemsContainer

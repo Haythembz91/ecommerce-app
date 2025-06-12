@@ -9,7 +9,6 @@ import {useState} from "react";
 import {routes} from '@/utils/enums'
 import SearchBar from "@/componants/SearchBar";
 import SignIn from "@/componants/SignIn";
-import CartItemsContainer from "@/componants/CartItemsContainer";
 
 const Header = ()=>{
 

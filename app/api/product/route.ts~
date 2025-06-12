@@ -77,6 +77,7 @@ export async function GET(req:NextRequest){
     if (filters.limit){
         delete filters.limit
     }
+    console.log(filters)
     const query = searchParams.get('query')
     const regex = new RegExp(query as string, 'i')
     try{
