@@ -6,7 +6,7 @@ import Link from "next/link";
 import React, {useContext, useState} from "react";
 import {v4 as uuidv4} from "uuid";
 import {useCart} from "@/context/CartContext";
-import {CartItem} from "@/utils/types";
+import {CartItemType} from "@/utils/types";
 
 const AddToCartForm = ({product}:{product:Product}) => {
 
@@ -15,13 +15,16 @@ const AddToCartForm = ({product}:{product:Product}) => {
         e.preventDefault()
         const formData = new FormData(e.currentTarget as HTMLFormElement)
         formData.append('id',uuidv4() as string)
+        formData.append('productId',product._id as string)
         formData.append('productColor',product.primaryColor as colors)
         formData.append('productName',product.productName as string)
         formData.append('productImage',product.urlByColor![0] as string)
-        product.legLength&&formData.append('LegLength',product.legLength as legLengths)
-        product.sleeveLength&&formData.append('SleeveLength',product.sleeveLength as sleeveLengths)
+        formData.append('productPrice',product.productPrice as string)
+        product.legLength&&formData.append('legLength',product.legLength as legLengths)
+        product.sleeveLength&&formData.append('sleeveLength',product.sleeveLength as sleeveLengths)
+        formData.append('stock',product.productQuantities[`${product.primaryColor}-${selectedSize}`].toFixed(2) as string)
 
-        const item:CartItem = Object.fromEntries(formData.entries())
+        const item:CartItemType = Object.fromEntries(formData.entries())
         addItem(item)
     }
     const [selectedSize,setSelectedSize]=useState<sizes>()

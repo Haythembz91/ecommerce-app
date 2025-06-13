@@ -1,15 +1,18 @@
 'use client'
-import {createContext, useContext, useState} from "react";
-import {CartContextType, CartItem} from "@/utils/types";
+import React, {createContext, useContext, useState} from "react";
+import {CartContextType, CartItemType} from "@/utils/types";
 
 export const CartContext = createContext<CartContextType|undefined>(undefined)
 
 export const CartProvider = ({children}:{children:React.ReactNode})=>{
-    const [items, setItems] = useState<CartItem[]>([])
+    const [items, setItems] = useState<CartItemType[]>([])
 
-    const addItem = (item:CartItem)=>{
+    const addItem = (item:CartItemType)=>{
+        const existingItem = items.find(i=>i.productId===item.productId&&i.productSize===item.productSize)
+        if(existingItem){
+            console.log('already exists')
+        }else
         setItems(prev=>[...prev,item])
-        console.log('item added')
     }
     const removeItem = (id:string)=>{
         setItems(items.filter(item=>item.id!==id))

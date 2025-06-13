@@ -6,7 +6,7 @@ const CartItemsContainer = ()=>{
     const {items,clearCart} = useCart()
     console.log(items)
     return (
-        <div className={'container-fluid'}>
+        <div className={'container-fluid ps-1 pe-3'}>
             {items.map((item)=><CartItem key={item.id} item={item}/>)}
         </div>
     )

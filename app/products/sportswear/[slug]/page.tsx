@@ -2,7 +2,6 @@ import { GetProducts } from "@/utils/GetProducts"
 import ProductPageSlider from "@/componants/ProductPageSlider";
 import Link from "next/link";
 import AddToCartForm from "@/componants/AddToCartForm";
-import {CartProvider} from "@/context/CartContext";
 
 const Home = async ({params}:{params:{slug:string}})=>{
     const {slug} = await params
@@ -10,7 +9,6 @@ const Home = async ({params}:{params:{slug:string}})=>{
     const arr = decodedSlug.split('_')
 
     const product = await GetProducts({productName:arr[0],primaryColor:arr[1]})
-    console.log(product[0])
 
     return(
         <div>

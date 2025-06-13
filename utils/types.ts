@@ -14,19 +14,23 @@ export type Filters={
     limit?:number
 }
 
-export type CartItem={
+export type CartItemType={
     id:string,
+    productId:string,
     productName:string,
     productImage:string,
     productColor:colors,
     productSize:sizes,
     productQuantity:number,
-    productPrice:number
+    productPrice:number,
+    stock:number
+    legLength?:legLengths
+    sleeveLength?:sleeveLengths
 }
 
 export type CartContextType={
-    items:CartItem[],
-    addItem:(item:CartItem)=>void,
+    items:CartItemType[],
+    addItem:(item:CartItemType)=>void,
     removeItem:(id:string)=>void,
     clearCart:()=>void
 }
