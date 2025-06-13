@@ -22,11 +22,9 @@ const CartItem = ({item}:{item:CartItemType})=>{
                 {item.sleeveLength&&<p className={'mb-0 px-2'}>Sleeve Length: {item.sleeveLength}</p>}
                 <p className={'mb-0 px-2'}>Size: {item.productSize}</p>
                 <div className={'mb-0 px-2'}>
-                    <label htmlFor={'productQuantity'}>Quantity: </label>
-                    <input required type={'number'} id={'productQuantity'}
-                           onChange={(e)=>setQuantity(parseInt(e.target.value))}
-                           className={'rounded-pill mx-3 px-2'} name={'productQuantity'} min={1} max={item.stock}
-                           defaultValue={item.productQuantity}/>
+                    <div>
+                        <p className={'mb-0'}>Quantity: {item.productQuantity}</p><p className={'mb-0'}></p>
+                    </div>
                 </div>
             </div>
             <button type="button" onClick={()=>removeItem(item.id)} className="btn-close p-2" aria-label="Close"></button>

@@ -69,7 +69,8 @@ const AddToCartForm = ({product}:{product:Product}) => {
                 <h5><b>€{totalPrice}</b></h5>
             </div>
             <div className={'d-flex justify-content-center mb-3'}>
-                <button type={'submit'} className={'btn btn-dark rounded-5 my-2 w-75'}>Add to Cart</button>
+                <button type={'submit'} data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" className={'btn btn-dark rounded-5 my-2 w-75'}>Add to Cart</button>
             </div>
             <div className={''}>
                 <div className="accordion" id="accordionExample">

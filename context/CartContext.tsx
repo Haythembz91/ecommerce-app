@@ -8,11 +8,14 @@ export const CartProvider = ({children}:{children:React.ReactNode})=>{
     const [items, setItems] = useState<CartItemType[]>([])
 
     const addItem = (item:CartItemType)=>{
-        const existingItem = items.find(i=>i.productId===item.productId&&i.productSize===item.productSize)
-        if(existingItem){
-            console.log('already exists')
-        }else
-        setItems(prev=>[...prev,item])
+
+        setItems(prev=>{
+            const existingItem = items.find(i=>i.productId===item.productId&&i.productSize===item.productSize)
+            if(existingItem){
+                return prev.map(i=>i.productId===item.productId&&i.productSize===item.productSize?{...i,productQuantity:Number(i.productQuantity)+Number(item.productQuantity)}:i)
+            }
+            return [...prev,item]
+        })
     }
     const removeItem = (id:string)=>{
         setItems(items.filter(item=>item.id!==id))
