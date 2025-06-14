@@ -1,7 +1,8 @@
 'use client'
 import {CartItemType} from "@/utils/types";
-import {useState} from "react";
 import {useCart} from "@/context/CartContext";
+import Link from "next/link";
+import {routes} from "@/utils/enums";
 
 
 const CartItem = ({item}:{item:CartItemType})=>{
@@ -11,7 +12,9 @@ const CartItem = ({item}:{item:CartItemType})=>{
     return (
         <div className={'d-flex border-bottom pe-2 pb-1 mb-2'}>
             <div className={'col-5'}>
-                <img className={'img-fluid'} src={item.productImage} alt={'product image'}/>
+                <Link href={`/products/${routes.SPORTSWEAR}/${item.productName}_${item.productColor}`}>
+                    <img className={'img-fluid'} src={item.productImage} alt={'product image'}/>
+                </Link>
             </div>
             <div className={'col-7'}>
                 <p className={'mb-2 px-2'}>{item.productName}</p>
