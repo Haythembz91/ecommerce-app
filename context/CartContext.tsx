@@ -17,13 +17,17 @@ export const CartProvider = ({children}:{children:React.ReactNode})=>{
             return [...prev,item]
         })
     }
+
+    const updateItemQuantity = (id:string,quantity:number)=>{
+        setItems(prev=>prev.map(item=>item.id===id?{...item,productQuantity:quantity}:item))
+    }
     const removeItem = (id:string)=>{
         setItems(items.filter(item=>item.id!==id))
     }
     const clearCart = ()=>{
         setItems([])
     }
-    return <CartContext.Provider value={{items,addItem,removeItem,clearCart}}>{children}</CartContext.Provider>
+    return <CartContext.Provider value={{items,addItem,removeItem,updateItemQuantity,clearCart}}>{children}</CartContext.Provider>
 }
 
 export const useCart = ()=>{

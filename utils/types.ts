@@ -31,6 +31,7 @@ export type CartItemType={
 export type CartContextType={
     items:CartItemType[],
     addItem:(item:CartItemType)=>void,
+    updateItemQuantity:(id:string,quantity:number)=>void,
     removeItem:(id:string)=>void,
     clearCart:()=>void
 }

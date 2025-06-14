@@ -10,12 +10,13 @@ import {routes} from '@/utils/enums'
 import SearchBar from "@/componants/SearchBar";
 import SignIn from "@/componants/SignIn";
 import CartItemsContainer from "@/componants/CartItemsContainer";
+import {useCart} from "@/context/CartContext";
 
 const Header = ()=>{
 
     const [slug,setSlug] = useState<routes>(routes.HOME)
     const [showSearchBar,setShowSearchBar] = useState<boolean>(false)
-    
+    const {items} = useCart()
     return (
             <header className={"container-fluid sticky-top bg-body-tertiary"}>
                 <nav className={"navbar navbar-expand-md"}>
@@ -91,8 +92,11 @@ const Header = ()=>{
                                 <SignIn></SignIn>
                             </div>
                             <div className={'col-md-3'}>
-                                <button className="btn" type="button" data-bs-toggle="offcanvas"
+                                <button className="btn position-relative" type="button" data-bs-toggle="offcanvas"
                                         data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                                    <span className="position-absolute top-0 end-0 translate-middle badge rounded-pill bg-dark">
+                                        {items.reduce((total,item)=>total+Number(item.productQuantity),0)}
+                                    </span>
                                     <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fillRule="evenodd"
                                          clipRule="evenodd">
                                         <path

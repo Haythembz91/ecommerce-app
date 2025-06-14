@@ -6,24 +6,29 @@ import {useCart} from "@/context/CartContext";
 
 const CartItem = ({item}:{item:CartItemType})=>{
 
-    const [quantity, setQuantity] = useState<number>(item.productQuantity)
-    const {removeItem} = useCart()
+    const {removeItem,updateItemQuantity} = useCart()
 
     return (
-        <div className={'d-flex border-bottom p-2 mb-2'}>
-            <div className={'col-4'}>
+        <div className={'d-flex border-bottom pe-2 pb-1 mb-2'}>
+            <div className={'col-5'}>
                 <img className={'img-fluid'} src={item.productImage} alt={'product image'}/>
             </div>
-            <div className={'col-8'}>
-                <p className={'mb-0 px-2'}>{item.productName}</p>
-                <p className={'mb-0 px-2'}>€{item.productPrice*(quantity||1)}</p>
+            <div className={'col-7'}>
+                <p className={'mb-2 px-2'}>{item.productName}</p>
+                <p className={'mb-0 px-2'}>€{item.productPrice*(item.productQuantity||1)}</p>
                 <p className={'mb-0 px-2'}>Color: {item.productColor}</p>
                 {item.legLength&&<p className={'mb-0 px-2'}>Leg Length: {item.legLength}</p>}
                 {item.sleeveLength&&<p className={'mb-0 px-2'}>Sleeve Length: {item.sleeveLength}</p>}
                 <p className={'mb-0 px-2'}>Size: {item.productSize}</p>
-                <div className={'mb-0 px-2'}>
-                    <div>
-                        <p className={'mb-0'}>Quantity: {item.productQuantity}</p><p className={'mb-0'}></p>
+                <div className={'mb-3 p-2'}>
+                    <div className={'d-inline-flex border rounded-pill'}>
+                        <button type="button" className="btn" onClick={() => {
+                            updateItemQuantity(item.id, item.productQuantity - 1)
+                        }} disabled={item.productQuantity === 1}>-</button>
+                        <p className={'my-auto px-2'}>{item.productQuantity}</p>
+                        <button type="button" className="btn" onClick={() => {
+                            updateItemQuantity(item.id, Number(item.productQuantity) + 1)
+                        }} disabled={item.productQuantity===Number(item.stock)}>+</button>
                     </div>
                 </div>
             </div>
