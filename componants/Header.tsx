@@ -95,7 +95,7 @@ const Header = ()=>{
                                 <button className="btn position-relative" type="button" data-bs-toggle="offcanvas"
                                         data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
                                     <span className="position-absolute top-0 end-0 translate-middle badge rounded-pill bg-dark">
-                                        {items.reduce((total,item)=>total+Number(item.productQuantity),0)}
+                                        {items.length>0&&items.reduce((total,item)=>total+Number(item.productQuantity),0)}
                                     </span>
                                     <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fillRule="evenodd"
                                          clipRule="evenodd">

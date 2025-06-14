@@ -1,14 +1,27 @@
 'use client'
 import CartItem from "@/componants/CartItem";
 import {useCart} from "@/context/CartContext";
+import Link from "next/link";
 
 const CartItemsContainer = ()=>{
     const {items,clearCart} = useCart()
     console.log(items)
+    if(items.length===0){
+        return <div className={'p-4 h5 text-center'}>
+            Your shopping cart is empty</div>
+    }
     return (
         <div className={'container-fluid pt-3 ps-1 pe-3'}>
             {items.map((item)=><CartItem key={item.id} item={item}/>)}
             <h4 className={'fw-bold text-end'}>€{items.reduce((total, item) => total + Number(item.productPrice) * (Number(item.productQuantity) || 1), 0).toFixed(2)}</h4>
+            <div className={'my-2 py-2'}>
+                <div className={'mb-3 d-flex justify-content-center'}>
+                    <button className={'btn btn-dark rounded-pill'}><span className={'px-3'}>Proceed to checkout</span></button>
+                </div>
+                <div className={'mb-3 d-flex justify-content-center'}>
+                    <Link className={'btn btn-dark rounded-pill'} href={'/cart'}><span className={'px-3'}>Go to cart</span></Link>
+                </div>
+            </div>
         </div>
     )
 }
