@@ -2,7 +2,7 @@
 const SliderSportswear =()=>{
 
     return(
-        <div className={"mt-2"}>
+        <div className={""}>
             <div id={"carouselExampleControls"} className={"carousel slide carousel-fade"} data-bs-ride={"carousel"}>
                 <div className={"carousel-indicators"}>
                     <button type={"button"} data-bs-target={"#carouselExampleIndicators"} data-bs-slide-to={"0"}
