@@ -17,7 +17,7 @@ const CartItem = ({item}:{item:CartItemType})=>{
                 </Link>
             </div>
             <div className={'col-7'}>
-                <p className={'mb-2 px-2'}>{item.productName}</p>
+                <p className={'mb-0 px-2'}>{item.productName}</p>
                 <p className={'mb-0 px-2'}>€{item.productPrice*(item.productQuantity||1)}</p>
                 <p className={'mb-0 px-2'}>Color: {item.productColor}</p>
                 {item.legLength&&<p className={'mb-0 px-2'}>Leg Length: {item.legLength}</p>}

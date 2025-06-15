@@ -5,7 +5,7 @@ import Category from '@/componants/Category'
 import Nutrition from '@/componants/Nutrition'
 import Offcanvas from "@/componants/Offcanvas";
 import Link from "next/link";
-import {useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {routes} from '@/utils/enums'
 import SearchBar from "@/componants/SearchBar";
 import SignIn from "@/componants/SignIn";
@@ -16,7 +16,19 @@ const Header = ()=>{
 
     const [slug,setSlug] = useState<routes>(routes.HOME)
     const [showSearchBar,setShowSearchBar] = useState<boolean>(false)
-    const {items} = useCart()
+    const {items, show, toggleCart} = useCart()
+
+    useEffect(()=>{
+        const handleClick = (e:MouseEvent)=>{
+            if(e.target === overlay){
+                toggleCart()
+            }
+        }
+        const overlay = document.getElementById('cartOverlay')
+        window.addEventListener('click',handleClick)
+        return ()=>window.removeEventListener('click',handleClick)
+    },[show])
+
     return (
             <header className={"container-fluid sticky-top bg-body-tertiary"}>
                 <nav className={"navbar navbar-expand-md"}>
@@ -92,8 +104,7 @@ const Header = ()=>{
                                 <SignIn></SignIn>
                             </div>
                             <div className={'col-md-3'}>
-                                <button className="btn position-relative" type="button" data-bs-toggle="offcanvas"
-                                        data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                                <button onClick={()=>toggleCart()} className="btn position-relative" type="button">
                                     <span className="position-absolute top-0 end-0 translate-middle badge rounded-pill bg-dark">
                                         {items.length>0&&items.reduce((total,item)=>total+Number(item.productQuantity),0)}
                                     </span>
@@ -103,17 +114,19 @@ const Header = ()=>{
                                             d="M13.5 21c-.276 0-.5-.224-.5-.5s.224-.5.5-.5.5.224.5.5-.224.5-.5.5m0-2c-.828 0-1.5.672-1.5 1.5s.672 1.5 1.5 1.5 1.5-.672 1.5-1.5-.672-1.5-1.5-1.5m-6 2c-.276 0-.5-.224-.5-.5s.224-.5.5-.5.5.224.5.5-.224.5-.5.5m0-2c-.828 0-1.5.672-1.5 1.5s.672 1.5 1.5 1.5 1.5-.672 1.5-1.5-.672-1.5-1.5-1.5m16.5-16h-2.964l-3.642 15h-13.321l-4.073-13.003h19.522l.728-2.997h3.75v1zm-22.581 2.997l3.393 11.003h11.794l2.674-11.003h-17.861z"/>
                                     </svg>
                                 </button>
-                                <div className="offcanvas offcanvas-end d-md-none" tabIndex={-1} id="offcanvasRight"
-                                     aria-labelledby="offcanvasRightLabel">
-                                    <div className="offcanvas-header">
-                                        <h4 className="offcanvas-title" id="offcanvasRightLabel">Your Shopping Cart</h4>
-                                        <button type="button" className="btn-close" data-bs-dismiss="offcanvas"
-                                                aria-label="Close"></button>
+                                {show&&<div className={'row'}>
+                                    <div className={'d-flex flex-column overflow-y-scroll position-fixed p-0 col-12 col-sm-9 col-md-7 col-lg-5 col-xl-4 top-0 end-0 h-100 bg-white'}>
+                                        <div className="d-flex justify-content-between p-2">
+                                            <h4 className="mx-auto">Your Shopping Cart</h4>
+                                            <button type="button" onClick={()=>toggleCart()} className="btn-close"></button>
+                                        </div>
+                                        <div className="p-1">
+                                            <CartItemsContainer></CartItemsContainer>
+                                        </div>
                                     </div>
-                                    <div className="offcanvas-body p-1">
-                                        <CartItemsContainer></CartItemsContainer>
+                                    <div id={'cartOverlay'} className={'position-fixed d-none d-sm-block col-sm-3 col-md-5 col-lg-7 col-xl-8 h-100 start-0 top-0 bg-dark opacity-75'}>
                                     </div>
-                                </div>
+                                </div>}
                             </div>
                         </div>
                     </div>

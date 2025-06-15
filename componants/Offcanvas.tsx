@@ -4,7 +4,7 @@ import OffcanvasCollection from "@/componants/OffcanvasCollection";
 import OffcanvasCategory from "@/componants/OffcanvasCategory";
 import OffcanvasFooter from "./OffcanvasFooter";
 import {routes} from '@/utils/enums';
-const Offcanvas = ({setSlug})=>{
+const Offcanvas = ({setSlug}:{setSlug:(slug:routes)=>void})=>{
 
     return (
         <div className="sportswearList offcanvas offcanvas-start" tabIndex={-1} id="offcanvasExample"

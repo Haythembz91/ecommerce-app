@@ -1,11 +1,29 @@
 'use client'
-import React, {createContext, useContext, useState} from "react";
+import React, {createContext, useContext, useEffect, useState} from "react";
 import {CartContextType, CartItemType} from "@/utils/types";
 
 export const CartContext = createContext<CartContextType|undefined>(undefined)
 
 export const CartProvider = ({children}:{children:React.ReactNode})=>{
     const [items, setItems] = useState<CartItemType[]>([])
+    const [show, setShow] = useState(false)
+
+    useEffect(() => {
+        const stored = localStorage.getItem('cart');
+        if (stored) {
+            try {
+                setItems(JSON.parse(stored));
+            } catch (e) {
+                console.error('Failed to parse cart from localStorage');
+            }
+        }
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem('cart', JSON.stringify(items));
+    }, [items]);
+
+
 
     const addItem = (item:CartItemType)=>{
 
@@ -27,7 +45,8 @@ export const CartProvider = ({children}:{children:React.ReactNode})=>{
     const clearCart = ()=>{
         setItems([])
     }
-    return <CartContext.Provider value={{items,addItem,removeItem,updateItemQuantity,clearCart}}>{children}</CartContext.Provider>
+    const toggleCart = ()=>setShow(prev=>!prev)
+    return <CartContext.Provider value={{items,addItem,removeItem,updateItemQuantity,clearCart,show,toggleCart}}>{children}</CartContext.Provider>
 }
 
 export const useCart = ()=>{

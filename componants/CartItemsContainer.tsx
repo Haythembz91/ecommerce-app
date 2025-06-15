@@ -13,7 +13,10 @@ const CartItemsContainer = ()=>{
     return (
         <div className={'container-fluid pt-3 ps-1 pe-3'}>
             {items.map((item)=><CartItem key={item.id} item={item}/>)}
-            <h4 className={'fw-bold text-end'}>€{items.reduce((total, item) => total + Number(item.productPrice) * (Number(item.productQuantity) || 1), 0).toFixed(2)}</h4>
+            <div className={'d-flex justify-content-between'}>
+                <h5>Total: ({items.reduce((total, item) => total + Number(item.productQuantity) || 1, 0)})</h5>
+                <h4 className={'fw-bold text-end'}>€{items.reduce((total, item) => total + Number(item.productPrice) * (Number(item.productQuantity) || 1), 0).toFixed(2)}</h4>
+            </div>
             <div className={'my-2 py-2'}>
                 <div className={'mb-3 d-flex justify-content-center'}>
                     <button className={'btn btn-dark rounded-pill'}><span className={'px-3'}>Proceed to checkout</span></button>

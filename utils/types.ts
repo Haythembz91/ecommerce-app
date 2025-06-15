@@ -33,6 +33,8 @@ export type CartContextType={
     addItem:(item:CartItemType)=>void,
     updateItemQuantity:(id:string,quantity:number)=>void,
     removeItem:(id:string)=>void,
-    clearCart:()=>void
+    clearCart:()=>void,
+    toggleCart:()=>void,
+    show:boolean
 }
 
