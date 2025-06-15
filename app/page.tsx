@@ -66,6 +66,28 @@ const Home = ()=>{
                     </Link>
                 ))}
             </section>
+            <section className={'my-2 mx-md-2'}>
+                <div className="card border-0 text-bg-dark">
+                    <img src={'https://res.cloudinary.com/dmgfsayir/image/upload/v1749954721/1.WB_DefineLowBackEdit_TeasingBanner_3000x1270_20250522_lh_desktop_2000x_nmpumv.webp'} className="d-none card-img rounded-0 d-md-block" alt="..."/>
+                    <img src={'https://res.cloudinary.com/dmgfsayir/image/upload/v1749954721/1.WB_DefineLowBackEdit_TeasingBanner_1600x2100_20250522_lh_mobile_1000x_rtkcfw.webp'} className="d-md-none rounded-0 card-img" alt="..."/>
+                    <div className="carousel-caption">
+                        <h3 className="card-title fw-bold ">LOW BACK EDIT</h3>
+                        <h6 className="card-text">Bringing the heat.</h6>
+                        <button className={"btn btn-light"}
+                                style={{
+                                    fontWeight: "600",
+                                    borderRadius: "20px",
+                                }}>
+                            Shop now
+                        </button>
+                    </div>
+                </div>
+                <div className={'mx-2 mx-md-0 d-flex justify-content-between align-items-center'}>
+                    <h2>Sportswear favorites</h2>
+                    <Link className={'fw-medium link-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover'} href={`/shop${routes.SPORTSWEAR}?productCollection=${collections.DEFINE}`}>Shop</Link>
+                </div>
+                <ProductSlider filter={{productCollection:collections.DEFINE,limit:8}}></ProductSlider>
+            </section>
         </div>
     )
 }
