@@ -15,8 +15,12 @@ const Home = ()=>{
                 <div className={'container-fluid col-md-7'}>
                     {items.map((item,index)=><CartItem key={index} item={item}/>)}
                 </div>
-                <div className={'d-flex flex-column col-md-5 px-5 mb-3'}>
-                    <button className={'btn btn-dark rounded-pill'}><span className={'px-3'}>Proceed to checkout</span></button>
+                <div className={'d-flex justify-content-center col-md-5 px-5 mb-3'}>
+                    <form action="/api/checkout" method="POST">
+                        <section>
+                            <button className={'btn btn-dark rounded-pill'} type={'submit'} role={'link'}><span className={'px-3'}>Checkout</span></button>
+                        </section>
+                    </form>
                 </div>
             </div>
         </div>

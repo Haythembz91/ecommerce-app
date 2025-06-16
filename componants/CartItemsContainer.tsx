@@ -19,7 +19,11 @@ const CartItemsContainer = ()=>{
             </div>
             <div className={'my-2 py-2'}>
                 <div className={'mb-3 d-flex justify-content-center'}>
-                    <button className={'btn btn-dark rounded-pill'}><span className={'px-3'}>Proceed to checkout</span></button>
+                    <form action="/api/checkout" method="POST">
+                        <section>
+                            <button className={'btn btn-dark rounded-pill'} type={'submit'} role={'link'}><span className={'px-3'}>Checkout</span></button>
+                        </section>
+                    </form>
                 </div>
                 <div className={'mb-3 d-flex justify-content-center'}>
                     <Link className={'btn btn-dark rounded-pill'} href={'/cart'}><span className={'px-3'}>Go to cart</span></Link>
