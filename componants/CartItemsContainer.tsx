@@ -2,10 +2,13 @@
 import CartItem from "@/componants/CartItem";
 import {useCart} from "@/context/CartContext";
 import Link from "next/link";
+import React from "react";
+import {handleSubmit} from "@/utils/Checkout";
 
 const CartItemsContainer = ()=>{
     const {items,clearCart} = useCart()
     console.log(items)
+
     if(items.length===0){
         return <div className={'p-4 h5 text-center'}>
             Your shopping cart is empty</div>
@@ -19,7 +22,7 @@ const CartItemsContainer = ()=>{
             </div>
             <div className={'my-2 py-2'}>
                 <div className={'mb-3 d-flex justify-content-center'}>
-                    <form action="/api/checkout" method="POST">
+                    <form onSubmit={(e)=>handleSubmit(e,items)}>
                         <section>
                             <button className={'btn btn-dark rounded-pill'} type={'submit'} role={'link'}><span className={'px-3'}>Checkout</span></button>
                         </section>

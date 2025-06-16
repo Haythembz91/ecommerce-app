@@ -1,6 +1,7 @@
 'use client'
 import {useCart} from "@/context/CartContext";
 import CartItem from "@/componants/CartItem";
+import {handleSubmit} from "@/utils/Checkout";
 
 const Home = ()=>{
     const {items,clearCart} = useCart()
@@ -16,7 +17,7 @@ const Home = ()=>{
                     {items.map((item,index)=><CartItem key={index} item={item}/>)}
                 </div>
                 <div className={'d-flex justify-content-center col-md-5 px-5 mb-3'}>
-                    <form action="/api/checkout" method="POST">
+                    <form onSubmit={e=>handleSubmit(e,items)}>
                         <section>
                             <button className={'btn btn-dark rounded-pill'} type={'submit'} role={'link'}><span className={'px-3'}>Checkout</span></button>
                         </section>
