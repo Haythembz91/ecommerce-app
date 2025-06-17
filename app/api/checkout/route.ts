@@ -2,6 +2,8 @@ import {NextRequest, NextResponse} from "next/server";
 import {headers} from "next/headers";
 import {stripe} from "@/scripts/stripe"
 import {CartItemType} from "@/utils/types";
+import {Product} from "@/utils/interfaces";
+import {GetProducts} from "@/utils/GetProducts";
 
 export async function OPTIONS() {
     return new NextResponse(null, {
@@ -19,20 +21,30 @@ export async function POST (req:NextRequest){
         const origin = headersList.get('origin')
         const body = await req.json()
         const {items} = body
-        const line_items = items.map((item:CartItemType)=>(
-            {
-                price_data:{
+        const products: Product[] = await Promise.all(
+            items.map(async (item: CartItemType) => {
+                const result = await GetProducts({ _id: item.productId });
+                return result[0]
+            })
+        );
+        const line_items = items.map((item:CartItemType)=> {
+            const product = products.find(p => p._id === item.productId)
+            if(!product||!product.productSizes.includes(item.productSize)){
+                throw new Error('Product not found')
+            }
+            const quantity = Math.max(1,Math.min(product.productQuantities[`${product.primaryColor}-${item.productSize}`],item.productQuantity))
+            return {
+                price_data: {
                     currency: 'eur',
                     product_data: {
-                        name: item.productName + ' '+ item.productColor,
-                        images: [item.productImage],
+                        name: product.productName + ' - ' + product.primaryColor + ' - ' + item.productSize,
+                        images: [product.urlByColor![0]],
                     },
-                    unit_amount: item.productPrice * 100,
+                    unit_amount: Number(product.productPrice) * 100,
                 },
-                quantity: item.productQuantity
+                quantity: quantity
             }
-            )
-        )
+        })
         const session = await stripe.checkout.sessions.create({
             line_items,
             mode: 'payment',
@@ -51,7 +63,7 @@ export async function POST (req:NextRequest){
             }
         );
     }catch (err:any) {
-        NextResponse.json(
+        return NextResponse.json(
             { error: err.message },
             {
                 status: err.statusCode || 500,

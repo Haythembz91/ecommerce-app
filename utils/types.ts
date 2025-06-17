@@ -1,6 +1,7 @@
 import {sizes, colors, collections, legLengths, sleeveLengths, other, sort, categories} from "@/utils/enums"
 
 export type Filters={
+    _id?:string,
     productSizes?:sizes[],
     productCollection?:collections,
     legLength?:legLengths,

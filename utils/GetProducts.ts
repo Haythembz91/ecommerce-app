@@ -1,4 +1,4 @@
-import {Filters} from "@/utils/interfaces";
+import {Filters} from "@/utils/types";
 
 export const GetProducts = async(filters:Filters)=>{
    const searchParams = new URLSearchParams(filters).toString()
