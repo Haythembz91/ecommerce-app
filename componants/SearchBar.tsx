@@ -5,12 +5,12 @@ type SearchBarProps = {
 };
 const SearchBar: React.FC<SearchBarProps> = ({setShowSearchBar})=>{
     return (
-                    <Form action="/search" className={"d-flex pb-2"}>
-                        <label htmlFor="searchInput" className="form-label"></label>
-                        <input name={'query'} className="form-control" id="searchInput"
-                               placeholder="Search..."/>
-                        <button type="submit" onClick={()=>setTimeout(()=>setShowSearchBar(false),200)} className="btn btn-dark ms-2">Search</button>
-                    </Form>
+        <Form id="searchBar" action="/search" className={"d-flex pb-2"}>
+            <label htmlFor="searchInput" className="form-label"></label>
+            <input name={'query'} className="form-control" id="searchInput"
+                   placeholder="Search..."/>
+            <button type="submit" onClick={()=>setTimeout(()=>setShowSearchBar(false),200)} className="btn btn-dark ms-2">Search</button>
+        </Form>
     )
 }
 

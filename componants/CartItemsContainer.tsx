@@ -7,7 +7,6 @@ import {handleSubmit} from "@/utils/Checkout";
 
 const CartItemsContainer = ()=>{
     const {items,clearCart} = useCart()
-    console.log(items)
 
     if(items.length===0){
         return <div className={'p-4 h5 text-center'}>

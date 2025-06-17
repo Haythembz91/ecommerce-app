@@ -1,9 +1,8 @@
 import { redirect } from 'next/navigation'
 import {stripe} from "@/scripts/stripe"
-
+import ClearCart from "@/utils/ClearCart"
 export default async function Success({ searchParams }) {
     const { session_id } = await searchParams
-
     if (!session_id)
         throw new Error('Please provide a valid session_id (`cs_test_...`)')
 
@@ -21,6 +20,7 @@ export default async function Success({ searchParams }) {
     if (status === 'complete') {
         return (
             <section id="success">
+                <ClearCart></ClearCart>
                 <p>
                     We appreciate your business! A confirmation email will be sent to{' '}
                     {customerEmail}. If you have any questions, please email{' '}
