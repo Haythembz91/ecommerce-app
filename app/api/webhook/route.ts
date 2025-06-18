@@ -12,7 +12,7 @@ export async function POST(req: NextRequest) {
 
     try {
         event = stripe.webhooks.constructEvent(rawBody, sig!, endpointSecret);
-    } catch (err: any) {
+    } catch (err) {
         console.error('Webhook signature verification failed:', err.message);
         return new NextResponse(`Webhook Error: ${err.message}`, { status: 400 });
     }
@@ -26,7 +26,7 @@ export async function POST(req: NextRequest) {
         const sessionId = session.id;
 
 
-        console.log('Payment successful for user:', userId);
+        console.log('Payment successful for user:', userId,sessionId);
 
         await SavePurchases({session})
     }

@@ -4,7 +4,7 @@ import CartItem from "@/componants/CartItem";
 import {handleSubmit} from "@/utils/Checkout";
 
 const Home = ()=>{
-    const {items,clearCart} = useCart()
+    const {items} = useCart()
     if(items.length===0){
         return <div className={'p-4 h5 text-center'}>
             Your shopping cart is empty</div>

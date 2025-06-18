@@ -65,7 +65,7 @@ export async function POST (req:NextRequest){
                 },
             }
         );
-    }catch (err:any) {
+    }catch (err) {
         return NextResponse.json(
             { error: err.message },
             {
