@@ -1,0 +1,35 @@
+import { NextRequest, NextResponse } from 'next/server';
+import {stripe} from "@/scripts/stripe"
+import Stripe from "stripe";
+import {SavePurchases} from "@/utils/savePurchases"
+const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET!;
+
+export async function POST(req: NextRequest) {
+    const rawBody = await req.text(); // Use raw body for signature verification
+    const sig = req.headers.get('stripe-signature');
+
+    let event: Stripe.Event;
+
+    try {
+        event = stripe.webhooks.constructEvent(rawBody, sig!, endpointSecret);
+    } catch (err: any) {
+        console.error('Webhook signature verification failed:', err.message);
+        return new NextResponse(`Webhook Error: ${err.message}`, { status: 400 });
+    }
+
+
+    if (event.type === 'checkout.session.completed') {
+        const session = event.data.object as Stripe.Checkout.Session;
+
+
+        const userId = session.metadata?.userId;
+        const sessionId = session.id;
+
+
+        console.log('Payment successful for user:', userId);
+
+        await SavePurchases({session})
+    }
+
+    return new NextResponse('Received', { status: 200 });
+}
