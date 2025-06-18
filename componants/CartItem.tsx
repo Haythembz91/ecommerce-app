@@ -2,7 +2,6 @@
 import {CartItemType} from "@/utils/types";
 import {useCart} from "@/context/CartContext";
 import Link from "next/link";
-import {routes} from "@/utils/enums";
 
 
 const CartItem = ({item}:{item:CartItemType})=>{
@@ -12,13 +11,13 @@ const CartItem = ({item}:{item:CartItemType})=>{
     return (
         <div className={'d-flex border-bottom pe-2 pb-1 mb-2'}>
             <div className={'col-5'}>
-                <Link href={`/products/${routes.SPORTSWEAR}/${item.productName}_${item.productColor}`}>
+                <a href={`/products/sportswear/${encodeURIComponent(item.productName)}_${item.productColor}`}>
                     <img className={'img-fluid'} src={item.productImage} alt={'product image'}/>
-                </Link>
+                </a>
             </div>
             <div className={'col-7'}>
                 <p className={'mb-0 px-2'}>{item.productName}</p>
-                <p className={'mb-0 px-2'}>€{item.productPrice*(item.productQuantity||1)}</p>
+                <p className={'mb-0 px-2'}>€{Math.ceil(item.productPrice*(item.productQuantity||1)*100)/100}</p>
                 <p className={'mb-0 px-2'}>Color: {item.productColor}</p>
                 {item.legLength&&<p className={'mb-0 px-2'}>Leg Length: {item.legLength}</p>}
                 {item.sleeveLength&&<p className={'mb-0 px-2'}>Sleeve Length: {item.sleeveLength}</p>}

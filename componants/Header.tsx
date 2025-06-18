@@ -2,11 +2,9 @@
 import Image from "next/image";
 import Collections from '@/componants/Collections'
 import Category from '@/componants/Category'
-import Nutrition from '@/componants/Nutrition'
 import Offcanvas from "@/componants/Offcanvas";
 import Link from "next/link";
-import {useEffect, useRef, useState} from "react";
-import {routes} from '@/utils/enums'
+import {useEffect, useState} from "react";
 import SearchBar from "@/componants/SearchBar";
 import SignIn from "@/componants/SignIn";
 import CartItemsContainer from "@/componants/CartItemsContainer";
@@ -14,7 +12,6 @@ import {useCart} from "@/context/CartContext";
 
 const Header = ()=>{
 
-    const [slug,setSlug] = useState<routes>(routes.HOME)
     const [showSearchBar,setShowSearchBar] = useState<boolean>(false)
     const {items, show, toggleCart} = useCart()
 
@@ -29,8 +26,16 @@ const Header = ()=>{
         return ()=>window.removeEventListener('click',handleClick)
     },[show])
 
+    useEffect(() => {
+        if (show) {
+            document.body.classList.add('overflow-hidden');
+        } else {
+            document.body.classList.remove('overflow-hidden');
+        }
+    }, [show]);
+
     return (
-            <header className={"container-fluid sticky-top bg-body-tertiary"}>
+            <header className={"container-fluid sticky-top bg-body-secondary"}>
                 <nav className={"navbar navbar-expand-md"}>
                     <div className={"col-5"}>
                         <button className="btn d-md-none" type="button" data-bs-toggle="offcanvas"
@@ -48,34 +53,28 @@ const Header = ()=>{
                                     d="M15.853 16.56c-1.683 1.517-3.911 2.44-6.353 2.44-5.243 0-9.5-4.257-9.5-9.5s4.257-9.5 9.5-9.5 9.5 4.257 9.5 9.5c0 2.442-.923 4.67-2.44 6.353l7.44 7.44-.707.707-7.44-7.44zm-6.353-15.56c4.691 0 8.5 3.809 8.5 8.5s-3.809 8.5-8.5 8.5-8.5-3.809-8.5-8.5 3.809-8.5 8.5-8.5z"/>
                             </svg>
                         </button>
-                        <Offcanvas setSlug={setSlug}></Offcanvas>
+                        <Offcanvas></Offcanvas>
                         <div>
                             <div className="d-none d-md-flex">
                                 <div className={'categoryMenu'}>
-                                    <Link onClick={() => setSlug(routes.HOME)} href={"/"} role={'button'}
-                                          className={'fw-bold btn btn-light btn-sm'}>
+                                    <Link href={"/"} role={'button'}
+                                          className={'fw-bold btn btn-body-secondary btn-sm'}>
                                         SPORTSWEAR
                                     </Link>
                                     <Category></Category>
                                 </div>
                                 <div className={'collectionsMenu'}>
-                                    <Link href="#" role={'button'} className={'fw-bold btn btn-light btn-sm'}>
+                                    <Link href="#" role={'button'}
+                                          className={'fw-bold btn btn-body-secondary btn-sm '}>
                                         COLLECTIONS
                                     </Link>
                                     <Collections></Collections>
-                                </div>
-                                <div className={'nutritionMenu'}>
-                                    <Link onClick={() => setSlug(routes.FITNESS)} href={"/fitness"} role={'button'}
-                                          className={'fw-bold btn btn-light btn-sm'}>
-                                        NUTRITION
-                                    </Link>
-                                    <Nutrition></Nutrition>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div className={"col-2 d-flex justify-content-center"}>
-                        <Link href={slug} className={'navbar-brand'}>
+                        <Link href={'/'} className={'navbar-brand'}>
                             <Image src={"https://cdn.shopify.com/s/files/1/0744/0203/files/logo_icon_19.svg?603310"}
                                    alt={"Logo"} width={"48"} height={"38"}></Image>
                         </Link>
@@ -116,7 +115,7 @@ const Header = ()=>{
                                 </button>
                                 {show&&<div className={'row'}>
                                     <div className={'d-flex flex-column overflow-y-scroll position-fixed p-0 col-12 col-sm-9 col-md-7 col-lg-5 col-xl-4 top-0 end-0 h-100 bg-white'}>
-                                        <div className="d-flex justify-content-between p-2">
+                                        <div className="d-flex justify-content-between p-2 bg-body-secondary">
                                             <h4 className="mx-auto">Your Shopping Cart</h4>
                                             <button type="button" onClick={()=>toggleCart()} className="btn-close"></button>
                                         </div>

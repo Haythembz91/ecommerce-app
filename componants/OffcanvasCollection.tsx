@@ -45,7 +45,7 @@ const OffcanvasCollection = ()=>{
                 {arrCollections.map((col, index) => <div
                     className={'p-1 col-6 position-relative d-flex align-items-center'} key={index}>
                     <a className={'fw-bold h-100 align-content-center link-light link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover position-absolute w-100 text-center'}
-                       href={'#'}>{col.name.toUpperCase()}</a>
+                       href={`/shop/sportswear?productCollection=${col.name}`}>{col.name.toUpperCase()}</a>
                     <img className={'img-fluid'} src={col.banner} alt={col.name}/>
                 </div>)
                 }

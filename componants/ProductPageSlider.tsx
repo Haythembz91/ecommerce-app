@@ -1,6 +1,8 @@
 import {Product} from "@/utils/interfaces";
 
 const ProductPageSlider = ({product}: { product:Product })=>{
+    if(!product.urlByColor)
+        return <div>No product found</div>
     return(
         <div className={'col-md-7'}>
             <div id="carouselExampleIndicators" className="carousel slide" data-bs-ride="carousel">

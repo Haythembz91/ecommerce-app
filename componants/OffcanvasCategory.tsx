@@ -1,4 +1,5 @@
 import {categories} from "@/utils/enums";
+import Link from "next/link";
 
 const OffcanvasCategory = ()=>{
 
@@ -41,7 +42,7 @@ const OffcanvasCategory = ()=>{
             </a>
             {arrCategories.map((col, index) => <div className={'position-relative p-1 d-flex align-items-center'}
                                                  key={index}>
-                <a className={'fw-bold h-100 align-content-center link-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover position-absolute w-100 p-2'} href={'#'}>{col.name.toUpperCase()}</a>
+                <a className={'fw-bold h-100 align-content-center link-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover position-absolute w-100 p-2'} href={`/shop/sportswear?productCategory=${encodeURIComponent(col.name)}`}>{col.name.toUpperCase()}</a>
                 <img className={'img-fluid'} src={col.banner} alt={col.name}/>
             </div>)
             }

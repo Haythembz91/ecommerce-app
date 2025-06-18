@@ -19,16 +19,16 @@ const CartItemsContainer = ()=>{
                 <h5>Total: ({items.reduce((total, item) => total + Number(item.productQuantity) || 1, 0)})</h5>
                 <h4 className={'fw-bold text-end'}>€{items.reduce((total, item) => total + Number(item.productPrice) * (Number(item.productQuantity) || 1), 0).toFixed(2)}</h4>
             </div>
-            <div className={'my-2 py-2'}>
+            <div className={'my-2 p-2'}>
                 <div className={'mb-3 d-flex justify-content-center'}>
-                    <form onSubmit={(e)=>handleSubmit(e,items)}>
+                    <form className={'w-100'} onSubmit={(e)=>handleSubmit(e,items)}>
                         <section>
-                            <button className={'btn btn-dark rounded-pill'} type={'submit'} role={'link'}><span className={'px-3'}>Checkout</span></button>
+                            <button className={'btn btn-dark rounded-pill w-100'} type={'submit'} role={'link'}><span className={'px-3'}>Checkout</span></button>
                         </section>
                     </form>
                 </div>
                 <div className={'mb-3 d-flex justify-content-center'}>
-                    <Link className={'btn btn-dark rounded-pill'} href={'/cart'}><span className={'px-3'}>Go to cart</span></Link>
+                    <a className={'btn btn-dark rounded-pill w-100'} href={'/cart'}><span className={'px-3'}>Go to cart</span></a>
                 </div>
             </div>
         </div>

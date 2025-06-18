@@ -1,4 +1,4 @@
-import {collections, routes} from "@/utils/enums";
+import {collections,} from "@/utils/enums";
 import CollectionBanner from "@/scripts/CollectionBanner";
 import Link from "next/link";
 const Collections = ()=>{
@@ -29,7 +29,7 @@ const Collections = ()=>{
         <div className={`visually-hidden collectionsContainer position-absolute start-0 d-flex flex-wrap`}>
             {arrCollections.map((col,index)=>
                 <div key={index} className={'collectionBanners d-none d-md-block col-4 position-relative'}>
-                    <Link className={'w-100 h-100 align-content-center link-light link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover position-absolute w-100 text-center'} href={`/shop/${routes.SPORTSWEAR}?productCollection=${col.name}`}>{col.name}</Link>
+                    <Link className={'w-100 h-100 align-content-center link-light link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover position-absolute w-100 text-center'} href={`/shop/sportswear?productCollection=${col.name}`}>{col.name}</Link>
                     <img className={'img-fluid'} src={col.banner} alt={col.name}/>
                 </div>)}
             <CollectionBanner></CollectionBanner>

@@ -1,9 +1,10 @@
+import {collections, other} from "@/utils/enums";
 
 const SliderSportswear =()=>{
 
     return(
         <div className={""}>
-            <div id={"carouselExampleControls"} className={"carousel slide carousel-fade"} data-bs-ride={"carousel"}>
+            <div id={"carouselExampleIndicators"} className={"carousel slide carousel-fade"} data-bs-ride={"carousel"}>
                 <div className={"carousel-indicators"}>
                     <button type={"button"} data-bs-target={"#carouselExampleIndicators"} data-bs-slide-to={"0"}
                             className={"active"} aria-current={"true"} aria-label={"Slide 1"}></button>
@@ -23,13 +24,13 @@ const SliderSportswear =()=>{
                         <div className={"carousel-caption"}>
                             <h3 className={'bannerHeading fw-bold'}>DEFINE 2.0</h3>
                             <h6 className={'fw-medium'}>New styles & colors</h6>
-                            <button className={"btn btn-light"}
+                            <a href={`/shop/sportswear?productCollection=${collections.DEFINE}`} className={"btn btn-light"}
                                     style={{
                                         fontWeight: "600",
                                         borderRadius: "20px",
                                     }}>
                                 Shop now
-                            </button>
+                            </a>
                         </div>
                     </div>
                     <div className="carousel-item">
@@ -58,22 +59,22 @@ const SliderSportswear =()=>{
                         <div className={"carousel-caption"}>
                             <h3 className={'bannerHeading fw-bold'}>SPRING EDIT</h3>
                             <h6 className={'fw-medium'}>New season, new energy</h6>
-                            <button className={"btn btn-light"}
+                            <a href={`/shop/sportswear?other=${other.SPRING_EDIT}`} className={"btn btn-light"}
                                     style={{
                                         fontWeight: "600",
                                         borderRadius: "20px"
                                     }}>
                                 Shop now
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
-                <button className={"carousel-control-prev"} type={"button"} data-bs-target={"#carouselExampleControls"}
+                <button className={"carousel-control-prev"} type={"button"} data-bs-target={"#carouselExampleIndicators"}
                         data-bs-slide={"prev"}>
                     <span className={"carousel-control-prev-icon"} aria-hidden={"true"}></span>
                     <span className={"visually-hidden"}>Previous</span>
                 </button>
-                <button className={"carousel-control-next"} type={"button"} data-bs-target={"#carouselExampleControls"}
+                <button className={"carousel-control-next"} type={"button"} data-bs-target={"#carouselExampleIndicators"}
                         data-bs-slide={"next"}>
                     <span className={"carousel-control-next-icon"} aria-hidden={"true"}></span>
                     <span className={"visually-hidden"}>Next</span>

@@ -2,13 +2,14 @@ import { GetProducts } from "@/utils/GetProducts"
 import ProductPageSlider from "@/componants/ProductPageSlider";
 import Link from "next/link";
 import AddToCartForm from "@/componants/AddToCartForm";
+import {colors} from "@/utils/enums";
 
 const Home = async ({params}:{params:{slug:string}})=>{
     const {slug} = await params
     const decodedSlug = decodeURIComponent(slug)
     const arr = decodedSlug.split('_')
 
-    const product = await GetProducts({productName:arr[0],primaryColor:arr[1]})
+    const product = await GetProducts({productName:arr[0],primaryColor:arr[1] as colors})
 
     return(
         <div>
@@ -21,7 +22,7 @@ const Home = async ({params}:{params:{slug:string}})=>{
             </nav>
             <main className={'d-md-flex'}>
                 <ProductPageSlider product={product[0]}></ProductPageSlider>
-                    <AddToCartForm product={product[0]}></AddToCartForm>
+                <AddToCartForm product={product[0]}></AddToCartForm>
             </main>
         </div>
     )

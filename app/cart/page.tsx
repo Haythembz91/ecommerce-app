@@ -17,9 +17,9 @@ const Home = ()=>{
                     {items.map((item,index)=><CartItem key={index} item={item}/>)}
                 </div>
                 <div className={'d-flex justify-content-center col-md-5 px-5 mb-3'}>
-                    <form onSubmit={e=>handleSubmit(e,items)}>
+                    <form className={'w-100'} onSubmit={e=>handleSubmit(e,items)}>
                         <section>
-                            <button className={'btn btn-dark rounded-pill'} type={'submit'} role={'link'}><span className={'px-3'}>Checkout</span></button>
+                            <button className={'btn btn-dark rounded-pill w-100'} type={'submit'} role={'link'}><span className={'px-3'}>Checkout</span></button>
                         </section>
                     </form>
                 </div>

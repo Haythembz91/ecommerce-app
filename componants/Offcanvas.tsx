@@ -1,23 +1,14 @@
 import OffcanvasSportswear from "@/componants/OffcanvasSportswear";
-import OffcanvasNutrition from "@/componants/OffcanvasNutrition";
 import OffcanvasCollection from "@/componants/OffcanvasCollection";
 import OffcanvasCategory from "@/componants/OffcanvasCategory";
 import OffcanvasFooter from "./OffcanvasFooter";
-import {routes} from '@/utils/enums';
-const Offcanvas = ({setSlug}:{setSlug:(slug:routes)=>void})=>{
+const Offcanvas = ()=>{
 
     return (
         <div className="sportswearList offcanvas offcanvas-start" tabIndex={-1} id="offcanvasExample"
              aria-labelledby="offcanvasExampleLabel">
-            <div className="offcanvas-header">
-                <ul className="nav nav-underline">
-                    <li className="nav-item">
-                        <a onClick={()=>setSlug(routes.HOME)} className="nav-link link-dark" aria-current="true" href="#offcanvas-sportswear">Sportswear</a>
-                    </li>
-                    <li className="nav-item">
-                        <a onClick={()=>setSlug(routes.FITNESS)} className="nav-link link-dark" href="#offcanvas-nutrition">Nutrition</a>
-                    </li>
-                </ul>
+            <div className="offcanvas-header bg-body-secondary">
+                <h4>Sportswear</h4>
                 <button type="button" className="btn-close" data-bs-dismiss="offcanvas"
                         aria-label="Close">
                 </button>
@@ -25,7 +16,6 @@ const Offcanvas = ({setSlug}:{setSlug:(slug:routes)=>void})=>{
             <div className="offcanvas-body d-md-none">
                 <div className={'d-flex overflow-x-hidden'}>
                     <OffcanvasSportswear/>
-                    <OffcanvasNutrition/>
                     <OffcanvasCollection/>
                     <OffcanvasCategory/>
                 </div>

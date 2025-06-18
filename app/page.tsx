@@ -1,6 +1,6 @@
 import SliderSportswear from "@/componants/SliderSportswear"
 import Link from "next/link";
-import {categories, collections, routes} from "@/utils/enums";
+import {categories, collections, other,} from "@/utils/enums";
 import ProductSlider from "@/componants/ProductSlider";
 import ProductMiniSlider from "@/componants/ProductMiniSlider";
 import {collectionBanners} from "@/utils/const";
@@ -17,7 +17,7 @@ const Home = ()=>{
             <section className={'my-2 mx-md-2'}>
                 <div className={'mx-2 mx-md-0 d-flex justify-content-between align-items-center'}>
                     <h2>Trending Activewear</h2>
-                    <Link className={'fw-medium link-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover'} href={`/shop${routes.SPORTSWEAR}`}>Shop All</Link>
+                    <Link className={'fw-medium link-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover'} href={`/shop/sportswear`}>Shop All</Link>
                 </div>
                 <ProductSlider filter={{limit:8}}></ProductSlider>
             </section>
@@ -38,24 +38,24 @@ const Home = ()=>{
                   <div className="carousel-caption">
                     <h3 className="card-title fw-bold ">LOW BACK EDIT</h3>
                     <h6 className="card-text">Bringing the heat.</h6>
-                      <button className={"btn btn-light"}
+                      <a href={`/shop/sportswear?other=${other.LOW_BACK_EDIT}`} className={"btn btn-light"}
                               style={{
                                   fontWeight: "600",
                                   borderRadius: "20px",
                               }}>
                           Shop now
-                      </button>
+                      </a>
                   </div>
                 </div>
                 <div className={'mx-2 mx-md-0 d-flex justify-content-between align-items-center'}>
                     <h2>Sportswear favorites</h2>
-                    <Link className={'fw-medium link-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover'} href={`/shop${routes.SPORTSWEAR}?productCollection=${collections.DEFINE}`}>Shop</Link>
+                    <Link className={'fw-medium link-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover'} href={`/shop/sportswear?productCollection=${collections.DEFINE}`}>Shop</Link>
                 </div>
                 <ProductSlider filter={{productCollection:collections.DEFINE,limit:8}}></ProductSlider>
             </section>
             <section className={'d-flex overflow-scroll'}>
                 {collectionBanners.map((banner,index)=>(
-                    <Link key={index} className={'col-10 ps-3 col-md-3 text-decoration-none'} href={`/shop${routes.SPORTSWEAR}?productCollection=${banner.title}`}>
+                    <Link key={index} className={'col-10 ps-3 col-md-3 text-decoration-none'} href={`/shop/sportswear?productCollection=${banner.title}`}>
                         <div className="card rounded-0 border-0">
                             <img src={banner.src} className="card-img-top rounded-0" alt="..."/>
                             <div className="card-body">
@@ -73,18 +73,18 @@ const Home = ()=>{
                     <div className="carousel-caption">
                         <h3 className="card-title fw-bold ">LOW BACK EDIT</h3>
                         <h6 className="card-text">Bringing the heat.</h6>
-                        <button className={"btn btn-light"}
+                        <a href={`/shop/sportswear?other=${other.LOW_BACK_EDIT}`} className={"btn btn-light"}
                                 style={{
                                     fontWeight: "600",
                                     borderRadius: "20px",
                                 }}>
                             Shop now
-                        </button>
+                        </a>
                     </div>
                 </div>
                 <div className={'mx-2 mx-md-0 d-flex justify-content-between align-items-center'}>
                     <h2>Sportswear favorites</h2>
-                    <Link className={'fw-medium link-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover'} href={`/shop${routes.SPORTSWEAR}?productCollection=${collections.DEFINE}`}>Shop</Link>
+                    <Link className={'fw-medium link-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover'} href={`/shop/sportswear?productCollection=${collections.DEFINE}`}>Shop</Link>
                 </div>
                 <ProductSlider filter={{productCollection:collections.DEFINE,limit:8}}></ProductSlider>
             </section>

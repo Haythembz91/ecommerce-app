@@ -20,11 +20,9 @@ router.push(`?${params.toString()}`)
                        )
      
     }
-
-    
        
     return (
-        <nav className="navbar navbar-expand-lg bg-body-tertiary flex-md-column">
+        <nav className="navbar navbar-expand-lg bg-body-secondary flex-md-column">
             <div className="container-fluid align-content-center">
                 <h4 className="navbar-brand">Sportswear</h4>
                 <button className="navbar-toggler fs-6" type="button" data-bs-toggle="collapse"

@@ -1,10 +1,3 @@
-
-export enum routes {
-    HOME= '/',
-    FITNESS ='/fitness',
-    SPORTSWEAR='/sportswear'
-}
-
 export enum categories{
     LEGGINGS='Leggings',
     JOGGERS='Joggers',
@@ -58,7 +51,7 @@ export enum other{
     BEST_SELLERS='Best Sellers',
     NEW_RELEASES='New Releases',
     SPRING_EDIT='Spring Edit',
-    LOWBACK_EDIT='Low Back Edit'   
+    LOW_BACK_EDIT='Low Back Edit'
 }
 
 export enum sort{

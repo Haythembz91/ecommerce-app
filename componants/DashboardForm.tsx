@@ -55,7 +55,7 @@ const [msg,setMsg]=useState<string>('')
     
     return (
         <div>
-          <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+          <button type="button" className="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
             Add Product
           </button>
           <div className="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex={-1} aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -170,7 +170,7 @@ const [msg,setMsg]=useState<string>('')
                         <div className="mb-3">
                             <label htmlFor="productPrice" className="form-label">Product Price:</label>
                             <div className="input-group mb-3">
-                              <span className="input-group-text" id="basic-addon1">$</span>
+                              <span className="input-group-text" id="basic-addon1">€</span>
                               <input min={0} step={'any'} id={'productPrice'} name={'productPrice'} required type="number" className="form-control" placeholder="Price" aria-label="productPrice" aria-describedby="basic-addon1"/>
                             </div>
                         </div>
@@ -214,7 +214,6 @@ const [msg,setMsg]=useState<string>('')
                               <span className="spinner-border spinner-border-sm" aria-hidden="true"></span>
                               <span role="status">Adding...</span>
                             </button>:<button className="btn btn-primary" type="submit">Add Product</button>}
-                            
                         </div>
                     </form>
                 </div>

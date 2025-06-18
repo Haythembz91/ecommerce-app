@@ -1,6 +1,6 @@
 'use client'
 
-import {colors, legLengths, routes, sizes, sleeveLengths} from "@/utils/enums";
+import {colors, legLengths, sizes, sleeveLengths} from "@/utils/enums";
 import {Product} from "@/utils/interfaces";
 import Link from "next/link";
 import React, {useContext, useState} from "react";
@@ -37,7 +37,7 @@ const AddToCartForm = ({product}:{product:Product}) => {
             <h5 className={'mb-3'}><b>Color:</b> {product.primaryColor}</h5>
             <div className={'mb-3'}>
                 {product.productColor.map((color:colors,index:number)=>(
-                    <Link href={`/products/${routes.SPORTSWEAR}/${product.productName}_${color}`} className={'mx-1 border border-dark border-opacity-75'} key={index} style={{backgroundColor:color,width:'25px',height:'25px',display:'inline-block',borderRadius:'50%'}}>
+                    <Link href={`/products/sportswear/${product.productName}_${color}`} className={'mx-1 border border-dark border-opacity-75'} key={index} style={{backgroundColor:color,width:'25px',height:'25px',display:'inline-block',borderRadius:'50%'}}>
                     </Link>
                 ))}
             </div>
