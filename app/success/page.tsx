@@ -6,7 +6,6 @@ export default async function Success({ searchParams }:{searchParams:{session_id
     if (!session_id)
         throw new Error('Please provide a valid session_id (`cs_test_...`)')
 
-    // @ts-ignore
     const {
         status,
         customer_details: { email: customerEmail }
