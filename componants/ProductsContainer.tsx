@@ -54,7 +54,7 @@ const ProductsContainer =({products}:{products:Product[]})=>{
       {filteredProducts?.map((product:Product,index)=>{
           return(
             <Link className="text-decoration-none" href={`/products/sportswear/${encodeURIComponent(product.productName)}_${product.primaryColor}`} key={index}>
-              <ProductCard key={product._id} product={product}></ProductCard>
+              <ProductCard key={index} product={product}></ProductCard>
               </Link>
           )
       })}      

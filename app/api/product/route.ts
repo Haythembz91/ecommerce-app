@@ -4,6 +4,7 @@ import {UploadToCloudinary} from "@/utils/UploadToCloudinary";
 import {categories, sleeveLengths, legLengths, collections, colors, sizes, other} from "@/utils/enums";
 import {Product} from "@/utils/interfaces";
 import { ObjectId } from "mongodb";
+import {Filters} from "@/utils/types";
 
 
 export async function POST(req:NextRequest){
@@ -29,7 +30,7 @@ export async function POST(req:NextRequest){
         }
         for (const [key, value] of formData.entries()){
             if(!key.includes('-')) continue
-            quantitiesMap.set(key, parseInt(value) as number)
+            quantitiesMap.set(key, Number(value))
         }
         const productCategory = formData.get('productCategory') as categories
         const product:Product = {
@@ -69,8 +70,8 @@ export async function GET(req:NextRequest){
         return NextResponse.json({message:'Invalid Request'}, {status: 400})
 
     const searchParams = req.nextUrl.searchParams
-    const filters = Object.fromEntries(searchParams.entries())
-    const limit = parseInt(filters.limit)
+    const filters:Filters = Object.fromEntries(searchParams.entries())
+    const limit = Number(filters.limit)
     if (filters._id&& ObjectId.isValid(filters._id)){
         filters._id= new ObjectId(filters._id)
     }

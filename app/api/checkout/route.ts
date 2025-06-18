@@ -49,10 +49,7 @@ export async function POST (req:NextRequest){
             line_items,
             mode: 'payment',
             success_url: `${origin}/success?session_id={CHECKOUT_SESSION_ID}`,
-            cancel_url: `${origin}`,
-            metadata: {
-                cart: JSON.stringify(items),
-            },
+            cancel_url: `${origin}`
         });
         return NextResponse.json(
             { url: session.url },

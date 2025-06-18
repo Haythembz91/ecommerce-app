@@ -1,8 +1,9 @@
 import {sizes, colors, collections, legLengths, sleeveLengths, other, sort, categories} from "@/utils/enums"
+import {ObjectId} from "mongodb";
 
 export type Filters={
-    _id?:string,
-    productSizes?:sizes[],
+    _id?:ObjectId,
+    productSizes?:sizes,
     productCollection?:collections,
     legLength?:legLengths,
     sleeveLength?:sleeveLengths,
@@ -11,8 +12,9 @@ export type Filters={
     primaryColor?:colors
     productCategory?:categories
     productName?:string
-    productPrice?:number
-    limit?:number
+    productPrice?:string
+    limit?:string
+    query?:string
 }
 
 export type CartItemType={

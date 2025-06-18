@@ -2,6 +2,7 @@ import {Filters} from "@/utils/types";
 
 export const GetProducts = async(filters:Filters)=>{
    const searchParams = new URLSearchParams(filters).toString()
+
    try{
       const response = await fetch(`${process.env.BASE_URL}/api/product?${searchParams}`,{
          headers:{

@@ -12,7 +12,7 @@ const ProductSlider = async ({filter}:{filter:Filters}) => {
     return(
         <div className="d-flex flex-nowrap gap-2 overflow-x-scroll productSlide">
             {favoriteProducts.map((product,index)=>
-                <div key={product._id} className={'col-10 col-md-5 pt-md-5 pe-0'}>
+                <div key={index} className={'col-10 col-md-5 pt-md-5 pe-0'}>
                     <Link className="text-decoration-none" href={`/products/sportswear/${encodeURIComponent(product.productName)}_${product.primaryColor}`}>
                         <ProductCard product={product}/>
                     </Link>

@@ -1,7 +1,8 @@
 import {categories,sizes,colors,collections, sleeveLengths, legLengths,other} from "@/utils/enums"
+import {ObjectId} from "mongodb";
 
 export interface Product {
-    _id?: string;
+    _id?: ObjectId;
     productName: string;
     productDescription: string;
     productCategory: categories;

@@ -7,6 +7,7 @@ import React, {useContext, useState} from "react";
 import {v4 as uuidv4} from "uuid";
 import {useCart} from "@/context/CartContext";
 import {CartItemType} from "@/utils/types";
+import {ObjectId} from "mongodb";
 
 const AddToCartForm = ({product}:{product:Product}) => {
 
@@ -15,7 +16,7 @@ const AddToCartForm = ({product}:{product:Product}) => {
         e.preventDefault()
         const formData = new FormData(e.currentTarget as HTMLFormElement)
         formData.append('id',uuidv4() as string)
-        formData.append('productId',product._id as string)
+        formData.append('productId',product._id?.toString() as string)
         formData.append('productColor',product.primaryColor as colors)
         formData.append('productName',product.productName as string)
         formData.append('productImage',product.urlByColor![0] as string)
