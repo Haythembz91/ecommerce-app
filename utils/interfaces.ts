@@ -1,8 +1,9 @@
 import {categories,sizes,colors,collections, sleeveLengths, legLengths,other} from "@/utils/enums"
 import {ObjectId} from "mongodb";
 
+
 export interface Product {
-    _id?: ObjectId;
+    _id?: string;
     productName: string;
     productDescription: string;
     productCategory: categories;
@@ -18,7 +19,7 @@ export interface Product {
     urlByColor?:string[];
     other?:other
 }
-
-export interface SearchPageProps {
-  searchParams: Record<string, string|undefined>;
+export interface ProductVariant extends Omit<Product, '_id'> {
+    _id?: ObjectId;
 }
+

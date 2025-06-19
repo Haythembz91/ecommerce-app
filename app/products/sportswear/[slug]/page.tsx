@@ -4,7 +4,7 @@ import Link from "next/link";
 import AddToCartForm from "@/componants/AddToCartForm";
 import {colors} from "@/utils/enums";
 
-const Home = async ({params}:{params:{slug:string}})=>{
+const Home = async ({params}:{params: Promise<{slug:string}>})=>{
     const {slug} = await params
     const decodedSlug = decodeURIComponent(slug)
     const arr = decodedSlug.split('_')

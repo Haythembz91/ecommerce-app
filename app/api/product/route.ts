@@ -2,16 +2,16 @@ import {NextResponse, NextRequest} from "next/server";
 import { getDb } from "@/utils/mongodb";
 import {UploadToCloudinary} from "@/utils/UploadToCloudinary";
 import {categories, sleeveLengths, legLengths, collections, colors, sizes, other} from "@/utils/enums";
-import {Product} from "@/utils/interfaces";
+import {Product, ProductVariant} from "@/utils/interfaces";
 import { ObjectId } from "mongodb";
-import {Filters} from "@/utils/types";
+import {Filters, FiltersDb} from "@/utils/types";
 
 
 export async function POST(req:NextRequest){
     const map = new Map<string,File[]>()
     const imagesByColor :Record<string,string[]>={}
     const quantitiesMap= new Map<string,number>()
-    const productVariants:Product[]=[]
+    const productVariants:ProductVariant[]=[]
     try {
         const formData = await req.formData()
         for (const [key, value] of formData.entries()){
@@ -33,7 +33,7 @@ export async function POST(req:NextRequest){
             quantitiesMap.set(key, Number(value))
         }
         const productCategory = formData.get('productCategory') as categories
-        const product:Product = {
+        const product:ProductVariant = {
             productName: formData.get('productName') as string,
             productDescription: formData.get('productDescription') as string,
             productCategory: formData.get('productCategory') as categories,
@@ -48,7 +48,7 @@ export async function POST(req:NextRequest){
             other:formData.get('other') as other
         }
         for(const color of Object.keys(imagesByColor)){
-           const productVariant:Product = {...product,'urlByColor':imagesByColor[color],'primaryColor':color as colors}
+           const productVariant:ProductVariant = {...product,'urlByColor':imagesByColor[color],'primaryColor':color as colors}
             productVariants.push(productVariant)
         }
         const db = await getDb()
@@ -70,7 +70,7 @@ export async function GET(req:NextRequest){
         return NextResponse.json({message:'Invalid Request'}, {status: 400})
 
     const searchParams = req.nextUrl.searchParams
-    const filters:Filters = Object.fromEntries(searchParams.entries())
+    const filters:FiltersDb = Object.fromEntries(searchParams.entries())
     const limit = Number(filters.limit)
     if (filters._id&& ObjectId.isValid(filters._id)){
         filters._id= new ObjectId(filters._id)

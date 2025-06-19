@@ -8,10 +8,11 @@ export default async function Success({ searchParams }:{searchParams:{session_id
 
     const {
         status,
-        customer_details: { email: customerEmail }
+        customer_details
     } = await stripe.checkout.sessions.retrieve(session_id, {
         expand: ['line_items', 'payment_intent']
     })
+    const customerEmail = customer_details?.email??null
 
     if (status === 'open') {
         return redirect('/')
