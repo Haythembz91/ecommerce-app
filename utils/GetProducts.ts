@@ -7,7 +7,8 @@ export const GetProducts = async(filters:Filters)=>{
       const response = await fetch(`${process.env.BASE_URL}/api/product?${searchParams}`,{
          headers:{
             'x-requested-with':'XMLHttpRequest'
-         }
+         },
+         next:{revalidate:60}
       })
    return response.json()
    }catch(e){
