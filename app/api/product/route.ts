@@ -2,9 +2,9 @@ import {NextResponse, NextRequest} from "next/server";
 import { getDb } from "@/utils/mongodb";
 import {UploadToCloudinary} from "@/utils/UploadToCloudinary";
 import {categories, sleeveLengths, legLengths, collections, colors, sizes, other} from "@/utils/enums";
-import {Product, ProductVariant} from "@/utils/interfaces";
+import {ProductVariant} from "@/utils/interfaces";
 import { ObjectId } from "mongodb";
-import {Filters, FiltersDb} from "@/utils/types";
+import {FiltersDb} from "@/utils/types";
 
 
 export async function POST(req:NextRequest){
