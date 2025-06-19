@@ -1,6 +1,6 @@
-import OffcanvasSportswear from "@/componants/OffcanvasSportswear";
-import OffcanvasCollection from "@/componants/OffcanvasCollection";
-import OffcanvasCategory from "@/componants/OffcanvasCategory";
+import OffcanvasSportswear from "@/components/OffcanvasSportswear";
+import OffcanvasCollection from "@/components/OffcanvasCollection";
+import OffcanvasCategory from "@/components/OffcanvasCategory";
 import OffcanvasFooter from "./OffcanvasFooter";
 const Offcanvas = ()=>{
 

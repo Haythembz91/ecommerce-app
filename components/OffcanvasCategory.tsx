@@ -1,5 +1,4 @@
 import {categories} from "@/utils/enums";
-import Link from "next/link";
 
 const OffcanvasCategory = ()=>{
 

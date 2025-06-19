@@ -30,10 +30,10 @@ const AuthComponent = ()=>{
         <div className={'container'}>
             <ul className="nav nav-pills my-3 justify-content-center">
                 <li className="nav-item px-2">
-                    <button onClick={(e)=>{setShowLogin(true);setShowRegister(false)}} className="btn btn-outline-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" aria-current="page">Login</button>
+                    <button onClick={()=>{setShowLogin(true);setShowRegister(false)}} className="btn btn-outline-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" aria-current="page">Login</button>
                 </li>
                 <li className="nav-item px-2">
-                    <button onClick={(e)=>{setShowLogin(false);setShowRegister(true)}} className="btn btn-outline-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover">Register</button>
+                    <button onClick={()=>{setShowLogin(false);setShowRegister(true)}} className="btn btn-outline-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover">Register</button>
                 </li>
             </ul>
             <div className={'d-flex overflow-hidden'}>

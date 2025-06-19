@@ -1,8 +1,8 @@
-import SliderSportswear from "@/componants/SliderSportswear"
+import SliderSportswear from "@/components/SliderSportswear"
 import Link from "next/link";
 import {categories, collections, other,} from "@/utils/enums";
-import ProductSlider from "@/componants/ProductSlider";
-import ProductMiniSlider from "@/componants/ProductMiniSlider";
+import ProductSlider from "@/components/ProductSlider";
+import ProductMiniSlider from "@/components/ProductMiniSlider";
 import {collectionBanners} from "@/utils/const";
 
 const Home = ()=>{
@@ -26,8 +26,8 @@ const Home = ()=>{
                     <h2>THE UNITARDS ARE BACK</h2>
                 </div>
                 <div className={'row row-cols-2 mx-0'}>
-                    <img className={'img-fluid row d-none d-lg-block'} src={'https://res.cloudinary.com/dmgfsayir/image/upload/v1749130167/1.WB_DefineUnitard_RestockBanner_2ss240430_iw_desktop_2000x_rlfc3r.webp'}/>
-                    <img className={'object-fit-cover img-fluid row d-lg-none'} src={'https://res.cloudinary.com/dmgfsayir/image/upload/v1749130167/1.WB_DefineUnitard_RestockBanner_2ss240430_iw_mobile_768x_d4addc.webp'}/>
+                    <img alt={''} className={'img-fluid row d-none d-lg-block'} src={'https://res.cloudinary.com/dmgfsayir/image/upload/v1749130167/1.WB_DefineUnitard_RestockBanner_2ss240430_iw_desktop_2000x_rlfc3r.webp'}/>
+                    <img alt={''} className={'object-fit-cover img-fluid row d-lg-none'} src={'https://res.cloudinary.com/dmgfsayir/image/upload/v1749130167/1.WB_DefineUnitard_RestockBanner_2ss240430_iw_mobile_768x_d4addc.webp'}/>
                     <ProductMiniSlider filter={{productCategory:categories.UNITARDS,limit:'6'}}></ProductMiniSlider>
                 </div>
             </section>

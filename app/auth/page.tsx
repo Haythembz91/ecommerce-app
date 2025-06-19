@@ -1,4 +1,4 @@
-import AuthComponent from "@/componants/AuthComponent";
+import AuthComponent from "@/components/AuthComponent";
 
 
 const Home = ()=>{

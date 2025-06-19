@@ -1,6 +1,6 @@
 import {Product} from "@/utils/interfaces";
 import {GetProducts} from "@/utils/GetProducts";
-import ProductsContainer from "@/componants/ProductsContainer"
+import ProductsContainer from "@/components/ProductsContainer"
 import {sort} from "@/utils/enums"
 import {Filters} from "@/utils/types";
 const Home = async ({searchParams}:{searchParams:Promise<Filters>})=>{

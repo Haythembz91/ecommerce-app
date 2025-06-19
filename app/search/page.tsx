@@ -1,4 +1,4 @@
-import ProductsContainer from "@/componants/ProductsContainer"
+import ProductsContainer from "@/components/ProductsContainer"
 import {Product} from "@/utils/interfaces";
 import {GetProducts} from "@/utils/GetProducts" 
 

@@ -1,6 +1,6 @@
 'use client'
 import {useCart} from "@/context/CartContext";
-import CartItem from "@/componants/CartItem";
+import CartItem from "@/components/CartItem";
 import {handleSubmit} from "@/utils/Checkout";
 
 const Home = ()=>{

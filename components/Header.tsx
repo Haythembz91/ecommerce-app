@@ -1,12 +1,12 @@
 'use client'
 import Image from "next/image";
-import Collections from '@/componants/Collections'
-import Category from '@/componants/Category'
-import Offcanvas from "@/componants/Offcanvas";
+import Collections from '@/components/Collections'
+import Category from '@/components/Category'
+import Offcanvas from "@/components/Offcanvas";
 import Link from "next/link";
 import {useEffect, useState} from "react";
-import SearchBar from "@/componants/SearchBar";
-import CartItemsContainer from "@/componants/CartItemsContainer";
+import SearchBar from "@/components/SearchBar";
+import CartItemsContainer from "@/components/CartItemsContainer";
 import {useCart} from "@/context/CartContext";
 
 const Header = ()=>{

@@ -1,12 +1,12 @@
 'use client'
-import CartItem from "@/componants/CartItem";
+import CartItem from "@/components/CartItem";
 import {useCart} from "@/context/CartContext";
 import Link from "next/link";
 import React from "react";
 import {handleSubmit} from "@/utils/Checkout";
 
 const CartItemsContainer = ()=>{
-    const {items,clearCart} = useCart()
+    const {items} = useCart()
 
     if(items.length===0){
         return <div className={'p-4 h5 text-center'}>

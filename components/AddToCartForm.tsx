@@ -3,11 +3,10 @@
 import {colors, legLengths, sizes, sleeveLengths} from "@/utils/enums";
 import {Product} from "@/utils/interfaces";
 import Link from "next/link";
-import React, {useContext, useState} from "react";
+import React, {useState} from "react";
 import {v4 as uuidv4} from "uuid";
 import {useCart} from "@/context/CartContext";
 import {CartItemType} from "@/utils/types";
-import {ObjectId} from "mongodb";
 
 const AddToCartForm = ({product}:{product:Product}) => {
 

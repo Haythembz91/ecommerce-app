@@ -1,4 +1,4 @@
-import DashboardForm from '@/componants/DashboardForm'
+import DashboardForm from '@/components/DashboardForm'
 export default function Home() {
 
 
