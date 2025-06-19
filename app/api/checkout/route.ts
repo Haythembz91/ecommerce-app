@@ -63,10 +63,11 @@ export async function POST (req:NextRequest){
             }
         );
     }catch (err) {
+        const error = err as Error
         return NextResponse.json(
-            { error: err.message },
+            { error: error.message },
             {
-                status: err.statusCode || 500,
+                status: 500,
                 headers: {
                     'Access-Control-Allow-Origin': '*',
                 },
