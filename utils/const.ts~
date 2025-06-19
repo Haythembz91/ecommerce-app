@@ -33,7 +33,7 @@ export const collectionBanners = [{
         text:'Made for soft and stretchy layering.'
     },
     {
-        src:'',
+        src:'https://res.cloudinary.com/dmgfsayir/image/upload/v1749569313/4.WB_Website_MainPage_Collections_20250429_lg_600x_homy3h.webp',
         title:collections.ESSENTIAL,
         text:'Made with comfort and all-day versatility in mind.'
     }]

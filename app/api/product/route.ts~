@@ -2,15 +2,28 @@ import {NextResponse, NextRequest} from "next/server";
 import { getDb } from "@/utils/mongodb";
 import {UploadToCloudinary} from "@/utils/UploadToCloudinary";
 import {categories, sleeveLengths, legLengths, collections, colors, sizes, other} from "@/utils/enums";
-import {Product} from "@/utils/interfaces";
+import {ProductVariant} from "@/utils/interfaces";
 import { ObjectId } from "mongodb";
+import {FiltersDb} from "@/utils/types";
+
+export async function OPTIONS() {
+    return new NextResponse(null, {
+        status: 204,
+        headers: {
+            'Access-Control-Allow-Origin': process.env.PUBLIC_URL as string,
+            'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+            'Access-Control-Allow-Headers': 'Content-Type, X-Requested-With',
+        },
+    });
+}
+
 
 
 export async function POST(req:NextRequest){
     const map = new Map<string,File[]>()
     const imagesByColor :Record<string,string[]>={}
     const quantitiesMap= new Map<string,number>()
-    const productVariants:Product[]=[]
+    const productVariants:ProductVariant[]=[]
     try {
         const formData = await req.formData()
         for (const [key, value] of formData.entries()){
@@ -29,10 +42,10 @@ export async function POST(req:NextRequest){
         }
         for (const [key, value] of formData.entries()){
             if(!key.includes('-')) continue
-            quantitiesMap.set(key, parseInt(value) as number)
+            quantitiesMap.set(key, Number(value))
         }
         const productCategory = formData.get('productCategory') as categories
-        const product:Product = {
+        const product:ProductVariant = {
             productName: formData.get('productName') as string,
             productDescription: formData.get('productDescription') as string,
             productCategory: formData.get('productCategory') as categories,
@@ -47,7 +60,7 @@ export async function POST(req:NextRequest){
             other:formData.get('other') as other
         }
         for(const color of Object.keys(imagesByColor)){
-           const productVariant:Product = {...product,'urlByColor':imagesByColor[color],'primaryColor':color as colors}
+           const productVariant:ProductVariant = {...product,'urlByColor':imagesByColor[color],'primaryColor':color as colors}
             productVariants.push(productVariant)
         }
         const db = await getDb()
@@ -55,10 +68,22 @@ export async function POST(req:NextRequest){
         const addProduct = await productsCollection.insertMany(productVariants)
         if(addProduct.acknowledged)
         {
-        return NextResponse.json({message:'Product Added Successfully'}, {status: 200})
+            return NextResponse.json(
+                { message: 'Product Added Successfully' },
+                {
+                    status: 200,
+                    headers: {
+                        'Access-Control-Allow-Origin': process.env.PUBLIC_URL as string,
+                    },
+                }
+            )
         }
     } catch (error) {
-        console.error(error)
+        return NextResponse.json({ error: error }, { status: 500,
+            headers: {
+                'Access-Control-Allow-Origin': process.env.PUBLIC_URL as string,
+            }
+        });
     }
 }
 
@@ -69,21 +94,23 @@ export async function GET(req:NextRequest){
         return NextResponse.json({message:'Invalid Request'}, {status: 400})
 
     const searchParams = req.nextUrl.searchParams
-    const filters = Object.fromEntries(searchParams.entries())
-    const limit = parseInt(filters.limit)
+    const filters:FiltersDb = Object.fromEntries(searchParams.entries())
+    const limit = Number(filters.limit)
     if (filters._id&& ObjectId.isValid(filters._id)){
         filters._id= new ObjectId(filters._id)
     }
     if (filters.limit){
         delete filters.limit
     }
-    console.log(filters)
     const query = searchParams.get('query')
     const regex = new RegExp(query as string, 'i')
     try{
         const db=await getDb()
         if (!db) {
-            return NextResponse.json({ message: 'Database connection failed' }, { status: 500 });
+            return NextResponse.json({ message: 'Database connection failed' }, { status: 500,
+            headers:{
+                'Access-Control-Allow-Origin': process.env.PUBLIC_URL as string,
+            }});
         }
         const productsCollection = db.collection('products')
         if(query){
@@ -98,13 +125,22 @@ export async function GET(req:NextRequest){
                 {sleeveLength:regex},
              ]
         }).toArray()
-        return NextResponse.json(products, {status: 200})
+        return NextResponse.json(products, {status: 200,
+        headers:{
+            'Access-Control-Allow-Origin': process.env.PUBLIC_URL as string,
+        }})
         }
         const products = await productsCollection.find(filters).sort({_id:-1}).limit(!isNaN(limit)?limit:0).toArray()
-        return NextResponse.json(products, {status: 200})
+        return NextResponse.json(products, {status: 200,
+        headers:{
+            'Access-Control-Allow-Origin': process.env.PUBLIC_URL as string,
+        }})
     
     }catch(e){
         console.error(e)
-        return NextResponse.json({ message: 'Internal Server Error' }, { status: 500 });
+        return NextResponse.json({ message: 'Internal Server Error' }, { status: 500,
+        headers:{
+            'Access-Control-Allow-Origin': process.env.PUBLIC_URL as string,
+        }});
     }
 }

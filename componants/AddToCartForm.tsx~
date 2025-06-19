@@ -1,24 +1,37 @@
 'use client'
 
-import {colors, sizes} from "@/utils/enums";
+import {colors, legLengths, sizes, sleeveLengths} from "@/utils/enums";
 import {Product} from "@/utils/interfaces";
 import Link from "next/link";
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
+import {v4 as uuidv4} from "uuid";
+import {useCart} from "@/context/CartContext";
+import {CartItemType} from "@/utils/types";
+import {ObjectId} from "mongodb";
 
 const AddToCartForm = ({product}:{product:Product}) => {
+
+    const {items,addItem,removeItem,clearCart} = useCart()
     const handleAddToCart = (e:React.FormEvent<HTMLFormElement>)=>{
         e.preventDefault()
         const formData = new FormData(e.currentTarget as HTMLFormElement)
+        formData.append('id',uuidv4() as string)
+        formData.append('productId',product._id)
         formData.append('productColor',product.primaryColor as colors)
         formData.append('productName',product.productName as string)
-        formData
-        for(const [key,value] of formData.entries()){
-            console.log(key,value)
-        }
+        formData.append('productImage',product.urlByColor![0] as string)
+        formData.append('productPrice',product.productPrice as string)
+        product.legLength&&formData.append('legLength',product.legLength as legLengths)
+        product.sleeveLength&&formData.append('sleeveLength',product.sleeveLength as sleeveLengths)
+        formData.append('stock',product.productQuantities[`${product.primaryColor}-${selectedSize}`].toFixed(2) as string)
+
+        const item:CartItemType = Object.fromEntries(formData.entries()) as unknown as CartItemType
+        addItem(item)
     }
     const [selectedSize,setSelectedSize]=useState<sizes>()
     const [selectedQuantity,setSelectedQuantity]=useState<number>(1)
     const totalPrice = parseFloat(product.productPrice)*(selectedQuantity||1)
+    const {toggleCart} = useCart()
     return(
         <form onSubmit={handleAddToCart} className={'col-md-5 px-2'}>
             <h1 className={'mb-3'} ><b>{product.productName}</b></h1>
@@ -29,6 +42,14 @@ const AddToCartForm = ({product}:{product:Product}) => {
                     </Link>
                 ))}
             </div>
+            {product.legLength&&<h5 className={'mb-3'}>
+                <b>Leg Length: </b>
+                {product.legLength}
+            </h5>}
+            {product.sleeveLength&&<h5 className={'mb-3'}>
+                <b>Sleeve Length: </b>
+                {product.sleeveLength}
+            </h5>}
             <div className={'mb-3'}>
                 <h5><b>Size:</b></h5>
                 <div className={'d-flex justify-content-center'}>
@@ -50,7 +71,7 @@ const AddToCartForm = ({product}:{product:Product}) => {
                 <h5><b>€{totalPrice}</b></h5>
             </div>
             <div className={'d-flex justify-content-center mb-3'}>
-                <button type={'submit'} className={'btn btn-dark rounded-5 my-2 w-75'}>Add to Cart</button>
+                <button type={'submit'} onClick={toggleCart} className={'btn btn-dark rounded-5 my-2 w-75'}>Add to Cart</button>
             </div>
             <div className={''}>
                 <div className="accordion" id="accordionExample">

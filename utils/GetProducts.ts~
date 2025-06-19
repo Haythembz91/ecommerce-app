@@ -1,12 +1,14 @@
-import {Filters} from "@/utils/interfaces";
+import {Filters} from "@/utils/types";
 
 export const GetProducts = async(filters:Filters)=>{
-   const searchParams = new URLSearchParams(filters as Filters).toString()
+   const searchParams = new URLSearchParams(filters).toString()
+
    try{
-      const response = await fetch(`${process.env.BASE_URL}/api/product?${searchParams}`,{
+      const response = await fetch(`${process.env.PUBLIC_URL}/api/product?${searchParams}`,{
          headers:{
             'x-requested-with':'XMLHttpRequest'
-         }
+         },
+         next:{revalidate:60}
       })
    return response.json()
    }catch(e){

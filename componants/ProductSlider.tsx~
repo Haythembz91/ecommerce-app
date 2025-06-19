@@ -1,6 +1,5 @@
 import { GetProducts } from "@/utils/GetProducts"
 import {Product} from "@/utils/interfaces"
-import {categories, collections, other,} from "@/utils/enums"
 import ProductCard from "./ProductCard"
 import {Filters} from "@/utils/types";
 import Link from "next/link";
