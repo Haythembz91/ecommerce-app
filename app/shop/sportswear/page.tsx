@@ -3,7 +3,7 @@ import {GetProducts} from "@/utils/GetProducts";
 import ProductsContainer from "@/componants/ProductsContainer"
 import {sort} from "@/utils/enums"
 import {Filters} from "@/utils/types";
-const Home = async ({searchParams}:{searchParams:Filters})=>{
+const Home = async ({searchParams}:{searchParams:Promise<Filters>})=>{
     
     const filters = await searchParams
     const sortOrder = filters.sort
