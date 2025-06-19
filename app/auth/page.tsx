@@ -1,10 +1,10 @@
-import AuthComponant from "@/componants/AuthComponant";
+import AuthComponent from "@/componants/AuthComponent";
 
 
 const Home = ()=>{
     return (
         <div>
-            <AuthComponant></AuthComponant>
+            <AuthComponent></AuthComponent>
         </div>
     )
 }
