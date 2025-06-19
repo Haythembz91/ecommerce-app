@@ -9,7 +9,7 @@ export async function OPTIONS() {
     return new NextResponse(null, {
         status: 204,
         headers: {
-            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Origin': 'https://ecommerce-app-beta-olive.vercel.app',
             'Access-Control-Allow-Methods': 'POST, OPTIONS',
             'Access-Control-Allow-Headers': 'Content-Type, X-Requested-With',
         },
@@ -56,7 +56,7 @@ export async function POST (req:NextRequest){
             {
                 status: 200,
                 headers: {
-                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Origin': 'https://ecommerce-app-beta-olive.vercel.app',
                     'Access-Control-Allow-Methods': 'POST, OPTIONS',
                     'Access-Control-Allow-Headers': 'Content-Type, X-Requested-With',
                 },
@@ -69,7 +69,7 @@ export async function POST (req:NextRequest){
             {
                 status: 500,
                 headers: {
-                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Origin': 'https://ecommerce-app-beta-olive.vercel.app',
                 },
             }
         );

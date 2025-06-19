@@ -6,6 +6,18 @@ import {ProductVariant} from "@/utils/interfaces";
 import { ObjectId } from "mongodb";
 import {FiltersDb} from "@/utils/types";
 
+export async function OPTIONS() {
+    return new NextResponse(null, {
+        status: 204,
+        headers: {
+            'Access-Control-Allow-Origin': process.env.PUBLIC_URL as string,
+            'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+            'Access-Control-Allow-Headers': 'Content-Type, X-Requested-With',
+        },
+    });
+}
+
+
 
 export async function POST(req:NextRequest){
     const map = new Map<string,File[]>()
@@ -56,10 +68,22 @@ export async function POST(req:NextRequest){
         const addProduct = await productsCollection.insertMany(productVariants)
         if(addProduct.acknowledged)
         {
-        return NextResponse.json({message:'Product Added Successfully'}, {status: 200})
+            return NextResponse.json(
+                { message: 'Product Added Successfully' },
+                {
+                    status: 200,
+                    headers: {
+                        'Access-Control-Allow-Origin': process.env.PUBLIC_URL as string,
+                    },
+                }
+            )
         }
     } catch (error) {
-        console.error(error)
+        return NextResponse.json({ error: error }, { status: 500,
+            headers: {
+                'Access-Control-Allow-Origin': process.env.PUBLIC_URL as string,
+            }
+        });
     }
 }
 
@@ -83,7 +107,10 @@ export async function GET(req:NextRequest){
     try{
         const db=await getDb()
         if (!db) {
-            return NextResponse.json({ message: 'Database connection failed' }, { status: 500 });
+            return NextResponse.json({ message: 'Database connection failed' }, { status: 500,
+            headers:{
+                'Access-Control-Allow-Origin': process.env.PUBLIC_URL as string,
+            }});
         }
         const productsCollection = db.collection('products')
         if(query){
@@ -98,13 +125,22 @@ export async function GET(req:NextRequest){
                 {sleeveLength:regex},
              ]
         }).toArray()
-        return NextResponse.json(products, {status: 200})
+        return NextResponse.json(products, {status: 200,
+        headers:{
+            'Access-Control-Allow-Origin': process.env.PUBLIC_URL as string,
+        }})
         }
         const products = await productsCollection.find(filters).sort({_id:-1}).limit(!isNaN(limit)?limit:0).toArray()
-        return NextResponse.json(products, {status: 200})
+        return NextResponse.json(products, {status: 200,
+        headers:{
+            'Access-Control-Allow-Origin': process.env.PUBLIC_URL as string,
+        }})
     
     }catch(e){
         console.error(e)
-        return NextResponse.json({ message: 'Internal Server Error' }, { status: 500 });
+        return NextResponse.json({ message: 'Internal Server Error' }, { status: 500,
+        headers:{
+            'Access-Control-Allow-Origin': process.env.PUBLIC_URL as string,
+        }});
     }
 }
