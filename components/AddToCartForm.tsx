@@ -10,7 +10,7 @@ import {CartItemType} from "@/utils/types";
 
 const AddToCartForm = ({product}:{product:Product}) => {
 
-    const {items,addItem,removeItem,clearCart} = useCart()
+    const {addItem} = useCart()
     const handleAddToCart = (e:React.FormEvent<HTMLFormElement>)=>{
         e.preventDefault()
         const formData = new FormData(e.currentTarget as HTMLFormElement)

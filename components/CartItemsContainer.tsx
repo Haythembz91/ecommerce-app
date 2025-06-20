@@ -1,7 +1,6 @@
 'use client'
 import CartItem from "@/components/CartItem";
 import {useCart} from "@/context/CartContext";
-import Link from "next/link";
 import React from "react";
 import {handleSubmit} from "@/utils/Checkout";
 

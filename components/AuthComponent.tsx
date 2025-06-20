@@ -10,7 +10,7 @@ const AuthComponent = ()=>{
     const handleLogin = async (e:React.FormEvent<HTMLFormElement>)=>{
         e.preventDefault()
         try{
-            const response = await fetch ('/api/auth',{
+            const response = await fetch ('/api/auth/login',{
                 method:'POST',
                 headers:{'x-requested-with':'XMLHttpRequest',
                     'Content-Type':'application/json'
@@ -22,7 +22,8 @@ const AuthComponent = ()=>{
                 console.log(data)
             }
         }catch(e){
-            console.error(e)
+            const error = e as Error
+            console.error(error)
         }
     }
 
@@ -62,13 +63,13 @@ const AuthComponent = ()=>{
                 {showRegister&&<div className={'col-12'} id={'registerTab'}>
                     <form>
                         <div className="form-floating mb-3">
-                            <input type="text" className="form-control p-2" id="floatingInput" placeholder="Username"/>
-                            <label className={'p-2'} htmlFor="floatingInput">Username</label>
+                            <input type="text" className="form-control p-2" id="floatingUserInput" placeholder="Username"/>
+                            <label className={'p-2'} htmlFor="floatingUserInput">Username</label>
                         </div>
                         <div className="form-floating mb-3">
-                            <input type="email" className="form-control p-2" id="floatingInput"
+                            <input type="email" className="form-control p-2" id="floatingEmailInput"
                                    placeholder="Email Address"/>
-                            <label className={'p-2'} htmlFor="floatingInput">Email Address</label>
+                            <label className={'p-2'} htmlFor="floatingEmailInput">Email Address</label>
                         </div>
                         <div className="form-floating mb-3">
                             <input type="password" className="form-control p-2" id="floatingPassword"
@@ -76,9 +77,9 @@ const AuthComponent = ()=>{
                             <label className={'p-2'} htmlFor="floatingPassword">Password</label>
                         </div>
                         <div className="form-floating mb-3">
-                            <input type="password" className="form-control p-2" id="floatingPassword"
+                            <input type="password" className="form-control p-2" id="confirmFloatingPassword"
                                    placeholder="Confirm Password"/>
-                            <label className={'p-2'} htmlFor="floatingPassword">Confirm Password</label>
+                            <label className={'p-2'} htmlFor="confirmFloatingPassword">Confirm Password</label>
                         </div>
                         <div className="form-check mb-3">
                             <input className="form-check-input" type="checkbox" value="" id="checkChecked"/>
@@ -99,7 +100,7 @@ const AuthComponent = ()=>{
                 <div className={'d-flex justify-content-center mb-3'}>
                     <div className={'p-2'}>
                         <a href={'#'}>
-                            <img style={{width:'45px'}} alt={'fb logo'} src={'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/2023_Facebook_icon.svg/500px-2023_Facebook_icon.svg.png'}/>
+                            <img style={{width:'41px'}} alt={'fb logo'} src={'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/2023_Facebook_icon.svg/500px-2023_Facebook_icon.svg.png'}/>
                         </a>
                     </div>
                     <div className={'d-flex align-items-center p-2'}>
