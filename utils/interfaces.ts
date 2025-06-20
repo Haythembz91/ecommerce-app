@@ -23,3 +23,8 @@ export interface ProductVariant extends Omit<Product, '_id'> {
     _id?: ObjectId;
 }
 
+export interface User{
+    username?:string;
+    email_address?:string;
+    hashedPassword:string
+}

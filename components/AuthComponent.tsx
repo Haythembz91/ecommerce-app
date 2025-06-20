@@ -7,15 +7,22 @@ const AuthComponent = ()=>{
 
     const [showLogin, setShowLogin] = React.useState(true)
     const [showRegister, setShowRegister] = React.useState(false)
-    const handleLogin = async (e:React.FormEvent<HTMLFormElement>)=>{
+    const [password, setPassword] = React.useState('')
+    const [confirmPassword, setConfirmPassword] = React.useState('')
+    const [showMsg, setShowMsg] = React.useState(false)
+    const handleSubmit = async (e:React.FormEvent<HTMLFormElement>)=>{
         e.preventDefault()
+        if(password!==confirmPassword){
+            setShowMsg(true)
+            return null
+        }
+        const formData = new FormData(e.currentTarget as HTMLFormElement)
         try{
-            const response = await fetch ('/api/auth/login',{
+            const response = await fetch (`/api/auth/${showLogin?'login':'register'}`,{
                 method:'POST',
-                headers:{'x-requested-with':'XMLHttpRequest',
-                    'Content-Type':'application/json'
+                headers:{'x-requested-with':'XMLHttpRequest'
                 },
-                body:JSON.stringify({})
+                body:formData
             })
             if(response.ok){
                 const data = await response.json();
@@ -38,19 +45,19 @@ const AuthComponent = ()=>{
                 </li>
             </ul>
             <div className={'d-flex overflow-hidden'}>
-                {showLogin&&<div className={'col-12'} id={'loginTab'}>
-                    <form onSubmit={handleLogin}>
+                {showLogin&&<div className={'col-12 p-2'} id={'loginTab'}>
+                    <form onSubmit={handleSubmit}>
                         <div className="form-floating mb-3">
-                            <input type="text" className="form-control p-2" id="floatingInput" placeholder="Username"/>
+                            <input required type="text" name={'username'} className="form-control p-2" id="floatingInput" placeholder="Username"/>
                             <label className={'p-2'} htmlFor="floatingInput">Username</label>
                         </div>
                         <div className="form-floating mb-3">
-                            <input type="password" className="form-control p-2" id="floatingPassword"
+                            <input required type="password" name={'password'} className="form-control p-2" id="floatingPassword"
                                    placeholder="Password"/>
                             <label className={'p-2'} htmlFor="floatingPassword">Password</label>
                         </div>
                         <div className="form-check mb-3">
-                            <input className="form-check-input" type="checkbox" value="" id="checkChecked"/>
+                            <input className="form-check-input" name={'rememberMe'} type="checkbox" value="rememberMe" id="checkChecked"/>
                             <label className="form-check-label" htmlFor="checkChecked">
                                 Remember me
                             </label>
@@ -60,29 +67,32 @@ const AuthComponent = ()=>{
                         </div>
                     </form>
                 </div>}
-                {showRegister&&<div className={'col-12'} id={'registerTab'}>
-                    <form>
+                {showRegister&&<div className={'col-12 p-2'} id={'registerTab'}>
+                    <form onSubmit={handleSubmit}>
                         <div className="form-floating mb-3">
-                            <input type="text" className="form-control p-2" id="floatingUserInput" placeholder="Username"/>
+                            <input required type="text" name={'username'} className="form-control p-2" id="floatingUserInput" placeholder="Username"/>
                             <label className={'p-2'} htmlFor="floatingUserInput">Username</label>
                         </div>
                         <div className="form-floating mb-3">
-                            <input type="email" className="form-control p-2" id="floatingEmailInput"
+                            <input required type="email" name={'email_address'} className="form-control p-2" id="floatingEmailInput"
                                    placeholder="Email Address"/>
                             <label className={'p-2'} htmlFor="floatingEmailInput">Email Address</label>
                         </div>
                         <div className="form-floating mb-3">
-                            <input type="password" className="form-control p-2" id="floatingPassword"
+                            <input required type="password" onChange={(e)=>setPassword(e.target.value)} name={'password'} className="form-control p-2" id="floatingPassword"
                                    placeholder="Password"/>
                             <label className={'p-2'} htmlFor="floatingPassword">Password</label>
                         </div>
                         <div className="form-floating mb-3">
-                            <input type="password" className="form-control p-2" id="confirmFloatingPassword"
+                            <input required type="password" onChange={e=>setConfirmPassword(e.target.value)} name={'confirmPassword'} className="form-control p-2" id="confirmFloatingPassword"
                                    placeholder="Confirm Password"/>
                             <label className={'p-2'} htmlFor="confirmFloatingPassword">Confirm Password</label>
                         </div>
+                        {showMsg&&<div className={'mb-3'}>
+                            Passwords do not match
+                        </div>}
                         <div className="form-check mb-3">
-                            <input className="form-check-input" type="checkbox" value="" id="checkChecked"/>
+                            <input className="form-check-input" name={'rememberMe'} type="checkbox" value={'rememberMe'} id="checkChecked"/>
                             <label className="form-check-label" htmlFor="checkChecked">
                                 Remember me
                             </label>
