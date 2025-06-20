@@ -1,0 +1,10 @@
+import AuthComponent from "@/components/AuthComponent";
+
+
+const Home = ()=>{
+    return (
+        <AuthComponent></AuthComponent>
+    )
+}
+
+export default Home

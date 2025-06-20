@@ -74,6 +74,8 @@ export async function POST(req:NextRequest){
                     status: 200,
                     headers: {
                         'Access-Control-Allow-Origin': process.env.PUBLIC_URL as string,
+                        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+                        'Access-Control-Allow-Headers': 'Content-Type, X-Requested-With'
                     },
                 }
             )
@@ -82,6 +84,8 @@ export async function POST(req:NextRequest){
         return NextResponse.json({ error: error }, { status: 500,
             headers: {
                 'Access-Control-Allow-Origin': process.env.PUBLIC_URL as string,
+                'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+                'Access-Control-Allow-Headers': 'Content-Type, X-Requested-With'
             }
         });
     }
@@ -110,6 +114,8 @@ export async function GET(req:NextRequest){
             return NextResponse.json({ message: 'Database connection failed' }, { status: 500,
             headers:{
                 'Access-Control-Allow-Origin': process.env.PUBLIC_URL as string,
+                'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+                'Access-Control-Allow-Headers': 'Content-Type, X-Requested-With'
             }});
         }
         const productsCollection = db.collection('products')
@@ -128,12 +134,16 @@ export async function GET(req:NextRequest){
         return NextResponse.json(products, {status: 200,
         headers:{
             'Access-Control-Allow-Origin': process.env.PUBLIC_URL as string,
+            'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+            'Access-Control-Allow-Headers': 'Content-Type, X-Requested-With'
         }})
         }
         const products = await productsCollection.find(filters).sort({_id:-1}).limit(!isNaN(limit)?limit:0).toArray()
         return NextResponse.json(products, {status: 200,
         headers:{
             'Access-Control-Allow-Origin': process.env.PUBLIC_URL as string,
+            'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+            'Access-Control-Allow-Headers': 'Content-Type, X-Requested-With'
         }})
     
     }catch(e){
@@ -141,6 +151,8 @@ export async function GET(req:NextRequest){
         return NextResponse.json({ message: 'Internal Server Error' }, { status: 500,
         headers:{
             'Access-Control-Allow-Origin': process.env.PUBLIC_URL as string,
+            'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+            'Access-Control-Allow-Headers': 'Content-Type, X-Requested-With'
         }});
     }
 }

@@ -11,7 +11,7 @@ const CartItem = ({item}:{item:CartItemType})=>{
     return (
         <div className={'d-flex border-bottom pe-2 pb-1 mb-2'}>
             <div className={'col-5'}>
-                <a href={`/products/sportswear/${item.productName}_${item.productColor}`}>
+                <a href={`/products/sportswear/${encodeURIComponent(item.productName)}_${item.productColor}`}>
                     <img className={'img-fluid'} src={item.productImage} alt={'product image'}/>
                 </a>
             </div>
