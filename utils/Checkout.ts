@@ -12,13 +12,14 @@ export const handleSubmit = async (e:React.FormEvent<HTMLFormElement>,items:Cart
             },
             body:JSON.stringify({items})
         })
-        if (response.ok){
-            const data = await response.json();
-            if (data.url) {
-                window.location.href = data.url;
-            } else {
-                console.error('No checkout URL returned');
-            }
+        if(!response.ok){
+            window.location.href = '/auth';
+        }
+        const data = await response.json();
+        if (data.url) {
+            window.location.href = data.url;
+        } else {
+            console.error('No checkout URL returned');
         }
     }catch(e){
         console.error(e)

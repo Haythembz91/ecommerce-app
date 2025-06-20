@@ -10,6 +10,7 @@ const AuthComponent = ()=>{
     const [password, setPassword] = React.useState('')
     const [confirmPassword, setConfirmPassword] = React.useState('')
     const [showMsg, setShowMsg] = React.useState(false)
+    const [error, setError] = React.useState('')
     const handleSubmit = async (e:React.FormEvent<HTMLFormElement>)=>{
         e.preventDefault()
         if(password!==confirmPassword){
@@ -26,7 +27,9 @@ const AuthComponent = ()=>{
             })
             if(response.ok){
                 const data = await response.json();
+                setError(data.message)
                 console.log(data)
+                window.location.href = '/';
             }
         }catch(e){
             const error = e as Error
@@ -63,6 +66,9 @@ const AuthComponent = ()=>{
                             </label>
                         </div>
                         <div className={'mb-3'}>
+                            {error}
+                        </div>
+                        <div className={'mb-3'}>
                             <button type="submit" className="btn btn-dark w-100">Login</button>
                         </div>
                     </form>
@@ -91,6 +97,7 @@ const AuthComponent = ()=>{
                         {showMsg&&<div className={'mb-3'}>
                             Passwords do not match
                         </div>}
+                        <div className={'mb-3'}>{error}</div>
                         <div className="form-check mb-3">
                             <input className="form-check-input" name={'rememberMe'} type="checkbox" value={'rememberMe'} id="checkChecked"/>
                             <label className="form-check-label" htmlFor="checkChecked">

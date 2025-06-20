@@ -1,3 +1,12 @@
+export const config = {
+    api: {
+        bodyParser: {
+            sizeLimit: '10mb',
+        },
+    },
+};
+
+
 import {NextResponse, NextRequest} from "next/server";
 import { getDb } from "@/utils/mongodb";
 import {UploadToCloudinary} from "@/utils/UploadToCloudinary";
