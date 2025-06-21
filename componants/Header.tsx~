@@ -2,21 +2,40 @@
 import Image from "next/image";
 import Collections from '@/componants/Collections'
 import Category from '@/componants/Category'
-import Nutrition from '@/componants/Nutrition'
 import Offcanvas from "@/componants/Offcanvas";
 import Link from "next/link";
-import {useState} from "react";
-import {routes} from '@/utils/enums'
+import {useEffect, useState} from "react";
 import SearchBar from "@/componants/SearchBar";
 import SignIn from "@/componants/SignIn";
+import CartItemsContainer from "@/componants/CartItemsContainer";
+import {useCart} from "@/context/CartContext";
 
 const Header = ()=>{
 
-    const [slug,setSlug] = useState<routes>(routes.HOME)
     const [showSearchBar,setShowSearchBar] = useState<boolean>(false)
-    
+    const {items, show, toggleCart} = useCart()
+
+    useEffect(()=>{
+        const handleClick = (e:MouseEvent)=>{
+            if(e.target === overlay){
+                toggleCart()
+            }
+        }
+        const overlay = document.getElementById('cartOverlay')
+        window.addEventListener('click',handleClick)
+        return ()=>window.removeEventListener('click',handleClick)
+    },[show])
+
+    useEffect(() => {
+        if (show) {
+            document.body.classList.add('overflow-hidden');
+        } else {
+            document.body.classList.remove('overflow-hidden');
+        }
+    }, [show]);
+
     return (
-            <header className={"container-fluid sticky-top bg-body-tertiary"}>
+            <header className={"container-fluid sticky-top bg-body-secondary"}>
                 <nav className={"navbar navbar-expand-md"}>
                     <div className={"col-5"}>
                         <button className="btn d-md-none" type="button" data-bs-toggle="offcanvas"
@@ -34,34 +53,28 @@ const Header = ()=>{
                                     d="M15.853 16.56c-1.683 1.517-3.911 2.44-6.353 2.44-5.243 0-9.5-4.257-9.5-9.5s4.257-9.5 9.5-9.5 9.5 4.257 9.5 9.5c0 2.442-.923 4.67-2.44 6.353l7.44 7.44-.707.707-7.44-7.44zm-6.353-15.56c4.691 0 8.5 3.809 8.5 8.5s-3.809 8.5-8.5 8.5-8.5-3.809-8.5-8.5 3.809-8.5 8.5-8.5z"/>
                             </svg>
                         </button>
-                        <Offcanvas setSlug={setSlug}></Offcanvas>
+                        <Offcanvas></Offcanvas>
                         <div>
                             <div className="d-none d-md-flex">
                                 <div className={'categoryMenu'}>
-                                    <Link onClick={() => setSlug(routes.HOME)} href={"/"} role={'button'}
-                                          className={'fw-bold btn btn-light btn-sm'}>
+                                    <Link href={"/"} role={'button'}
+                                          className={'fw-bold btn btn-body-secondary btn-sm'}>
                                         SPORTSWEAR
                                     </Link>
                                     <Category></Category>
                                 </div>
                                 <div className={'collectionsMenu'}>
-                                    <Link href="#" role={'button'} className={'fw-bold btn btn-light btn-sm'}>
+                                    <Link href="#" role={'button'}
+                                          className={'fw-bold btn btn-body-secondary btn-sm '}>
                                         COLLECTIONS
                                     </Link>
                                     <Collections></Collections>
-                                </div>
-                                <div className={'nutritionMenu'}>
-                                    <Link onClick={() => setSlug(routes.FITNESS)} href={"/fitness"} role={'button'}
-                                          className={'fw-bold btn btn-light btn-sm'}>
-                                        NUTRITION
-                                    </Link>
-                                    <Nutrition></Nutrition>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div className={"col-2 d-flex justify-content-center"}>
-                        <Link href={slug} className={'navbar-brand'}>
+                        <Link href={'/'} className={'navbar-brand'}>
                             <Image src={"https://cdn.shopify.com/s/files/1/0744/0203/files/logo_icon_19.svg?603310"}
                                    alt={"Logo"} width={"48"} height={"38"}></Image>
                         </Link>
@@ -90,25 +103,29 @@ const Header = ()=>{
                                 <SignIn></SignIn>
                             </div>
                             <div className={'col-md-3'}>
-                                <button className="btn" type="button" data-bs-toggle="offcanvas"
-                                        data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                                <button onClick={()=>toggleCart()} className="btn position-relative" type="button">
+                                    <span className="position-absolute top-0 end-0 translate-middle badge rounded-pill bg-dark">
+                                        {items.length>0&&items.reduce((total,item)=>total+Number(item.productQuantity),0)}
+                                    </span>
                                     <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fillRule="evenodd"
                                          clipRule="evenodd">
                                         <path
                                             d="M13.5 21c-.276 0-.5-.224-.5-.5s.224-.5.5-.5.5.224.5.5-.224.5-.5.5m0-2c-.828 0-1.5.672-1.5 1.5s.672 1.5 1.5 1.5 1.5-.672 1.5-1.5-.672-1.5-1.5-1.5m-6 2c-.276 0-.5-.224-.5-.5s.224-.5.5-.5.5.224.5.5-.224.5-.5.5m0-2c-.828 0-1.5.672-1.5 1.5s.672 1.5 1.5 1.5 1.5-.672 1.5-1.5-.672-1.5-1.5-1.5m16.5-16h-2.964l-3.642 15h-13.321l-4.073-13.003h19.522l.728-2.997h3.75v1zm-22.581 2.997l3.393 11.003h11.794l2.674-11.003h-17.861z"/>
                                     </svg>
                                 </button>
-                                <div className="offcanvas offcanvas-end d-md-none" tabIndex={-1} id="offcanvasRight"
-                                     aria-labelledby="offcanvasRightLabel">
-                                    <div className="offcanvas-header">
-                                        <h4 className="offcanvas-title" id="offcanvasRightLabel">Your Shopping Cart</h4>
-                                        <button type="button" className="btn-close" data-bs-dismiss="offcanvas"
-                                                aria-label="Close"></button>
+                                {show&&<div className={'row'}>
+                                    <div className={'d-flex flex-column overflow-y-scroll position-fixed p-0 col-12 col-sm-9 col-md-7 col-lg-5 col-xl-4 top-0 end-0 h-100 bg-white'}>
+                                        <div className="d-flex justify-content-between p-2 bg-body-secondary">
+                                            <h4 className="mx-auto">Your Shopping Cart</h4>
+                                            <button type="button" onClick={()=>toggleCart()} className="btn-close"></button>
+                                        </div>
+                                        <div className="p-1">
+                                            <CartItemsContainer></CartItemsContainer>
+                                        </div>
                                     </div>
-                                    <div className="offcanvas-body">
-                                        <CartItemsContainer></CartItemsContainer>
+                                    <div id={'cartOverlay'} className={'position-fixed d-none d-sm-block col-sm-3 col-md-5 col-lg-7 col-xl-8 h-100 start-0 top-0 bg-dark opacity-75'}>
                                     </div>
-                                </div>
+                                </div>}
                             </div>
                         </div>
                     </div>

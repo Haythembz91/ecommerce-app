@@ -26,6 +26,8 @@ const Header = ()=>{
         return ()=>window.removeEventListener('click',handleClick)
     },[show])
 
+    console.count('render')
+
     useEffect(() => {
         if (show) {
             document.body.classList.add('overflow-hidden');
