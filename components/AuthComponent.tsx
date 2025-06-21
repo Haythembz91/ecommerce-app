@@ -1,7 +1,6 @@
 'use client'
 import grd from '@/public/assets/google/web_light_sq_na.svg'
 import React from "react";
-import {useRouter} from "next/navigation"
 
 const AuthComponent = ()=>{
 
@@ -11,7 +10,6 @@ const AuthComponent = ()=>{
     const [password, setPassword] = React.useState('')
     const [confirmPassword, setConfirmPassword] = React.useState('')
     const [error, setError] = React.useState('')
-    const router = useRouter()
     const handleSubmit = async (e:React.FormEvent<HTMLFormElement>)=>{
         e.preventDefault()
         if(password!==confirmPassword){
@@ -32,8 +30,7 @@ const AuthComponent = ()=>{
             }else{
                 const data = await response.json();
                 setError('')
-                console.log(data)
-                router.push('/')
+                window.location.href = '/'
             }
         }catch(e){
             const error = e as Error

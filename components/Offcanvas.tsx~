@@ -22,7 +22,7 @@ const Offcanvas = ({user}:{user:User})=>{
                     <OffcanvasCategory/>
                 </div>
             </div>
-            <OffcanvasFooter user={user}></OffcanvasFooter>
+            <OffcanvasFooter></OffcanvasFooter>
         </div>
     )
 }
