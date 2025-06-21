@@ -1,8 +1,8 @@
-import SliderSportswear from "@/componants/SliderSportswear"
+import SliderSportswear from "@/components/SliderSportswear"
 import Link from "next/link";
 import {categories, collections, other,} from "@/utils/enums";
-import ProductSlider from "@/componants/ProductSlider";
-import ProductMiniSlider from "@/componants/ProductMiniSlider";
+import ProductSlider from "@/components/ProductSlider";
+import ProductMiniSlider from "@/components/ProductMiniSlider";
 import {collectionBanners} from "@/utils/const";
 
 const Home = ()=>{

@@ -1,4 +1,4 @@
-import SportswearHeader from "@/componants/SportswearHeader";
+import SportswearHeader from "@/components/SportswearHeader";
 import React, {Suspense} from "react";
 
 export default function ShopLayout({ children }: { children: React.ReactNode }) {

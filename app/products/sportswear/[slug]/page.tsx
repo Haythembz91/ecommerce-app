@@ -1,7 +1,7 @@
 import { GetProducts } from "@/utils/GetProducts"
-import ProductPageSlider from "@/componants/ProductPageSlider";
+import ProductPageSlider from "@/components/ProductPageSlider";
 import Link from "next/link";
-import AddToCartForm from "@/componants/AddToCartForm";
+import AddToCartForm from "@/components/AddToCartForm";
 import {colors} from "@/utils/enums";
 
 const Home = async ({params}:{params: Promise<{slug:string}>})=>{

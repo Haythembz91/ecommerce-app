@@ -2,7 +2,7 @@
 
 import React, {useState, useEffect} from "react";
 import {Product} from "@/utils/interfaces";
-import ProductCard from "@/componants/ProductCard";
+import ProductCard from "@/components/ProductCard";
 import {categoriesList} from "@/utils/const";
 import {categories,} from "@/utils/enums";
 import Link from "next/link";

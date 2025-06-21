@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./globals.css";
 import {ClerkProvider} from "@clerk/nextjs";
-import Header from "@/componants/Header";
+import Header from "@/components/Header";
 import BootstrapClient from "@/scripts/BootstrapClient";
 import { Geist, Geist_Mono } from "next/font/google";
 import React from "react";

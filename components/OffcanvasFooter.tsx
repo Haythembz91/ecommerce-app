@@ -1,4 +1,4 @@
-import SignIn from "@/componants/SignIn";
+import SignIn from "@/components/SignIn";
 import { useUser } from "@clerk/nextjs";
 const OffcanvasFooter = () => {
     const user = useUser();

@@ -1,5 +1,5 @@
 import { auth } from '@clerk/nextjs/server'
-import DashboardForm from '@/componants/DashboardForm'
+import DashboardForm from '@/components/DashboardForm'
 import { clerkClient } from "@clerk/clerk-sdk-node";
 export default async function Home() {
   const { userId } = await auth.protect({ permission: 'org:dashboard:admin' })
