@@ -10,8 +10,10 @@ const AuthComponent = ()=>{
     const [password, setPassword] = React.useState('')
     const [confirmPassword, setConfirmPassword] = React.useState('')
     const [error, setError] = React.useState('')
+    const [isLoading, setIsLoading] = React.useState(false)
     const handleSubmit = async (e:React.FormEvent<HTMLFormElement>)=>{
         e.preventDefault()
+        setIsLoading(true)
         if(password!==confirmPassword){
             setError('Passwords do not match')
             return null
@@ -30,12 +32,14 @@ const AuthComponent = ()=>{
             }else{
                 const data = await response.json();
                 setError('')
-                console.log(data)
                 window.location.href = '/'
             }
         }catch(e){
             const error = e as Error
             console.error(error)
+        }finally
+        {
+            setIsLoading(false)
         }
     }
 
@@ -46,7 +50,7 @@ const AuthComponent = ()=>{
                     <button onClick={()=>{setShowLogin(true);setShowRegister(false);setError('')}} className="btn btn-outline-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" aria-current="page">Login</button>
                 </li>
                 <li className="nav-item px-2">
-                    <button onClick={()=>{setShowLogin(false);setShowRegister(true);setError('')}} className="btn btn-outline-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover">Register</button>
+                    <button onClick={()=>{setShowLogin(false);setShowRegister(true);setError('')}} className="btn btn-outline-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover">Sign Up</button>
                 </li>
             </ul>
             <div className={'d-flex overflow-hidden'}>
@@ -70,9 +74,13 @@ const AuthComponent = ()=>{
                         <div className={'mb-3'}>
                             {error}
                         </div>
-                        <div className={'mb-3'}>
+                        {!isLoading?<div className={'mb-3'}>
                             <button type="submit" className="btn btn-dark w-100">Login</button>
-                        </div>
+                        </div>:
+                            <button type="submit" className="btn btn-dark w-100" disabled>
+                                <span className="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                                <span role="status" className={'px-2'}>Logging in...</span>
+                            </button>}
                     </form>
                 </div>}
                 {showRegister&&<div className={'col-12 p-2'} id={'registerTab'}>
@@ -103,9 +111,13 @@ const AuthComponent = ()=>{
                                 Remember me
                             </label>
                         </div>
-                        <div className={'mb-3'}>
-                            <button type="submit" className="btn btn-dark w-100">Register</button>
-                        </div>
+                        {isLoading?<div className={'mb-3'}>
+                                <button type="submit" className="btn btn-dark w-100">Sign Up</button>
+                            </div>:
+                            <button type="submit" className="btn btn-dark w-100" disabled>
+                                <span className="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                                <span role="status" className={'px-2'}>Signing up...</span>
+                            </button>}
                     </form>
                 </div>}
             </div>

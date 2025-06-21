@@ -1,10 +1,9 @@
-'use client'
+
 import OffcanvasSportswear from "@/components/OffcanvasSportswear";
 import OffcanvasCollection from "@/components/OffcanvasCollection";
 import OffcanvasCategory from "@/components/OffcanvasCategory";
 import OffcanvasFooter from "./OffcanvasFooter";
-import {User} from "@/utils/interfaces";
-const Offcanvas = ({user}:{user:User})=>{
+const Offcanvas = ()=>{
 
     return (
         <div className="sportswearList offcanvas offcanvas-start" tabIndex={-1} id="offcanvasExample"
@@ -22,7 +21,7 @@ const Offcanvas = ({user}:{user:User})=>{
                     <OffcanvasCategory/>
                 </div>
             </div>
-            <OffcanvasFooter user={user}></OffcanvasFooter>
+            <OffcanvasFooter></OffcanvasFooter>
         </div>
     )
 }
