@@ -1,6 +1,5 @@
 const OffcanvasFooter = () => {
 
-    
     return (
         <ul className="offcanvasFooter d-md-none list-unstyled p-3 text-decoration-underline">
             <li className="py-1 d-flex align-content-center">

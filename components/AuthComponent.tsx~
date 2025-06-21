@@ -1,6 +1,7 @@
 'use client'
 import grd from '@/public/assets/google/web_light_sq_na.svg'
 import React from "react";
+import {useRouter} from "next/navigation"
 
 const AuthComponent = ()=>{
 
@@ -10,6 +11,8 @@ const AuthComponent = ()=>{
     const [password, setPassword] = React.useState('')
     const [confirmPassword, setConfirmPassword] = React.useState('')
     const [showMsg, setShowMsg] = React.useState(false)
+    const [error, setError] = React.useState('')
+    const router = useRouter()
     const handleSubmit = async (e:React.FormEvent<HTMLFormElement>)=>{
         e.preventDefault()
         if(password!==confirmPassword){
@@ -24,9 +27,14 @@ const AuthComponent = ()=>{
                 },
                 body:formData
             })
-            if(response.ok){
+            if(!response.ok){
+                const error = await response.json();
+                setError(error.message)
+            }else{
                 const data = await response.json();
+                setError('')
                 console.log(data)
+                router.push('/')
             }
         }catch(e){
             const error = e as Error
@@ -38,10 +46,10 @@ const AuthComponent = ()=>{
         <div className={'container'}>
             <ul className="nav nav-pills my-3 justify-content-center">
                 <li className="nav-item px-2">
-                    <button onClick={()=>{setShowLogin(true);setShowRegister(false)}} className="btn btn-outline-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" aria-current="page">Login</button>
+                    <button onClick={()=>{setShowLogin(true);setShowRegister(false);setError('')}} className="btn btn-outline-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" aria-current="page">Login</button>
                 </li>
                 <li className="nav-item px-2">
-                    <button onClick={()=>{setShowLogin(false);setShowRegister(true)}} className="btn btn-outline-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover">Register</button>
+                    <button onClick={()=>{setShowLogin(false);setShowRegister(true);setError('')}} className="btn btn-outline-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover">Register</button>
                 </li>
             </ul>
             <div className={'d-flex overflow-hidden'}>
@@ -63,11 +71,14 @@ const AuthComponent = ()=>{
                             </label>
                         </div>
                         <div className={'mb-3'}>
+                            {error}
+                        </div>
+                        <div className={'mb-3'}>
                             <button type="submit" className="btn btn-dark w-100">Login</button>
                         </div>
                     </form>
                 </div>}
-                {showRegister&&<div className={'col-12'} id={'registerTab'}>
+                {showRegister&&<div className={'col-12 p-2'} id={'registerTab'}>
                     <form onSubmit={handleSubmit}>
                         <div className="form-floating mb-3">
                             <input required type="text" name={'username'} className="form-control p-2" id="floatingUserInput" placeholder="Username"/>
@@ -88,9 +99,7 @@ const AuthComponent = ()=>{
                                    placeholder="Confirm Password"/>
                             <label className={'p-2'} htmlFor="confirmFloatingPassword">Confirm Password</label>
                         </div>
-                        {showMsg&&<div className={'mb-3'}>
-                            Passwords do not match
-                        </div>}
+                        <div className={'mb-3'}>{error}</div>
                         <div className="form-check mb-3">
                             <input className="form-check-input" name={'rememberMe'} type="checkbox" value={'rememberMe'} id="checkChecked"/>
                             <label className="form-check-label" htmlFor="checkChecked">

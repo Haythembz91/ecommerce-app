@@ -1,6 +1,7 @@
 'use client'
 import grd from '@/public/assets/google/web_light_sq_na.svg'
 import React from "react";
+import {useRouter} from "next/navigation"
 
 const AuthComponent = ()=>{
 
@@ -9,12 +10,12 @@ const AuthComponent = ()=>{
     const [showRegister, setShowRegister] = React.useState(false)
     const [password, setPassword] = React.useState('')
     const [confirmPassword, setConfirmPassword] = React.useState('')
-    const [showMsg, setShowMsg] = React.useState(false)
     const [error, setError] = React.useState('')
+    const router = useRouter()
     const handleSubmit = async (e:React.FormEvent<HTMLFormElement>)=>{
         e.preventDefault()
         if(password!==confirmPassword){
-            setShowMsg(true)
+            setError('Passwords do not match')
             return null
         }
         const formData = new FormData(e.currentTarget as HTMLFormElement)
@@ -25,11 +26,14 @@ const AuthComponent = ()=>{
                 },
                 body:formData
             })
-            if(response.ok){
+            if(!response.ok){
+                const error = await response.json();
+                setError(error.message)
+            }else{
                 const data = await response.json();
-                setError(data.message)
+                setError('')
                 console.log(data)
-                window.location.href = '/';
+                router.push('/')
             }
         }catch(e){
             const error = e as Error
@@ -41,10 +45,10 @@ const AuthComponent = ()=>{
         <div className={'container'}>
             <ul className="nav nav-pills my-3 justify-content-center">
                 <li className="nav-item px-2">
-                    <button onClick={()=>{setShowLogin(true);setShowRegister(false)}} className="btn btn-outline-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" aria-current="page">Login</button>
+                    <button onClick={()=>{setShowLogin(true);setShowRegister(false);setError('')}} className="btn btn-outline-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" aria-current="page">Login</button>
                 </li>
                 <li className="nav-item px-2">
-                    <button onClick={()=>{setShowLogin(false);setShowRegister(true)}} className="btn btn-outline-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover">Register</button>
+                    <button onClick={()=>{setShowLogin(false);setShowRegister(true);setError('')}} className="btn btn-outline-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover">Register</button>
                 </li>
             </ul>
             <div className={'d-flex overflow-hidden'}>
@@ -94,9 +98,6 @@ const AuthComponent = ()=>{
                                    placeholder="Confirm Password"/>
                             <label className={'p-2'} htmlFor="confirmFloatingPassword">Confirm Password</label>
                         </div>
-                        {showMsg&&<div className={'mb-3'}>
-                            Passwords do not match
-                        </div>}
                         <div className={'mb-3'}>{error}</div>
                         <div className="form-check mb-3">
                             <input className="form-check-input" name={'rememberMe'} type="checkbox" value={'rememberMe'} id="checkChecked"/>

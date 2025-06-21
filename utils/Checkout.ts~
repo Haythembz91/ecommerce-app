@@ -4,14 +4,13 @@ import React from "react";
 
 export const handleSubmit = async (e:React.FormEvent<HTMLFormElement>,items:CartItemType[])=>{
     e.preventDefault()
-    const returnTo = window.location.pathname
     try{
         const response = await fetch('/api/checkout',{
             method:'POST',
             headers:{'x-requested-with':'XMLHttpRequest',
                 'Content-Type':'application/json'
             },
-            body:JSON.stringify({items,returnTo})
+            body:JSON.stringify({items})
         })
         if (response.ok){
             const data = await response.json();

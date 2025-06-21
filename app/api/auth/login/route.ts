@@ -21,10 +21,10 @@ export async function POST(req:NextRequest){
         }
         const isPasswordValid = await bcrypt.compare(password, user.hashedPassword)
         if(!isPasswordValid){
-            return NextResponse.json({message:'Invalid password'},{ status: 401 })
+            return NextResponse.json({message:'Wrong password'},{ status: 401 })
         }
         const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET as string, { expiresIn: '1h' });
-        const response = NextResponse.json({handle:user._id,token})
+        const response = NextResponse.json({userId:user._id,token})
         response.cookies.set('token', token, { httpOnly: true, secure: process.env.NODE_ENV === 'production', maxAge: 60 * 60,path: '/', sameSite: 'lax' });
         return response
     }catch(e){
