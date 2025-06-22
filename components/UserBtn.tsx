@@ -2,6 +2,7 @@ import {User} from "@/utils/interfaces";
 import defaultAvatar from '@/public/assets/default.png'
 import React from "react";
 import {roles} from "@/utils/enums";
+import {SignOut} from "@/scripts/SignOut";
 
 const UserBtn = ({user,setShowModal}:{user:User,setShowModal:React.Dispatch<React.SetStateAction<boolean>>})=>{
     return (
@@ -22,8 +23,8 @@ const UserBtn = ({user,setShowModal}:{user:User,setShowModal:React.Dispatch<Reac
                 </li>
                 {user?.role===roles.ADMIN&&<li><a className="dropdown-item border-bottom" href="/admin">Dashboard</a></li>}
                 <li>
-                    <form action={''}>
-                        <button type={'submit'} className="dropdown-item border-bottom">Sign Out</button>
+                    <form action={SignOut}>
+                        <button type={'submit'} className="dropdown-item border-bottom">Log Out</button>
                     </form>
                 </li>
             </ul>

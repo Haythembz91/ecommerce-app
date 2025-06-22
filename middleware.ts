@@ -28,7 +28,16 @@ export async function middleware(req: NextRequest) {
     }
 
     try {
-        await jwtVerify(token, new TextEncoder().encode(process.env.JWT_SECRET!));
+        const { payload } = await jwtVerify(token, new TextEncoder().encode(process.env.JWT_SECRET!));
+        if (pathname.startsWith('/auth')) {
+            return NextResponse.redirect(new URL('/', req.url));
+        }
+        if (pathname.startsWith('/admin')) {
+            const role = (payload as Record<string, string>)?.role;
+            if (role !== 'admin') {
+                return NextResponse.rewrite(new URL('/404', req.url));
+            }
+        }
         return NextResponse.next();
     } catch (err) {
         if (pathname.startsWith('/api/')) {

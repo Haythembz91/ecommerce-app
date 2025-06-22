@@ -1,9 +1,33 @@
+'use client'
 import React from "react";
 import {User} from "@/utils/interfaces";
 import defaultAvatar from "@/public/assets/default.png";
 
 const ProfileModal = ({user,setShowModal}:{user:User,setShowModal:React.Dispatch<React.SetStateAction<boolean>>})=>{
 
+        const [isLoading,setIsLoading] = React.useState(false)
+        const handleUpdate=async (e:React.FormEvent<HTMLFormElement>)=>{
+        e.preventDefault()
+            setIsLoading(true)
+        try{
+            const formData = new FormData(e.currentTarget as HTMLFormElement);
+            console.log(Object.fromEntries(formData.entries()))
+            const response = await fetch('/api/auth/user/update', {
+                method: 'PUT',
+                headers:{'x-requested-with':'XMLHttpRequest'
+                },
+                body:formData
+            })
+            if(response.ok){
+                window.location.reload()
+            }
+        }catch(e){
+            const error = e as Error
+            console.error(error)
+        }finally {
+            setIsLoading(false)
+        }
+    }
 
     return (
         <div>
@@ -25,27 +49,34 @@ const ProfileModal = ({user,setShowModal}:{user:User,setShowModal:React.Dispatch
                                 </span>
                                 <button onClick={()=>setShowModal(false)} className={'btn-close'}></button>
                             </header>
-                            <div className="modal-body">
+                            <form onSubmit={handleUpdate} className="modal-body">
                                 <div className={'mb-3 d-flex justify-content-around align-items-center border-top'}>
                                     <div className={'p-2'}>Profile</div>
                                     <div className={'p-2'}>
                                         <img style={{width:'50px'}} src={user?.avatar?user.avatar:defaultAvatar.src} className={'img-fluid rounded-circle'} alt={'Profile'}></img>
                                     </div>
                                     <div className={'p-2'}>
-                                        <input type={'file'} accept={'image/*'} className={'form-control'}></input>
+                                        <input required name={`${user.username}_avatar`} type={'file'} accept={'image/*'} className={'form-control'}></input>
                                     </div>
                                 </div>
                                 <div className={'mb-3 d-flex justify-content-around align-items-center border-top'}>
                                     <div className={'p-2'}>Username</div>
                                     <div className={'p-2'}>
-                                        <input type={'text'} defaultValue={user?.username} className={'form-control'}/>
+                                        <input disabled={true} name={'username'} type={'text'} defaultValue={user?.username} className={'form-control'}/>
                                     </div>
                                     <div className={'p-2'}>
-                                        <button className={'btn btn-outline-dark'}>Save</button>
+                                        {!isLoading?<button type={'submit'} className={'btn btn-dark'}>Save</button>:
+                                            <button className="btn btn-dark" type="button" disabled>
+                                                <span className="spinner-border spinner-border-sm"
+                                                      aria-hidden="true"></span>
+                                                <span className={'px-2'} role="status">Saving...</span>
+                                            </button>}
                                     </div>
                                 </div>
-                                <div className={'mb-3'}></div>
-                            </div>
+                                <div className={'mb-3'}>
+
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
