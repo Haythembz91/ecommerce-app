@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./globals.css";
-import {ClerkProvider} from "@clerk/nextjs";
 import Header from "@/components/Header";
 import BootstrapClient from "@/scripts/BootstrapClient";
 import { Geist, Geist_Mono } from "next/font/google";
@@ -32,14 +31,12 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
       <BootstrapClient></BootstrapClient>
-              <ClerkProvider>
-                  <CartProvider>
-                      <Header></Header>
-                      <main>
-                          {children}
-                      </main>
-                  </CartProvider>
-              </ClerkProvider>
+      <CartProvider>
+          <Header></Header>
+          <main>
+              {children}
+          </main>
+      </CartProvider>
       </body>
     </html>
   );

@@ -10,7 +10,7 @@ import {CartItemType} from "@/utils/types";
 
 const AddToCartForm = ({product}:{product:Product}) => {
 
-    const {addItem,toggleCart} = useCart()
+    const {addItem} = useCart()
     const handleAddToCart = (e:React.FormEvent<HTMLFormElement>)=>{
         e.preventDefault()
         const formData = new FormData(e.currentTarget as HTMLFormElement)
@@ -30,6 +30,7 @@ const AddToCartForm = ({product}:{product:Product}) => {
     const [selectedSize,setSelectedSize]=useState<sizes>()
     const [selectedQuantity,setSelectedQuantity]=useState<number>(1)
     const totalPrice = parseFloat(product.productPrice)*(selectedQuantity||1)
+    const {toggleCart} = useCart()
     return(
         <form onSubmit={handleAddToCart} className={'col-md-5 px-2'}>
             <h1 className={'mb-3'} ><b>{product.productName}</b></h1>

@@ -10,15 +10,14 @@ const SportswearHeader = () => {
     const searchParams = useSearchParams()
     const params = new URLSearchParams(searchParams);
     const [selectedFilters, setSelectedFilters]=useState(Object.fromEntries(params.entries()))
-    
+    console.log(isPending)
     const onChangeHandler=(event:React.ChangeEvent<HTMLInputElement>)=>{
                 params.set(event.target.name,event.target.value)
         setSelectedFilters(Object.fromEntries(params.entries()))
         startTransition(()=>{
-router.push(`?${params.toString()}`)
+        router.push(`?${params.toString()}`)
         }
-                       )
-     
+        )
     }
        
     return (
@@ -39,7 +38,7 @@ router.push(`?${params.toString()}`)
                     <div className={'d-md-flex flex-md-column-reverse'}>
                         <div>
                             {Object.keys(selectedFilters).length>0? (<div><ul className={'list-unstyled d-flex flex-wrap'}>{
-                                Object.values(selectedFilters).map((value,index)=><li className={'list-item'} key={index}>
+                                Object.values(selectedFilters).map((value:any,index)=><li className={'list-item'} key={index}>
                                 <button onClick={()=>{
                                     params.delete(Object.keys(selectedFilters)[index])
                                     setSelectedFilters(Object.fromEntries(params.entries()))

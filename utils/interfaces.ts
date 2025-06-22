@@ -1,4 +1,4 @@
-import {categories,sizes,colors,collections, sleeveLengths, legLengths,other} from "@/utils/enums"
+import {categories,sizes,colors,collections, sleeveLengths, legLengths,other,roles} from "@/utils/enums"
 import {ObjectId} from "mongodb";
 
 
@@ -23,3 +23,10 @@ export interface ProductVariant extends Omit<Product, '_id'> {
     _id?: ObjectId;
 }
 
+export interface User{
+    username?:string;
+    avatar?:string|null;
+    email_address?:string;
+    hashedPassword:string;
+    role?:roles
+}
