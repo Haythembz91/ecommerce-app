@@ -3,6 +3,7 @@ import {getDb} from "@/utils/mongodb";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import {User} from "@/utils/interfaces";
+import {roles} from "@/utils/enums";
 export async function POST(req:NextRequest){
     try{
         const formData = await req.formData();
@@ -17,8 +18,10 @@ export async function POST(req:NextRequest){
         const hashedPassword = await bcrypt.hash(password, 10);
         const user:User = {
             username: formData.get('username')?.toString(),
+            avatar:null,
             email_address: formData.get('email_address')?.toString(),
-            hashedPassword: hashedPassword
+            hashedPassword: hashedPassword,
+            role:roles.USER,
         }
         const db = await getDb()
         const usersCollection = db.collection('users')
@@ -29,7 +32,7 @@ export async function POST(req:NextRequest){
         }
         await usersCollection.createIndex({ email_address: 1 }, { unique: true });
         const existingEmail = await usersCollection.findOne({ email_address: user.email_address });
-        if (existingUser) {
+        if (existingEmail) {
             return NextResponse.json({ message: 'Email Address already in use' }, { status: 409 })
         }
         const result = await usersCollection.insertOne(user)

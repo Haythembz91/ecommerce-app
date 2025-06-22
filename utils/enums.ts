@@ -59,3 +59,8 @@ export enum sort{
     PRICE_DSC='Price: High to Low',
     PRICE_ASC='Price: Low to High'
 }
+
+export enum roles{
+    ADMIN='admin',
+    USER='user'
+}
