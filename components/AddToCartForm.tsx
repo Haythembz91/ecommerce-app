@@ -20,8 +20,12 @@ const AddToCartForm = ({product}:{product:Product}) => {
         formData.append('productName',product.productName as string)
         formData.append('productImage',product.urlByColor![0] as string)
         formData.append('productPrice',product.productPrice as string)
-        product.legLength&&formData.append('legLength',product.legLength as legLengths)
-        product.sleeveLength&&formData.append('sleeveLength',product.sleeveLength as sleeveLengths)
+        if (product.legLength) {
+            formData.append('legLength', product.legLength as legLengths);
+        }
+        if (product.sleeveLength) {
+            formData.append('sleeveLength', product.sleeveLength as sleeveLengths);
+        }
         formData.append('stock',product.productQuantities[`${product.primaryColor}-${selectedSize}`].toFixed(2) as string)
 
         const item:CartItemType = Object.fromEntries(formData.entries()) as unknown as CartItemType

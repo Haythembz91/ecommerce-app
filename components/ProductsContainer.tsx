@@ -11,14 +11,6 @@ const ProductsContainer =({products}:{products:Product[]})=>{
 
     const [filteredProducts, setFilteredProducts]=useState<Product[]>(products)
     const [selectedCategory, setSelectedCategory]=useState<categories|''>('')
-
-  if(products.length===0) {
-      return (
-          <div className={'text-secondary px-5 text-center'}>
-              Sorry - we can&#39;t find any product with this search filter.
-          </div>
-      )
-  }
     const categories:categories[] = []
     categoriesList.forEach((category)=>{
         if(products.filter((product)=>product.productCategory===category).length>0)
@@ -32,6 +24,14 @@ const ProductsContainer =({products}:{products:Product[]})=>{
         setFilteredProducts(products.filter((product)=>product.productCategory===selectedCategory))
         
     },[selectedCategory, products])
+
+    if(products.length===0) {
+        return (
+            <div className={'text-secondary px-5 text-center'}>
+                Sorry - we can&#39;t find any product with this search filter.
+            </div>
+        )
+    }
   
   return(
     <div>
