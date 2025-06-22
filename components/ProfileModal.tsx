@@ -4,6 +4,7 @@ import defaultAvatar from "@/public/assets/default.png";
 
 const ProfileModal = ({user,setShowModal}:{user:User,setShowModal:React.Dispatch<React.SetStateAction<boolean>>})=>{
 
+
     return (
         <div>
             <div className={''}>

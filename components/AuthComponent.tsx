@@ -30,7 +30,6 @@ const AuthComponent = ()=>{
                 const error = await response.json();
                 setError(error.message)
             }else{
-                const data = await response.json();
                 setError('')
                 window.location.href = '/'
             }

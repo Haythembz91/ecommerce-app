@@ -11,12 +11,13 @@ import {useCart} from "@/context/CartContext";
 import GetUser from "@/utils/GetUser";
 import UserBtn from "@/components/UserBtn";
 import ProfileModal from "@/components/ProfileModal";
+import {User} from "@/utils/interfaces";
 
 const Header = ()=>{
 
     const [showSearchBar,setShowSearchBar] = useState<boolean>(false)
     const {items, show, toggleCart} = useCart()
-    const [user,setUser] = useState<any>(undefined)
+    const [user,setUser] = useState<User>()
     const [showModal, setShowModal] = useState(false);
 
     useEffect(()=>{
@@ -152,7 +153,7 @@ const Header = ()=>{
                     </div>
                 </nav>
                 {showSearchBar&&<SearchBar setShowSearchBar={setShowSearchBar}></SearchBar>}
-                {showModal&&<ProfileModal user={user} setShowModal={setShowModal}></ProfileModal>}
+                {user&&showModal&&<ProfileModal user={user} setShowModal={setShowModal}></ProfileModal>}
             </header>
     )
 }
