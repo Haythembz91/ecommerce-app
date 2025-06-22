@@ -15,7 +15,8 @@ const ProductsContainer =({products}:{products:Product[]})=>{
             Sorry - we can't find any product with this search filter.
         </div>
     )
-
+  
+  
   const [filteredProducts, setFilteredProducts]=useState<Product[]>(products)
   const [selectedCategory, setSelectedCategory]=useState<categories|''>('')
 

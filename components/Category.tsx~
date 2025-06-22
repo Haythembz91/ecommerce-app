@@ -2,7 +2,7 @@ import newReleasesBanner from '@/public/assets/banners/category_banner/1.WB_Defi
 import bestSellerBanner from '@/public/assets/banners/category_banner/1.WB_BestSellers_desktop_20250131_lm.webp'
 import Image from 'next/image';
 import CategoryBanner from "@/scripts/CategoryBanner";
-import {collections, colors} from "@/utils/enums";
+import {categories, collections, colors} from "@/utils/enums";
 import {categoriesList} from "@/utils/const";
 import Link from "next/link";
 const Category = ()=>{

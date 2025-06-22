@@ -15,7 +15,7 @@ const [msg,setMsg]=useState<string>('')
     
     const handleChangeSize = (event:React.FormEvent)=>
         {
-            const { name, selectedOptions } = event.target as HTMLSelectElement;
+            const { name, value, selectedOptions } = event.target as HTMLSelectElement;
             if (name === 'productSizes') {
               const values = Array.from(selectedOptions).map((option) => option.value);
               setSize(values as sizes[]);

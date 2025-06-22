@@ -3,15 +3,14 @@
 import {colors, legLengths, sizes, sleeveLengths} from "@/utils/enums";
 import {Product} from "@/utils/interfaces";
 import Link from "next/link";
-import React, {useContext, useState} from "react";
+import React, {useState} from "react";
 import {v4 as uuidv4} from "uuid";
 import {useCart} from "@/context/CartContext";
 import {CartItemType} from "@/utils/types";
-import {ObjectId} from "mongodb";
 
 const AddToCartForm = ({product}:{product:Product}) => {
 
-    const {items,addItem,removeItem,clearCart} = useCart()
+    const {addItem,toggleCart} = useCart()
     const handleAddToCart = (e:React.FormEvent<HTMLFormElement>)=>{
         e.preventDefault()
         const formData = new FormData(e.currentTarget as HTMLFormElement)
@@ -31,7 +30,6 @@ const AddToCartForm = ({product}:{product:Product}) => {
     const [selectedSize,setSelectedSize]=useState<sizes>()
     const [selectedQuantity,setSelectedQuantity]=useState<number>(1)
     const totalPrice = parseFloat(product.productPrice)*(selectedQuantity||1)
-    const {toggleCart} = useCart()
     return(
         <form onSubmit={handleAddToCart} className={'col-md-5 px-2'}>
             <h1 className={'mb-3'} ><b>{product.productName}</b></h1>
