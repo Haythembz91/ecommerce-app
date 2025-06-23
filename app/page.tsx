@@ -26,8 +26,10 @@ const Home = ()=>{
                     <h2>THE UNITARDS ARE BACK</h2>
                 </div>
                 <div className={'row row-cols-2 mx-0'}>
-                    <img alt={''} className={'img-fluid row d-none d-lg-block'} src={'https://res.cloudinary.com/dmgfsayir/image/upload/v1749130167/1.WB_DefineUnitard_RestockBanner_2ss240430_iw_desktop_2000x_rlfc3r.webp'}/>
-                    <img alt={''} className={'object-fit-cover img-fluid row d-lg-none'} src={'https://res.cloudinary.com/dmgfsayir/image/upload/v1749130167/1.WB_DefineUnitard_RestockBanner_2ss240430_iw_mobile_768x_d4addc.webp'}/>
+                    <Link href={`/shop/sportswear?productCategory=${encodeURIComponent(categories.UNITARDS)}`}>
+                        <img alt={''} className={'img-fluid row d-none d-lg-block'} src={'https://res.cloudinary.com/dmgfsayir/image/upload/v1749130167/1.WB_DefineUnitard_RestockBanner_2ss240430_iw_desktop_2000x_rlfc3r.webp'}/>
+                        <img alt={''} className={'object-fit-cover img-fluid row d-lg-none'} src={'https://res.cloudinary.com/dmgfsayir/image/upload/v1749130167/1.WB_DefineUnitard_RestockBanner_2ss240430_iw_mobile_768x_d4addc.webp'}/>
+                    </Link>
                     <ProductMiniSlider filter={{productCategory:categories.UNITARDS,limit:'6'}}></ProductMiniSlider>
                 </div>
             </section>
@@ -48,10 +50,10 @@ const Home = ()=>{
                   </div>
                 </div>
                 <div className={'mx-2 mx-md-0 d-flex justify-content-between align-items-center'}>
-                    <h2>Sportswear favorites</h2>
-                    <Link className={'fw-medium link-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover'} href={`/shop/sportswear?productCollection=${collections.DEFINE}`}>Shop</Link>
+                    <h2>Power Takover</h2>
+                    <Link className={'fw-medium link-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover'} href={`/shop/sportswear?productCollection=${collections.POWER}`}>Shop</Link>
                 </div>
-                <ProductSlider filter={{productCollection:collections.DEFINE,limit:'8'}}></ProductSlider>
+                <ProductSlider filter={{productCollection:collections.POWER,limit:'8'}}></ProductSlider>
             </section>
             <section className={'d-flex overflow-scroll'}>
                 {collectionBanners.map((banner,index)=>(
@@ -83,10 +85,10 @@ const Home = ()=>{
                     </div>
                 </div>
                 <div className={'mx-2 mx-md-0 d-flex justify-content-between align-items-center'}>
-                    <h2>Sportswear favorites</h2>
-                    <Link className={'fw-medium link-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover'} href={`/shop/sportswear?productCollection=${collections.DEFINE}`}>Shop</Link>
+                    <h2>Low Back Edit</h2>
+                    <Link className={'fw-medium link-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover'} href={`/shop/sportswear?other=${other.LOW_BACK_EDIT}`}>Shop</Link>
                 </div>
-                <ProductSlider filter={{productCollection:collections.DEFINE,limit:'8'}}></ProductSlider>
+                <ProductSlider filter={{other:other.LOW_BACK_EDIT,limit:'8'}}></ProductSlider>
             </section>
         </div>
     )
