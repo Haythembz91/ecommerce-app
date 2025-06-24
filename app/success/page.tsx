@@ -6,6 +6,10 @@ export default async function Success({ searchParams }:{searchParams:Promise<{se
     if (!session_id)
         throw new Error('Please provide a valid session_id (`cs_test_...`)')
 
+    const session = await stripe.checkout.sessions.retrieve(session_id,{
+        expand: ['line_items', 'payment_intent']
+    })
+    console.log(session)
     const {
         status,
         customer_details
@@ -20,7 +24,7 @@ export default async function Success({ searchParams }:{searchParams:Promise<{se
 
     if (status === 'complete') {
         return (
-            <section id="success">
+            <section className={'container-fluid'} id="success">
                 <ClearCart></ClearCart>
                 <p>
                     We appreciate your business! A confirmation email will be sent to{' '}

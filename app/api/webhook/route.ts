@@ -5,7 +5,7 @@ import {SavePurchases} from "@/utils/savePurchases"
 const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET!;
 
 export async function POST(req: NextRequest) {
-    const rawBody = await req.text(); // Use raw body for signature verification
+    const rawBody = await req.text();
     const sig = req.headers.get('stripe-signature');
 
     let event: Stripe.Event;
@@ -25,7 +25,10 @@ export async function POST(req: NextRequest) {
 
         const userId = session.metadata?.userId;
         const sessionId = session.id;
-
+        if (!session.metadata?.userId) {
+            console.warn('Missing userId in metadata');
+            return new NextResponse('Missing metadata', { status: 400 });
+        }
 
         console.log('Payment successful for user:', userId,sessionId);
 

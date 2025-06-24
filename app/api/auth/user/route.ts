@@ -1,36 +1,11 @@
 import {NextResponse} from "next/server";
-import {getDb} from "@/utils/mongodb";
-import {cookies} from "next/headers";
-import jwt, {JwtPayload} from "jsonwebtoken";
-import {ObjectId} from "mongodb";
+import GetUserFromCookies from "@/utils/GetUserFromCookies";
 
 export async function GET(){
     try{
-        const cookieStore = await cookies()
-        const token = cookieStore.get('token')?.value
-        if(!token){
-            return NextResponse.json({message:'No token found'},{ status: 401 })
-        }
-        let decodedToken
-        try{
-            decodedToken = jwt.verify(token, process.env.JWT_SECRET as string)
-        }catch (e){
-            const error = e as Error
-            console.error(error)
-            return NextResponse.json({message:'Invalid token'},{ status: 401 })
-        }
-        const userId = (decodedToken as JwtPayload & { userId: string }).userId;
-        if (!userId) {
-            return NextResponse.json({ error: 'Invalid token payload' }, { status: 400 })
-        }
-        const db = await getDb()
-        if(!db){
-            return NextResponse.json({message:'Database connection failed'},{ status: 500 })
-        }
-        const usersCollection = db.collection('users')
-        const user = await usersCollection.findOne({ _id: new ObjectId(userId) }, { projection: { hashedPassword: 0 } })
+        const user = await GetUserFromCookies()
         if (!user) {
-            return NextResponse.json({ message: 'User not found' }, { status: 404 })
+            return NextResponse.json({message: 'User not found'},{ status: 401 })
         }
         return NextResponse.json(user)
     }catch(e){

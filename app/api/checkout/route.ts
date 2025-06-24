@@ -4,6 +4,7 @@ import {stripe} from "@/scripts/stripe"
 import {CartItemType} from "@/utils/types";
 import {Product} from "@/utils/interfaces";
 import {GetProducts} from "@/utils/GetProducts";
+import GetUserFromCookies from "@/utils/GetUserFromCookies";
 
 export async function OPTIONS() {
     return new NextResponse(null, {
@@ -17,7 +18,10 @@ export async function OPTIONS() {
 }
 export async function POST (req:NextRequest){
     try{
+        const user = await GetUserFromCookies()
+        const userId = user?._id.toString()
         const headersList = await headers()
+        const referer = headersList.get('referer')
         const origin = headersList.get('origin')
         const body = await req.json()
         const {items} = body
@@ -45,11 +49,15 @@ export async function POST (req:NextRequest){
                 quantity: quantity
             }
         })
+        console.log(line_items)
         const session = await stripe.checkout.sessions.create({
             line_items,
             mode: 'payment',
             success_url: `${origin}/success?session_id={CHECKOUT_SESSION_ID}`,
-            cancel_url: `${origin}`
+            cancel_url: `${referer}`,
+            metadata:{
+                userId:userId!,
+            }
         });
         return NextResponse.json(
             { url: session.url },
