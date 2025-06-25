@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import {stripe} from "@/scripts/stripe"
 import Stripe from "stripe";
 import {SavePurchases} from "@/utils/savePurchases"
-const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET!;
+const endpointSecret = process.env.NODE_ENV === 'development' ? process.env.STRIPE_CLI_WEBHOOK_SECRET! : process.env.STRIPE_WEBHOOK_SECRET!;
 
 export async function POST(req: NextRequest) {
     const rawBody = await req.text();
@@ -21,8 +21,7 @@ export async function POST(req: NextRequest) {
 
     if (event.type === 'checkout.session.completed') {
         const session = event.data.object as Stripe.Checkout.Session;
-
-
+        console.log({session:session})
         const userId = session.metadata?.userId;
         const sessionId = session.id;
         if (!session.metadata?.userId) {
