@@ -30,3 +30,20 @@ export interface User{
     hashedPassword:string;
     role?:roles
 }
+
+export interface Purchase{
+    userId:string;
+    items:{
+        id:string;
+        description:string;
+        price:number;
+        totalPrice:number;
+        quantity:number;
+        currency:string;
+        image:string
+    }[];
+    createdAt:Date;
+    sessionId:string;
+    receipt_url:string;
+    amount_total:number
+}

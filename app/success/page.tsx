@@ -9,7 +9,6 @@ export default async function Success({ searchParams }:{searchParams:Promise<{se
     const session = await stripe.checkout.sessions.retrieve(session_id,{
         expand: ['line_items', 'payment_intent']
     })
-    console.log({success:session})
     const {
         status,
         customer_details

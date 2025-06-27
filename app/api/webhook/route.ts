@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import {stripe} from "@/scripts/stripe"
 import Stripe from "stripe";
 import {SavePurchases} from "@/utils/savePurchases"
+import {Purchase} from "@/utils/interfaces";
 const endpointSecret = process.env.NODE_ENV === 'development' ? process.env.STRIPE_CLI_WEBHOOK_SECRET! : process.env.STRIPE_WEBHOOK_SECRET!;
 
 export async function POST(req: NextRequest) {
@@ -21,17 +22,52 @@ export async function POST(req: NextRequest) {
 
     if (event.type === 'checkout.session.completed') {
         const session = event.data.object as Stripe.Checkout.Session;
-        console.log({session:session})
-        const userId = session.metadata?.userId;
+        const userId = session.metadata?.userId!;
         const sessionId = session.id;
         if (!session.metadata?.userId) {
             console.warn('Missing userId in metadata');
             return new NextResponse('Missing metadata', { status: 400 });
         }
-
         console.log('Payment successful for user:', userId,sessionId);
+        const fullSession = await stripe.checkout.sessions.retrieve(sessionId, {expand: ['line_items.data.price.product',
+            'payment_intent.latest_charge']});
+        const {line_items,payment_intent} = fullSession
+        let receipt_url = '';
+        if (
+            payment_intent &&
+            typeof payment_intent !== 'string' &&
+            'latest_charge' in payment_intent &&
+            payment_intent.latest_charge &&
+            typeof payment_intent.latest_charge !== 'string'
+        ) {
+            receipt_url = payment_intent.latest_charge.receipt_url!;
+        }
+        let items = []
+        for(const item of line_items?.data!){
+            const product = item.price!.product;
+            let image = '';
+            if (typeof product !== 'string' && 'images' in product) {
+                image = product.images[0] ?? '';
+            }
+            items.push({id:item.id,
+                description:item.description!,
+                price:item.price!.unit_amount!,
+                totalPrice:item.amount_total,
+                quantity:item.quantity!,
+                currency:item.currency,
+                image:image,
+            })
+        }
+        const purchase:Purchase = {
+            items:items,
+            userId:userId,
+            createdAt:new Date(),
+            sessionId:sessionId,
+            amount_total:fullSession.amount_total!,
+            receipt_url:receipt_url
+        }
+        await SavePurchases(purchase)
 
-        await SavePurchases({session})
     }
 
     return new NextResponse('Received', { status: 200 });

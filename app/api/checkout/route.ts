@@ -49,7 +49,6 @@ export async function POST (req:NextRequest){
                 quantity: quantity
             }
         })
-        console.log(line_items)
         const session = await stripe.checkout.sessions.create({
             line_items,
             mode: 'payment',
