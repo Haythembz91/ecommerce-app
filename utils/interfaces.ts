@@ -32,7 +32,7 @@ export interface User{
 }
 
 export interface Purchase{
-    userId:string;
+    userId?:string;
     items:{
         id:string;
         description:string;

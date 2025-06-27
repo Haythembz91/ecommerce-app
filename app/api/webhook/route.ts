@@ -22,7 +22,7 @@ export async function POST(req: NextRequest) {
 
     if (event.type === 'checkout.session.completed') {
         const session = event.data.object as Stripe.Checkout.Session;
-        const userId = session.metadata?.userId!;
+        const userId = session.metadata?.userId;
         const sessionId = session.id;
         if (!session.metadata?.userId) {
             console.warn('Missing userId in metadata');
@@ -32,6 +32,9 @@ export async function POST(req: NextRequest) {
         const fullSession = await stripe.checkout.sessions.retrieve(sessionId, {expand: ['line_items.data.price.product',
             'payment_intent.latest_charge']});
         const {line_items,payment_intent} = fullSession
+        if(!line_items?.data){
+            return new NextResponse('Missing line_items', { status: 400 });
+        }
         let receipt_url = '';
         if (
             payment_intent &&
@@ -42,8 +45,8 @@ export async function POST(req: NextRequest) {
         ) {
             receipt_url = payment_intent.latest_charge.receipt_url!;
         }
-        let items = []
-        for(const item of line_items?.data!){
+        const items = []
+        for(const item of line_items?.data){
             const product = item.price!.product;
             let image = '';
             if (typeof product !== 'string' && 'images' in product) {
