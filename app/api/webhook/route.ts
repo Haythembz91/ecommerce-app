@@ -2,7 +2,9 @@ import { NextRequest, NextResponse } from 'next/server';
 import {stripe} from "@/scripts/stripe"
 import Stripe from "stripe";
 import {SavePurchases} from "@/utils/savePurchases"
-import {Purchase} from "@/utils/interfaces";
+import {Purchase, PurchasedItems} from "@/utils/interfaces";
+import {colors, sizes} from "@/utils/enums";
+import UpdateStock from "@/utils/UpdateStock";
 const endpointSecret = process.env.NODE_ENV === 'development' ? process.env.STRIPE_CLI_WEBHOOK_SECRET! : process.env.STRIPE_WEBHOOK_SECRET!;
 
 export async function POST(req: NextRequest) {
@@ -29,7 +31,7 @@ export async function POST(req: NextRequest) {
             return new NextResponse('Missing metadata', { status: 400 });
         }
         console.log('Payment successful for user:', userId,sessionId);
-        const fullSession = await stripe.checkout.sessions.retrieve(sessionId, {expand: ['line_items.data.price.product',
+        const fullSession = await stripe.checkout.sessions.retrieve(sessionId, {expand: ['line_items','line_items.data','line_items.data.price.product',
             'payment_intent.latest_charge']});
         const {line_items,payment_intent} = fullSession
         if(!line_items?.data){
@@ -45,12 +47,20 @@ export async function POST(req: NextRequest) {
         ) {
             receipt_url = payment_intent.latest_charge.receipt_url!;
         }
-        const items = []
+        const items:PurchasedItems[] = []
         for(const item of line_items?.data){
             const product = item.price!.product;
             let image = '';
             if (typeof product !== 'string' && 'images' in product) {
                 image = product.images[0] ?? '';
+            }
+            let productId;
+            let productSize ;
+            let productColor ;
+            if(typeof product!=='string' && 'metadata' in product){
+                 productId = product.metadata.productId;
+                 productSize = product.metadata.productSize as sizes;
+                 productColor = product.metadata.productColor as colors;
             }
             items.push({id:item.id,
                 description:item.description!,
@@ -59,6 +69,9 @@ export async function POST(req: NextRequest) {
                 quantity:item.quantity!,
                 currency:item.currency,
                 image:image,
+                productId:productId,
+                productSize:productSize,
+                productColor:productColor
             })
         }
         const purchase:Purchase = {
@@ -69,8 +82,8 @@ export async function POST(req: NextRequest) {
             amount_total:fullSession.amount_total!,
             receipt_url:receipt_url
         }
-        await SavePurchases(purchase)
-
+        await SavePurchases(purchase);
+        await UpdateStock(items);
     }
 
     return new NextResponse('Received', { status: 200 });

@@ -2,6 +2,7 @@
 import React from "react";
 import {User} from "@/utils/interfaces";
 import defaultAvatar from "@/public/assets/default.png";
+import PurchaseList from "@/components/PurchaseList";
 
 const ProfileModal = ({user,setShowModal}:{user:User,setShowModal:React.Dispatch<React.SetStateAction<boolean>>})=>{
 
@@ -74,7 +75,7 @@ const ProfileModal = ({user,setShowModal}:{user:User,setShowModal:React.Dispatch
                                     </div>
                                 </div>
                                 <div className={'mb-3'}>
-
+                                    <PurchaseList userId={user._id}></PurchaseList>
                                 </div>
                             </form>
                         </div>

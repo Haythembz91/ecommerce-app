@@ -13,7 +13,7 @@ export interface Product {
     sleeveLength?:sleeveLengths ;
     legLength?: legLengths;
     productCollection: collections;
-    productQuantities: Record<string, number>;
+    productQuantities?: Record<string, number>;
     dateAdded: string;
     primaryColor?:colors;
     urlByColor?:string[];
@@ -24,6 +24,7 @@ export interface ProductVariant extends Omit<Product, '_id'> {
 }
 
 export interface User{
+    _id:string;
     username?:string;
     avatar?:string|null;
     email_address?:string;
@@ -31,17 +32,21 @@ export interface User{
     role?:roles
 }
 
+export interface PurchasedItems{
+    id:string;
+    description:string;
+    price:number;
+    totalPrice:number;
+    quantity:number;
+    currency:string;
+    image:string;
+    productId?:string;
+    productSize?:sizes;
+    productColor?:colors
+}
 export interface Purchase{
     userId?:string;
-    items:{
-        id:string;
-        description:string;
-        price:number;
-        totalPrice:number;
-        quantity:number;
-        currency:string;
-        image:string
-    }[];
+    items:PurchasedItems[];
     createdAt:Date;
     sessionId:string;
     receipt_url:string;

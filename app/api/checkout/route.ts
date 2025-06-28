@@ -41,8 +41,13 @@ export async function POST (req:NextRequest){
                 price_data: {
                     currency: 'eur',
                     product_data: {
-                        name: product.productName + ' - ' + product.primaryColor + ' - ' + item.productSize,
+                        name: product.productName + ' _ ' + product.primaryColor + ' _ ' + item.productSize,
                         images: [product.urlByColor![0]],
+                        metadata:{
+                            productId:product._id,
+                            productColor:product.primaryColor,
+                            productSize:item.productSize
+                        }
                     },
                     unit_amount: Number(product.productPrice) * 100,
                 },

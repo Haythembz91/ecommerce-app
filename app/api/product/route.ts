@@ -31,7 +31,6 @@ export async function OPTIONS() {
 export async function POST(req:NextRequest){
     const map = new Map<string,File[]>()
     const imagesByColor :Record<string,string[]>={}
-    const quantitiesMap= new Map<string,number>()
     const productVariants:ProductVariant[]=[]
     try {
         const formData = await req.formData()
@@ -49,10 +48,6 @@ export async function POST(req:NextRequest){
             }                                       ))
             imagesByColor[color] = urls.map(url => url.url)
         }
-        for (const [key, value] of formData.entries()){
-            if(!key.includes('-')) continue
-            quantitiesMap.set(key, Number(value))
-        }
         const productCategory = formData.get('productCategory') as categories
         const product:ProductVariant = {
             productName: formData.get('productName') as string,
@@ -64,12 +59,16 @@ export async function POST(req:NextRequest){
             productColor:formData.getAll('productColor') as colors[],
             productSizes:formData.getAll('productSizes') as sizes[],
             productPrice: Number(formData.get('productPrice')).toFixed(2),
-            productQuantities:Object.fromEntries(quantitiesMap),
             dateAdded: new Date().toISOString(),
             other:formData.get('other') as other
         }
         for(const color of Object.keys(imagesByColor)){
-           const productVariant:ProductVariant = {...product,'urlByColor':imagesByColor[color],'primaryColor':color as colors}
+            const quantitiesMap= new Map<string,number>()
+            for (const [key, value] of formData.entries()){
+                if(!key.includes(`${color}-`)) continue
+                quantitiesMap.set(key, Number(value))
+            }
+           const productVariant:ProductVariant = {...product,productQuantities:Object.fromEntries(quantitiesMap),'urlByColor':imagesByColor[color],'primaryColor':color as colors}
             productVariants.push(productVariant)
         }
         const db = await getDb()
