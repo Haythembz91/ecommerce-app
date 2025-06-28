@@ -26,7 +26,7 @@ const AddToCartForm = ({product}:{product:Product}) => {
         if (product.sleeveLength) {
             formData.append('sleeveLength', product.sleeveLength as sleeveLengths);
         }
-        formData.append('stock',product.productQuantities[`${product.primaryColor}-${selectedSize}`].toFixed(2) as string)
+        formData.append('stock',product.productQuantities![`${product.primaryColor}-${selectedSize}`].toFixed(2) as string)
 
         const item:CartItemType = Object.fromEntries(formData.entries()) as unknown as CartItemType
         addItem(item)
@@ -57,7 +57,7 @@ const AddToCartForm = ({product}:{product:Product}) => {
                 <h5><b>Size:</b></h5>
                 <div className={'d-flex justify-content-center'}>
                     {product.productSizes.map((size:sizes,index:number)=>(
-                        product.productQuantities[`${product.primaryColor}-${size}`]!==0&&<div key={index}>
+                        product.productQuantities![`${product.primaryColor}-${size}`]!==0&&<div key={index}>
                             <label style={selectedSize===size?{backgroundColor:'black',color:'white'}:undefined} className={'form-label btn btn-outline-dark rounded-0 m-1'} htmlFor={size}>{size}</label>
                             <input required={index===0} type={'radio'} id={size} onChange={e=>setSelectedSize(e.target.value as sizes)} value={size} name={'productSize'} className={'form-control visually-hidden'}/>
                         </div>
@@ -68,7 +68,7 @@ const AddToCartForm = ({product}:{product:Product}) => {
                 <label htmlFor={'productQuantity'}>
                     <h5><b>Quantity:</b></h5>
                 </label>
-                <input required type={'number'} onChange={(e)=>setSelectedQuantity(parseInt(e.target.value))} min={1} max={product.productQuantities[`${product.primaryColor}-${selectedSize}`]} id={'productQuantity'} name={'productQuantity'} className={'form-control'}/>
+                <input required type={'number'} onChange={(e)=>setSelectedQuantity(parseInt(e.target.value))} min={1} max={product.productQuantities![`${product.primaryColor}-${selectedSize}`]} id={'productQuantity'} name={'productQuantity'} className={'form-control'}/>
             </div>}
             <div className={'mb-3'}>
                 <h5><b>€{totalPrice}</b></h5>

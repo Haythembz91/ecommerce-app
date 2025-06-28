@@ -36,7 +36,7 @@ export async function POST (req:NextRequest){
             if(!product||!product.productSizes.includes(item.productSize)){
                 throw new Error('Product not found')
             }
-            const quantity = Math.max(1,Math.min(product.productQuantities[`${product.primaryColor}-${item.productSize}`],item.productQuantity))
+            const quantity = Math.max(1,Math.min(product.productQuantities![`${product.primaryColor}-${item.productSize}`],item.productQuantity))
             return {
                 price_data: {
                     currency: 'eur',
