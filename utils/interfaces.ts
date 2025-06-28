@@ -44,6 +44,7 @@ export interface PurchasedItems{
     productColor?:colors
 }
 export interface Purchase{
+    _id?:string;
     userId?:string;
     items:PurchasedItems[];
     createdAt:Date;

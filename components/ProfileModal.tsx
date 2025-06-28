@@ -37,47 +37,47 @@ const ProfileModal = ({user,setShowModal}:{user:User,setShowModal:React.Dispatch
                 </div>
                 <div className={'bg-white h-75 position-fixed container p-0 rounded-4 overflow-hidden top-50 start-50 translate-middle'}>
                     <div className={'container-fluid h-100 p-0 d-flex flex-row'}>
-                        <div className={'d-none d-md-block col-4 p-3 bg-secondary bg-gradient'}>
+                        <div className={'d-none d-md-block col-3 p-3 bg-secondary bg-gradient'}>
                             <h4 className={'fw-bold'}>Account</h4>
                             <p>
                                 Manage your account info.
                             </p>
                         </div>
-                        <div className={'col-md-8 p-3 h-100'}>
-                            <header className={'nav navbar d-flex'}>
+                        <div className={'col-12 col-md-9 p-3 h-100 overflow-y-scroll'}>
+                            <header className={'nav navbar'}>
                                 <span>
                                     <h5 className={'fw-bold my-auto'}>Profile details</h5>
                                 </span>
                                 <button onClick={()=>setShowModal(false)} className={'btn-close'}></button>
                             </header>
                             <form onSubmit={handleUpdate} className="modal-body">
-                                <div className={'mb-3 d-flex justify-content-around align-items-center border-top'}>
-                                    <div className={'p-2'}>Profile</div>
-                                    <div className={'p-2'}>
+                                <div className={'mb-3 row row-cols-2 row-cols-md-3 border-top'}>
+                                    <div className={'col mx-auto p-2'}>Profile</div>
+                                    <div className={'col mx-auto p-2'}>
                                         <img style={{width:'50px'}} src={user?.avatar?user.avatar:defaultAvatar.src} className={'img-fluid rounded-circle'} alt={'Profile'}></img>
                                     </div>
-                                    <div className={'p-2'}>
+                                    <div className={'col mx-auto p-2'}>
                                         <input required name={`${user.username}_avatar`} type={'file'} accept={'image/*'} className={'form-control'}></input>
                                     </div>
                                 </div>
-                                <div className={'mb-3 d-flex justify-content-around align-items-center border-top'}>
-                                    <div className={'p-2'}>Username</div>
-                                    <div className={'p-2'}>
+                                <div className={'mb-3 row row-cols-2 row-cols-md-3 border-top'}>
+                                    <div className={'col mx-auto p-2'}>Username</div>
+                                    <div className={'col mx-auto p-2'}>
                                         <input disabled={true} name={'username'} type={'text'} defaultValue={user?.username} className={'form-control'}/>
                                     </div>
-                                    <div className={'p-2'}>
-                                        {!isLoading?<button type={'submit'} className={'btn btn-dark'}>Save</button>:
-                                            <button className="btn btn-dark" type="button" disabled>
+                                    <div className={'col mx-auto p-2'}>
+                                        {!isLoading?<button type={'submit'} className={'btn btn-dark w-100'}>Save</button>:
+                                            <button className="btn btn-dark w-100" type="button" disabled>
                                                 <span className="spinner-border spinner-border-sm"
                                                       aria-hidden="true"></span>
                                                 <span className={'px-2'} role="status">Saving...</span>
                                             </button>}
                                     </div>
                                 </div>
-                                <div className={'mb-3'}>
-                                    <PurchaseList></PurchaseList>
-                                </div>
                             </form>
+                            <div className={'mb-3'}>
+                                <PurchaseList></PurchaseList>
+                            </div>
                         </div>
                     </div>
                 </div>
