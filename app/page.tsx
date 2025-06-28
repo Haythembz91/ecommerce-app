@@ -35,9 +35,11 @@ const Home = ()=>{
             </section>
             <section className={'my-2 mx-md-2'}>
                 <div className="card border-0 text-bg-dark">
-                    <img src={'https://res.cloudinary.com/dmgfsayir/image/upload/v1749072500/1.WB_LowBackEdit_LaunchBanner_20250520_dp_desktop_2000x_ywdurm.webp'} className="d-none card-img rounded-0 d-md-block" alt="..."/>
-                    <img src={'https://res.cloudinary.com/dmgfsayir/image/upload/v1749072501/1.WB_LowBackEdit_LaunchBanner_1600x2100_20250520_dp_mobile_400x_2x_kmjz1l.jpg'} className="d-md-none rounded-0 card-img" alt="..."/>
-                  <div className="carousel-caption">
+                    <Link href={`/shop/sportswear?other=${other.LOW_BACK_EDIT}`}>
+                        <img src={'https://res.cloudinary.com/dmgfsayir/image/upload/v1749072500/1.WB_LowBackEdit_LaunchBanner_20250520_dp_desktop_2000x_ywdurm.webp'} className="d-none card-img rounded-0 d-md-block" alt="..."/>
+                        <img src={'https://res.cloudinary.com/dmgfsayir/image/upload/v1749072501/1.WB_LowBackEdit_LaunchBanner_1600x2100_20250520_dp_mobile_400x_2x_kmjz1l.jpg'} className="d-md-none rounded-0 card-img" alt="..."/>
+                    </Link>
+                    <div className="carousel-caption">
                     <h3 className="card-title fw-bold ">LOW BACK EDIT</h3>
                     <h6 className="card-text">Bringing the heat.</h6>
                       <a href={`/shop/sportswear?other=${other.LOW_BACK_EDIT}`} className={"btn btn-light"}
@@ -70,8 +72,10 @@ const Home = ()=>{
             </section>
             <section className={'my-2 mx-md-2'}>
                 <div className="card border-0 text-bg-dark">
-                    <img src={'https://res.cloudinary.com/dmgfsayir/image/upload/v1749954721/1.WB_DefineLowBackEdit_TeasingBanner_3000x1270_20250522_lh_desktop_2000x_nmpumv.webp'} className="d-none card-img rounded-0 d-md-block" alt="..."/>
-                    <img src={'https://res.cloudinary.com/dmgfsayir/image/upload/v1749954721/1.WB_DefineLowBackEdit_TeasingBanner_1600x2100_20250522_lh_mobile_1000x_rtkcfw.webp'} className="d-md-none rounded-0 card-img" alt="..."/>
+                    <Link href={`/shop/sportswear?other=${other.LOW_BACK_EDIT}`}>
+                        <img src={'https://res.cloudinary.com/dmgfsayir/image/upload/v1749954721/1.WB_DefineLowBackEdit_TeasingBanner_3000x1270_20250522_lh_desktop_2000x_nmpumv.webp'} className="d-none card-img rounded-0 d-md-block" alt="..."/>
+                        <img src={'https://res.cloudinary.com/dmgfsayir/image/upload/v1749954721/1.WB_DefineLowBackEdit_TeasingBanner_1600x2100_20250522_lh_mobile_1000x_rtkcfw.webp'} className="d-md-none rounded-0 card-img" alt="..."/>
+                    </Link>
                     <div className="carousel-caption">
                         <h3 className="card-title fw-bold ">LOW BACK EDIT</h3>
                         <h6 className="card-text">Bringing the heat.</h6>

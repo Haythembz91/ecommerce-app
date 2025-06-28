@@ -75,7 +75,7 @@ const ProfileModal = ({user,setShowModal}:{user:User,setShowModal:React.Dispatch
                                     </div>
                                 </div>
                             </form>
-                            <div className={'mb-3'}>
+                            <div className={'my-3'}>
                                 <PurchaseList></PurchaseList>
                             </div>
                         </div>
