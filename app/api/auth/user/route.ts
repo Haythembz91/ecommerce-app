@@ -5,9 +5,9 @@ export async function GET(){
     try{
         const user = await GetUserFromCookies()
         if (!user) {
-            return NextResponse.json({message: 'User not found'},{ status: 401 })
+            return NextResponse.json({message: 'User not found'})
         }
-        return NextResponse.json(user)
+        return NextResponse.json({user:user})
     }catch(e){
         const error = e as Error
         console.error(error)

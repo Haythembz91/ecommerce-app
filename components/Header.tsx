@@ -27,7 +27,6 @@ const Header = ()=>{
         }
         getUser()
     },[])
-
     useEffect(()=>{
         const handleClick = (e:MouseEvent)=>{
             if(e.target === overlay){
@@ -38,7 +37,6 @@ const Header = ()=>{
         window.addEventListener('click',handleClick)
         return ()=>window.removeEventListener('click',handleClick)
     },[show])
-    console.log(user)
 
     useEffect(() => {
         if (show||showModal) {

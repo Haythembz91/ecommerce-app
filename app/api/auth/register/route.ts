@@ -39,7 +39,7 @@ export async function POST(req:NextRequest){
         if(!result.acknowledged){
             return NextResponse.json({message:'register failed'},{status:500})
         }
-        const token = jwt.sign({ userId: result.insertedId, role: user.role }, process.env.JWT_SECRET as string, { expiresIn: '1h' });
+        const token = jwt.sign({ userId: result.insertedId, role: user.role }, process.env.JWT_SECRET as string, { expiresIn: '2h' });
         const response = NextResponse.json('User registered successfully')
         response.cookies.set('token', token, { httpOnly: true, secure: process.env.NODE_ENV === 'production', maxAge: 60 * 60,path: '/', sameSite: 'lax' });
         return response

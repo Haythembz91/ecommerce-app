@@ -2,7 +2,7 @@ import DashboardForm from '@/components/DashboardForm'
 export default function Home() {
 
   return (
-      <main>
+      <main className={'d-flex'}>
         <aside className={'col-3'}>
           <nav className="nav flex-column bg-body-secondary">
               <button className={'nav-link text-dark border-bottom fw-bold'} type="button" data-bs-toggle="collapse"
@@ -17,8 +17,7 @@ export default function Home() {
               <button className={'nav-link text-dark border-bottom fw-bold'}>Purchases</button>
           </nav>
         </aside>
-        <div className={'col-9'}>
-
+        <div className={'col-9 px-2'}>
         </div>
       </main>
   )

@@ -8,7 +8,7 @@ const GetPurchases = async (userId:string)=>{
             throw new Error('Database connection failed')
         }
         const purchaseCollection = db.collection('purchases')
-        const purchases = await purchaseCollection.find({userId: userId}).toArray()
+        const purchases = await purchaseCollection.find(userId?{userId:userId}:{}).toArray()
         if(purchases.length === 0){
             return []
         }

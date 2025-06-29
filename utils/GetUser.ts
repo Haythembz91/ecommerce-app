@@ -8,7 +8,9 @@ const GetUser = async()=>{
             return null
         }
         const data  = await response.json()
-        return data??null
+        if(data.user){
+            return data.user
+        }
     }catch(e){
         const error = e as Error
         console.error(error)
