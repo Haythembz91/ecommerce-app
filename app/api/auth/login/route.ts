@@ -24,7 +24,7 @@ export async function POST(req:NextRequest){
             return NextResponse.json({message:'Wrong password'},{ status: 401 })
         }
         const token = jwt.sign({ userId: user._id, role: user.role }, process.env.JWT_SECRET as string, { expiresIn: '1h' });
-        const response = NextResponse.json({userId:user._id,token})
+        const response = NextResponse.json('Logged in successfully')
         response.cookies.set('token', token, { httpOnly: true, secure: process.env.NODE_ENV === 'production', maxAge: 60 * 60,path: '/', sameSite: 'lax' });
         return response
     }catch(e){
