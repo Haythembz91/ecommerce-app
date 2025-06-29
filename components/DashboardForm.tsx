@@ -55,7 +55,7 @@ const [msg,setMsg]=useState<string>('')
     
     return (
         <div>
-          <button type="button" className="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+          <button type="button" className={'nav-link text-dark mx-auto'} data-bs-toggle="modal" data-bs-target="#staticBackdrop">
             Add Product
           </button>
           <div className="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex={-1} aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -209,11 +209,11 @@ const [msg,setMsg]=useState<string>('')
                         </div>}
                          {msg&&<div className={'alert alert-success'}>{msg}</div>}
                         <div className="modal-footer">
-                          <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>    
-                            {loading?<button className="btn btn-primary" type="button" disabled>
+                          <button type="button" className="btn btn-dark" data-bs-dismiss="modal">Close</button>
+                            {loading?<button className="btn btn-dark" type="button" disabled>
                               <span className="spinner-border spinner-border-sm" aria-hidden="true"></span>
                               <span role="status">Adding...</span>
-                            </button>:<button className="btn btn-primary" type="submit">Add Product</button>}
+                            </button>:<button className="btn btn-dark" type="submit">Add Product</button>}
                         </div>
                     </form>
                 </div>

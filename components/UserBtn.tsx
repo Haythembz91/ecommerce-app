@@ -3,6 +3,7 @@ import defaultAvatar from '@/public/assets/default.png'
 import React from "react";
 import {roles} from "@/utils/enums";
 import {SignOut} from "@/scripts/SignOut";
+import Link from "next/link";
 
 const UserBtn = ({user,setShowModal}:{user:User,setShowModal:React.Dispatch<React.SetStateAction<boolean>>})=>{
     return (
@@ -21,7 +22,7 @@ const UserBtn = ({user,setShowModal}:{user:User,setShowModal:React.Dispatch<Reac
                         Manage account
                     </button>
                 </li>
-                {user?.role===roles.ADMIN&&<li><a className="dropdown-item border-bottom" href="/admin">Dashboard</a></li>}
+                {user?.role===roles.ADMIN&&<li><Link className="dropdown-item border-bottom" href="/admin">Dashboard</Link></li>}
                 <li>
                     <form action={SignOut}>
                         <button type={'submit'} className="dropdown-item border-bottom">Log Out</button>

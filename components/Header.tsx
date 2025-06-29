@@ -95,7 +95,7 @@ const Header = ()=>{
                     </div>
                     <div className={"d-flex justify-content-end col-5"}>
                         <div className={"d-flex"}>
-                            <div className={'d-none d-md-flex col-md-3 justify-content-center'}>
+                            <div className={'d-none d-md-flex col-md-3 justify-content-center pe-2'}>
                                 <button className={"btn"} onClick={()=>setShowSearchBar(prev=>!prev)} type="button">
                                     <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fillRule="evenodd"
                                          clipRule="evenodd">
