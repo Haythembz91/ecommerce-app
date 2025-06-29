@@ -212,7 +212,7 @@ const [msg,setMsg]=useState<string>('')
                           <button type="button" className="btn btn-dark" data-bs-dismiss="modal">Close</button>
                             {loading?<button className="btn btn-dark" type="button" disabled>
                               <span className="spinner-border spinner-border-sm" aria-hidden="true"></span>
-                              <span role="status">Adding...</span>
+                              <span role="status px-2">Adding...</span>
                             </button>:<button className="btn btn-dark" type="submit">Add Product</button>}
                         </div>
                     </form>

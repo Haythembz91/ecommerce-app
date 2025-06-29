@@ -26,6 +26,7 @@ export enum colors{
     WHITE='White',
     PINK='Pink',
     BROWN='Brown',
+    MEDIUM_ORCHID='MediumOrchid'
     
 }
 export enum collections{
