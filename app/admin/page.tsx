@@ -17,6 +17,9 @@ export default function Home() {
               <button className={'nav-link text-dark border-bottom fw-bold'}>Purchases</button>
           </nav>
         </aside>
+        <div className={'col-9'}>
+
+        </div>
       </main>
   )
 }

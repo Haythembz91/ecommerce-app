@@ -52,7 +52,7 @@ const PurchaseList = ()=>{
                         <React.Fragment key={item.id}>
                             <tr>
                                 <td>
-                                    <div className={'container d-flex flex-column flex-md-row p-2 w-100'} >
+                                    <div className={'container d-flex flex-column flex-md-row p-0 w-100'} >
                                         <img style={{ maxHeight: '90px', maxWidth: '90px', objectFit: 'contain'}} className={''} src={item.image} alt={item.description} />
                                         <p className={'px-2'}>
                                             {item.description}

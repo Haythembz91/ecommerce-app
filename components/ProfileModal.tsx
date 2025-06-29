@@ -37,20 +37,20 @@ const ProfileModal = ({user,setShowModal}:{user:User,setShowModal:React.Dispatch
                 </div>
                 <div className={'bg-white h-75 position-fixed container p-0 rounded-4 overflow-hidden top-50 start-50 translate-middle'}>
                     <div className={'container-fluid h-100 p-0 d-flex flex-row'}>
-                        <div className={'d-none d-md-block col-3 p-3 bg-secondary bg-gradient'}>
+                        <div className={'d-none d-md-block col-3 p-2 bg-secondary bg-gradient'}>
                             <h4 className={'fw-bold'}>Account</h4>
                             <p>
                                 Manage your account info.
                             </p>
                         </div>
-                        <div className={'col-12 col-md-9 p-3 h-100 overflow-y-scroll'}>
+                        <div className={'col-12 col-md-9 p-2 h-100 overflow-y-scroll'}>
                             <header className={'nav navbar'}>
                                 <span>
                                     <h5 className={'fw-bold my-auto'}>Profile details</h5>
                                 </span>
                                 <button onClick={()=>setShowModal(false)} className={'btn-close'}></button>
                             </header>
-                            <form onSubmit={handleUpdate} className="modal-body">
+                            <form onSubmit={handleUpdate} className="modal-body p-2">
                                 <div className={'mb-3 row row-cols-2 row-cols-md-3 border-top'}>
                                     <div className={'col mx-auto p-2'}>Profile</div>
                                     <div style={{height:'60px',width:'60px'}} className={'col mx-auto p-2'}>
@@ -75,7 +75,7 @@ const ProfileModal = ({user,setShowModal}:{user:User,setShowModal:React.Dispatch
                                     </div>
                                 </div>
                             </form>
-                            <div className={'my-3'}>
+                            <div className={'my-3 p-2'}>
                                 <PurchaseList></PurchaseList>
                             </div>
                         </div>
