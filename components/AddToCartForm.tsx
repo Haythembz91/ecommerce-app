@@ -33,7 +33,7 @@ const AddToCartForm = ({product}:{product:Product}) => {
     }
     const [selectedSize,setSelectedSize]=useState<sizes>()
     const [selectedQuantity,setSelectedQuantity]=useState<number>(1)
-    const totalPrice = parseFloat(product.productPrice)*(selectedQuantity||1)
+    const totalPrice = (parseFloat(product.productPrice)*(selectedQuantity||1)).toFixed(2)
     const {toggleCart} = useCart()
     return(
         <form onSubmit={handleAddToCart} className={'col-md-5 px-2'}>
