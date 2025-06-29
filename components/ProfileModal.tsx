@@ -53,8 +53,8 @@ const ProfileModal = ({user,setShowModal}:{user:User,setShowModal:React.Dispatch
                             <form onSubmit={handleUpdate} className="modal-body">
                                 <div className={'mb-3 row row-cols-2 row-cols-md-3 border-top'}>
                                     <div className={'col mx-auto p-2'}>Profile</div>
-                                    <div className={'col mx-auto p-2'}>
-                                        <img style={{width:'50px'}} src={user?.avatar?user.avatar:defaultAvatar.src} className={'img-fluid rounded-circle'} alt={'Profile'}></img>
+                                    <div style={{height:'50px',width:'50px'}} className={'col mx-auto p-2'}>
+                                        <img style={{width:'100%',height:'100%',objectFit:'cover'}} src={user?.avatar?user.avatar:defaultAvatar.src} className={'img-fluid rounded-circle'} alt={'Profile'}></img>
                                     </div>
                                     <div className={'col mx-auto p-2'}>
                                         <input required name={`${user.username}_avatar`} type={'file'} accept={'image/*'} className={'form-control'}></input>
