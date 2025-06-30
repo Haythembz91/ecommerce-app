@@ -2,9 +2,15 @@ import {NextRequest, NextResponse} from "next/server";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import {getDb} from "@/utils/mongodb";
+import {loginLimiter} from "@/utils/rateLimit";
 
 export async function POST(req:NextRequest){
     try{
+        const ip = req.headers.get('x-forwarded-for') || '127.0.0.1';
+        const {success} = await loginLimiter.limit(ip);
+        if(!success){
+            return NextResponse.json({message:'Too many requests'}, {status:429})
+        }
         const formData = await req.formData();
         const password = formData.get('password')?.toString()
         if(!password){

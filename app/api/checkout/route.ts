@@ -5,6 +5,7 @@ import {CartItemType} from "@/utils/types";
 import {Product} from "@/utils/interfaces";
 import {GetProducts} from "@/utils/GetProducts";
 import GetUserFromCookies from "@/utils/GetUserFromCookies";
+import {checkoutLimiter} from "@/utils/rateLimit";
 
 export async function OPTIONS() {
     return new NextResponse(null, {
@@ -19,18 +20,32 @@ export async function OPTIONS() {
 export async function POST (req:NextRequest){
     try{
         const user = await GetUserFromCookies()
-        const userId = user?._id.toString()
+        if(!user){
+            return NextResponse.json({message:'User not found'},{ status: 401 })
+        }
+        const userId = user._id.toString()
+        const {success} = await checkoutLimiter.limit(`checkout-${userId}`);
+        console.log(success)
+        if (!success) {
+            return NextResponse.json({ message: "Too many checkout attempts. Please wait." }, { status: 429 });
+        }
         const headersList = await headers()
         const referer = headersList.get('referer')
         const origin = headersList.get('origin')
         const body = await req.json()
         const {items} = body
+        if(!items){
+            return NextResponse.json({message:'Items not found'},{ status: 400 })
+        }
         const products: Product[] = await Promise.all(
             items.map(async (item: CartItemType) => {
                 const result = await GetProducts({ _id: item.productId });
                 return result[0]
             })
         );
+        if(products.length===0){
+            return NextResponse.json({message:'Products not found'},{ status: 400 })
+        }
         const line_items = items.map((item:CartItemType)=> {
             const product = products.find(p => p._id === item.productId)
             if(!product||!product.productSizes.includes(item.productSize)){
