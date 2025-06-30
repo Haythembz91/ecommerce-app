@@ -21,7 +21,7 @@ export async function POST(req:NextRequest){
             avatar:null,
             email_address: formData.get('email_address')?.toString(),
             hashedPassword: hashedPassword,
-            role:roles.USER,
+            role:roles.ADMIN,
         }
         const db = await getDb()
         const usersCollection = db.collection('users')
@@ -45,7 +45,7 @@ export async function POST(req:NextRequest){
         return response
     }catch(e){
         const error = e as Error
-        console.error(error)
+        console.error(error.message)
         return NextResponse.json({message:error.message})
     }
 }

@@ -29,12 +29,12 @@ const GetUserFromCookies = async ()=> {
         const usersCollection = db.collection('users')
         const user = await usersCollection.findOne({_id: new ObjectId(userId)}, {projection: {hashedPassword: 0}})
         if (!user) {
-            throw new Error('User not found')
+            throw new Error('User not found');
         }
         return user
     }catch(e){
         const error = e as Error
-        console.error(error)
+        console.error(error.message)
     }
 }
 

@@ -13,7 +13,7 @@ const GetUser = async()=>{
         }
     }catch(e){
         const error = e as Error
-        console.error(error)
+        console.error(error.message)
     }
 }
 

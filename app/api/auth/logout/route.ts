@@ -9,7 +9,7 @@ export async function GET(){
         return NextResponse.json({message:'Logout successful'})
     }catch(e){
         const error = e as Error
-        console.error(error)
+        console.error(error.message)
         return NextResponse.json({message:error.message})
     }
 }

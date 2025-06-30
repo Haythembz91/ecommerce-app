@@ -16,6 +16,6 @@ export async function GET(){
         return NextResponse.json(purchases.sort((a,b)=>new Date(b.createdAt).getTime()-new Date(a.createdAt).getTime()))
     }catch(e){
         const error = e as Error
-        console.error(error)
+        console.error(error.message)
     }
 }

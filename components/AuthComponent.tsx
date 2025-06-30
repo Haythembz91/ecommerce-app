@@ -16,6 +16,7 @@ const AuthComponent = ()=>{
         setIsLoading(true)
         if(password!==confirmPassword){
             setError('Passwords do not match')
+            setIsLoading(false)
             return null
         }
         const formData = new FormData(e.currentTarget as HTMLFormElement)
@@ -36,8 +37,7 @@ const AuthComponent = ()=>{
         }catch(e){
             const error = e as Error
             console.error(error)
-        }finally
-        {
+        }finally{
             setIsLoading(false)
         }
     }

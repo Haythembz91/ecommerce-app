@@ -7,6 +7,6 @@ export async function SignOut() {
         }
     }catch(e){
         const error = e as Error
-        console.error(error)
+        console.error(error.message)
     }
 }

@@ -7,6 +7,7 @@ import PurchaseList from "@/components/PurchaseList";
 const ProfileModal = ({user,setShowModal}:{user:User,setShowModal:React.Dispatch<React.SetStateAction<boolean>>})=>{
 
         const [isLoading,setIsLoading] = React.useState(false)
+        const [isDeleting,setIsDeleting] = React.useState(false)
         const handleUpdate=async (e:React.FormEvent<HTMLFormElement>)=>{
         e.preventDefault()
             setIsLoading(true)
@@ -27,6 +28,26 @@ const ProfileModal = ({user,setShowModal}:{user:User,setShowModal:React.Dispatch
             console.error(error)
         }finally {
             setIsLoading(false)
+        }
+    }
+
+    const handleDelete = async (e:React.MouseEvent)=>{
+        e.preventDefault()
+        setIsDeleting(true)
+        try{
+            const response = await fetch('/api/auth/user/delete', {
+                method: 'DELETE',
+                headers:{'x-requested-with':'XMLHttpRequest'
+            }
+            })
+            if(response.ok){
+                window.location.reload()
+            }
+        }catch(e){
+            const error = e as Error
+            console.error(error.message)
+        }finally {
+            setIsDeleting(false)
         }
     }
 
@@ -77,6 +98,15 @@ const ProfileModal = ({user,setShowModal}:{user:User,setShowModal:React.Dispatch
                             </form>
                             <div className={'my-3 p-2'}>
                                 <PurchaseList></PurchaseList>
+                            </div>
+                            <div className={'my-3 p-2 d-flex justify-content-end'}>
+                                {!isDeleting?<button onClick={handleDelete} className={'btn btn-danger'}>Delete Account</button>:
+                                    <button className="btn btn-danger" type="button" disabled>
+                                    <span className="spinner-border spinner-border-sm"
+                                    aria-hidden="true"></span>
+                                    <span className={'px-2'} role="status">Deleting...</span>
+                        </button>
+                                }
                             </div>
                         </div>
                     </div>

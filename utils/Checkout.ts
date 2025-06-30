@@ -22,7 +22,8 @@ export const handleSubmit = async (e:React.FormEvent<HTMLFormElement>,items:Cart
             console.error('No checkout URL returned');
         }
     }catch(e){
-        console.error(e)
+        const error = e as Error
+        console.error(error.message)
     }
 }
 

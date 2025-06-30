@@ -155,7 +155,8 @@ export async function GET(req:NextRequest){
         }})
     
     }catch(e){
-        console.error(e)
+        const error = e as Error
+        console.error(error.message)
         return NextResponse.json({ message: 'Internal Server Error' }, { status: 500,
         headers:{
             'Access-Control-Allow-Origin': process.env.PUBLIC_URL as string,

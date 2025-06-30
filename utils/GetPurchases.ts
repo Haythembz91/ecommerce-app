@@ -15,7 +15,7 @@ const GetPurchases = async (userId:string)=>{
         return purchases
     }catch(e){
         const error = e as Error
-        console.error(error)
+        console.error(error.message)
     }
 }
 
