@@ -1,10 +1,14 @@
 import GetPurchases from "@/utils/GetPurchases";
 import getUserFromCookies from "@/utils/GetUserFromCookies";
-import {NextResponse} from "next/server";
+import {NextRequest, NextResponse} from "next/server";
 
 
-export async function GET(){
+export async function GET(req:NextRequest){
     try{
+        const requestedWith = req.headers.get('x-requested-with')
+        if(requestedWith !== 'XMLHttpRequest'){
+            return NextResponse.json({message:'Invalid Request'}, {status: 400})
+        }
         const user = await getUserFromCookies();
         if (!user){
             return NextResponse.json({message: 'User not found'},{ status: 401 })

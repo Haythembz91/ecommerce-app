@@ -8,7 +8,10 @@ const PurchaseList = ()=>{
     const [purchases,setPurchases] = useState<Purchase[]>([])
     const getPurchases = async()=>{
         try{
-            const response = await fetch ('/api/purchases');
+            const response = await fetch ('/api/purchases',{
+                method:'GET',
+                headers:{'x-requested-with':'XMLHttpRequest'}
+            });
             if (response.ok){
                 const data = await response.json();
                 setPurchases(data)

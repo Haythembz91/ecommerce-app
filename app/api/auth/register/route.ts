@@ -52,6 +52,6 @@ export async function POST(req:NextRequest){
     }catch(e){
         const error = e as Error
         console.error(error.message)
-        return NextResponse.json({message:error.message})
+        return NextResponse.json({message:'Internal server error'}, {status:500})
     }
 }
