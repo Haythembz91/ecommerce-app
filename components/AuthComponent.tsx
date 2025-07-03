@@ -1,5 +1,5 @@
 'use client'
-import grd from '@/public/assets/google/web_light_sq_na.svg'
+import grd from '@/public/assets/google/android_light_sq_ctn.svg'
 import React from "react";
 
 const AuthComponent = ()=>{
@@ -32,11 +32,11 @@ const AuthComponent = ()=>{
                 setError(error.message)
             }else{
                 setError('')
-                window.location.href = '/'
+                window.location.href=('/')
             }
         }catch(e){
             const error = e as Error
-            console.error(error)
+            console.error(error.message)
         }finally{
             setIsLoading(false)
         }
@@ -122,18 +122,13 @@ const AuthComponent = ()=>{
             </div>
             <div className={'mb-3'}>
                 <div className={'text-center'}>
-                    Or Sign in with:
+                    Or :
                 </div>
                 <div className={'d-flex justify-content-center mb-3'}>
-                    <div className={'p-2'}>
-                        <a href={'#'}>
-                            <img style={{width:'41px'}} alt={'fb logo'} src={'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/2023_Facebook_icon.svg/500px-2023_Facebook_icon.svg.png'}/>
-                        </a>
-                    </div>
                     <div className={'d-flex align-items-center p-2'}>
-                        <a href={'#'}>
+                        <button className={'google-login-btn'} onClick={()=>window.location.href='api/auth/google/login'}>
                             <img src={grd.src} alt={'google icon'}/>
-                        </a>
+                        </button>
                     </div>
                 </div>
             </div>

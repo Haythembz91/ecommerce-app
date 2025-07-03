@@ -27,16 +27,14 @@ export async function POST(req:NextRequest){
             avatar:null,
             email_address: formData.get('email_address')?.toString(),
             hashedPassword: hashedPassword,
-            role:roles.ADMIN,
+            role:roles.USER,
         }
         const db = await getDb()
         const usersCollection = db.collection('users')
-        await usersCollection.createIndex({ username: 1 }, { unique: true });
         const existingUser = await usersCollection.findOne({ username: user.username });
         if (existingUser) {
             return NextResponse.json({ message: 'Username already exists' }, { status: 409 })
         }
-        await usersCollection.createIndex({ email_address: 1 }, { unique: true });
         const existingEmail = await usersCollection.findOne({ email_address: user.email_address });
         if (existingEmail) {
             return NextResponse.json({ message: 'Email Address already in use' }, { status: 409 })
@@ -45,7 +43,7 @@ export async function POST(req:NextRequest){
         if(!result.acknowledged){
             return NextResponse.json({message:'register failed'},{status:500})
         }
-        const token = jwt.sign({ userId: result.insertedId, role: user.role }, process.env.JWT_SECRET as string, { expiresIn: '2h' });
+        const token = jwt.sign({ userId: result.insertedId, role: user.role }, process.env.JWT_SECRET as string, { expiresIn: '1h' });
         const response = NextResponse.json('User registered successfully')
         response.cookies.set('token', token, { httpOnly: true, secure: process.env.NODE_ENV === 'production', maxAge: 60 * 60,path: '/', sameSite: 'lax' });
         return response

@@ -27,7 +27,7 @@ export interface User{
     username?:string;
     avatar?:string|null;
     email_address?:string;
-    hashedPassword:string;
+    hashedPassword?:string;
     role?:roles
 }
 

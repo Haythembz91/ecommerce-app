@@ -25,7 +25,7 @@ const Header = ()=>{
             const user = await GetUser()
             setUser(user)
         }
-        getUser()
+        getUser().then().catch()
     },[])
     useEffect(()=>{
         const handleClick = (e:MouseEvent)=>{
@@ -45,6 +45,7 @@ const Header = ()=>{
             document.body.classList.remove('overflow-hidden');
         }
     }, [show,showModal]);
+    console.log(user)
 
     return (
             <header className={"container-fluid sticky-top bg-body-secondary"}>

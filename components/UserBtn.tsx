@@ -14,8 +14,8 @@ const UserBtn = ({user,setShowModal}:{user:User,setShowModal:React.Dispatch<Reac
             </button>
             <ul className="dropdown-menu dropdown-menu-end rounded-3">
                 <li className="dropdown-item border-bottom d-flex">
-                    <img alt={'profile pic'} style={{width:'45px',height:'45px',objectFit:'cover'}} className={'img-fluid rounded-circle'} src={user?.avatar?user.avatar:defaultAvatar.src}/>
-                    <p className={'ps-2 my-auto fw-bold'}>{user?.username}</p>
+                    <img alt={'profile pic'} style={{width:'45px',height:'45px',objectFit:'cover'}} className={'img-fluid rounded-circle my-auto'} src={user?.avatar?user.avatar:defaultAvatar.src}/>
+                    <p className={'ps-2 my-auto fw-bold text-wrap'}>{user?.username}</p>
                 </li>
                 <li>
                     <button onClick={()=>setShowModal(true)} id={'profileModalBtn'} className="btn dropdown-item border-bottom">
