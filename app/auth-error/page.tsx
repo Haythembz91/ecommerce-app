@@ -1,12 +1,8 @@
-
-"use client";
-import { useSearchParams } from "next/navigation";
 import Link from "next/link";
-import {Suspense} from "react";
 
-export default function AuthErrorPage() {
-    const params = useSearchParams();
-    const reason = params.get("reason");
+export default async function AuthErrorPage({ searchParams }: { searchParams: Promise<{ reason: string }> }) {
+    const params = await searchParams;
+    const reason = params.reason;
 
     let message = "Authentication failed. Please try again.";
     if (reason === "duplicate") {
@@ -14,12 +10,10 @@ export default function AuthErrorPage() {
     }
 
     return (
-        <Suspense fallback={<div>Loading...</div>}>
             <main className="p-4">
                 <h1 className="h1 font-bold mb-2">Authentication Error</h1>
                 <p className="">{message}</p>
                 <Link href="/" className="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover" >Login with different credentials</Link>
             </main>
-        </Suspense>
     );
 }
