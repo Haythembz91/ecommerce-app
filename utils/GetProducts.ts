@@ -4,7 +4,7 @@ export const GetProducts = async(filters:Filters)=>{
    const searchParams = new URLSearchParams(filters).toString()
 
    try{
-      const response = await fetch(`${process.env.BASE_URL}/api/product?${searchParams}`,{
+      const response = await fetch(`${process.env.NODE_ENV === 'development' ? process.env.BASE_URL : process.env.PUBLIC_URL}/api/product?${searchParams}`,{
          headers:{
             'x-requested-with':'XMLHttpRequest'
          },
