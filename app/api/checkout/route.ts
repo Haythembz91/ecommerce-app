@@ -12,7 +12,7 @@ export async function OPTIONS() {
     return new NextResponse(null, {
         status: 204,
         headers: {
-            'Access-Control-Allow-Origin': 'https://ecommerce-app-beta-olive.vercel.app',
+            'Access-Control-Allow-Origin': process.env.PUBLIC_URL!,
             'Access-Control-Allow-Methods': 'POST, OPTIONS',
             'Access-Control-Allow-Headers': 'Content-Type, X-Requested-With',
         },
@@ -26,7 +26,6 @@ export async function POST (req:NextRequest){
         }
         const userId = user._id.toString()
         const {success} = await checkoutLimiter.limit(`checkout-${userId}`);
-        console.log(success)
         if (!success) {
             return NextResponse.json({ message: "Too many checkout attempts. Please wait." }, { status: 429 });
         }
@@ -84,7 +83,7 @@ export async function POST (req:NextRequest){
             {
                 status: 200,
                 headers: {
-                    'Access-Control-Allow-Origin': 'https://ecommerce-app-beta-olive.vercel.app',
+                    'Access-Control-Allow-Origin': process.env.PUBLIC_URL!,
                     'Access-Control-Allow-Methods': 'POST, OPTIONS',
                     'Access-Control-Allow-Headers': 'Content-Type, X-Requested-With',
                 },
@@ -97,7 +96,7 @@ export async function POST (req:NextRequest){
             {
                 status: 500,
                 headers: {
-                    'Access-Control-Allow-Origin': 'https://ecommerce-app-beta-olive.vercel.app',
+                    'Access-Control-Allow-Origin': process.env.PUBLIC_URL!,
                 },
             }
         );
