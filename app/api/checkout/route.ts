@@ -26,6 +26,7 @@ export async function POST (req:NextRequest){
         }
         const userId = user._id.toString()
         const {success} = await checkoutLimiter.limit(`checkout-${userId}`);
+        console.log(success)
         if (!success) {
             return NextResponse.json({ message: "Too many checkout attempts. Please wait." }, { status: 429 });
         }

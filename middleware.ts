@@ -2,6 +2,7 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { jwtVerify } from 'jose';
+import {tokens} from "@/utils/enums";
 
 const protectedPaths = ['/api/checkout', '/admin'];
 
@@ -12,7 +13,7 @@ export async function middleware(req: NextRequest) {
     const isProtected = protectedPaths.some(path => pathname.startsWith(path));
     if (!isProtected) return NextResponse.next();
 
-    const token = req.cookies.get('token')?.value;
+    const token = req.cookies.get(tokens.ACCESS_TOKEN)?.value;
 
     if (!token) {
         if (pathname.startsWith('/api/')) {

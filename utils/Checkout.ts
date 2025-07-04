@@ -13,7 +13,7 @@ export const handleSubmit = async (e:React.FormEvent<HTMLFormElement>,items:Cart
             body:JSON.stringify({items})
         })
         if(!response.ok){
-            window.location.href = '/auth';
+            window.location.href = '/auth'
         }
         const data = await response.json();
         if (data.url) {
