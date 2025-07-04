@@ -3,6 +3,7 @@ import {getDb} from "@/utils/mongodb";
 import {User} from "@/utils/interfaces";
 import {roles} from "@/utils/enums";
 import jwt from "jsonwebtoken";
+import {setAuthCookies} from "@/utils/setAuthCookies";
 
 
 
@@ -57,10 +58,10 @@ export async function GET(req:NextRequest){
                 if(!insertUser.acknowledged){
                     return NextResponse.json({message:'Failed to insert user'}, {status:400})
                 }
-                const token = jwt.sign({ userId: insertUser.insertedId, role: user.role }, process.env.JWT_SECRET as string, { expiresIn: '1h' });
+                const accessToken = jwt.sign({ userId: insertUser.insertedId, role: user.role }, process.env.JWT_SECRET as string, { expiresIn: '1h' });
+                const refreshToken = jwt.sign({ userId: insertUser.insertedId, role: user.role }, process.env.JWT_REFRESH_SECRET as string, { expiresIn: '7d' });
                 const response = NextResponse.redirect(process.env.NODE_ENV==='development' ? `${process.env.BASE_URL}` : `${process.env.PUBLIC_URL}`);
-                response.cookies.set('token', token, { httpOnly: true, secure: process.env.NODE_ENV === 'production', maxAge: 60 * 60,path: '/', sameSite: 'lax' });
-                return response
+                return setAuthCookies(response,accessToken,refreshToken)
             }catch(e){
                 const error = e as {code:number, message:string}
                 console.error(error.message)
@@ -70,10 +71,10 @@ export async function GET(req:NextRequest){
                 return NextResponse.redirect(new URL('/auth-error?reason=other', req.url))
             }
         }
-        const token = jwt.sign({ userId: existingUser._id, role: existingUser.role }, process.env.JWT_SECRET as string, { expiresIn: '1h' });
+        const accessToken = jwt.sign({ userId: existingUser._id, role: existingUser.role }, process.env.JWT_SECRET as string, { expiresIn: '1h' });
+        const refreshToken = jwt.sign({ userId: existingUser._id, role: existingUser.role }, process.env.JWT_REFRESH_SECRET as string, { expiresIn: '7d' });
         const response = NextResponse.redirect(process.env.NODE_ENV==='development' ? `${process.env.BASE_URL}` : `${process.env.PUBLIC_URL}`);
-        response.cookies.set('token', token, { httpOnly: true, secure: process.env.NODE_ENV === 'production', maxAge: 60 * 60,path: '/', sameSite: 'lax' });
-        return response
+        return setAuthCookies(response,accessToken,refreshToken)
     }catch(e){
         const error = e as Error
         console.error(error.message)

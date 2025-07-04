@@ -3,6 +3,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import {getDb} from "@/utils/mongodb";
 import {loginLimiter} from "@/utils/rateLimit";
+import {setAuthCookies} from "@/utils/setAuthCookies";
 
 export async function GET() {
     return NextResponse.json({ message: "GET method not allowed" }, { status: 405 });
@@ -36,10 +37,10 @@ export async function POST(req:NextRequest){
         if(!isPasswordValid){
             return NextResponse.json({message:'Invalid username or password'},{ status: 401 })
         }
-        const token = jwt.sign({ userId: user._id, role: user.role }, process.env.JWT_SECRET as string, { expiresIn: '1h' });
-        const response = NextResponse.json('Logged in successfully')
-        response.cookies.set('token', token, { httpOnly: true, secure: process.env.NODE_ENV === 'production', maxAge: 60 * 60,path: '/', sameSite: 'lax' });
-        return response
+        const accessToken = jwt.sign({ userId: user._id, role: user.role }, process.env.JWT_SECRET as string, { expiresIn: '1h' });
+        const refreshToken = jwt.sign({ userId: user._id, role: user.role }, process.env.JWT_REFRESH_SECRET as string, { expiresIn: '7d' });
+        const response = NextResponse.json({message:'Logged in successfully'}, {status:200})
+        return setAuthCookies(response,accessToken,refreshToken)
     }catch(e){
         const error = e as Error
         console.error(error.message)

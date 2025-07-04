@@ -1,6 +1,7 @@
 import GetPurchases from "@/utils/GetPurchases";
 import getUserFromCookies from "@/utils/GetUserFromCookies";
 import {NextRequest, NextResponse} from "next/server";
+import {tokens} from "@/utils/enums";
 
 
 export async function GET(req:NextRequest){
@@ -9,7 +10,7 @@ export async function GET(req:NextRequest){
         if(requestedWith !== 'XMLHttpRequest'){
             return NextResponse.json({message:'Invalid Request'}, {status: 400})
         }
-        const user = await getUserFromCookies();
+        const user = await getUserFromCookies(tokens.ACCESS_TOKEN);
         if (!user){
             return NextResponse.json({message: 'User not found'},{ status: 401 })
         }

@@ -6,6 +6,7 @@ import {Product} from "@/utils/interfaces";
 import {GetProducts} from "@/utils/GetProducts";
 import GetUserFromCookies from "@/utils/GetUserFromCookies";
 import {checkoutLimiter} from "@/utils/rateLimit";
+import {tokens} from "@/utils/enums";
 
 export async function OPTIONS() {
     return new NextResponse(null, {
@@ -19,7 +20,7 @@ export async function OPTIONS() {
 }
 export async function POST (req:NextRequest){
     try{
-        const user = await GetUserFromCookies()
+        const user = await GetUserFromCookies(tokens.ACCESS_TOKEN)
         if(!user){
             return NextResponse.json({message:'User not found'},{ status: 401 })
         }

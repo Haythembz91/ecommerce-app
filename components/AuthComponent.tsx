@@ -6,7 +6,6 @@ const AuthComponent = ()=>{
 
 
     const [showLogin, setShowLogin] = React.useState(true)
-    const [showRegister, setShowRegister] = React.useState(false)
     const [password, setPassword] = React.useState('')
     const [confirmPassword, setConfirmPassword] = React.useState('')
     const [error, setError] = React.useState('')
@@ -14,7 +13,7 @@ const AuthComponent = ()=>{
     const handleSubmit = async (e:React.FormEvent<HTMLFormElement>)=>{
         e.preventDefault()
         setIsLoading(true)
-        if(password!==confirmPassword){
+        if(!showLogin && password!==confirmPassword){
             setError('Passwords do not match')
             setIsLoading(false)
             return null
@@ -46,10 +45,10 @@ const AuthComponent = ()=>{
         <div className={'container'}>
             <ul className="nav nav-pills my-3 justify-content-center">
                 <li className="nav-item px-2">
-                    <button onClick={()=>{setShowLogin(true);setShowRegister(false);setError('')}} className="btn btn-outline-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" aria-current="page">Login</button>
+                    <button onClick={()=>{setShowLogin(true);setError('')}} className="btn btn-outline-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" aria-current="page">Login</button>
                 </li>
                 <li className="nav-item px-2">
-                    <button onClick={()=>{setShowLogin(false);setShowRegister(true);setError('')}} className="btn btn-outline-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover">Sign Up</button>
+                    <button onClick={()=>{setShowLogin(false);setError('')}} className="btn btn-outline-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover">Sign Up</button>
                 </li>
             </ul>
             <div className={'d-flex overflow-hidden'}>
@@ -82,7 +81,7 @@ const AuthComponent = ()=>{
                             </button>}
                     </form>
                 </div>}
-                {showRegister&&<div className={'col-12 p-2'} id={'registerTab'}>
+                {!showLogin&&<div className={'col-12 p-2'} id={'registerTab'}>
                     <form onSubmit={handleSubmit}>
                         <div className="form-floating mb-3">
                             <input required type="text" name={'username'} className="form-control p-2" id="floatingUserInput" placeholder="Username"/>

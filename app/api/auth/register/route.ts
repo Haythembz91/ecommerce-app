@@ -5,6 +5,11 @@ import jwt from "jsonwebtoken";
 import {User} from "@/utils/interfaces";
 import {roles} from "@/utils/enums";
 import {loginLimiter} from "@/utils/rateLimit";
+import {setAuthCookies} from "@/utils/setAuthCookies";
+
+export async function GET() {
+    return NextResponse.json({ message: "GET method not allowed" }, { status: 405 });
+}
 export async function POST(req:NextRequest){
     try{
         const ip = req.headers.get('x-forwarded-for') || '127.0.0.1';
@@ -43,10 +48,10 @@ export async function POST(req:NextRequest){
         if(!result.acknowledged){
             return NextResponse.json({message:'register failed'},{status:500})
         }
-        const token = jwt.sign({ userId: result.insertedId, role: user.role }, process.env.JWT_SECRET as string, { expiresIn: '1h' });
-        const response = NextResponse.json('User registered successfully')
-        response.cookies.set('token', token, { httpOnly: true, secure: process.env.NODE_ENV === 'production', maxAge: 60 * 60,path: '/', sameSite: 'lax' });
-        return response
+        const accessToken = jwt.sign({ userId: result.insertedId, role: user.role }, process.env.JWT_SECRET as string, { expiresIn: '1h' });
+        const refreshToken = jwt.sign({ userId: result.insertedId, role: user.role }, process.env.JWT_REFRESH_SECRET as string, { expiresIn: '7d' });
+        const response = NextResponse.json({message:'User registered successfully'});
+        return setAuthCookies(response,accessToken,refreshToken)
     }catch(e){
         const error = e as Error
         console.error(error.message)
