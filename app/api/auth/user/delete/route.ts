@@ -2,11 +2,12 @@ import {NextResponse} from "next/server";
 import {getDb} from "@/utils/mongodb";
 import GetUserFromCookies from "@/utils/GetUserFromCookies";
 import {ObjectId} from "mongodb";
+import {tokens} from "@/utils/enums";
 
 
 export async function DELETE(){
     try{
-        const user = await GetUserFromCookies()
+        const user = await GetUserFromCookies(tokens.ACCESS_TOKEN)
         if (!user) {
             return NextResponse.json({message: 'User not found'})
         }

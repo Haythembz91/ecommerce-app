@@ -1,11 +1,15 @@
 import {NextRequest, NextResponse} from "next/server";
 import {getDb} from "@/utils/mongodb";
 import {UploadToCloudinary} from "@/utils/UploadToCloudinary";
+import {tokens} from "@/utils/enums";
+import GetUserFromCookies from "@/utils/GetUserFromCookies";
 
 
 export async function PUT (req:NextRequest) {
-    if(!req.cookies.get('token'))
-        return NextResponse.json({message:'Unauthorized'}, {status:401})
+    const user = await GetUserFromCookies(tokens.ACCESS_TOKEN)
+    if (!user) {
+        return NextResponse.json({message: 'User not found'}, {status: 401})
+    }
     const db = await getDb()
     if(!db){
         return NextResponse.json({message:'Database connection failed'},{ status: 500 })
