@@ -12,6 +12,11 @@ export async function middleware(req:NextRequest){
     }
     const token = req.cookies.get(tokens.ACCESS_TOKEN)?.value
     if(!token){
+        if(pathname.startsWith('/api'))
+        {
+            console.log('No token found for the API checkout, returning 401 Unauthorized.');
+            return NextResponse.json({message:'Unauthorized'}, {status:401});
+        }
         if(!pathname.startsWith('/auth')){
             return NextResponse.redirect(new URL('/auth',req.url))
         }
@@ -30,6 +35,7 @@ export async function middleware(req:NextRequest){
     }catch(e){
         const error = e as Error
         console.error({message:error.message})
+        return NextResponse.json({message:'Internal server error'}, {status:500})
     }
 }
 

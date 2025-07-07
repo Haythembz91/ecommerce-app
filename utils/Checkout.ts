@@ -12,7 +12,7 @@ export const handleSubmit = async (e:React.FormEvent<HTMLFormElement>,items:Cart
             body:JSON.stringify({items})
         })
         if(!response.ok){
-            return null
+            window.location.href='/auth'
         }else{
             const data = await response.json();
             if (data.url) {
@@ -24,7 +24,6 @@ export const handleSubmit = async (e:React.FormEvent<HTMLFormElement>,items:Cart
     }catch(e){
         const error = e as Error
         console.error(error.message)
-        window.location.href='/auth'
     }
 }
 
