@@ -42,13 +42,13 @@ const Home = ()=>{
                     <div className="carousel-caption">
                     <h3 className="card-title fw-bold ">LOW BACK EDIT</h3>
                     <h6 className="card-text">Bringing the heat.</h6>
-                      <a href={`/shop/sportswear?other=${other.LOW_BACK_EDIT}`} className={"btn btn-light"}
+                      <Link href={`/shop/sportswear?other=${other.LOW_BACK_EDIT}`} className={"btn btn-light"}
                               style={{
                                   fontWeight: "600",
                                   borderRadius: "20px",
                               }}>
                           Shop now
-                      </a>
+                      </Link>
                   </div>
                 </div>
                 <div className={'mx-2 mx-md-0 d-flex justify-content-between align-items-center'}>
@@ -79,13 +79,13 @@ const Home = ()=>{
                     <div className="carousel-caption">
                         <h3 className="card-title fw-bold ">LOW BACK EDIT</h3>
                         <h6 className="card-text">Bringing the heat.</h6>
-                        <a href={`/shop/sportswear?other=${other.LOW_BACK_EDIT}`} className={"btn btn-light"}
+                        <Link href={`/shop/sportswear?other=${other.LOW_BACK_EDIT}`} className={"btn btn-light"}
                                 style={{
                                     fontWeight: "600",
                                     borderRadius: "20px",
                                 }}>
                             Shop now
-                        </a>
+                        </Link>
                     </div>
                 </div>
                 <div className={'mx-2 mx-md-0 d-flex justify-content-between align-items-center'}>

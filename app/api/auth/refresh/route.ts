@@ -10,16 +10,15 @@ export async function GET(){
 export async function POST(){
     try{
         const user = await GetUserFromCookies(tokens.REFRESH_TOKEN)
-        if(!user){
-            return NextResponse.json({message:'User not found'})
-        }
         const accessToken = jwt.sign({ userId: user._id, role: user.role }, process.env.JWT_SECRET as string, { expiresIn: '1h' });
-        const response = NextResponse.json({message:'Token refreshed successfully'});
+        const response = NextResponse.json({message:'Token refreshed successfully',user:user});
         response.cookies.set('accessToken', accessToken, { httpOnly: true, secure: process.env.NODE_ENV === 'production', maxAge: 60 * 60,path: '/', sameSite: 'lax' });
         return response
     }catch(e){
         const error = e as Error
-        console.error(error.message)
-        return NextResponse.json({message:error.message})
+        console.error({message:error.message})
+        if(error.message==='Token not found or expired')
+            return NextResponse.json({message:'Refresh token not found or expired',user:null})
+        return NextResponse.json({message:'Internal server error'}, {status:500})
     }
 }

@@ -5,7 +5,7 @@ import React from 'react';
 import PurchaseContainer from "@/components/PurchaseContainer";
 const PurchaseList = ()=>{
 
-    const [purchases,setPurchases] = useState<Purchase[]>([])
+    const [purchases,setPurchases] = useState<Purchase[]|null>(null)
     const getPurchases = async()=>{
         try{
             const response = await fetch ('/api/purchases',{
@@ -25,8 +25,15 @@ const PurchaseList = ()=>{
         getPurchases().then().catch()
     },[])
 
+    if(!purchases){
+        return <div className="d-flex justify-content-center">
+            <div className="spinner-border" role="status">
+                <span className="visually-hidden">Loading...</span>
+            </div>
+        </div>
+    }
     if(purchases.length===0){
-        return null
+        return <div>You have no purchases yet</div>
     }
 
     return (

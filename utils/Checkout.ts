@@ -1,7 +1,6 @@
 import {CartItemType} from "@/utils/types";
 import React from "react";
 
-
 export const handleSubmit = async (e:React.FormEvent<HTMLFormElement>,items:CartItemType[])=>{
     e.preventDefault()
     try{
@@ -13,17 +12,19 @@ export const handleSubmit = async (e:React.FormEvent<HTMLFormElement>,items:Cart
             body:JSON.stringify({items})
         })
         if(!response.ok){
-            window.location.href = '/auth'
-        }
-        const data = await response.json();
-        if (data.url) {
-            window.location.href = data.url;
-        } else {
-            console.error('No checkout URL returned');
+            return null
+        }else{
+            const data = await response.json();
+            if (data.url) {
+                window.location.href = data.url;
+            } else {
+                console.error('No checkout URL returned');
+            }
         }
     }catch(e){
         const error = e as Error
         console.error(error.message)
+        window.location.href='/auth'
     }
 }
 

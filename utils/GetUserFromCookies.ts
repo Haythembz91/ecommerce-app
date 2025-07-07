@@ -1,27 +1,25 @@
 import {cookies} from "next/headers";
-import jwt, {JwtPayload} from "jsonwebtoken";
+import {JwtPayload} from "jsonwebtoken";
 import {getDb} from "@/utils/mongodb";
 import {ObjectId} from "mongodb";
 import {tokens} from "@/utils/enums";
-
+import {jwtVerify} from "jose";
 
 const GetUserFromCookies = async (token:tokens)=> {
-    try {
+
         const cookieStore = await cookies()
         const authToken = cookieStore.get(token)?.value
         const secret = token===tokens.ACCESS_TOKEN ? process.env.JWT_SECRET : process.env.JWT_REFRESH_SECRET
         if (!authToken) {
-            throw new Error('No token found')
+            throw new Error('Token not found or expired')
         }
         let decodedToken
         try {
-            decodedToken = jwt.verify(authToken, secret as string)
+            const {payload} = await jwtVerify(authToken, new TextEncoder().encode(secret as string));
+            decodedToken = payload;
         } catch (e) {
             const error = e as Error
             console.error(error)
-            if (error.name === 'TokenExpiredError') {
-                throw new Error('Token expired')
-            }
             throw new Error('Invalid token')
         }
         const userId = (decodedToken as JwtPayload & { userId: string }).userId;
@@ -38,10 +36,6 @@ const GetUserFromCookies = async (token:tokens)=> {
             throw new Error('User not found');
         }
         return user
-    }catch(e){
-        const error = e as Error
-        console.error(error.message)
-    }
 }
 
 export default GetUserFromCookies

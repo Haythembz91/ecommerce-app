@@ -75,10 +75,12 @@ const ProfileModal = ({user,setShowModal}:{user:User,setShowModal:React.Dispatch
                                 <div className={'mb-3 row row-cols-2 row-cols-md-3 border-top'}>
                                     <div className={'col mx-auto p-2'}>Profile</div>
                                     <div style={{height:'60px',width:'60px'}} className={'col mx-auto p-2'}>
-                                        <img style={{width:'100%',height:'100%',objectFit:'cover'}} src={user?.avatar?user.avatar:defaultAvatar.src} className={'img-fluid rounded-circle'} alt={'Profile'}></img>
-                                    </div>
+                                        <label htmlFor={`${user.username}_avatar`}>
+                                            <img style={{width:'100%',height:'100%',objectFit:'cover'}} src={user?.avatar?user.avatar:defaultAvatar.src} className={'img-fluid rounded-circle profileImage'} alt={'Profile'}></img>
+                                        </label>
+                                        </div>
                                     <div className={'col mx-auto p-2'}>
-                                        <input required name={`${user.username}_avatar`} type={'file'} accept={'image/*'} className={'form-control'}></input>
+                                        <input required name={`${user.username}_avatar`} id={`${user.username}_avatar`} type={'file'} accept={'image/*'} className={'form-control d-none'}></input>
                                     </div>
                                 </div>
                                 <div className={'mb-3 row row-cols-2 row-cols-md-3 border-top'}>

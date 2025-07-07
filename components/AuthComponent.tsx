@@ -1,6 +1,9 @@
 'use client'
 import grd from '@/public/assets/google/android_light_sq_ctn.svg'
 import React from "react";
+import {useRouter} from "next/navigation";
+import {useAuth} from "@/context/AuthContext";
+import getUser from "@/utils/GetUser";
 
 const AuthComponent = ()=>{
 
@@ -10,6 +13,8 @@ const AuthComponent = ()=>{
     const [confirmPassword, setConfirmPassword] = React.useState('')
     const [error, setError] = React.useState('')
     const [isLoading, setIsLoading] = React.useState(false)
+    const router = useRouter()
+    const {setUser} = useAuth()
     const handleSubmit = async (e:React.FormEvent<HTMLFormElement>)=>{
         e.preventDefault()
         setIsLoading(true)
@@ -28,10 +33,13 @@ const AuthComponent = ()=>{
             })
             if(!response.ok){
                 const error = await response.json();
+                console.error(error.message)
                 setError(error.message)
             }else{
+                const data = await getUser()
+                setUser(data)
                 setError('')
-                window.location.href=('/')
+                router.push('/')
             }
         }catch(e){
             const error = e as Error
@@ -40,9 +48,8 @@ const AuthComponent = ()=>{
             setIsLoading(false)
         }
     }
-
     return (
-        <div className={'container'}>
+        <div className={'container px-md-4'}>
             <ul className="nav nav-pills my-3 justify-content-center">
                 <li className="nav-item px-2">
                     <button onClick={()=>{setShowLogin(true);setError('')}} className="btn btn-outline-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" aria-current="page">Login</button>

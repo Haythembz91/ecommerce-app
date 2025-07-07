@@ -39,7 +39,7 @@ div.sportswearList::-webkit-scrollbar {
     display: none;  /* Safari and Chrome */
   }
 }
-.filteredCategories{
+.filteredCategories, .profileImage{
   cursor:pointer;
 }
 
