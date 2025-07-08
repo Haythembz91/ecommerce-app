@@ -11,9 +11,9 @@ const ProductsList = async ()=>{
             </div>
         </div>
     return (
-        <div>
+        <div className={'row row-cols-1 row-cols-lg-2'}>
             {products.map((product)=>
-                <div key={product._id} className={'d-md-flex p-2 border-bottom'}>
+                <div key={product._id} className={'col d-md-flex p-2 border-bottom'}>
                     <div>
                         <img style={{width:'100px'}} src={product.urlByColor![0]} className={'img-fluid'} alt={product.productName} />
                     </div>

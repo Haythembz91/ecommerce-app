@@ -20,7 +20,7 @@ export default function Home() {
           </nav>
         </aside>
         <div className={'col-9 px-2'}>
-            <div>
+            <div className={''}>
                 <ProductsList></ProductsList>
             </div>
         </div>
