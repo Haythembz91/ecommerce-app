@@ -15,9 +15,20 @@ const AuthComponent = ()=>{
     const [isLoading, setIsLoading] = React.useState(false)
     const router = useRouter()
     const {setUser} = useAuth()
+
+    function isPasswordValid(password:string) {
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+        return passwordRegex.test(password);
+    }
+
     const handleSubmit = async (e:React.FormEvent<HTMLFormElement>)=>{
         e.preventDefault()
         setIsLoading(true)
+        if(!showLogin && !isPasswordValid(password)){
+            setError('Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character.')
+            setIsLoading(false)
+            return null
+        }
         if(!showLogin && password!==confirmPassword){
             setError('Passwords do not match')
             setIsLoading(false)
@@ -76,9 +87,7 @@ const AuthComponent = ()=>{
                                 Remember me
                             </label>
                         </div>
-                        <div className={'mb-3'}>
-                            {error}
-                        </div>
+                        {error&&<div className={'alert alert-danger mb-3'}>{error}</div>}
                         {!isLoading?<div className={'mb-3'}>
                             <button type="submit" className="btn btn-dark w-100">Login</button>
                         </div>:
@@ -109,7 +118,7 @@ const AuthComponent = ()=>{
                                    placeholder="Confirm Password"/>
                             <label className={'p-2'} htmlFor="confirmFloatingPassword">Confirm Password</label>
                         </div>
-                        <div className={'mb-3'}>{error}</div>
+                        {error&&<div className={'alert alert-danger mb-3'}>{error}</div>}
                         <div className="form-check mb-3">
                             <input className="form-check-input" name={'rememberMe'} type="checkbox" value={'rememberMe'} id="checkChecked"/>
                             <label className="form-check-label" htmlFor="checkChecked">

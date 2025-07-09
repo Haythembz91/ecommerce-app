@@ -20,7 +20,7 @@ export async function POST(req:NextRequest){
         if(!password){
             return NextResponse.json({ message: 'Missing password' }, { status: 400 });
         }
-        const username = formData.get('username')?.toString()
+        const username = formData.get('username')?.toString().toLowerCase()
         if(!username){
             return NextResponse.json({ message: 'Missing username' }, { status: 400 });
         }
@@ -29,7 +29,7 @@ export async function POST(req:NextRequest){
             return NextResponse.json({message:'Database connection failed'},{ status: 500 })
         }
         const usersCollection = db.collection('users')
-        const user = await usersCollection.findOne({username:formData.get('username')?.toString()})
+        const user = await usersCollection.findOne({username:username})
         if(!user) {
             return NextResponse.json({message: 'Invalid username or password'},{ status: 401 })
         }

@@ -7,6 +7,17 @@ import {roles} from "@/utils/enums";
 import {loginLimiter} from "@/utils/rateLimit";
 import {setAuthCookies} from "@/utils/setAuthCookies";
 
+function isPasswordValid(password:string) {
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+    return passwordRegex.test(password);
+}
+
+function isEmailValid(email: string) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+
 export async function GET() {
     return NextResponse.json({ message: "GET method not allowed" }, { status: 405 });
 }
@@ -18,19 +29,30 @@ export async function POST(req:NextRequest){
             return NextResponse.json({message:'Too many requests'}, {status:429})
         }
         const formData = await req.formData();
+        const username = formData.get('username')?.toString().toLowerCase()
+        if(!username){
+            return NextResponse.json({ message: 'Missing username' }, { status: 400 });
+        }
+        const email_address = formData.get('email_address')?.toString().toLowerCase()
+        if(!email_address || !isEmailValid(email_address)){
+            return NextResponse.json({ message: 'Missing email address or invalid email' }, { status: 400 });
+        }
         const password = formData.get('password')?.toString()
         const confirmPassword = formData.get('confirmPassword')?.toString()
         if (!password || !confirmPassword) {
             return NextResponse.json({ message: 'Missing password fields' }, { status: 400 })
+        }
+        if (!isPasswordValid(password)) {
+            return NextResponse.json({ message: 'Invalid password' }, { status: 400 })
         }
         if (password !== confirmPassword) {
             return NextResponse.json({ message: 'Passwords do not match' }, { status: 400 })
         }
         const hashedPassword = await bcrypt.hash(password, 10);
         const user:User = {
-            username: formData.get('username')?.toString(),
+            username: username,
             avatar:null,
-            email_address: formData.get('email_address')?.toString(),
+            email_address: email_address,
             hashedPassword: hashedPassword,
             role:roles.USER,
         }
