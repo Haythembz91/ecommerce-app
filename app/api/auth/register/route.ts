@@ -72,6 +72,12 @@ export async function POST(req:NextRequest){
         }
         const accessToken = jwt.sign({ userId: result.insertedId, role: user.role }, process.env.JWT_SECRET as string, { expiresIn: '1h' });
         const refreshToken = jwt.sign({ userId: result.insertedId, role: user.role }, process.env.JWT_REFRESH_SECRET as string, { expiresIn: '7d' });
+        const hashedRefreshToken = await bcrypt.hash(refreshToken, 10);
+        const refreshTokens = db.collection('refreshTokens');
+        const addRefreshToken = await refreshTokens.insertOne({ token: hashedRefreshToken, userId: result.insertedId });
+        if(!addRefreshToken.acknowledged){
+            return NextResponse.json({message:'Failed to add refresh token'},{ status: 500 })
+        }
         const response = NextResponse.json({message:'User registered successfully'});
         return setAuthCookies(response,accessToken,refreshToken)
     }catch(e){

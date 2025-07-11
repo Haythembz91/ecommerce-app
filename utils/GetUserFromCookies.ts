@@ -4,6 +4,7 @@ import {getDb} from "@/utils/mongodb";
 import {ObjectId} from "mongodb";
 import {tokens} from "@/utils/enums";
 import {jwtVerify} from "jose";
+import bcrypt from "bcryptjs";
 
 const GetUserFromCookies = async (token:tokens)=> {
 
@@ -34,6 +35,16 @@ const GetUserFromCookies = async (token:tokens)=> {
         const user = await usersCollection.findOne({_id: new ObjectId(userId)}, {projection: {hashedPassword: 0}})
         if (!user) {
             throw new Error('User not found');
+        }
+        if(authToken===cookieStore.get(tokens.REFRESH_TOKEN)?.value){
+            const userToken = await db.collection('refreshTokens').findOne({userId: user._id})
+            if(!userToken){
+                throw new Error('Refresh token not found')
+            }
+            const isValid = await bcrypt.compare(authToken,userToken.token)
+            if(!isValid){
+                throw new Error('Invalid refresh token')
+            }
         }
         return user
 }

@@ -4,6 +4,7 @@ import {User} from "@/utils/interfaces";
 import {roles} from "@/utils/enums";
 import jwt from "jsonwebtoken";
 import {setAuthCookies} from "@/utils/setAuthCookies";
+import bcrypt from "bcryptjs";
 
 
 
@@ -73,6 +74,12 @@ export async function GET(req:NextRequest){
         }
         const accessToken = jwt.sign({ userId: existingUser._id, role: existingUser.role }, process.env.JWT_SECRET as string, { expiresIn: '1h' });
         const refreshToken = jwt.sign({ userId: existingUser._id, role: existingUser.role }, process.env.JWT_REFRESH_SECRET as string, { expiresIn: '7d' });
+        const hashedRefreshToken = await bcrypt.hash(refreshToken, 10);
+        const refreshTokens = db.collection('refreshTokens')
+        const addToken = await refreshTokens.updateOne({userId:existingUser._id},{$set:{token:hashedRefreshToken}},{upsert:true})
+        if(!addToken.acknowledged){
+            return NextResponse.json({message:'Failed to update refresh token'}, {status:500})
+        }
         const response = NextResponse.redirect(process.env.NODE_ENV==='development' ? `${process.env.BASE_URL}` : `${process.env.PUBLIC_URL}`);
         return setAuthCookies(response,accessToken,refreshToken)
     }catch(e){
