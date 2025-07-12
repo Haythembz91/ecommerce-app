@@ -5,6 +5,7 @@ import {roles} from "@/utils/enums";
 import jwt from "jsonwebtoken";
 import {setAuthCookies} from "@/utils/setAuthCookies";
 import bcrypt from "bcryptjs";
+import {createRemoteJWKSet, jwtVerify} from "jose";
 
 
 
@@ -31,15 +32,26 @@ export async function GET(req:NextRequest){
         if(!tokenData){
             return NextResponse.json({message:'Failed to get token'}, {status:400})
         }
-        const base64Payload = tokenData.id_token.split('.')[1];
-        const payload = JSON.parse(Buffer.from(base64Payload, 'base64').toString('utf-8'));
+        const JWKS = createRemoteJWKSet(new URL('https://www.googleapis.com/oauth2/v3/certs'));
+        const {payload} = await jwtVerify(tokenData.id_token, JWKS,{
+            issuer: 'https://accounts.google.com',
+            audience: process.env.GOOGLE_CLIENT_ID
+        });
+        if(!payload){
+            return NextResponse.json({message:'Failed to get payload'}, {status:400})
+        }
         const email = payload.email;
         if(!email){
             return NextResponse.json({message:'Failed to get email'}, {status:400})
         }
         const username = payload.name;
+        if(!username){
+            return NextResponse.json({message:'Failed to get username'}, {status:400})
+        }
         const picture = payload.picture;
-
+        if(!picture){
+            return NextResponse.json({message:'Failed to get picture'}, {status:400})
+        }
         const db = await getDb()
         if(!db){
             return NextResponse.json({message:'Database connection failed'},{ status: 500 })
@@ -48,9 +60,9 @@ export async function GET(req:NextRequest){
         const existingUser = await usersCollection.findOne({email_address:email})
         if(!existingUser){
             const user:User = {
-                username:username,
-                avatar:picture,
-                email_address:email,
+                username:username as string,
+                avatar:picture as string,
+                email_address:email as string,
                 hashedPassword:undefined,
                 role:roles.USER
             }
@@ -61,6 +73,12 @@ export async function GET(req:NextRequest){
                 }
                 const accessToken = jwt.sign({ userId: insertUser.insertedId, role: user.role }, process.env.JWT_SECRET as string, { expiresIn: '1h' });
                 const refreshToken = jwt.sign({ userId: insertUser.insertedId, role: user.role }, process.env.JWT_REFRESH_SECRET as string, { expiresIn: '7d' });
+                const hashedRefreshToken = await bcrypt.hash(refreshToken, 10);
+                const refreshTokens = db.collection('refreshTokens')
+                const insertToken = await refreshTokens.insertOne({userId:insertUser.insertedId,token:hashedRefreshToken})
+                if(!insertToken.acknowledged){
+                    return NextResponse.json({message:'Failed to insert refresh token'}, {status:400})
+                }
                 const response = NextResponse.redirect(process.env.NODE_ENV==='development' ? `${process.env.BASE_URL}` : `${process.env.PUBLIC_URL}`);
                 return setAuthCookies(response,accessToken,refreshToken)
             }catch(e){

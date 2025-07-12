@@ -5,7 +5,7 @@ export async function GET() {
     const clientId = process.env.GOOGLE_CLIENT_ID!;
     const scope = encodeURIComponent("openid email profile");
 
-    const url = `https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${scope}`;
+    const url = `https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${scope}&prompt=select_account`;
 
     return NextResponse.redirect(url);
 }

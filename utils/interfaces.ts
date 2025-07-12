@@ -24,8 +24,8 @@ export interface ProductVariant extends Omit<Product, '_id'> {
 }
 
 export interface User{
-    username?:string;
-    avatar?:string|null;
+    username:string;
+    avatar:string|null;
     email_address?:string;
     hashedPassword?:string;
     role?:roles
