@@ -52,7 +52,7 @@ const Home = ()=>{
                 }
             })
             if(response.ok){
-                window.location.reload()
+                window.location.href = '/'
             }
         }catch(e){
             const error = e as Error
