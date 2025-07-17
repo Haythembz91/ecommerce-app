@@ -29,7 +29,10 @@ const AddToCartForm = ({product}:{product:Product}) => {
         formData.append('stock',product.productQuantities![`${product.primaryColor}-${selectedSize}`].toFixed(2) as string)
 
         const item:CartItemType = Object.fromEntries(formData.entries()) as unknown as CartItemType
-        addItem(item)
+        if(item){
+            addItem(item)
+            toggleCart()
+        }
     }
     const [selectedSize,setSelectedSize]=useState<sizes>()
     const [selectedQuantity,setSelectedQuantity]=useState<number>(1)
@@ -74,7 +77,7 @@ const AddToCartForm = ({product}:{product:Product}) => {
                 <h5><b>€{totalPrice}</b></h5>
             </div>
             <div className={'d-flex justify-content-center mb-3'}>
-                <button type={'submit'} onClick={toggleCart} className={'btn btn-dark rounded-5 my-2 w-75'}>Add to Cart</button>
+                <button type={'submit'} className={'btn btn-dark rounded-5 my-2 w-75'}>Add to Cart</button>
             </div>
             <div className={''}>
                 <div className="accordion" id="accordionExample">
