@@ -38,10 +38,10 @@ export default function RootLayout({
               <Header></Header>
               <main>
                   {children}
-                  <Analytics></Analytics>
               </main>
           </CartProvider>
       </AuthContextProvider>
+      <Analytics></Analytics>
       </body>
     </html>
   );
