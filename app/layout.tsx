@@ -7,6 +7,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import React from "react";
 import {CartProvider} from "@/context/CartContext";
 import {AuthContextProvider} from "@/context/AuthContext";
+import { Analytics } from '@vercel/analytics/next';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,6 +38,7 @@ export default function RootLayout({
               <Header></Header>
               <main>
                   {children}
+                  <Analytics></Analytics>
               </main>
           </CartProvider>
       </AuthContextProvider>
