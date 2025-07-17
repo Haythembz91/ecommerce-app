@@ -17,9 +17,18 @@ export async function DELETE(){
         }
         const usersCollection = db.collection('users')
         const deleteUser = await usersCollection.deleteOne({_id:new ObjectId(user._id)})
-        if (deleteUser.acknowledged) {
-            return NextResponse.json({message:'User deleted successfully'})
+        if (!deleteUser.acknowledged) {
+            return NextResponse.json({message: 'Cant delete user'},{status:500})
         }
+        const deletePurchase = await db.collection('purchases').deleteMany({userId:user._id.toString()})
+        if(!deletePurchase.acknowledged){
+            return NextResponse.json({message:'Cant delete purchases'},{status:500})
+        }
+        const deleteToken = await db.collection('refreshTokens').deleteMany({userId:user._id})
+        if(!deleteToken.acknowledged){
+            return NextResponse.json({message:'Cant delete refresh token'},{status:500})
+        }
+        return NextResponse.json({message:'User deleted successfully'})
     }catch(e){
         const error = e as Error
         console.error(error.message)
