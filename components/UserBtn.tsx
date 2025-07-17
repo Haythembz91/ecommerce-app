@@ -5,7 +5,7 @@ import {roles} from "@/utils/enums";
 import {SignOut} from "@/scripts/SignOut";
 import Link from "next/link";
 
-const UserBtn = ({user,setShowModal}:{user:User,setShowModal:React.Dispatch<React.SetStateAction<boolean>>})=>{
+const UserBtn = ({user}:{user:User})=>{
     return (
         <div className="btn-group">
             <button style={{width:'45px',height:'45px'}} type="button" className="p-2 btn btn-link dropdown-toggle" data-bs-toggle="dropdown"
@@ -18,9 +18,9 @@ const UserBtn = ({user,setShowModal}:{user:User,setShowModal:React.Dispatch<Reac
                     <p className={'ps-2 my-auto fw-bold text-wrap'}>{user?.username}</p>
                 </li>
                 <li>
-                    <button onClick={()=>setShowModal(true)} id={'profileModalBtn'} className="btn dropdown-item border-bottom">
+                    <Link id={'profileModalBtn'} href={'/my-account'} className="btn dropdown-item border-bottom">
                         Manage account
-                    </button>
+                    </Link>
                 </li>
                 {user?.role===roles.ADMIN&&<li><Link className="dropdown-item border-bottom" href="/admin">Dashboard</Link></li>}
                 <li>
