@@ -14,6 +14,14 @@ const AddToCartForm = ({product}:{product:Product}) => {
     const handleAddToCart = (e:React.FormEvent<HTMLFormElement>)=>{
         e.preventDefault()
         const formData = new FormData(e.currentTarget as HTMLFormElement)
+        if(!formData.get('productSize')){
+            alert('Please select a size')
+            return null
+        }
+        if(!formData.get('productQuantity')){
+            alert('Please select a quantity')
+            return null
+        }
         formData.append('id',uuidv4() as string)
         formData.append('productId',product._id?.toString() as string)
         formData.append('productColor',product.primaryColor as colors)
