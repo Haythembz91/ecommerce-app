@@ -8,6 +8,8 @@ import React from "react";
 import {CartProvider} from "@/context/CartContext";
 import {AuthContextProvider} from "@/context/AuthContext";
 import { Analytics } from '@vercel/analytics/next';
+import Footer from "@/components/Footer";
+import Disclaimer from "@/components/Disclaimer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,12 +35,14 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
       <BootstrapClient></BootstrapClient>
+      <Disclaimer></Disclaimer>
       <AuthContextProvider>
           <CartProvider>
               <Header></Header>
               <main>
                   {children}
               </main>
+              <Footer></Footer>
           </CartProvider>
       </AuthContextProvider>
       <Analytics></Analytics>

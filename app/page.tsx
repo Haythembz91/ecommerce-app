@@ -7,8 +7,6 @@ import {collectionBanners} from "@/utils/const";
 
 const Home = ()=>{
 
-    console.log("Ania Kubow")
-    
     return(
         <div>
             <section>
