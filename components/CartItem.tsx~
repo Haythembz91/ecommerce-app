@@ -1,7 +1,6 @@
 'use client'
 import {CartItemType} from "@/utils/types";
 import {useCart} from "@/context/CartContext";
-import Link from "next/link";
 
 
 const CartItem = ({item}:{item:CartItemType})=>{

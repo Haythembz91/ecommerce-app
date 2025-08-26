@@ -13,7 +13,7 @@ export const legLengthsList:legLengths[]=[legLengths.SEVEN_EIGHT,legLengths.REGU
 
 export const sleeveLengthsList:sleeveLengths[]=[sleeveLengths.SHORT,sleeveLengths.LONG, sleeveLengths.SLEEVELESS]
 
-export const otherList:other[]=[other.BEST_SELLERS,other.NEW_RELEASES,other.SPRING_EDIT, other.LOWBACK_EDIT]
+export const otherList:other[]=[other.BEST_SELLERS,other.NEW_RELEASES,other.SPRING_EDIT, other.LOW_BACK_EDIT]
 
 export const sortList:sort[]=[sort.NEWEST,sort.PRICE_DSC,sort.PRICE_ASC]
 
@@ -33,7 +33,7 @@ export const collectionBanners = [{
         text:'Made for soft and stretchy layering.'
     },
     {
-        src:'',
+        src:'https://res.cloudinary.com/dmgfsayir/image/upload/v1749569313/4.WB_Website_MainPage_Collections_20250429_lg_600x_homy3h.webp',
         title:collections.ESSENTIAL,
         text:'Made with comfort and all-day versatility in mind.'
     }]
