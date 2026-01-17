@@ -62,7 +62,10 @@ div.sportswearList::-webkit-scrollbar {
 }
 
 
+.hover-zoom{
+  transition: transform 0.9s ease-out;
+}
+
 .hover-zoom:hover{
   transform: scale(1.10);
-  transition: transform 0.9s ease-out;
 }
