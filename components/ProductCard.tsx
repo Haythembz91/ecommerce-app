@@ -6,12 +6,14 @@ const ProductCard = ({product}:{product:Product})=>{
   return(
       <div className={'col'}>
           <div className="card border-0">
-              <img src={product.urlByColor![0]} className="card-img-top" alt="..."/>
-              <div className="card-body px-2 py-2">
-                  <h5 className="card-title mb-1 fs-6">{product.productName}</h5>
-                  <p className="card-text mb-1">{product.primaryColor}</p>
-                  <p className={'card-text fw-medium'}>{product.productPrice}€</p>
-              </div>
+            <div className="overflow-hidden">
+                <img src={product.urlByColor![0]} className="card-img-top hover-zoom object-fit-cover" alt={product.productName}/>
+            </div>
+            <div className="card-body px-2 py-2">
+                <h5 className="card-title mb-1 fs-6">{product.productName}</h5>
+                <p className="card-text mb-1">{product.primaryColor}</p>
+                <p className={'card-text fw-medium'}>{product.productPrice}€</p>
+            </div>
           </div>
       </div>   
   )
