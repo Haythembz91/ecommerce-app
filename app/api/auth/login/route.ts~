@@ -2,6 +2,7 @@ import {NextRequest, NextResponse} from "next/server";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import {getDb} from "@/utils/mongodb";
+import {loginLimiter} from "@/utils/rateLimit";
 import {setAuthCookies} from "@/utils/setAuthCookies";
 
 export async function GET() {

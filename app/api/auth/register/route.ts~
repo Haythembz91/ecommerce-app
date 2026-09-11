@@ -4,6 +4,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import {User} from "@/utils/interfaces";
 import {roles} from "@/utils/enums";
+import {loginLimiter} from "@/utils/rateLimit";
 import {setAuthCookies} from "@/utils/setAuthCookies";
 
 function isPasswordValid(password:string) {
